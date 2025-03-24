@@ -1,0 +1,57 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\ContactoMail;
+
+class ContactoFormularioController extends Controller
+{
+    /**
+     * Procesa el envío del formulario de contacto
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function enviar(Request $request)
+    {
+        // Comprobar si es una solicitud AJAX
+        $isAjax = $request->header('X-Requested-With') === 'XMLHttpRequest';
+
+        // Validar datos del formulario
+        try {
+            $request->validate([
+                'name' => 'required|string|max:255',
+                'email' => 'required|email|max:255',
+                'subject' => 'required|string|max:255',
+                'message' => 'required|string',
+                'destinatario' => 'required|in:diazkevinmota2@gmail.com,diazkevinmota@gmail.com'
+            ]);
+
+            // Preparar datos para el correo
+            $datos = [
+                'nombre' => $request->name,
+                'correo' => $request->email,
+                'asunto' => $request->subject,
+                'mensaje' => $request->message,
+            ];
+
+            // Enviar el correo electrónico
+            Mail::to($request->destinatario)->send(new ContactoMail($datos));
+
+            // Responder según el tipo de solicitud
+            if ($isAjax) {
+                return response('OK', 200);
+            } else {
+                return redirect()->back()->with('success', 'Mensaje enviado correctamente. Gracias por contactarnos.');
+            }
+        } catch (\Exception $e) {
+            if ($isAjax) {
+                return response('Error al enviar el mensaje: ' . $e->getMessage(), 400);
+            } else {
+                return redirect()->back()->with('error', 'Hubo un error al enviar el mensaje. Por favor, inténtelo más tarde.');
+            }
+        }
+    }
+}
