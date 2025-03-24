@@ -96,6 +96,8 @@ return [
         'name' => env('MAIL_FROM_NAME', 'Example'),
     ],
 
+    'allowed_destinations' => explode(',', env('MAIL_ALLOWED_DESTINATIONS', '')),
+
     /*
     |--------------------------------------------------------------------------
     | Markdown Mail Settings

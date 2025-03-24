@@ -22,6 +22,7 @@ class User extends Authenticatable
         'email',
         'password',
         'is_admin',
+        'role',
     ];
 
     /**
@@ -43,4 +44,44 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'is_admin' => 'boolean',
     ];
+
+    /**
+     * Verifica si el usuario es administrador.
+     *
+     * @return bool
+     */
+    public function isAdmin()
+    {
+        return $this->role === 'admin';
+    }
+
+    /**
+     * Verifica si el usuario es trabajador.
+     *
+     * @return bool
+     */
+    public function isTrabajador()
+    {
+        return $this->role === 'trabajador';
+    }
+
+    /**
+     * Verifica si el usuario es web (cliente).
+     *
+     * @return bool
+     */
+    public function isWeb()
+    {
+        return $this->role === 'web';
+    }
+
+    /**
+     * Verifica si el usuario tiene acceso de personal (admin o trabajador).
+     *
+     * @return bool
+     */
+    public function isStaff()
+    {
+        return $this->role === 'admin' || $this->role === 'trabajador';
+    }
 }

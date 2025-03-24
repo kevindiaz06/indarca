@@ -109,13 +109,20 @@
                         <i class="bi bi-clipboard-data me-1"></i>Estado
                     </a>
                 @else
+                    @if(Auth::user()->isStaff())
+                    <a href="{{ route('admin.dashboard') }}" class="btn btn-sm btn-outline-primary me-2">
+                        <i class="bi bi-speedometer2 me-1"></i>Panel Admin
+                    </a>
+                    @endif
                     <div class="dropdown">
                         <button class="btn btn-sm btn-outline-primary dropdown-toggle" type="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="bi bi-person-circle me-1"></i>{{ Auth::user()->name }}
                         </button>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-                            <li><a class="dropdown-item" href="#"><i class="bi bi-person me-2"></i>Mi Perfil</a></li>
-                            <li><hr class="dropdown-divider"></li>
+                            @if(Auth::user()->role === 'web')
+                                <li><a class="dropdown-item" href="{{ route('profile.edit') }}"><i class="bi bi-person me-2"></i>Mi Perfil</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                            @endif
                             <li>
                                 <a class="dropdown-item text-danger" href="{{ route('logout') }}"
                                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">

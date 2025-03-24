@@ -42,6 +42,9 @@ class ContactoMail extends Mailable
     {
         return new Content(
             view: 'emails.contacto',
+            with: [
+                'datos' => $this->datos,
+            ],
         );
     }
 

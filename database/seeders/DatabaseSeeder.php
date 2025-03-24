@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
             RolesSeeder::class,
             EmpresaSeeder::class,
             DensimetroSeeder::class,
+            AdminUserSeeder::class,
         ]);
     }
 }

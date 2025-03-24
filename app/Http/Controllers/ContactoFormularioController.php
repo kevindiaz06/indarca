@@ -26,7 +26,11 @@ class ContactoFormularioController extends Controller
                 'email' => 'required|email|max:255',
                 'subject' => 'required|string|max:255',
                 'message' => 'required|string',
-                'destinatario' => 'required|in:diazkevinmota2@gmail.com,diazkevinmota@gmail.com'
+                'destinatario' => [
+                    'required',
+                    'email',
+                    'in:' . config('mail.allowed_destinations')
+                ]
             ]);
 
             // Preparar datos para el correo
@@ -38,7 +42,18 @@ class ContactoFormularioController extends Controller
             ];
 
             // Enviar el correo electrónico
-            Mail::to($request->destinatario)->send(new ContactoMail($datos));
+            try {
+                Mail::to($request->destinatario)->send(new ContactoMail($datos));
+                \Log::info('Correo enviado exitosamente a: ' . $request->destinatario);
+            } catch (\Exception $e) {
+                \Log::error('Error al enviar correo: ' . $e->getMessage());
+                \Log::error('Stack trace: ' . $e->getTraceAsString());
+                if ($isAjax) {
+                    return response('Error al enviar el mensaje: ' . $e->getMessage(), 400);
+                } else {
+                    return redirect()->back()->with('error', 'Error al enviar el mensaje: ' . $e->getMessage());
+                }
+            }
 
             // Responder según el tipo de solicitud
             if ($isAjax) {
