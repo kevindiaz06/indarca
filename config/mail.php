@@ -96,7 +96,7 @@ return [
         'name' => env('MAIL_FROM_NAME', 'Example'),
     ],
 
-    'allowed_destinations' => explode(',', env('MAIL_ALLOWED_DESTINATIONS', '')),
+    'allowed_destinations' => env('MAIL_ALLOWED_DESTINATIONS', ''),
 
     /*
     |--------------------------------------------------------------------------

@@ -1,100 +1,107 @@
-@extends('layouts.clean')
+@extends('layout')
 
 @section('content')
-<div class="container py-4">
-    <div class="mb-3">
-        <a href="{{ route('inicio') }}" class="btn btn-outline-primary btn-sm">
-            <i class="bi bi-arrow-left me-1"></i> Volver a la página principal
-        </a>
-    </div>
-
+<div class="container py-5">
     <div class="row justify-content-center">
-        <div class="col-md-8 col-lg-6">
-            <div class="card shadow rounded-4 border-0">
-                <div class="card-header bg-primary text-white py-3 text-center rounded-top-4">
-                    <h4 class="mb-0">{{ __('Estado de Densímetro') }}</h4>
+        <div class="col-lg-8">
+            <div class="card border-0 shadow-sm rounded-3">
+                <div class="card-header bg-primary text-white py-3">
+                    <h4 class="mb-0"><i class="bi bi-clipboard-data me-2"></i>Consulta de Estado de Densímetros</h4>
                 </div>
-
                 <div class="card-body p-4">
+                    <p class="text-muted mb-4">Introduzca la referencia de reparación que recibió por correo electrónico para consultar el estado actual de su densímetro.</p>
+
+                    <form action="{{ route('estado.consultar') }}" method="POST" class="mb-4">
+                        @csrf
+                        <div class="input-group mb-3">
+                            <span class="input-group-text bg-light"><i class="bi bi-search"></i></span>
+                            <input type="text" class="form-control @error('referencia') is-invalid @enderror" name="referencia" placeholder="Ej. REF-ABCD1234" value="{{ old('referencia') }}" required>
+                            <button type="submit" class="btn btn-primary">Consultar</button>
+
+                            @error('referencia')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+                    </form>
+
                     @if(isset($estado))
-                        <div class="alert alert-success mb-4">
-                            <h5 class="alert-heading mb-3"><i class="bi bi-check-circle me-2"></i>Información encontrada</h5>
+                    <div class="border-top pt-4">
+                        <div class="d-flex align-items-center justify-content-between mb-4">
+                            <h5 class="mb-0">Resultado de la Consulta</h5>
+                            <span class="badge bg-primary">{{ $estado['referencia'] }}</span>
+                        </div>
 
-                            <div class="table-responsive">
-                                <table class="table table-bordered">
-                                    <tr class="table-primary">
-                                        <th colspan="2" class="text-center">Detalles del Densímetro</th>
-                                    </tr>
-                                    <tr>
-                                        <th width="40%">Código</th>
-                                        <td>{{ $estado['codigo'] }}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Modelo</th>
-                                        <td>{{ $estado['modelo'] }}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Estado</th>
-                                        <td>
-                                            <span class="badge bg-success">{{ $estado['estado'] }}</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>Última revisión</th>
-                                        <td>{{ $estado['ultima_revision'] }}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Próxima revisión</th>
-                                        <td>{{ $estado['proxima_revision'] }}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Cliente</th>
-                                        <td>{{ $estado['cliente'] }}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Observaciones</th>
-                                        <td>{{ $estado['observaciones'] }}</td>
-                                    </tr>
-                                </table>
+                        <div class="row mb-4">
+                            <div class="col-md-6">
+                                <p class="mb-1 fw-bold">Número de Serie</p>
+                                <p>{{ $estado['numero_serie'] }}</p>
                             </div>
-
-                            <div class="text-center mt-3">
-                                <a href="{{ route('estado') }}" class="btn btn-outline-primary">
-                                    <i class="bi bi-search me-2"></i>Nueva Consulta
-                                </a>
+                            <div class="col-md-6">
+                                <p class="mb-1 fw-bold">Fecha de Entrada</p>
+                                <p>{{ $estado['fecha_entrada'] }}</p>
                             </div>
                         </div>
-                    @else
-                        <form method="POST" action="{{ route('estado.consultar') }}">
-                            @csrf
 
-                            <div class="mb-4">
-                                <label for="codigo" class="form-label fw-medium">{{ __('Código del Densímetro') }}</label>
-                                <div class="input-group">
-                                    <span class="input-group-text bg-light"><i class="bi bi-upc-scan"></i></span>
-                                    <input id="codigo" type="text" class="form-control @error('codigo') is-invalid @enderror" name="codigo" value="{{ old('codigo') }}" required autofocus placeholder="Introduce el código del densímetro">
-                                </div>
-                                @error('codigo')
-                                    <div class="text-danger small mt-2">
-                                        <strong>{{ $message }}</strong>
+                        <div class="row mb-4">
+                            <div class="col-md-6">
+                                <p class="mb-1 fw-bold">Marca</p>
+                                <p>{{ $estado['marca'] ?: 'No especificada' }}</p>
+                            </div>
+                            <div class="col-md-6">
+                                <p class="mb-1 fw-bold">Modelo</p>
+                                <p>{{ $estado['modelo'] ?: 'No especificado' }}</p>
+                            </div>
+                        </div>
+
+                        <div class="mb-4">
+                            <p class="mb-1 fw-bold">Estado Actual</p>
+                            <div class="progress" style="height: 25px;">
+                                @if($estado['estado'] == 'Recibido')
+                                    <div class="progress-bar bg-secondary" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                                        <i class="bi bi-box me-1"></i> Recibido
                                     </div>
-                                @enderror
+                                @elseif($estado['estado'] == 'En reparación')
+                                    <div class="progress-bar bg-primary" role="progressbar" style="width: 50%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
+                                        <i class="bi bi-tools me-1"></i> En reparación
+                                    </div>
+                                @elseif($estado['estado'] == 'Reparación finalizada')
+                                    <div class="progress-bar bg-success" role="progressbar" style="width: 75%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
+                                        <i class="bi bi-check-circle me-1"></i> Reparación finalizada
+                                    </div>
+                                @elseif($estado['estado'] == 'Entregado al cliente')
+                                    <div class="progress-bar bg-info" role="progressbar" style="width: 100%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+                                        <i class="bi bi-truck me-1"></i> Entregado
+                                    </div>
+                                @endif
                             </div>
+                        </div>
 
-                            <div class="mb-4">
-                                <button type="submit" class="btn btn-primary w-100 py-2 fw-medium">
-                                    <i class="bi bi-search me-2"></i>{{ __('Consultar Estado') }}
-                                </button>
+                        @if($estado['observaciones'])
+                        <div class="mb-4">
+                            <p class="mb-1 fw-bold">Observaciones</p>
+                            <div class="border rounded p-3 bg-light">
+                                {{ $estado['observaciones'] }}
                             </div>
+                        </div>
+                        @endif
 
-                            <div class="text-center mt-4">
-                                <p class="mb-0 text-muted">
-                                    <small>Introduce el código único de tu densímetro para verificar su estado actual, fecha de revisión y más detalles.</small>
-                                </p>
-                            </div>
-                        </form>
+                        <div class="d-grid gap-2">
+                            <button class="btn btn-outline-primary" onclick="window.print()">
+                                <i class="bi bi-printer me-1"></i> Imprimir Resultado
+                            </button>
+                        </div>
+                    </div>
+                    @elseif($errors->any())
+                    <div class="alert alert-danger">
+                        <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                        {{ $errors->first() }}
+                    </div>
                     @endif
                 </div>
+            </div>
+
+            <div class="mt-4 text-center">
+                <p class="text-muted">¿Tiene alguna pregunta? <a href="{{ route('contacto') }}">Contáctenos</a></p>
             </div>
         </div>
     </div>

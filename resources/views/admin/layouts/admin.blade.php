@@ -193,6 +193,16 @@
                         <i class="bi bi-people me-2"></i> Usuarios
                     </a>
                 </li>
+                <li class="{{ request()->routeIs('admin.empresas*') ? 'active' : '' }}">
+                    <a href="{{ route('admin.empresas') }}">
+                        <i class="bi bi-building me-2"></i> Empresas
+                    </a>
+                </li>
+                <li class="{{ request()->routeIs('admin.densimetros*') ? 'active' : '' }}">
+                    <a href="{{ route('admin.densimetros.index') }}">
+                        <i class="bi bi-tools me-2"></i> Densímetros
+                    </a>
+                </li>
                 <li>
                     <a href="#">
                         <i class="bi bi-gear me-2"></i> Configuración

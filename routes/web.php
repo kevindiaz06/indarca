@@ -14,6 +14,9 @@ use App\Http\Controllers\ContactoFormularioController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\EmpresaController;
+use App\Http\Controllers\Auth\CustomResetPasswordController;
+use App\Http\Controllers\DensimetroController;
 
 /*
 |--------------------------------------------------------------------------
@@ -61,12 +64,17 @@ Route::post('/estado/consultar', [EstadoController::class, 'consultar'])->name('
 Route::post('/contacto/enviar', [ContactoFormularioController::class, 'enviar'])->name('contacto.enviar');
 
 // Rutas de autenticación - Vistas deben extender de 'layouts.app'
-Auth::routes();
+// Personalizar la ruta de reset de contraseña
+Route::get('password/reset', [CustomResetPasswordController::class, 'showLinkRequestForm'])->name('password.request');
+Route::post('password/email', [CustomResetPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
+// Mantener las demás rutas de autenticación
+Auth::routes(['reset' => false]);
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 // Rutas para gestión de usuarios - Definir si deben extender de 'layouts.app' o 'admin.layouts.admin'
 // según donde se muestren estas vistas
 Route::resource('users', UserController::class);
+Route::resource('empresas', EmpresaController::class);
 
 // Rutas para el perfil del usuario
 Route::middleware(['auth'])->group(function () {
@@ -87,4 +95,21 @@ Route::prefix('admin')->middleware(['auth', 'role:admin,trabajador'])->group(fun
     Route::get('/usuarios/{user}/editar', [UserController::class, 'edit'])->name('admin.usuarios.editar');
     Route::put('/usuarios/{user}', [UserController::class, 'update'])->name('admin.usuarios.update');
     Route::delete('/usuarios/{user}', [UserController::class, 'destroy'])->name('admin.usuarios.destroy');
+
+    // Gestión de empresas
+    Route::get('/empresas', [AdminController::class, 'empresas'])->name('admin.empresas');
+    Route::get('/empresas/crear', [EmpresaController::class, 'create'])->name('admin.empresas.crear');
+    Route::post('/empresas', [EmpresaController::class, 'store'])->name('admin.empresas.store');
+    Route::get('/empresas/{empresa}/editar', [EmpresaController::class, 'edit'])->name('admin.empresas.editar');
+    Route::put('/empresas/{empresa}', [EmpresaController::class, 'update'])->name('admin.empresas.update');
+    Route::delete('/empresas/{empresa}', [EmpresaController::class, 'destroy'])->name('admin.empresas.destroy');
+
+    // Gestión de densímetros
+    Route::get('/densimetros', [DensimetroController::class, 'index'])->name('admin.densimetros.index');
+    Route::get('/densimetros/crear', [DensimetroController::class, 'create'])->name('admin.densimetros.create');
+    Route::post('/densimetros', [DensimetroController::class, 'store'])->name('admin.densimetros.store');
+    Route::get('/densimetros/{densimetro}', [DensimetroController::class, 'show'])->name('admin.densimetros.show');
+    Route::get('/densimetros/{densimetro}/editar', [DensimetroController::class, 'edit'])->name('admin.densimetros.edit');
+    Route::put('/densimetros/{densimetro}', [DensimetroController::class, 'update'])->name('admin.densimetros.update');
+    Route::delete('/densimetros/{densimetro}', [DensimetroController::class, 'destroy'])->name('admin.densimetros.destroy');
 });

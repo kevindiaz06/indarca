@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Densimetro;
 use Illuminate\Http\Request;
 
 class EstadoController extends Controller
@@ -25,24 +26,52 @@ class EstadoController extends Controller
     public function consultar(Request $request)
     {
         $request->validate([
-            'codigo' => 'required|string|max:50',
+            'referencia' => 'required|string|max:50',
         ]);
 
-        // Aquí iría la lógica para consultar el estado del densímetro según el código
-        // Por ahora, simulamos una respuesta
-        $codigo = $request->input('codigo');
+        $referencia = $request->input('referencia');
 
-        // Datos de ejemplo (en un caso real, esto vendría de la base de datos)
+        // Buscar el densímetro por su referencia de reparación
+        $densimetro = Densimetro::with('cliente')
+                               ->where('referencia_reparacion', $referencia)
+                               ->first();
+
+        if (!$densimetro) {
+            return view('estado')->withErrors([
+                'referencia' => 'No se encontró ningún densímetro con esa referencia.'
+            ])->withInput();
+        }
+
+        // Preparar datos para mostrar en la vista
         $estado = [
-            'codigo' => $codigo,
-            'modelo' => 'Densímetro X-2000',
-            'estado' => 'Activo',
-            'ultima_revision' => '2023-10-15',
-            'proxima_revision' => '2024-04-15',
-            'cliente' => 'Constructora ABC',
-            'observaciones' => 'Funcionamiento óptimo en última revisión'
+            'referencia' => $densimetro->referencia_reparacion,
+            'numero_serie' => $densimetro->numero_serie,
+            'marca' => $densimetro->marca,
+            'modelo' => $densimetro->modelo,
+            'estado' => $this->formatearEstado($densimetro->estado),
+            'fecha_entrada' => $densimetro->fecha_entrada->format('d/m/Y'),
+            'cliente' => $densimetro->cliente->name,
+            'observaciones' => $densimetro->observaciones
         ];
 
         return view('estado', ['estado' => $estado]);
+    }
+
+    /**
+     * Formatea el estado del densímetro para mostrar en la interfaz.
+     *
+     * @param  string  $estado
+     * @return string
+     */
+    private function formatearEstado($estado)
+    {
+        $formatos = [
+            'recibido' => 'Recibido',
+            'en_reparacion' => 'En reparación',
+            'finalizado' => 'Reparación finalizada',
+            'entregado' => 'Entregado al cliente'
+        ];
+
+        return $formatos[$estado] ?? $estado;
     }
 }

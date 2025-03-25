@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\ContactoMail;
+use App\Mail\ConfirmacionContactoMail;
 
 class ContactoFormularioController extends Controller
 {
@@ -26,11 +27,7 @@ class ContactoFormularioController extends Controller
                 'email' => 'required|email|max:255',
                 'subject' => 'required|string|max:255',
                 'message' => 'required|string',
-                'destinatario' => [
-                    'required',
-                    'email',
-                    'in:' . config('mail.allowed_destinations')
-                ]
+                'destinatario' => 'required|email'
             ]);
 
             // Preparar datos para el correo
@@ -41,10 +38,15 @@ class ContactoFormularioController extends Controller
                 'mensaje' => $request->message,
             ];
 
-            // Enviar el correo electrónico
+            // Enviar el correo electrónico al destinatario seleccionado
             try {
                 Mail::to($request->destinatario)->send(new ContactoMail($datos));
                 \Log::info('Correo enviado exitosamente a: ' . $request->destinatario);
+
+                // Enviar correo de confirmación al usuario
+                Mail::to($request->email)->send(new ConfirmacionContactoMail($request->name));
+                \Log::info('Correo de confirmación enviado a: ' . $request->email);
+
             } catch (\Exception $e) {
                 \Log::error('Error al enviar correo: ' . $e->getMessage());
                 \Log::error('Stack trace: ' . $e->getTraceAsString());

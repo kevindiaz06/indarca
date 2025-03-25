@@ -123,6 +123,10 @@
                                 <li><a class="dropdown-item" href="{{ route('profile.edit') }}"><i class="bi bi-person me-2"></i>Mi Perfil</a></li>
                                 <li><hr class="dropdown-divider"></li>
                             @endif
+                            @if(Auth::user()->role === 'cliente')
+                                <li><a class="dropdown-item" href="{{ route('cliente.historial') }}"><i class="bi bi-clock-history me-2"></i>Historial de Reparaciones</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                            @endif
                             <li>
                                 <a class="dropdown-item text-danger" href="{{ route('logout') }}"
                                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">

@@ -741,10 +741,10 @@
                                     <select name="destinatario" id="destinatario" class="form-select @error('destinatario') is-invalid @enderror" required>
                                         <option value="" disabled selected>Seleccione un destinatario</option>
                                         <option value="diazkevinmota2@gmail.com" {{ old('destinatario') == 'diazkevinmota2@gmail.com' ? 'selected' : '' }}>
-                                            Kevin Mota (diazkevinmota2@gmail.com)
+                                            ventas (diazkevinmota2@gmail.com)
                                         </option>
                                         <option value="diazkevinmota@gmail.com" {{ old('destinatario') == 'diazkevinmota@gmail.com' ? 'selected' : '' }}>
-                                            Kevin Mota (diazkevinmota@gmail.com)
+                                            información (diazkevinmota@gmail.com)
                                         </option>
                                     </select>
                                     @error('destinatario')

@@ -113,6 +113,31 @@
         </div>
     </div>
 
+    <!-- Empresas Stats -->
+    <div class="row mb-4">
+        <div class="col-xl-4 col-md-12 mb-4">
+            <div class="card stats-card info h-100">
+                <div class="card-body">
+                    <div class="d-flex align-items-center">
+                        <div class="flex-grow-1">
+                            <h5 class="text-muted mb-1">Total Empresas</h5>
+                            <h2 class="mb-0 fw-bold">{{ $totalEmpresas }}</h2>
+                        </div>
+                        <div class="icon primary" style="background-color: #3498DB;">
+                            <i class="bi bi-building"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer bg-light py-2">
+                    <small class="text-muted">
+                        <i class="bi bi-arrow-up me-1 text-success"></i>
+                        <span class="text-success">8%</span> desde el mes pasado
+                    </small>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Charts Row -->
     <div class="row mb-4">
         <div class="col-xl-8 col-lg-7">
@@ -163,9 +188,9 @@
         </div>
     </div>
 
-    <!-- Latest Users -->
+    <!-- Latest Users and Companies -->
     <div class="row">
-        <div class="col-12">
+        <div class="col-xl-6 col-lg-6 mb-4">
             <div class="card shadow mb-4">
                 <div class="card-header py-3 d-flex align-items-center justify-content-between">
                     <h6 class="m-0 font-weight-bold">Últimos Usuarios Registrados</h6>
@@ -181,7 +206,7 @@
                                     <th>Usuario</th>
                                     <th>Email</th>
                                     <th>Rol</th>
-                                    <th>Fecha de Registro</th>
+                                    <th>Fecha</th>
                                     <th>Acciones</th>
                                 </tr>
                             </thead>
@@ -211,7 +236,7 @@
                                             <span class="badge bg-secondary">Cliente</span>
                                         @endif
                                     </td>
-                                    <td>{{ $usuario->created_at->format('d/m/Y H:i') }}</td>
+                                    <td>{{ $usuario->created_at->format('d/m/Y') }}</td>
                                     <td>
                                         <div class="dropdown">
                                             <button class="btn btn-sm btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -243,6 +268,81 @@
                                     </td>
                                 </tr>
                                 @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-6 col-lg-6 mb-4">
+            <div class="card shadow mb-4">
+                <div class="card-header py-3 d-flex align-items-center justify-content-between">
+                    <h6 class="m-0 font-weight-bold">Últimas Empresas Registradas</h6>
+                    <a href="{{ route('admin.empresas') }}" class="btn btn-sm btn-primary">
+                        <i class="bi bi-building me-1"></i> Ver Todas
+                    </a>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover align-middle">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>Empresa</th>
+                                    <th>Dirección</th>
+                                    <th>Teléfono</th>
+                                    <th>Fecha</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @forelse($ultimasEmpresas as $empresa)
+                                <tr>
+                                    <td>
+                                        <div class="d-flex align-items-center">
+                                            <div class="avatar me-3 bg-info rounded-circle d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+                                                <i class="bi bi-building text-white"></i>
+                                            </div>
+                                            <span class="fw-medium">{{ $empresa->nombre }}</span>
+                                        </div>
+                                    </td>
+                                    <td>{{ Str::limit($empresa->direccion, 20) }}</td>
+                                    <td>{{ $empresa->telefono }}</td>
+                                    <td>{{ $empresa->created_at->format('d/m/Y') }}</td>
+                                    <td>
+                                        <div class="dropdown">
+                                            <button class="btn btn-sm btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                Acciones
+                                            </button>
+                                            <ul class="dropdown-menu dropdown-menu-end">
+                                                <li>
+                                                    <a class="dropdown-item" href="{{ route('admin.empresas.editar', $empresa->id) }}">
+                                                        <i class="bi bi-pencil me-2"></i> Editar
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <form action="{{ route('admin.empresas.destroy', $empresa->id) }}" method="POST">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="dropdown-item text-danger" onclick="return confirm('¿Estás seguro de eliminar esta empresa?')">
+                                                            <i class="bi bi-trash me-2"></i> Eliminar
+                                                        </button>
+                                                    </form>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </td>
+                                </tr>
+                                @empty
+                                <tr>
+                                    <td colspan="5" class="text-center py-3">
+                                        <p class="text-muted mb-0">No hay empresas registradas aún</p>
+                                        <a href="{{ route('admin.empresas.crear') }}" class="btn btn-sm btn-primary mt-2">
+                                            <i class="bi bi-building-add me-1"></i> Crear Empresa
+                                        </a>
+                                    </td>
+                                </tr>
+                                @endforelse
                             </tbody>
                         </table>
                     </div>
