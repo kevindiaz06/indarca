@@ -31,6 +31,9 @@ class AdminController extends Controller
         $totalClientes = User::where('role', 'web')->count();
         $totalEmpresas = Empresa::count();
 
+        // Para la vista de inicio.blade.php - Total de trabajadores (admin + trabajador)
+        $totalTrabajadoresPublic = $totalAdmins + $totalTrabajadores;
+
         // Últimos usuarios registrados
         $ultimosUsuarios = User::orderBy('created_at', 'desc')->take(5)->get();
 
@@ -50,6 +53,7 @@ class AdminController extends Controller
             'totalTrabajadores',
             'totalClientes',
             'totalEmpresas',
+            'totalTrabajadoresPublic',
             'ultimosUsuarios',
             'ultimasEmpresas',
             'distribucionRoles'

@@ -143,7 +143,7 @@
                     <div class="col-lg-3 col-md-6 d-flex flex-column align-items-center">
                         <i class="bi bi-emoji-smile"></i>
                         <div class="stats-item">
-                            <span data-purecounter-start="0" data-purecounter-end="65" data-purecounter-duration="5"
+                            <span data-purecounter-start="0" data-purecounter-end="{{ $totalClientes ?? 0 }}" data-purecounter-duration="5"
                                 class="purecounter"></span>
                             <p>+ Clientes</p>
                         </div>
@@ -170,7 +170,7 @@
                     <div class="col-lg-3 col-md-6 d-flex flex-column align-items-center">
                         <i class="bi bi-people"></i>
                         <div class="stats-item">
-                            <span data-purecounter-start="0" data-purecounter-end="10" data-purecounter-duration="5"
+                            <span data-purecounter-start="0" data-purecounter-end="{{ $totalTrabajadores ?? 0 }}" data-purecounter-duration="5"
                                 class="purecounter"></span>
                             <p>Trabajadores</p>
                         </div>
@@ -712,7 +712,7 @@
                                 <div class="col-md-6">
                                     <label for="name-field" class="pb-2">Su Nombre</label>
                                     <input type="text" name="name" id="name-field" class="form-control @error('name') is-invalid @enderror"
-                                        value="{{ old('name') }}" required>
+                                        value="{{ auth()->check() ? auth()->user()->name : old('name') }}" {{ auth()->check() ? 'readonly' : '' }} required>
                                     @error('name')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
@@ -721,7 +721,7 @@
                                 <div class="col-md-6">
                                     <label for="email-field" class="pb-2">Su Correo Electrónico</label>
                                     <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" id="email-field"
-                                        value="{{ old('email') }}" required>
+                                        value="{{ auth()->check() ? auth()->user()->email : old('email') }}" {{ auth()->check() ? 'readonly' : '' }} required>
                                     @error('email')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
@@ -729,25 +729,15 @@
 
                                 <div class="col-md-12">
                                     <label for="subject-field" class="pb-2">Asunto</label>
-                                    <input type="text" class="form-control @error('subject') is-invalid @enderror" name="subject" id="subject-field"
-                                        value="{{ old('subject') }}" required>
-                                    @error('subject')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
-
-                                <div class="col-md-12">
-                                    <label for="destinatario" class="pb-2">Enviar a</label>
-                                    <select name="destinatario" id="destinatario" class="form-select @error('destinatario') is-invalid @enderror" required>
-                                        <option value="" disabled selected>Seleccione un destinatario</option>
-                                        <option value="diazkevinmota2@gmail.com" {{ old('destinatario') == 'diazkevinmota2@gmail.com' ? 'selected' : '' }}>
-                                            ventas (diazkevinmota2@gmail.com)
-                                        </option>
-                                        <option value="diazkevinmota@gmail.com" {{ old('destinatario') == 'diazkevinmota@gmail.com' ? 'selected' : '' }}>
-                                            información (diazkevinmota@gmail.com)
-                                        </option>
+                                    <select class="form-select @error('subject') is-invalid @enderror" name="subject" id="subject-field" required>
+                                        <option value="" disabled selected>Seleccione un asunto</option>
+                                        <option value="Ventas" {{ old('subject') == 'Ventas' ? 'selected' : '' }}>Ventas</option>
+                                        <option value="Taller" {{ old('subject') == 'Taller' ? 'selected' : '' }}>Taller</option>
+                                        <option value="Secretaría" {{ old('subject') == 'Secretaría' ? 'selected' : '' }}>Secretaría</option>
+                                        <option value="Oficinas Centrales" {{ old('subject') == 'Oficinas Centrales' ? 'selected' : '' }}>Oficinas Centrales</option>
+                                        <option value="Arquitectura" {{ old('subject') == 'Arquitectura' ? 'selected' : '' }}>Arquitectura</option>
                                     </select>
-                                    @error('destinatario')
+                                    @error('subject')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>

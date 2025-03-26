@@ -27,8 +27,18 @@ class ContactoFormularioController extends Controller
                 'email' => 'required|email|max:255',
                 'subject' => 'required|string|max:255',
                 'message' => 'required|string',
-                'destinatario' => 'required|email'
             ]);
+
+            // Determinar el destinatario basado en el asunto
+            $destinatarios = [
+                'Ventas' => 'diazkevinmota2@gmail.com',
+                'Taller' => 'motac7884@gmail.com',
+                'Secretaría' => 'ricardo10justiniano@gmail.com',
+                'Oficinas Centrales' => 'astridjolietpavon@gmail.com',
+                'Arquitectura' => 'arquitectura@indarca.com',
+            ];
+
+            $destinatario = $destinatarios[$request->subject] ?? config('mail.from.address');
 
             // Preparar datos para el correo
             $datos = [
@@ -38,10 +48,10 @@ class ContactoFormularioController extends Controller
                 'mensaje' => $request->message,
             ];
 
-            // Enviar el correo electrónico al destinatario seleccionado
+            // Enviar el correo electrónico al destinatario correspondiente
             try {
-                Mail::to($request->destinatario)->send(new ContactoMail($datos));
-                \Log::info('Correo enviado exitosamente a: ' . $request->destinatario);
+                Mail::to($destinatario)->send(new ContactoMail($datos));
+                \Log::info('Correo enviado exitosamente a: ' . $destinatario);
 
                 // Enviar correo de confirmación al usuario
                 Mail::to($request->email)->send(new ConfirmacionContactoMail($request->name));
