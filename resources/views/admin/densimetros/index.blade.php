@@ -46,6 +46,7 @@
                             <th>Número Serie</th>
                             <th>Fecha Entrada</th>
                             <th>Estado</th>
+                            <th>Fecha Finalización</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
@@ -69,6 +70,13 @@
                                 @endif
                             </td>
                             <td>
+                                @if($densimetro->fecha_finalizacion)
+                                    {{ $densimetro->fecha_finalizacion->format('d/m/Y') }}
+                                @else
+                                    -
+                                @endif
+                            </td>
+                            <td>
                                 <div class="d-flex">
                                     <a href="{{ route('admin.densimetros.show', $densimetro->id) }}" class="btn btn-sm btn-info me-1" title="Ver detalles">
                                         <i class="bi bi-eye"></i>
@@ -88,7 +96,7 @@
                         </tr>
                         @empty
                         <tr>
-                            <td colspan="7" class="text-center">No hay densímetros registrados</td>
+                            <td colspan="8" class="text-center">No hay densímetros registrados</td>
                         </tr>
                         @endforelse
                     </tbody>

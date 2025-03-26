@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\DensimetroCambioEstadoMail;
+use App\Mail\DensimetroRecepcionMail;
 use App\Models\Densimetro;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -156,6 +158,15 @@ class DensimetroController extends Controller
         $densimetro->estado = $request->estado;
         $densimetro->observaciones = $request->observaciones;
 
+        // Si el estado cambia a finalizado, registrar la fecha de finalización
+        if ($request->estado == 'finalizado' && $estadoAnterior != 'finalizado') {
+            $densimetro->fecha_finalizacion = now()->toDateString();
+        }
+        // Si el estado cambia desde finalizado a otro estado, anular la fecha de finalización
+        elseif ($estadoAnterior == 'finalizado' && $request->estado != 'finalizado') {
+            $densimetro->fecha_finalizacion = null;
+        }
+
         $densimetro->save();
 
         // Si cambió el estado, notificar al cliente
@@ -191,25 +202,12 @@ class DensimetroController extends Controller
      */
     private function enviarCorreoRecepcion($cliente, $densimetro)
     {
-        // Datos para la vista del correo
-        $datos = [
-            'cliente' => $cliente,
-            'densimetro' => $densimetro,
-            'fecha' => $densimetro->fecha_entrada->format('d/m/Y'),
-        ];
-
-        // Aquí utilizaríamos Laravel Mail para enviar el correo
-        // En un entorno real, se enviaría un correo real
-        // Por ahora, lo implementamos como un log
+        // Registra la información del correo en el log
         \Log::info('Correo de recepción enviado a ' . $cliente->email . ' con referencia ' . $densimetro->referencia_reparacion);
 
-        // Para implementar el envío real de correo, descomentar:
-        /*
-        Mail::send('emails.densimetro_recepcion', $datos, function($mensaje) use ($cliente, $densimetro) {
-            $mensaje->to($cliente->email, $cliente->name)
-                    ->subject('INDARCA - Recepción de Densímetro #' . $densimetro->referencia_reparacion);
-        });
-        */
+        // Envío del correo electrónico al cliente usando la clase Mailable
+        Mail::to($cliente->email)
+            ->send(new DensimetroRecepcionMail($cliente, $densimetro));
     }
 
     /**
@@ -222,24 +220,11 @@ class DensimetroController extends Controller
     {
         $cliente = $densimetro->cliente;
 
-        // Datos para la vista del correo
-        $datos = [
-            'cliente' => $cliente,
-            'densimetro' => $densimetro,
-            'fecha' => now()->format('d/m/Y'),
-        ];
-
-        // Aquí utilizaríamos Laravel Mail para enviar el correo
-        // En un entorno real, se enviaría un correo real
-        // Por ahora, lo implementamos como un log
+        // Registra la información del correo en el log
         \Log::info('Correo de cambio de estado enviado a ' . $cliente->email . ' - Nuevo estado: ' . $densimetro->estado);
 
-        // Para implementar el envío real de correo, descomentar:
-        /*
-        Mail::send('emails.densimetro_cambio_estado', $datos, function($mensaje) use ($cliente, $densimetro) {
-            $mensaje->to($cliente->email, $cliente->name)
-                    ->subject('INDARCA - Actualización de Estado del Densímetro #' . $densimetro->referencia_reparacion);
-        });
-        */
+        // Envío del correo electrónico al cliente usando la clase Mailable
+        Mail::to($cliente->email)
+            ->send(new DensimetroCambioEstadoMail($densimetro));
     }
 }

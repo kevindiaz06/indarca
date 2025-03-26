@@ -21,6 +21,7 @@ class Densimetro extends Model
         'marca',
         'modelo',
         'fecha_entrada',
+        'fecha_finalizacion',
         'referencia_reparacion',
         'estado',
         'observaciones',
@@ -33,6 +34,7 @@ class Densimetro extends Model
      */
     protected $casts = [
         'fecha_entrada' => 'date',
+        'fecha_finalizacion' => 'date',
     ];
 
     /**

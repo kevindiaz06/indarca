@@ -16,23 +16,31 @@
             <a href="{{ route('inicio') }}" class="btn btn-outline-secondary me-2">
                 <i class="bi bi-house-door me-1"></i> Volver al Sitio Web
             </a>
-            <a href="#" class="btn btn-primary shadow-sm">
-                <i class="bi bi-download me-1"></i> Generar Reporte
-            </a>
+            <div class="dropdown">
+                <button class="btn btn-primary shadow-sm dropdown-toggle" type="button" id="reportDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="bi bi-download me-1"></i> Generar Reporte
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="reportDropdown">
+                    <li><a class="dropdown-item" href="#"><i class="bi bi-file-pdf me-2"></i>Exportar PDF</a></li>
+                    <li><a class="dropdown-item" href="#"><i class="bi bi-file-excel me-2"></i>Exportar Excel</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="#"><i class="bi bi-printer me-2"></i>Imprimir</a></li>
+                </ul>
+            </div>
         </div>
     </div>
 
     <!-- Stats Cards -->
     <div class="row mb-4">
         <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card stats-card primary h-100">
+            <div class="card stats-card primary h-100 border-start border-primary border-4 shadow-sm">
                 <div class="card-body">
                     <div class="d-flex align-items-center">
                         <div class="flex-grow-1">
                             <h5 class="text-muted mb-1">Total Usuarios</h5>
                             <h2 class="mb-0 fw-bold">{{ $totalUsuarios }}</h2>
                         </div>
-                        <div class="icon primary">
+                        <div class="icon primary rounded-circle p-3">
                             <i class="bi bi-people"></i>
                         </div>
                     </div>
@@ -47,14 +55,14 @@
         </div>
 
         <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card stats-card success h-100">
+            <div class="card stats-card success h-100 border-start border-success border-4 shadow-sm">
                 <div class="card-body">
                     <div class="d-flex align-items-center">
                         <div class="flex-grow-1">
                             <h5 class="text-muted mb-1">Administradores</h5>
                             <h2 class="mb-0 fw-bold">{{ $totalAdmins }}</h2>
                         </div>
-                        <div class="icon success">
+                        <div class="icon success rounded-circle p-3">
                             <i class="bi bi-person-badge"></i>
                         </div>
                     </div>
@@ -69,14 +77,14 @@
         </div>
 
         <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card stats-card warning h-100">
+            <div class="card stats-card warning h-100 border-start border-warning border-4 shadow-sm">
                 <div class="card-body">
                     <div class="d-flex align-items-center">
                         <div class="flex-grow-1">
                             <h5 class="text-muted mb-1">Trabajadores</h5>
                             <h2 class="mb-0 fw-bold">{{ $totalTrabajadores }}</h2>
                         </div>
-                        <div class="icon warning">
+                        <div class="icon warning rounded-circle p-3">
                             <i class="bi bi-person-workspace"></i>
                         </div>
                     </div>
@@ -91,14 +99,14 @@
         </div>
 
         <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card stats-card danger h-100">
+            <div class="card stats-card danger h-100 border-start border-danger border-4 shadow-sm">
                 <div class="card-body">
                     <div class="d-flex align-items-center">
                         <div class="flex-grow-1">
                             <h5 class="text-muted mb-1">Clientes</h5>
                             <h2 class="mb-0 fw-bold">{{ $totalClientes }}</h2>
                         </div>
-                        <div class="icon danger">
+                        <div class="icon danger rounded-circle p-3">
                             <i class="bi bi-person"></i>
                         </div>
                     </div>
@@ -115,15 +123,15 @@
 
     <!-- Empresas Stats -->
     <div class="row mb-4">
-        <div class="col-xl-4 col-md-12 mb-4">
-            <div class="card stats-card info h-100">
+        <div class="col-12 mb-4">
+            <div class="card stats-card info h-100 border-start border-info border-4 shadow-sm">
                 <div class="card-body">
                     <div class="d-flex align-items-center">
                         <div class="flex-grow-1">
                             <h5 class="text-muted mb-1">Total Empresas</h5>
                             <h2 class="mb-0 fw-bold">{{ $totalEmpresas }}</h2>
                         </div>
-                        <div class="icon primary" style="background-color: #3498DB;">
+                        <div class="icon rounded-circle p-3" style="background-color: #3498DB;">
                             <i class="bi bi-building"></i>
                         </div>
                     </div>
@@ -148,7 +156,7 @@
                         <button class="btn btn-sm btn-light dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                             Este Año
                         </button>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">
                             <li><a class="dropdown-item" href="#">Último Mes</a></li>
                             <li><a class="dropdown-item" href="#">Últimos 6 Meses</a></li>
                             <li><a class="dropdown-item" href="#">Este Año</a></li>
@@ -165,8 +173,11 @@
 
         <div class="col-xl-4 col-lg-5">
             <div class="card shadow mb-4">
-                <div class="card-header py-3">
+                <div class="card-header py-3 d-flex align-items-center justify-content-between">
                     <h6 class="m-0 font-weight-bold">Distribución de Usuarios</h6>
+                    <button class="btn btn-sm btn-light" id="refreshChartBtn">
+                        <i class="bi bi-arrow-repeat"></i>
+                    </button>
                 </div>
                 <div class="card-body">
                     <div class="chart-pie mb-3">
@@ -194,9 +205,14 @@
             <div class="card shadow mb-4">
                 <div class="card-header py-3 d-flex align-items-center justify-content-between">
                     <h6 class="m-0 font-weight-bold">Últimos Usuarios Registrados</h6>
-                    <a href="{{ route('admin.usuarios') }}" class="btn btn-sm btn-primary">
-                        <i class="bi bi-people me-1"></i> Ver Todos
-                    </a>
+                    <div>
+                        <button class="btn btn-sm btn-light me-2" id="refreshUsersBtn">
+                            <i class="bi bi-arrow-repeat"></i>
+                        </button>
+                        <a href="{{ route('admin.usuarios') }}" class="btn btn-sm btn-primary">
+                            <i class="bi bi-people me-1"></i> Ver Todos
+                        </a>
+                    </div>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -279,9 +295,14 @@
             <div class="card shadow mb-4">
                 <div class="card-header py-3 d-flex align-items-center justify-content-between">
                     <h6 class="m-0 font-weight-bold">Últimas Empresas Registradas</h6>
-                    <a href="{{ route('admin.empresas') }}" class="btn btn-sm btn-primary">
-                        <i class="bi bi-building me-1"></i> Ver Todas
-                    </a>
+                    <div>
+                        <button class="btn btn-sm btn-light me-2" id="refreshCompaniesBtn">
+                            <i class="bi bi-arrow-repeat"></i>
+                        </button>
+                        <a href="{{ route('admin.empresas') }}" class="btn btn-sm btn-primary">
+                            <i class="bi bi-building me-1"></i> Ver Todas
+                        </a>
+                    </div>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -362,6 +383,8 @@
             data: [{{ $distribucionRoles['admin'] }}, {{ $distribucionRoles['trabajador'] }}, {{ $distribucionRoles['web'] }}],
             backgroundColor: ['#2C3E50', '#2ECC71', '#E74C3C'],
             hoverBackgroundColor: ['#1a252f', '#27ae60', '#c0392b'],
+            borderWidth: 1,
+            borderColor: '#fff'
         }]
     };
 
@@ -391,11 +414,26 @@
         options: {
             responsive: true,
             maintainAspectRatio: false,
-            cutout: '60%',
+            cutout: '65%',
             plugins: {
                 legend: {
                     display: false
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            let label = context.label || '';
+                            let value = context.raw || 0;
+                            let total = context.dataset.data.reduce((a, b) => a + b, 0);
+                            let percentage = ((value * 100) / total).toFixed(1) + '%';
+                            return `${label}: ${value} (${percentage})`;
+                        }
+                    }
                 }
+            },
+            animation: {
+                animateScale: true,
+                animateRotate: true
             }
         }
     };
@@ -438,18 +476,88 @@
             plugins: {
                 legend: {
                     display: false
+                },
+                tooltip: {
+                    backgroundColor: "rgb(255,255,255)",
+                    bodyColor: "#858796",
+                    titleColor: "#6e707e",
+                    titleFontSize: 14,
+                    borderColor: '#dddfeb',
+                    borderWidth: 1,
+                    caretPadding: 10,
+                    displayColors: false
+                }
+            },
+            interaction: {
+                intersect: false,
+                mode: 'index',
+            },
+            elements: {
+                line: {
+                    tension: 0.3
                 }
             }
         }
     };
 
     // Renderizar los gráficos
+    let pieChart, lineChart;
+
     document.addEventListener('DOMContentLoaded', function() {
         const ctxPie = document.getElementById('userDistributionChart').getContext('2d');
-        new Chart(ctxPie, configPie);
+        pieChart = new Chart(ctxPie, configPie);
 
         const ctxLine = document.getElementById('userActivityChart').getContext('2d');
-        new Chart(ctxLine, configLine);
+        lineChart = new Chart(ctxLine, configLine);
+
+        // Botón para refrescar el gráfico de distribución
+        document.getElementById('refreshChartBtn').addEventListener('click', function() {
+            // Simular actualización de datos
+            const newData = [
+                Math.floor(Math.random() * 10) + {{ $distribucionRoles['admin'] }},
+                Math.floor(Math.random() * 10) + {{ $distribucionRoles['trabajador'] }},
+                Math.floor(Math.random() * 10) + {{ $distribucionRoles['web'] }}
+            ];
+
+            pieChart.data.datasets[0].data = newData;
+            pieChart.update();
+
+            // Mostrar notificación
+            showToast('Gráfico actualizado correctamente');
+        });
+
+        // Inicializar tooltips
+        const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+        tooltipTriggerList.map(function(tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl);
+        });
     });
+
+    // Función para mostrar toast de notificación
+    function showToast(message) {
+        // Crear el toast si no existe
+        if (!document.getElementById('liveToast')) {
+            const toastContainer = document.createElement('div');
+            toastContainer.className = 'toast-container position-fixed bottom-0 end-0 p-3';
+
+            toastContainer.innerHTML = `
+                <div id="liveToast" class="toast align-items-center text-white bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="d-flex">
+                        <div class="toast-body">
+                            ${message}
+                        </div>
+                        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                    </div>
+                </div>
+            `;
+
+            document.body.appendChild(toastContainer);
+        } else {
+            document.querySelector('.toast-body').textContent = message;
+        }
+
+        const toast = new bootstrap.Toast(document.getElementById('liveToast'));
+        toast.show();
+    }
 </script>
 @endsection

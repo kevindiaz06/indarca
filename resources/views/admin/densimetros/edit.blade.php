@@ -99,6 +99,16 @@
                     </div>
                 </div>
 
+                @if($densimetro->estado == 'finalizado' && $densimetro->fecha_finalizacion)
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label for="fecha_finalizacion" class="form-label">Fecha de Finalización</label>
+                        <input type="text" class="form-control" id="fecha_finalizacion" value="{{ $densimetro->fecha_finalizacion->format('d/m/Y') }}" readonly>
+                        <div class="form-text">Se establece automáticamente al cambiar el estado a "Finalizado".</div>
+                    </div>
+                </div>
+                @endif
+
                 <div class="mb-3">
                     <label for="observaciones" class="form-label">Observaciones</label>
                     <textarea class="form-control @error('observaciones') is-invalid @enderror" id="observaciones" name="observaciones" rows="3">{{ old('observaciones', $densimetro->observaciones) }}</textarea>
@@ -109,7 +119,7 @@
 
                 <div class="alert alert-info">
                     <i class="bi bi-info-circle me-2"></i>
-                    Si cambia el estado del densímetro, se enviará automáticamente un correo electrónico al cliente notificándole el cambio.
+                    Si cambia el estado del densímetro a "Finalizado", se registrará automáticamente la fecha de finalización. Si cambia el estado a cualquier otro, se enviará automáticamente un correo electrónico al cliente notificándole el cambio.
                 </div>
 
                 <div class="d-grid gap-2 d-md-flex justify-content-md-end">

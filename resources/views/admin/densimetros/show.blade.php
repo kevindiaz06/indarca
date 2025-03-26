@@ -74,6 +74,15 @@
                         </div>
                     </div>
 
+                    @if($densimetro->estado == 'finalizado' && $densimetro->fecha_finalizacion)
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <p class="mb-1 text-muted">Fecha de Finalización</p>
+                            <h5>{{ $densimetro->fecha_finalizacion->format('d/m/Y') }}</h5>
+                        </div>
+                    </div>
+                    @endif
+
                     <div class="mb-4">
                         <p class="mb-1 text-muted">Observaciones</p>
                         <div class="border rounded p-3 bg-light">
