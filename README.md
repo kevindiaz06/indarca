@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # INDARCA - Sistema de Gestión de Densímetros
 
 <p align="center">
@@ -100,4 +99,3 @@ php artisan serve
 Este proyecto es software propietario de INDARCA.
 =======
 # indarca
->>>>>>> c5e2bd1264e7e92468116de2b59235f57af62656
