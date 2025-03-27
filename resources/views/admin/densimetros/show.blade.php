@@ -74,7 +74,7 @@
                         </div>
                     </div>
 
-                    @if($densimetro->estado == 'finalizado' && $densimetro->fecha_finalizacion)
+                    @if(($densimetro->estado == 'finalizado' || $densimetro->estado == 'entregado') && $densimetro->fecha_finalizacion)
                     <div class="row mb-4">
                         <div class="col-md-6">
                             <p class="mb-1 text-muted">Fecha de Finalización</p>

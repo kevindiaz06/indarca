@@ -55,24 +55,28 @@
 
                         <div class="mb-4">
                             <p class="mb-1 fw-bold">Estado Actual</p>
-                            <div class="progress" style="height: 25px;">
-                                @if($estado['estado'] == 'Recibido')
-                                    <div class="progress-bar bg-secondary" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
-                                        <i class="bi bi-box me-1"></i> Recibido
+                            <div class="estado-timeline">
+                                <div class="d-flex justify-content-between position-relative mb-1">
+                                    <div class="estado-punto {{ $estado['estado'] == 'Recibido' ? 'activo' : ($estado['estado'] == 'En reparación' || $estado['estado'] == 'Reparación finalizada' || $estado['estado'] == 'Entregado al cliente' ? 'completado' : '') }}">
+                                        <i class="bi bi-box"></i>
                                     </div>
-                                @elseif($estado['estado'] == 'En reparación')
-                                    <div class="progress-bar bg-primary" role="progressbar" style="width: 50%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
-                                        <i class="bi bi-tools me-1"></i> En reparación
+                                    <div class="estado-punto {{ $estado['estado'] == 'En reparación' ? 'activo' : ($estado['estado'] == 'Reparación finalizada' || $estado['estado'] == 'Entregado al cliente' ? 'completado' : '') }}">
+                                        <i class="bi bi-tools"></i>
                                     </div>
-                                @elseif($estado['estado'] == 'Reparación finalizada')
-                                    <div class="progress-bar bg-success" role="progressbar" style="width: 75%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
-                                        <i class="bi bi-check-circle me-1"></i> Reparación finalizada
+                                    <div class="estado-punto {{ $estado['estado'] == 'Reparación finalizada' ? 'activo' : ($estado['estado'] == 'Entregado al cliente' ? 'completado' : '') }}">
+                                        <i class="bi bi-check-circle"></i>
                                     </div>
-                                @elseif($estado['estado'] == 'Entregado al cliente')
-                                    <div class="progress-bar bg-info" role="progressbar" style="width: 100%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
-                                        <i class="bi bi-truck me-1"></i> Entregado
+                                    <div class="estado-punto {{ $estado['estado'] == 'Entregado al cliente' ? 'activo' : '' }}">
+                                        <i class="bi bi-truck"></i>
                                     </div>
-                                @endif
+                                    <div class="estado-linea position-absolute"></div>
+                                </div>
+                                <div class="d-flex justify-content-between text-center">
+                                    <div class="estado-texto {{ $estado['estado'] == 'Recibido' ? 'activo' : ($estado['estado'] == 'En reparación' || $estado['estado'] == 'Reparación finalizada' || $estado['estado'] == 'Entregado al cliente' ? 'completado' : '') }}">Recibido</div>
+                                    <div class="estado-texto {{ $estado['estado'] == 'En reparación' ? 'activo' : ($estado['estado'] == 'Reparación finalizada' || $estado['estado'] == 'Entregado al cliente' ? 'completado' : '') }}">En reparación</div>
+                                    <div class="estado-texto {{ $estado['estado'] == 'Reparación finalizada' ? 'activo' : ($estado['estado'] == 'Entregado al cliente' ? 'completado' : '') }}">Finalizado</div>
+                                    <div class="estado-texto {{ $estado['estado'] == 'Entregado al cliente' ? 'activo' : '' }}">Entregado</div>
+                                </div>
                             </div>
                         </div>
 
@@ -101,7 +105,7 @@
             </div>
 
             <div class="mt-4 text-center">
-                <p class="text-muted">¿Tiene alguna pregunta? <a href="{{ route('contacto') }}">Contáctenos</a></p>
+                <p class="text-muted">¿Tiene alguna pregunta? <a href="{{ route('inicio') }}#contact">Contáctenos</a></p>
             </div>
         </div>
     </div>

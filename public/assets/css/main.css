@@ -1962,3 +1962,77 @@ section,
     content: "+";
     margin-right: 5px;
 }
+
+/*--------------------------------------------------------------
+# Estado Timeline - Consulta de Densímetros
+--------------------------------------------------------------*/
+.estado-timeline {
+  padding: 10px 0;
+}
+
+.estado-linea {
+  height: 3px;
+  background-color: #e9ecef;
+  width: 100%;
+  top: 12px;
+  z-index: 1;
+}
+
+.estado-punto {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background-color: #e9ecef;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  position: relative;
+  color: #868e96;
+  transition: all 0.3s ease;
+}
+
+.estado-punto.activo {
+  background-color: var(--accent-color);
+  color: white;
+  box-shadow: 0 0 10px rgba(204, 0, 0, 0.5);
+}
+
+.estado-punto.completado {
+  background-color: #28a745;
+  color: white;
+}
+
+.estado-texto {
+  font-size: 0.85rem;
+  color: #6c757d;
+  margin-top: 5px;
+  font-weight: 500;
+  width: 25%;
+  transition: all 0.3s ease;
+}
+
+.estado-texto.activo {
+  color: var(--accent-color);
+  font-weight: 700;
+}
+
+.estado-texto.completado {
+  color: #28a745;
+  font-weight: 600;
+}
+
+@media (max-width: 767px) {
+  .estado-texto {
+    font-size: 0.7rem;
+  }
+
+  .estado-punto {
+    width: 24px;
+    height: 24px;
+  }
+
+  .estado-linea {
+    top: 10px;
+  }
+}

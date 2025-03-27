@@ -17,6 +17,8 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\EmpresaController;
 use App\Http\Controllers\Auth\CustomResetPasswordController;
 use App\Http\Controllers\DensimetroController;
+use App\Http\Controllers\Auth\VerificationCodeController;
+use App\Http\Controllers\Auth\RegisterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -67,6 +69,10 @@ Route::post('/contacto/enviar', [ContactoFormularioController::class, 'enviar'])
 // Personalizar la ruta de reset de contraseña
 Route::get('password/reset', [CustomResetPasswordController::class, 'showLinkRequestForm'])->name('password.request');
 Route::post('password/email', [CustomResetPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
+// Rutas para verificación de correo electrónico
+Route::get('/verification/notice', [RegisterController::class, 'showVerificationNotice'])->name('verification.notice');
+Route::post('/verification/verify', [VerificationCodeController::class, 'verify'])->name('verification.verify');
+Route::post('/verification/resend', [VerificationCodeController::class, 'resend'])->name('verification.resend');
 // Mantener las demás rutas de autenticación
 Auth::routes(['reset' => false]);
 Route::get('/home', [HomeController::class, 'index'])->name('home');
@@ -80,6 +86,7 @@ Route::resource('empresas', EmpresaController::class);
 Route::middleware(['auth'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
 // Panel de Administración (protegido por middleware)

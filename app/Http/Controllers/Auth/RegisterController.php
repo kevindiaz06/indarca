@@ -5,9 +5,15 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
+use App\Models\VerificationCode;
+use App\Notifications\VerifyEmailWithCode;
+use Carbon\Carbon;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Auth\Events\Registered;
 
 class RegisterController extends Controller
 {
@@ -71,5 +77,42 @@ class RegisterController extends Controller
             'role' => 'web',
             'is_admin' => false,
         ]);
+    }
+
+    /**
+     * Sobrescribe el método register para implementar la verificación por código
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function register(Request $request)
+    {
+        $this->validator($request->all())->validate();
+
+        event(new Registered($user = $this->create($request->all())));
+
+        // Generar código aleatorio de 6 dígitos
+        $code = str_pad(random_int(0, 999999), 6, '0', STR_PAD_LEFT);
+
+        // Crear el registro de verificación
+        VerificationCode::create([
+            'user_id' => $user->id,
+            'code' => $code,
+            'expires_at' => Carbon::now()->addMinutes(60), // El código expira en 60 minutos
+        ]);
+
+        // Enviar el código por correo electrónico
+        $user->notify(new VerifyEmailWithCode($code));
+
+        // Redirigir a la página de verificación
+        return redirect()->route('verification.notice', ['email' => $user->email]);
+    }
+
+    /**
+     * Muestra la página para ingresar el código de verificación
+     */
+    public function showVerificationNotice(Request $request)
+    {
+        return view('auth.verify-code', ['email' => $request->email]);
     }
 }
