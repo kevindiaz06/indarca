@@ -14,7 +14,10 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Auth\Events\Registered;
+<<<<<<< HEAD
 use Illuminate\Support\Facades\Schema;
+=======
+>>>>>>> dd982336b7279ad9ffc9f29f819bd77da54cd9ff
 
 class RegisterController extends Controller
 {
@@ -92,6 +95,7 @@ class RegisterController extends Controller
 
         event(new Registered($user = $this->create($request->all())));
 
+<<<<<<< HEAD
         try {
             // Generar código aleatorio de 6 dígitos
             $code = str_pad(random_int(0, 999999), 6, '0', STR_PAD_LEFT);
@@ -129,6 +133,23 @@ class RegisterController extends Controller
 
             return redirect()->intended(RouteServiceProvider::HOME);
         }
+=======
+        // Generar código aleatorio de 6 dígitos
+        $code = str_pad(random_int(0, 999999), 6, '0', STR_PAD_LEFT);
+
+        // Crear el registro de verificación
+        VerificationCode::create([
+            'user_id' => $user->id,
+            'code' => $code,
+            'expires_at' => Carbon::now()->addMinutes(60), // El código expira en 60 minutos
+        ]);
+
+        // Enviar el código por correo electrónico
+        $user->notify(new VerifyEmailWithCode($code));
+
+        // Redirigir a la página de verificación
+        return redirect()->route('verification.notice', ['email' => $user->email]);
+>>>>>>> dd982336b7279ad9ffc9f29f819bd77da54cd9ff
     }
 
     /**

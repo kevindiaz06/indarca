@@ -48,6 +48,7 @@ class ProfileController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+<<<<<<< HEAD
     public function destroy(Request $request)
     {
         $user = Auth::user();
@@ -56,6 +57,17 @@ class ProfileController extends Controller
         $request->validate([
             'confirm_email' => ['required', 'email', 'in:' . $user->email],
         ]);
+=======
+    public function destroy()
+    {
+        $user = Auth::user();
+
+        // Verificar que el usuario sea un cliente
+        if ($user->role !== 'web') {
+            return redirect()->route('inicio')
+                ->with('error', 'No tienes permisos para realizar esta acción.');
+        }
+>>>>>>> dd982336b7279ad9ffc9f29f819bd77da54cd9ff
 
         // Eliminar el usuario
         $user->delete();

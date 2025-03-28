@@ -19,7 +19,10 @@ use App\Http\Controllers\Auth\CustomResetPasswordController;
 use App\Http\Controllers\DensimetroController;
 use App\Http\Controllers\Auth\VerificationCodeController;
 use App\Http\Controllers\Auth\RegisterController;
+<<<<<<< HEAD
 use App\Http\Controllers\ClienteController;
+=======
+>>>>>>> dd982336b7279ad9ffc9f29f819bd77da54cd9ff
 
 /*
 |--------------------------------------------------------------------------
@@ -88,11 +91,14 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+<<<<<<< HEAD
 });
 
 // Rutas para clientes
 Route::middleware(['auth', 'role:cliente'])->group(function () {
     Route::get('/historial-incidencias', [ClienteController::class, 'historialIncidencias'])->name('usuario.historial-incidencias');
+=======
+>>>>>>> dd982336b7279ad9ffc9f29f819bd77da54cd9ff
 });
 
 // Panel de Administración (protegido por middleware)

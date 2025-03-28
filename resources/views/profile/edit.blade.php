@@ -95,6 +95,7 @@
                     </div>
                     <p class="fs-5 text-center">¿Estás seguro de que deseas eliminar tu cuenta?</p>
                     <p class="text-center text-muted">Esta acción no se puede deshacer y perderás todos tus datos.</p>
+<<<<<<< HEAD
 
                     <div class="mt-4">
                         <label for="confirm_email" class="form-label">Por favor, escribe tu correo electrónico para confirmar:</label>
@@ -108,11 +109,21 @@
                         @method('DELETE')
                         <input type="hidden" name="confirm_email" id="confirm_email_hidden">
                         <button type="submit" class="btn btn-danger" id="deleteAccountButton" disabled>Eliminar definitivamente</button>
+=======
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <form action="{{ route('profile.destroy') }}" method="POST" class="m-0">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger">Eliminar definitivamente</button>
+>>>>>>> dd982336b7279ad9ffc9f29f819bd77da54cd9ff
                     </form>
                 </div>
             </div>
         </div>
     </div>
+<<<<<<< HEAD
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -132,6 +143,8 @@
             });
         });
     </script>
+=======
+>>>>>>> dd982336b7279ad9ffc9f29f819bd77da54cd9ff
 @else
     <div class="container mt-5">
         <div class="alert alert-danger">
