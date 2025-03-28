@@ -102,14 +102,14 @@
                 <div class="card-body">
                     <div class="text-center mb-3">
                         <div class="avatar bg-primary rounded-circle d-inline-flex align-items-center justify-content-center mx-auto mb-3" style="width: 80px; height: 80px;">
-                            <span class="text-white fs-1">{{ substr($densimetro->cliente->name, 0, 1) }}</span>
+                            <span class="text-white fs-1">{{ $densimetro->cliente ? substr($densimetro->cliente->name, 0, 1) : 'N/A' }}</span>
                         </div>
-                        <h5 class="mb-0">{{ $densimetro->cliente->name }}</h5>
+                        <h5 class="mb-0">{{ $densimetro->cliente ? $densimetro->cliente->name : 'Cliente no disponible' }}</h5>
                         <p class="text-muted">Cliente</p>
                     </div>
 
                     <div class="border-top pt-3">
-                        <p class="mb-1"><i class="bi bi-envelope me-2"></i> {{ $densimetro->cliente->email }}</p>
+                        <p class="mb-1"><i class="bi bi-envelope me-2"></i> {{ $densimetro->cliente ? $densimetro->cliente->email : 'Email no disponible' }}</p>
 
                         <a href="{{ route('admin.densimetros.index') }}?filtro_cliente={{ $densimetro->cliente_id }}" class="btn btn-outline-primary w-100 mt-3">
                             <i class="bi bi-search me-1"></i> Ver todos sus densímetros

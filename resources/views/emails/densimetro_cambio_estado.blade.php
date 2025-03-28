@@ -136,7 +136,7 @@
         </div>
 
         <div class="content">
-            <p>Estimado/a <strong>{{ $cliente->name }}</strong>,</p>
+            <p>Estimado/a <strong>{{ $cliente ? $cliente->name : 'Cliente' }}</strong>,</p>
 
             <p>Le informamos que el estado de su densímetro ha sido actualizado en nuestro sistema. A continuación, encontrará los detalles:</p>
 

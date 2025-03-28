@@ -27,7 +27,7 @@ class DensimetroCambioEstadoMail extends Mailable
     public function __construct(Densimetro $densimetro)
     {
         $this->densimetro = $densimetro;
-        $this->cliente = $densimetro->cliente;
+        $this->cliente = $densimetro->cliente ?? null;
         $this->fecha = now()->format('d/m/Y');
     }
 

@@ -55,7 +55,7 @@
                         <tr>
                             <td>{{ $densimetro->id }}</td>
                             <td>{{ $densimetro->referencia_reparacion }}</td>
-                            <td>{{ $densimetro->cliente->name }}</td>
+                            <td>{{ $densimetro->cliente ? $densimetro->cliente->name : 'Cliente no disponible' }}</td>
                             <td>{{ $densimetro->numero_serie }}</td>
                             <td>{{ $densimetro->fecha_entrada->format('d/m/Y') }}</td>
                             <td>

@@ -68,6 +68,15 @@ class DensimetroController extends Controller
                             ->withInput();
         }
 
+        // Verificar si el densímetro ya está en reparación
+        if (Densimetro::where('numero_serie', $request->numero_serie)
+                      ->whereNull('fecha_finalizacion')
+                      ->exists()) {
+            return redirect()->back()
+                ->withErrors(['numero_serie' => 'Este densímetro ya está en proceso de reparación y no puede registrarse nuevamente hasta que finalice.'])
+                ->withInput();
+        }
+
         // Generar una referencia única para la reparación
         $referencia = Densimetro::generarReferencia();
 
@@ -154,6 +163,16 @@ class DensimetroController extends Controller
         // Actualizar el densímetro
         $densimetro = Densimetro::findOrFail($id);
 
+        // Verificar si está cambiando el número de serie y si el nuevo ya está en reparación
+        if ($request->numero_serie !== $densimetro->numero_serie &&
+            Densimetro::where('numero_serie', $request->numero_serie)
+                      ->whereNull('fecha_finalizacion')
+                      ->exists()) {
+            return redirect()->back()
+                ->withErrors(['numero_serie' => 'Este densímetro ya está en proceso de reparación y no puede registrarse nuevamente hasta que finalice.'])
+                ->withInput();
+        }
+
         // Guardar el estado anterior para verificar si cambió
         $estadoAnterior = $densimetro->estado;
 
@@ -194,6 +213,10 @@ class DensimetroController extends Controller
     public function destroy($id)
     {
         $densimetro = Densimetro::findOrFail($id);
+
+        // Se elimina el densímetro normalmente
+        // Ahora, si el cliente es eliminado, el densímetro permanecerá en la base de datos
+        // debido a la modificación de la relación onDelete('set null') en la migración
         $densimetro->delete();
 
         return redirect()->route('admin.densimetros.index')
@@ -209,6 +232,12 @@ class DensimetroController extends Controller
      */
     private function enviarCorreoRecepcion($cliente, $densimetro)
     {
+        // Verificar si el cliente existe
+        if (!$cliente) {
+            \Log::warning('No se puede enviar correo de recepción para el densímetro ID: ' . $densimetro->id . ' porque el cliente no existe');
+            return;
+        }
+
         // Registra la información del correo en el log
         \Log::info('Correo de recepción enviado a ' . $cliente->email . ' con referencia ' . $densimetro->referencia_reparacion);
 
@@ -226,6 +255,12 @@ class DensimetroController extends Controller
     private function enviarCorreoCambioEstado($densimetro)
     {
         $cliente = $densimetro->cliente;
+
+        // Verificar si el cliente existe antes de intentar enviar el correo
+        if (!$cliente) {
+            \Log::warning('No se puede enviar correo de cambio de estado para el densímetro ID: ' . $densimetro->id . ' porque el cliente no existe');
+            return;
+        }
 
         // Registra la información del correo en el log
         \Log::info('Correo de cambio de estado enviado a ' . $cliente->email . ' - Nuevo estado: ' . $densimetro->estado);

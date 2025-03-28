@@ -46,6 +46,20 @@ class Densimetro extends Model
     }
 
     /**
+     * Verifica si un densímetro está disponible para registrarse nuevamente.
+     * Un densímetro está disponible solo si no tiene una reparación en curso.
+     *
+     * @param string $numeroSerie
+     * @return bool
+     */
+    public static function estaDisponible($numeroSerie)
+    {
+        return !static::where('numero_serie', $numeroSerie)
+                      ->whereNull('fecha_finalizacion')
+                      ->exists();
+    }
+
+    /**
      * Genera una referencia única para el densímetro.
      *
      * @return string

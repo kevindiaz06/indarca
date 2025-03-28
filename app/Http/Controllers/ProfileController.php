@@ -57,14 +57,11 @@ class ProfileController extends Controller
             'confirm_email' => ['required', 'email', 'in:' . $user->email],
         ]);
 
-        $user = Auth::user();
-
         // Verificar que el usuario sea un cliente
-        if ($user->role !== 'web') {
+        if ($user->role !== 'cliente') {
             return redirect()->route('inicio')
                 ->with('error', 'No tienes permisos para realizar esta acción.');
         }
-
 
         // Eliminar el usuario
         $user->delete();

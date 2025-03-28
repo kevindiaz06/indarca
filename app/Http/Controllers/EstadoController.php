@@ -49,7 +49,7 @@ class EstadoController extends Controller
             'modelo' => $densimetro->modelo,
             'fecha_entrada' => $densimetro->fecha_entrada->format('d/m/Y'),
             'estado' => $this->formatearEstado($densimetro->estado),
-            'cliente' => $densimetro->cliente->name,
+            'cliente' => $densimetro->cliente ? $densimetro->cliente->name : 'Cliente no disponible',
             'observaciones' => $densimetro->observaciones,
         ];
 

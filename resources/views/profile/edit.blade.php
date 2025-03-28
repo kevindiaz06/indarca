@@ -108,15 +108,6 @@
                         @method('DELETE')
                         <input type="hidden" name="confirm_email" id="confirm_email_hidden">
                         <button type="submit" class="btn btn-danger" id="deleteAccountButton" disabled>Eliminar definitivamente</button>
-
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                    <form action="{{ route('profile.destroy') }}" method="POST" class="m-0">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-danger">Eliminar definitivamente</button>
-
                     </form>
                 </div>
             </div>

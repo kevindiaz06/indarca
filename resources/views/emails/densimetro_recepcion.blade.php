@@ -115,7 +115,7 @@
         </div>
 
         <div class="content">
-            <p>Estimado/a <strong>{{ $cliente->name }}</strong>,</p>
+            <p>Estimado/a <strong>{{ $cliente ? $cliente->name : 'Cliente' }}</strong>,</p>
 
             <p>Le informamos que hemos recibido su densímetro en nuestro taller para su reparación o mantenimiento. A continuación, encontrará los detalles:</p>
 
