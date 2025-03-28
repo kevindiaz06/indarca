@@ -60,6 +60,13 @@ class LoginController extends Controller
     protected function authenticated(Request $request, $user)
     {
         session()->flash('login_success', true);
+
+        // Redirigir a administradores y clientes al panel de administración
+        if ($user->role === 'admin' || $user->role === 'cliente') {
+            return redirect()->route('admin.dashboard');
+        }
+
+        // Para otros roles, redirigir a la página por defecto
         return redirect()->intended($this->redirectTo);
     }
 }
