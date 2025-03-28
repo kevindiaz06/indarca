@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Recepción de Densímetro - INDARCA</title>
+    <title>Verificación de Cuenta - INDARCA</title>
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -38,6 +38,22 @@
         }
         .content {
             padding: 35px 30px;
+        }
+        .verification-code {
+            background-color: #f8f9fa;
+            border-left: 4px solid #1a5276;
+            border-radius: 4px;
+            padding: 20px;
+            margin: 25px 0;
+            text-align: center;
+        }
+        .code {
+            font-family: 'Arial', sans-serif;
+            font-size: 32px;
+            font-weight: bold;
+            color: #1a5276;
+            letter-spacing: 4px;
+            margin: 10px 0;
         }
         .button {
             display: inline-block;
@@ -86,24 +102,6 @@
             margin-top: 15px;
             font-size: 12px;
         }
-        .info-item {
-            margin-bottom: 10px;
-        }
-        .label {
-            font-weight: bold;
-            color: #1a5276;
-        }
-        .referencia {
-            font-size: 1.2em;
-            font-weight: bold;
-            color: #dc3545;
-            text-align: center;
-            padding: 15px;
-            margin: 25px 0;
-            border: 1px dashed #dc3545;
-            background-color: #f8d7da;
-            border-radius: 5px;
-        }
     </style>
 </head>
 <body>
@@ -111,47 +109,31 @@
         <div class="header">
             <!-- Logo de la empresa -->
             <img src="{{ $message->embed(public_path('images/logo.png')) }}" alt="INDARCA Logo" class="logo">
-            <h1>Recepción de Densímetro</h1>
+            <h1>Verificación de Cuenta</h1>
         </div>
 
         <div class="content">
-            <p>Estimado/a <strong>{{ $cliente->name }}</strong>,</p>
+            <p>Estimado/a <strong>{{ $nombre }}</strong>,</p>
 
-            <p>Le informamos que hemos recibido su densímetro en nuestro taller para su reparación o mantenimiento. A continuación, encontrará los detalles:</p>
+            <p>Le damos la bienvenida a <strong>INDARCA</strong>. Para garantizar la seguridad de su cuenta, es necesario completar el proceso de verificación utilizando el siguiente código:</p>
 
-            <div class="info-item">
-                <span class="label">Fecha de recepción:</span> {{ $fecha }}
+            <div class="verification-code">
+                <p class="code">{{ $codigo }}</p>
+                <p>Este código es válido durante <strong>10 minutos</strong></p>
             </div>
 
-            <div class="info-item">
-                <span class="label">Número de serie:</span> {{ $densimetro->numero_serie }}
-            </div>
-
-            @if($densimetro->marca)
-            <div class="info-item">
-                <span class="label">Marca:</span> {{ $densimetro->marca }}
-            </div>
-            @endif
-
-            @if($densimetro->modelo)
-            <div class="info-item">
-                <span class="label">Modelo:</span> {{ $densimetro->modelo }}
-            </div>
-            @endif
-
-            <p>Su densímetro ha sido registrado con la siguiente referencia de reparación:</p>
-
-            <div class="referencia">
-                {{ $densimetro->referencia_reparacion }}
-            </div>
-
-            <p>Por favor, conserve esta referencia para cualquier consulta relacionada con su densímetro. Nos pondremos en contacto con usted cuando hayamos evaluado el equipo o cuando se complete la reparación.</p>
-
-            <p>Si tiene alguna pregunta, no dude en contactarnos.</p>
+            <p>Por favor, introduzca este código en la página de verificación para activar su cuenta y comenzar a utilizar nuestros servicios.</p>
 
             <div style="text-align: center;">
-                <a href="{{ url('/contacto') }}" class="button">Contactar con INDARCA</a>
+                <a href="{{ $url }}" class="button">Verificar mi cuenta</a>
             </div>
+
+            <div class="info">
+                <p><strong>¿No ha solicitado esta verificación?</strong> Si no ha creado una cuenta en INDARCA, por favor ignore este mensaje o póngase en contacto con nuestro departamento de atención al cliente.</p>
+            </div>
+
+            <p>Atentamente,</p>
+            <p><strong>Equipo INDARCA</strong></p>
         </div>
 
         <div class="footer">

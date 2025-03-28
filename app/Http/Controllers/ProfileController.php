@@ -12,13 +12,7 @@ class ProfileController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware(function ($request, $next) {
-            if (Auth::user()->role !== 'web') {
-                return redirect()->route('inicio')
-                    ->with('error', 'No tienes permisos para acceder a esta página.');
-            }
-            return $next($request);
-        });
+        $this->middleware('role:cliente');
     }
 
     public function edit()
@@ -29,12 +23,6 @@ class ProfileController extends Controller
     public function update(Request $request)
     {
         $user = Auth::user();
-
-        // Verificar que el usuario sea un cliente
-        if ($user->role !== 'web') {
-            return redirect()->route('inicio')
-                ->with('error', 'No tienes permisos para realizar esta acción.');
-        }
 
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
@@ -53,5 +41,33 @@ class ProfileController extends Controller
 
         return redirect()->route('profile.edit')
             ->with('success', 'Perfil actualizado exitosamente.');
+    }
+
+    /**
+     * Eliminar el perfil del usuario autenticado.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Request $request)
+    {
+        $user = Auth::user();
+
+        // Validar que el correo electrónico coincida
+        $request->validate([
+            'confirm_email' => ['required', 'email', 'in:' . $user->email],
+        ]);
+
+        // Eliminar el usuario
+        $user->delete();
+
+        // Cerrar sesión
+        Auth::logout();
+
+        // Invalidar la sesión y regenerar el token CSRF
+        request()->session()->invalidate();
+        request()->session()->regenerateToken();
+
+        return redirect()->route('inicio')
+            ->with('success', 'Tu cuenta ha sido eliminada exitosamente.');
     }
 }

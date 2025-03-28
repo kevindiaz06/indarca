@@ -33,6 +33,9 @@
 
     <!-- SweetAlert2 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet">
+
+    <!-- Lightbox CSS para visualización de imágenes -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" rel="stylesheet">
 </head>
 <header id="header" class="header sticky-top">
 
@@ -119,12 +122,10 @@
                             <i class="bi bi-person-circle me-1"></i>{{ Auth::user()->name }}
                         </button>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-                            @if(Auth::user()->role === 'web')
-                                <li><a class="dropdown-item" href="{{ route('profile.edit') }}"><i class="bi bi-person me-2"></i>Mi Perfil</a></li>
-                                <li><hr class="dropdown-divider"></li>
-                            @endif
                             @if(Auth::user()->role === 'cliente')
-                                <li><a class="dropdown-item" href="{{ route('cliente.historial') }}"><i class="bi bi-clock-history me-2"></i>Historial de Reparaciones</a></li>
+                                <li><a class="dropdown-item" href="{{ route('usuario.historial-incidencias') }}"><i class="bi bi-journal-text me-2"></i>Historial de Incidencias</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="{{ route('profile.edit') }}"><i class="bi bi-person me-2"></i>Mi Perfil</a></li>
                                 <li><hr class="dropdown-divider"></li>
                             @endif
                             <li>
@@ -260,5 +261,15 @@
 
 <!-- Main JS File -->
 <script src="{{ asset('assets/js/main.js') }}"></script>
+
+<!-- Lightbox JS para visualización de imágenes -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
+<script>
+    lightbox.option({
+        'resizeDuration': 200,
+        'wrapAround': true,
+        'albumLabel': "Imagen %1 de %2"
+    });
+</script>
 
 </html>

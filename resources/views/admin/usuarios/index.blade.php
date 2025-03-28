@@ -40,7 +40,7 @@
                         <option value="">Todos los roles</option>
                         <option value="admin" {{ request('role') == 'admin' ? 'selected' : '' }}>Administradores</option>
                         <option value="trabajador" {{ request('role') == 'trabajador' ? 'selected' : '' }}>Trabajadores</option>
-                        <option value="web" {{ request('role') == 'web' ? 'selected' : '' }}>Clientes</option>
+                        <option value="cliente" {{ request('role') == 'cliente' ? 'selected' : '' }}>Clientes</option>
                     </select>
                 </div>
                 <div class="col-md-3">

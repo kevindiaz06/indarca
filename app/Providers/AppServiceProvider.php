@@ -28,7 +28,7 @@ class AppServiceProvider extends ServiceProvider
         // Compartir variables de estadísticas con todas las vistas
         View::composer('*', function ($view) {
             // Obtener conteo de usuarios con rol 'web' (clientes)
-            $totalClientes = User::where('role', 'web')->count();
+            $totalClientes = User::where('role', 'cliente')->count();
 
             // Obtener conteo de trabajadores (suma de 'admin' y 'trabajador')
             $totalTrabajadores = User::whereIn('role', ['admin', 'trabajador'])->count();

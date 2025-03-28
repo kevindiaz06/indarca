@@ -42,16 +42,15 @@ class EstadoController extends Controller
             ])->withInput();
         }
 
-        // Preparar datos para mostrar en la vista
         $estado = [
             'referencia' => $densimetro->referencia_reparacion,
             'numero_serie' => $densimetro->numero_serie,
             'marca' => $densimetro->marca,
             'modelo' => $densimetro->modelo,
-            'estado' => $this->formatearEstado($densimetro->estado),
             'fecha_entrada' => $densimetro->fecha_entrada->format('d/m/Y'),
+            'estado' => $this->formatearEstado($densimetro->estado),
             'cliente' => $densimetro->cliente->name,
-            'observaciones' => $densimetro->observaciones
+            'observaciones' => $densimetro->observaciones,
         ];
 
         return view('estado', ['estado' => $estado]);

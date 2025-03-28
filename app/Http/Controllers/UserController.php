@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Densimetro;
 
 class UserController extends Controller
 {
@@ -58,11 +59,11 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $validated = $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8|confirmed',
-            'role' => 'required|in:web,trabajador,admin',
+            'role' => 'required|in:cliente,trabajador,admin',
         ]);
 
         User::create([
@@ -155,11 +156,12 @@ class UserController extends Controller
         $rules = [
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users,email,' . $id,
+            'role' => 'required|in:cliente,trabajador,admin',
         ];
 
         // Solo los administradores pueden cambiar roles
         if ($currentUser->role === 'admin') {
-            $rules['role'] = 'required|in:web,trabajador,admin';
+            $rules['role'] = 'required|in:cliente,trabajador,admin';
         }
 
         if ($request->filled('password')) {

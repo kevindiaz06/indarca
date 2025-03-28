@@ -1,7 +1,7 @@
 @extends('layout')
 
 @section('content')
-@if(Auth::user()->role === 'web')
+@if(Auth::user()->role === 'cliente')
     <div class="container mt-5">
         <div class="row justify-content-center">
             <div class="col-md-8">
@@ -65,7 +65,11 @@
                                 </div>
                             </div>
 
-                            <div class="d-flex justify-content-end">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteAccountModal">
+                                    <i class="bi bi-trash me-1"></i> Eliminar mi cuenta
+                                </button>
+
                                 <button type="submit" class="btn btn-primary">
                                     <i class="bi bi-save me-1"></i> Guardar Cambios
                                 </button>
@@ -76,6 +80,58 @@
             </div>
         </div>
     </div>
+
+    <!-- Modal de confirmación para eliminar cuenta -->
+    <div class="modal fade" id="deleteAccountModal" tabindex="-1" aria-labelledby="deleteAccountModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-danger text-white">
+                    <h5 class="modal-title" id="deleteAccountModalLabel">Confirmar eliminación de cuenta</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="text-center mb-4">
+                        <i class="bi bi-exclamation-triangle-fill text-danger" style="font-size: 3rem;"></i>
+                    </div>
+                    <p class="fs-5 text-center">¿Estás seguro de que deseas eliminar tu cuenta?</p>
+                    <p class="text-center text-muted">Esta acción no se puede deshacer y perderás todos tus datos.</p>
+
+                    <div class="mt-4">
+                        <label for="confirm_email" class="form-label">Por favor, escribe tu correo electrónico para confirmar:</label>
+                        <input type="email" class="form-control" id="confirm_email" name="confirm_email" required placeholder="{{ Auth::user()->email }}">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <form action="{{ route('profile.destroy') }}" method="POST" class="m-0" id="deleteAccountForm">
+                        @csrf
+                        @method('DELETE')
+                        <input type="hidden" name="confirm_email" id="confirm_email_hidden">
+                        <button type="submit" class="btn btn-danger" id="deleteAccountButton" disabled>Eliminar definitivamente</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const confirmEmail = document.getElementById('confirm_email');
+            const confirmEmailHidden = document.getElementById('confirm_email_hidden');
+            const deleteAccountButton = document.getElementById('deleteAccountButton');
+            const userEmail = "{{ Auth::user()->email }}";
+
+            confirmEmail.addEventListener('input', function() {
+                if (this.value === userEmail) {
+                    deleteAccountButton.disabled = false;
+                    confirmEmailHidden.value = this.value;
+                } else {
+                    deleteAccountButton.disabled = true;
+                    confirmEmailHidden.value = '';
+                }
+            });
+        });
+    </script>
 @else
     <div class="container mt-5">
         <div class="alert alert-danger">

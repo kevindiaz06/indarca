@@ -46,7 +46,7 @@
 
                             <div class="col-md-6">
                                 <select id="role" class="form-select @error('role') is-invalid @enderror" name="role" required>
-                                    <option value="web" {{ old('role') == 'web' ? 'selected' : '' }}>Cliente</option>
+                                    <option value="cliente" {{ old('role') == 'cliente' ? 'selected' : '' }}>Cliente</option>
                                     <option value="trabajador" {{ old('role') == 'trabajador' ? 'selected' : '' }}>Trabajador</option>
                                     <option value="admin" {{ old('role') == 'admin' ? 'selected' : '' }}>Administrador</option>
                                 </select>

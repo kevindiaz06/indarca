@@ -28,7 +28,7 @@ class AdminController extends Controller
         $totalUsuarios = User::count();
         $totalAdmins = User::where('role', 'admin')->count();
         $totalTrabajadores = User::where('role', 'trabajador')->count();
-        $totalClientes = User::where('role', 'web')->count();
+        $totalClientes = User::where('role', 'cliente')->count();
         $totalEmpresas = Empresa::count();
 
         // Para la vista de inicio.blade.php - Total de trabajadores (admin + trabajador)
@@ -44,7 +44,7 @@ class AdminController extends Controller
         $distribucionRoles = [
             'admin' => $totalAdmins,
             'trabajador' => $totalTrabajadores,
-            'web' => $totalClientes
+            'cliente' => $totalClientes
         ];
 
         return view('admin.dashboard', compact(

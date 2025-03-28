@@ -18,7 +18,7 @@ class AdminUserSeeder extends Seeder
         // Usuario Administrador
         User::create([
             'name' => 'Administrador',
-            'email' => 'admin@indarca.com',
+            'email' => 'kevindiazmota@gmail.com',
             'password' => Hash::make('admin123'),
             'role' => 'admin',
             'is_admin' => true,
@@ -38,7 +38,7 @@ class AdminUserSeeder extends Seeder
             'name' => 'Cliente Demo',
             'email' => 'cliente@example.com',
             'password' => Hash::make('cliente123'),
-            'role' => 'web',
+            'role' => 'cliente',
             'is_admin' => false,
         ]);
     }

@@ -380,7 +380,7 @@
     const userDistributionData = {
         labels: ['Administradores', 'Trabajadores', 'Clientes'],
         datasets: [{
-            data: [{{ $distribucionRoles['admin'] }}, {{ $distribucionRoles['trabajador'] }}, {{ $distribucionRoles['web'] }}],
+            data: [{{ $distribucionRoles['admin'] }}, {{ $distribucionRoles['trabajador'] }}, {{ $distribucionRoles['cliente'] }}],
             backgroundColor: ['#2C3E50', '#2ECC71', '#E74C3C'],
             hoverBackgroundColor: ['#1a252f', '#27ae60', '#c0392b'],
             borderWidth: 1,
@@ -516,7 +516,7 @@
             const newData = [
                 Math.floor(Math.random() * 10) + {{ $distribucionRoles['admin'] }},
                 Math.floor(Math.random() * 10) + {{ $distribucionRoles['trabajador'] }},
-                Math.floor(Math.random() * 10) + {{ $distribucionRoles['web'] }}
+                Math.floor(Math.random() * 10) + {{ $distribucionRoles['cliente'] }}
             ];
 
             pieChart.data.datasets[0].data = newData;

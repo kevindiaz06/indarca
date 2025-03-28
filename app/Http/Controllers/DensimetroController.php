@@ -40,8 +40,8 @@ class DensimetroController extends Controller
      */
     public function create()
     {
-        // Obtener sólo usuarios tipo cliente (rol 'web')
-        $clientes = User::where('role', 'web')->orderBy('name')->get();
+        // Obtener sólo usuarios tipo cliente
+        $clientes = User::where('role', 'cliente')->orderBy('name')->get();
         return view('admin.densimetros.create', compact('clientes'));
     }
 
@@ -83,6 +83,12 @@ class DensimetroController extends Controller
             'observaciones' => $request->observaciones,
         ]);
 
+        // Si el estado inicial es finalizado o entregado, registrar la fecha de finalización
+        if ($request->has('estado') && ($request->estado == 'finalizado' || $request->estado == 'entregado')) {
+            $densimetro->estado = $request->estado;
+            $densimetro->fecha_finalizacion = now()->toDateString();
+        }
+
         $densimetro->save();
 
         // Obtener el cliente/usuario para enviar el correo
@@ -116,7 +122,7 @@ class DensimetroController extends Controller
     public function edit($id)
     {
         $densimetro = Densimetro::findOrFail($id);
-        $clientes = User::where('role', 'web')->orderBy('name')->get();
+        $clientes = User::where('role', 'cliente')->orderBy('name')->get();
         return view('admin.densimetros.edit', compact('densimetro', 'clientes'));
     }
 
@@ -158,12 +164,13 @@ class DensimetroController extends Controller
         $densimetro->estado = $request->estado;
         $densimetro->observaciones = $request->observaciones;
 
-        // Si el estado cambia a finalizado, registrar la fecha de finalización
-        if ($request->estado == 'finalizado' && $estadoAnterior != 'finalizado') {
+        // Si el estado cambia a finalizado o entregado, registrar la fecha de finalización si no existe
+        if (($request->estado == 'finalizado' || $request->estado == 'entregado') && !$densimetro->fecha_finalizacion) {
             $densimetro->fecha_finalizacion = now()->toDateString();
         }
-        // Si el estado cambia desde finalizado a otro estado, anular la fecha de finalización
-        elseif ($estadoAnterior == 'finalizado' && $request->estado != 'finalizado') {
+        // Si el estado cambia desde finalizado o entregado a otro estado (que no sea finalizado ni entregado), anular la fecha de finalización
+        elseif (($estadoAnterior == 'finalizado' || $estadoAnterior == 'entregado') &&
+                ($request->estado != 'finalizado' && $request->estado != 'entregado')) {
             $densimetro->fecha_finalizacion = null;
         }
 
