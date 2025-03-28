@@ -13,9 +13,6 @@
             </nav>
         </div>
         <div class="d-flex">
-            <a href="{{ route('inicio') }}" class="btn btn-outline-secondary me-2">
-                <i class="bi bi-house-door me-1"></i> Volver al Sitio Web
-            </a>
             <div class="dropdown">
                 <button class="btn btn-primary shadow-sm dropdown-toggle" type="button" id="reportDropdown" data-bs-toggle="dropdown" aria-expanded="false">
                     <i class="bi bi-download me-1"></i> Generar Reporte

@@ -220,6 +220,9 @@
             </ul>
 
             <div class="px-4 py-3 mt-auto">
+                <a href="{{ route('inicio') }}" class="btn btn-outline-light w-100 mb-3">
+                    <i class="bi bi-house-door me-2"></i> Volver al Sitio Web
+                </a>
                 <hr class="mb-3 bg-light">
                 <div class="d-flex align-items-center">
                     <div class="me-3">
