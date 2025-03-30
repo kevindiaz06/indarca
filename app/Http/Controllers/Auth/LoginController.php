@@ -62,7 +62,7 @@ class LoginController extends Controller
         session()->flash('login_success', true);
 
         // Redirigir a administradores y clientes al panel de administración
-        if ($user->role === 'admin' || $user->role === 'cliente') {
+        if ($user->role === 'admin' || $user->role === 'cliente' || $user->role === 'trabajador') {
             return redirect()->route('admin.dashboard');
         }
 
