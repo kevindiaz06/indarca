@@ -2,19 +2,31 @@
 @section('content')
 
 <style>
+/* Definición de variables de colores */
+:root {
+    --color-primary: #D90000;
+    --color-dark: #000000;
+    --color-light: #FFFFFF;
+    --color-primary-light: rgba(217, 0, 0, 0.1);
+    --color-primary-medium: rgba(217, 0, 0, 0.5);
+    --color-dark-light: rgba(0, 0, 0, 0.8);
+    --color-dark-medium: rgba(0, 0, 0, 0.5);
+    --color-dark-subtle: rgba(0, 0, 0, 0.1);
+}
+
 /* Animaciones personalizadas para los iconos */
 @keyframes pulse-border {
     0% {
         transform: scale(1);
-        border-color: rgba(13, 110, 253, 0.2);
+        border-color: rgba(217, 0, 0, 0.2);
     }
     50% {
         transform: scale(1.05);
-        border-color: rgba(13, 110, 253, 0.6);
+        border-color: rgba(217, 0, 0, 0.6);
     }
     100% {
         transform: scale(1);
-        border-color: rgba(13, 110, 253, 0.2);
+        border-color: rgba(217, 0, 0, 0.2);
     }
 }
 
@@ -34,7 +46,7 @@
     width: 70px;
     height: 70px;
     transition: all 0.4s ease;
-    border: 1px solid rgba(13, 110, 253, 0.2);
+    border: 1px solid rgba(217, 0, 0, 0.2);
     box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
     display: flex;
     align-items: center;
@@ -72,11 +84,11 @@
 }
 
 .service-item:hover .icon {
-    background-color: var(--bs-primary) !important;
+    background-color: var(--color-primary) !important;
 }
 
 .service-item:hover .icon i {
-    color: white !important;
+    color: var(--color-light) !important;
 }
 
 .stats-item {
@@ -91,14 +103,19 @@
 
 .stats .icon-box {
     animation: float 3s ease-in-out infinite;
+    background-color: #FFFFFF !important;
+}
+
+.stats .icon-box i {
+    color: #F40006 !important;
 }
 
 .stats .icon-box:hover {
-    background-color: var(--bs-primary) !important;
+    background-color: #292929 !important;
 }
 
 .stats .icon-box:hover i {
-    color: white !important;
+    color: #FFFFFF !important;
 }
 
 .stats-item:hover {
@@ -122,10 +139,10 @@
                         <h1>Bienvenidos a <span>INDARCA</span></h1>
                         <p>Soluciones innovadoras en arquitectura, ingeniería y densímetros nucleares para proyectos de construcción que superan expectativas.</p>
                         <div class="d-flex">
-                            <a href="#contact" class="btn-get-started">Contáctanos</a>
+                            <a href="#contact" class="btn-get-started" style="background-color: #D90000; border-color: #D90000;">Contáctanos</a>
                             <a href="https://www.youtube.com/watch?v=Y7f98aduVJ8"
                                 class="glightbox btn-watch-video d-flex align-items-center"><i
-                                    class="bi bi-play-circle"></i><span>Ver Video</span></a>
+                                    class="bi bi-play-circle text-danger"></i><span>Ver Video</span></a>
                         </div>
                     </div>
                 </div>
@@ -142,8 +159,8 @@
 
                     <div class="col-xl-3 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="100">
                         <div class="service-item position-relative">
-                            <div class="icon bg-primary bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center mb-3 icon-animate">
-                                <i class="bi bi-activity text-primary fs-3"></i>
+                            <div class="icon bg-dark rounded-circle d-flex align-items-center justify-content-center mb-3 icon-animate">
+                                <i class="bi bi-activity text-danger fs-3"></i>
                             </div>
                             <h4><a href="" class="stretched-link">Calibración y mantenimiento de densímetros
                                     nucleares</a></h4>
@@ -153,8 +170,8 @@
 
                     <div class="col-xl-3 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="200">
                         <div class="service-item position-relative">
-                            <div class="icon bg-primary bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center mb-3 icon-animate">
-                                <i class="bi bi-bounding-box-circles text-primary fs-3"></i>
+                            <div class="icon bg-dark rounded-circle d-flex align-items-center justify-content-center mb-3 icon-animate">
+                                <i class="bi bi-bounding-box-circles text-danger fs-3"></i>
                             </div>
                             <h4><a href="" class="stretched-link">Diseño y construcción de proyectos
                                     arquitectónicos</a></h4>
@@ -164,8 +181,8 @@
 
                     <div class="col-xl-3 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="300">
                         <div class="service-item position-relative">
-                            <div class="icon bg-primary bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center mb-3 icon-animate">
-                                <i class="bi bi-gear text-primary fs-3"></i>
+                            <div class="icon bg-dark rounded-circle d-flex align-items-center justify-content-center mb-3 icon-animate">
+                                <i class="bi bi-gear text-danger fs-3"></i>
                             </div>
                             <h4><a href="" class="stretched-link">Supervisión y gestión de obras</a></h4>
                             <p>Control integral de proyectos para asegurar el cumplimiento de plazos, presupuestos y estándares de calidad.</p>
@@ -174,8 +191,8 @@
 
                     <div class="col-xl-3 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="400">
                         <div class="service-item position-relative">
-                            <div class="icon bg-primary bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center mb-3 icon-animate">
-                                <i class="bi bi-broadcast text-primary fs-3"></i>
+                            <div class="icon bg-dark rounded-circle d-flex align-items-center justify-content-center mb-3 icon-animate">
+                                <i class="bi bi-broadcast text-danger fs-3"></i>
                             </div>
                             <h4><a href="" class="stretched-link">Asesoría técnica especializada</a></h4>
                             <p>Consultoría profesional para optimizar sus proyectos y resolver desafíos técnicos específicos en construcción.</p>
@@ -204,7 +221,7 @@
                         <div class="position-relative rounded-4 overflow-hidden shadow-lg h-100">
                             <img src="assets/img/ramces_carolina.jpg" alt="Equipo INDARCA" class="img-fluid w-100 h-100 object-fit-cover">
                             <div class="position-absolute bottom-0 start-0 w-100 p-4 bg-dark bg-opacity-75 text-white">
-                                <h3 class="fw-bold border-start border-primary border-4 ps-3 mb-2">Nuestra Historia</h3>
+                                <h3 class="fw-bold border-start border-danger border-4 ps-3 mb-2 text-white">Nuestra Historia</h3>
                                 <p>Fundada en 2005, INDARCA ha evolucionado hasta convertirse en un referente en la industria de la construcción, arquitectura y calibración de densímetros nucleares en República Dominicana.</p>
                             </div>
                         </div>
@@ -216,13 +233,13 @@
                         <div class="card border-0 shadow-lg rounded-4 mb-4 h-100">
                             <div class="card-body p-4">
                                 <div class="d-flex align-items-center mb-3">
-                                    <div class="bg-primary rounded-circle p-3 me-3 text-white icon-animate">
+                                    <div class="bg-dark rounded-circle p-3 me-3 text-danger icon-animate">
                                         <i class="bi bi-award fs-3"></i>
                                     </div>
                                     <h3 class="fw-bold mb-0">Certificaciones y Reconocimientos</h3>
                                 </div>
                                 <p class="fst-italic mb-4">
-                                    <span class="fw-bold text-primary">INDARCA</span>
+                                    <span class="fw-bold text-danger">INDARCA</span>
                                 ha sido reconocida por su compromiso con
                                 la calidad y la seguridad en el sector,
                                 contando con certificaciones de alto estándar en ingeniería y arquitectura.
@@ -231,8 +248,8 @@
                                 <div class="row g-3">
                                     <div class="col-md-6">
                                         <div class="d-flex align-items-center p-3 bg-light rounded-3 h-100 hover-shadow">
-                                            <div class="icon-box bg-primary bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 50px; height: 50px;">
-                                                <i class="bi bi-patch-check-fill text-primary fs-3"></i>
+                                            <div class="icon-box bg-dark rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 50px; height: 50px;">
+                                                <i class="bi bi-patch-check-fill text-danger fs-3"></i>
                                             </div>
                                             <div>
                                                 <h6 class="fw-bold mb-1">ISO 9001:2015</h6>
@@ -242,8 +259,8 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="d-flex align-items-center p-3 bg-light rounded-3 h-100 hover-shadow">
-                                            <div class="icon-box bg-primary bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 50px; height: 50px;">
-                                                <i class="bi bi-shield-check text-primary fs-3"></i>
+                                            <div class="icon-box bg-dark rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 50px; height: 50px;">
+                                                <i class="bi bi-shield-check text-danger fs-3"></i>
                                             </div>
                                             <div>
                                                 <h6 class="fw-bold mb-1">ISO 14001</h6>
@@ -261,8 +278,8 @@
                                 <div class="card border-0 shadow h-100 rounded-4 bg-gradient hover-shadow">
                                     <div class="card-body p-4">
                                         <div class="d-flex align-items-center mb-3">
-                                            <div class="icon-box bg-primary bg-opacity-10 rounded-circle p-3 d-flex justify-content-center align-items-center me-3">
-                                                <i class="bi bi-diagram-3 text-primary fs-1"></i>
+                                            <div class="icon-box bg-dark rounded-circle p-3 d-flex justify-content-center align-items-center me-3">
+                                                <i class="bi bi-diagram-3 text-danger fs-1"></i>
                                             </div>
                                             <h4 class="card-title fw-bold mb-0">Ingeniería Innovadora</h4>
                                         </div>
@@ -275,8 +292,8 @@
                                 <div class="card border-0 shadow h-100 rounded-4 bg-gradient hover-shadow">
                                     <div class="card-body p-4">
                                         <div class="d-flex align-items-center mb-3">
-                                            <div class="icon-box bg-primary bg-opacity-10 rounded-circle p-3 d-flex justify-content-center align-items-center me-3">
-                                                <i class="bi bi-fullscreen-exit text-primary fs-1"></i>
+                                            <div class="icon-box bg-dark rounded-circle p-3 d-flex justify-content-center align-items-center me-3">
+                                                <i class="bi bi-fullscreen-exit text-danger fs-1"></i>
                                             </div>
                                             <h4 class="card-title fw-bold mb-0">Diseño Creativo</h4>
                                         </div>
@@ -292,13 +309,13 @@
                 <div class="row mt-5 pt-4 g-4" data-aos="fade-up" data-aos-delay="500">
                     <div class="col-12 text-center mb-4">
                         <h3 class="fw-bold">Nuestros Valores</h3>
-                        <div class="d-inline-block mx-auto border-bottom border-primary border-2 pb-2 px-5"></div>
+                        <div class="d-inline-block mx-auto border-bottom border-danger border-2 pb-2 px-5"></div>
                     </div>
 
                     <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
                         <div class="text-center p-4 rounded-4 bg-white shadow-sm hover-shadow transition-all h-100">
-                            <div class="icon-box bg-primary bg-opacity-10 rounded-circle p-3 d-inline-flex justify-content-center align-items-center mb-3 icon-animate">
-                                <i class="bi bi-stars text-primary fs-2"></i>
+                            <div class="icon-box bg-dark rounded-circle p-3 d-inline-flex justify-content-center align-items-center mb-3 icon-animate">
+                                <i class="bi bi-stars text-danger fs-2"></i>
                             </div>
                             <h5 class="fw-bold mb-3">Excelencia</h5>
                             <p>Buscamos la perfección en cada detalle de nuestros proyectos y servicios.</p>
@@ -307,8 +324,8 @@
 
                     <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="200">
                         <div class="text-center p-4 rounded-4 bg-white shadow-sm hover-shadow transition-all h-100">
-                            <div class="icon-box bg-primary bg-opacity-10 rounded-circle p-3 d-inline-flex justify-content-center align-items-center mb-3 icon-animate">
-                                <i class="bi bi-people-fill text-primary fs-2"></i>
+                            <div class="icon-box bg-dark rounded-circle p-3 d-inline-flex justify-content-center align-items-center mb-3 icon-animate">
+                                <i class="bi bi-people-fill text-danger fs-2"></i>
                             </div>
                             <h5 class="fw-bold mb-3">Trabajo en Equipo</h5>
                             <p>Colaboramos efectivamente para lograr resultados excepcionales en cada proyecto.</p>
@@ -317,8 +334,8 @@
 
                     <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="300">
                         <div class="text-center p-4 rounded-4 bg-white shadow-sm hover-shadow transition-all h-100">
-                            <div class="icon-box bg-primary bg-opacity-10 rounded-circle p-3 d-inline-flex justify-content-center align-items-center mb-3 icon-animate">
-                                <i class="bi bi-lightbulb-fill text-primary fs-2"></i>
+                            <div class="icon-box bg-dark rounded-circle p-3 d-inline-flex justify-content-center align-items-center mb-3 icon-animate">
+                                <i class="bi bi-lightbulb-fill text-danger fs-2"></i>
                             </div>
                             <h5 class="fw-bold mb-3">Innovación</h5>
                             <p>Implementamos soluciones creativas a los desafíos más complejos de ingeniería.</p>
@@ -327,8 +344,8 @@
 
                     <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="400">
                         <div class="text-center p-4 rounded-4 bg-white shadow-sm hover-shadow transition-all h-100">
-                            <div class="icon-box bg-primary bg-opacity-10 rounded-circle p-3 d-inline-flex justify-content-center align-items-center mb-3 icon-animate">
-                                <i class="bi bi-shield-check text-primary fs-2"></i>
+                            <div class="icon-box bg-dark rounded-circle p-3 d-inline-flex justify-content-center align-items-center mb-3 icon-animate">
+                                <i class="bi bi-shield-check text-danger fs-2"></i>
                             </div>
                             <h5 class="fw-bold mb-3">Integridad</h5>
                             <p>Operamos con los más altos estándares éticos y profesionales en todas nuestras actividades.</p>
@@ -347,8 +364,8 @@
                 <div class="row gy-4">
 
                     <div class="col-lg-3 col-md-6 d-flex flex-column align-items-center">
-                        <div class="icon-box bg-primary bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center mb-3 float-animation">
-                            <i class="bi bi-emoji-smile text-primary fs-3"></i>
+                        <div class="icon-box rounded-circle d-flex align-items-center justify-content-center mb-3 float-animation">
+                            <i class="bi bi-emoji-smile fs-3"></i>
                         </div>
                         <div class="stats-item">
                             <span data-purecounter-start="0" data-purecounter-end="{{ $totalClientes ?? 0 }}" data-purecounter-duration="5"
@@ -358,8 +375,8 @@
                     </div><!-- End Stats Item -->
 
                     <div class="col-lg-3 col-md-6 d-flex flex-column align-items-center">
-                        <div class="icon-box bg-primary bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center mb-3 float-animation">
-                            <i class="bi bi-journal-richtext text-primary fs-3"></i>
+                        <div class="icon-box rounded-circle d-flex align-items-center justify-content-center mb-3 float-animation">
+                            <i class="bi bi-journal-richtext fs-3"></i>
                         </div>
                         <div class="stats-item">
                             <span data-purecounter-start="0" data-purecounter-end="125" data-purecounter-duration="5"
@@ -369,8 +386,8 @@
                     </div><!-- End Stats Item -->
 
                     <div class="col-lg-3 col-md-6 d-flex flex-column align-items-center">
-                        <div class="icon-box bg-primary bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center mb-3 float-animation">
-                            <i class="bi bi-activity text-primary fs-3"></i>
+                        <div class="icon-box rounded-circle d-flex align-items-center justify-content-center mb-3 float-animation">
+                            <i class="bi bi-activity fs-3"></i>
                         </div>
                         <div class="stats-item">
                             <span data-purecounter-start="0" data-purecounter-end="1463" data-purecounter-duration="5"
@@ -380,8 +397,8 @@
                     </div><!-- End Stats Item -->
 
                     <div class="col-lg-3 col-md-6 d-flex flex-column align-items-center">
-                        <div class="icon-box bg-primary bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center mb-3 float-animation">
-                            <i class="bi bi-people text-primary fs-3"></i>
+                        <div class="icon-box rounded-circle d-flex align-items-center justify-content-center mb-3 float-animation">
+                            <i class="bi bi-people fs-3"></i>
                         </div>
                         <div class="stats-item">
                             <span data-purecounter-start="0" data-purecounter-end="{{ $totalTrabajadores ?? 0 }}" data-purecounter-duration="5"
@@ -547,7 +564,7 @@
 
                     <!-- Call to action -->
                     <div class="text-center mt-5 pt-3">
-                        <a href="#contact" class="btn btn-primary btn-lg rounded-pill px-4 py-2">
+                        <a href="#contact" class="btn btn-danger btn-lg rounded-pill px-4 py-2">
                             <i class="bi bi-building me-2"></i>Conviértete en cliente
                         </a>
                     </div>
@@ -579,7 +596,7 @@
                     bottom: -100%;
                     left: 0;
                     right: 0;
-                    background: rgba(13, 110, 253, 0.9);
+                    background: rgba(217, 0, 0, 0.9);
                     color: white;
                     padding: 15px;
                     transition: all 0.3s ease;
@@ -869,13 +886,13 @@
                     <div class="row g-0">
                         <!-- Panel izquierdo - Información de contacto -->
                         <div class="col-lg-4">
-                            <div class="h-100 p-4 p-lg-5 text-white" style="background: linear-gradient(135deg, #0d6efd 0%, #084298 100%);">
+                            <div class="h-100 p-4 p-lg-5 text-white" style="background: linear-gradient(135deg, #000000 0%, #D90000 100%);">
                                 <!-- Logo y título -->
                                 <div class="text-center mb-5">
                                     <div class="mb-4">
                                         <img src="{{ asset('assets/img/logo_indarca.png') }}" alt="INDARCA" class="img-fluid" style="max-height: 60px;">
                                     </div>
-                                    <h3 class="fw-light mb-2">Centro de <span class="fw-bold">Atención</span></h3>
+                                    <h3 class="fw-light mb-2 text-white">Centro de <span class="fw-bold">Atención</span></h3>
                                     <div class="mx-auto" style="width: 50px; height: 3px; background-color: rgba(255, 255, 255, 0.5); margin-top: 10px;"></div>
                                 </div>
 
@@ -1063,7 +1080,7 @@
                                             <div class="form-text small text-muted mb-3 mb-md-0">
                                                 <i class="bi bi-shield-lock me-1"></i> Su información está protegida por nuestra política de privacidad
                                             </div>
-                                            <button type="submit" class="btn btn-primary px-4 py-2 shadow">
+                                            <button type="submit" class="btn btn-danger px-4 py-2 shadow">
                                                 <i class="bi bi-send me-2"></i>Enviar mensaje
                                             </button>
                                         </div>
@@ -1079,11 +1096,11 @@
                     <div class="col-12">
                         <div class="card rounded-4 shadow-sm overflow-hidden border-0">
                             <div class="card-header bg-light p-3 border-0">
-                                <h5 class="card-title mb-0"><i class="bi bi-geo-alt me-2 text-primary"></i>Nuestra ubicación</h5>
+                                <h5 class="card-title mb-0"><i class="bi bi-geo-alt me-2 text-danger"></i>Nuestra ubicación</h5>
                             </div>
                             <div class="card-body p-0 position-relative">
                                 <div id="map-overlay" class="position-absolute w-100 h-100 d-flex align-items-center justify-content-center" style="background: rgba(255, 255, 255, 0.5); z-index: 10; transition: opacity 0.3s ease;">
-                                    <button id="activate-map-btn" class="btn btn-primary rounded-pill px-4 py-2 shadow-sm" style="transition: all 0.3s ease;">
+                                    <button id="activate-map-btn" class="btn btn-danger rounded-pill px-4 py-2 shadow-sm" style="transition: all 0.3s ease;">
                                         <i class="bi bi-map me-2"></i>Activar mapa interactivo
                                     </button>
                                 </div>
@@ -1106,8 +1123,8 @@
                 }
 
                 .form-control:focus, .form-select:focus {
-                    border-color: #0d6efd;
-                    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.15) !important;
+                    border-color: var(--color-primary);
+                    box-shadow: 0 0 0 0.25rem rgba(217, 0, 0, 0.15) !important;
                     transform: translateY(-2px);
                 }
 

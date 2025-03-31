@@ -36,6 +36,88 @@
 
     <!-- Lightbox CSS para visualización de imágenes -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" rel="stylesheet">
+
+    <!-- Estilos personalizados para el tema monocromático -->
+    <style>
+        :root {
+            --color-primary: #F40006;
+            --color-dark: #292929;
+            --color-light: #FFFFFF;
+            --color-primary-light: rgba(244, 0, 6, 0.1);
+            --color-primary-medium: rgba(244, 0, 6, 0.5);
+            --color-dark-light: rgba(41, 41, 41, 0.8);
+            --color-dark-medium: rgba(41, 41, 41, 0.5);
+            --color-dark-subtle: rgba(41, 41, 41, 0.1);
+            --color-gray: #292929;
+            --color-gray-light: #f8f9fa;
+        }
+
+        /* Redefinir clases de Bootstrap */
+        .btn-primary {
+            background-color: var(--color-primary);
+            border-color: var(--color-primary);
+        }
+
+        .btn-primary:hover, .btn-primary:focus {
+            background-color: #d30005;
+            border-color: #d30005;
+        }
+
+        .btn-outline-primary {
+            color: var(--color-primary);
+            border-color: var(--color-primary);
+        }
+
+        .btn-outline-primary:hover, .btn-outline-primary:focus {
+            background-color: var(--color-primary);
+            border-color: var(--color-primary);
+        }
+
+        .text-primary {
+            color: var(--color-primary) !important;
+        }
+
+        .bg-primary {
+            background-color: var(--color-primary) !important;
+        }
+
+        .border-primary {
+            border-color: var(--color-primary) !important;
+        }
+
+        .btn-danger {
+            background-color: var(--color-primary);
+            border-color: var(--color-primary);
+        }
+
+        .btn-danger:hover, .btn-danger:focus {
+            background-color: #d30005;
+            border-color: #d30005;
+        }
+
+        .text-danger {
+            color: var(--color-primary) !important;
+        }
+
+        .border-danger {
+            border-color: var(--color-primary) !important;
+        }
+
+        /* Estilo elegante para elementos clave */
+        .sitename {
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        /* Estilo monocromático para el header */
+        .topbar {
+            background-color: var(--color-dark);
+        }
+
+        .branding {
+            background-color: var(--color-light);
+        }
+    </style>
 </head>
 <header id="header" class="header sticky-top">
 
@@ -175,7 +257,7 @@
     <!-- Forma decorativa superior -->
     <div class="position-absolute top-0 start-0 w-100 overflow-hidden" style="height: 80px; transform: translateY(-98%);">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" preserveAspectRatio="none" style="width: 100%; height: 100%;">
-            <path fill="#212529" fill-opacity="1" d="M0,128L48,144C96,160,192,192,288,186.7C384,181,480,139,576,149.3C672,160,768,224,864,218.7C960,213,1056,139,1152,133.3C1248,128,1344,192,1392,224L1440,256L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+            <path fill="#292929" fill-opacity="1" d="M0,128L48,144C96,160,192,192,288,186.7C384,181,480,139,576,149.3C672,160,768,224,864,218.7C960,213,1056,139,1152,133.3C1248,128,1344,192,1392,224L1440,256L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
         </svg>
     </div>
 
@@ -187,31 +269,31 @@
                 <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
                     <div class="footer-widget">
                         <div class="d-flex align-items-center mb-4">
-                            <h3 class="text-primary fw-bold mb-0">INDARCA</h3>
+                            <h3 class="text-danger fw-bold mb-0">INDARCA</h3>
                         </div>
                         <p class="text-light mb-4">Ofrecemos soluciones innovadoras en arquitectura, ingeniería y densímetros nucleares para proyectos de construcción que superan expectativas.</p>
 
-                        <h5 class="text-white border-start border-primary border-3 ps-3 mb-3">Horario de Atención</h5>
+                        <h5 class="text-white border-start border-danger border-3 ps-3 mb-3">Horario de Atención</h5>
                         <div class="horarios-box bg-dark bg-opacity-50 p-3 rounded-3 border border-secondary border-opacity-25">
                             <div class="horario-item d-flex align-items-center mb-3">
-                                <div class="icon-box bg-primary bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 40px; height: 40px; min-width: 40px;">
-                                    <i class="bi bi-calendar-week text-primary"></i>
+                                <div class="icon-box bg-dark rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 40px; height: 40px; min-width: 40px;">
+                                    <i class="bi bi-calendar-week text-danger"></i>
                                 </div>
                                 <div class="w-100">
                                     <div class="d-flex justify-content-between">
                                         <span class="text-light fw-medium">Lunes - Viernes:</span>
-                                        <span class="fw-semibold text-primary">8:00 AM - 6:00 PM</span>
+                                        <span class="fw-semibold text-danger">8:00 AM - 6:00 PM</span>
                                     </div>
                                 </div>
                             </div>
                             <div class="horario-item d-flex align-items-center">
-                                <div class="icon-box bg-primary bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 40px; height: 40px; min-width: 40px;">
-                                    <i class="bi bi-calendar-check text-primary"></i>
+                                <div class="icon-box bg-dark rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 40px; height: 40px; min-width: 40px;">
+                                    <i class="bi bi-calendar-check text-danger"></i>
                                 </div>
                                 <div class="w-100">
                                     <div class="d-flex justify-content-between">
                                         <span class="text-light fw-medium">Sábados:</span>
-                                        <span class="fw-semibold text-primary">9:00 AM - 1:00 PM</span>
+                                        <span class="fw-semibold text-danger">9:00 AM - 1:00 PM</span>
                                     </div>
                                 </div>
                             </div>
@@ -222,12 +304,12 @@
                 <!-- Columna de contacto -->
                 <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="200">
                     <div class="footer-widget">
-                        <h4 class="text-white border-start border-primary border-3 ps-3 mb-4">Información de Contacto</h4>
+                        <h4 class="text-white border-start border-danger border-3 ps-3 mb-4">Información de Contacto</h4>
 
                         <div class="footer-contact">
                             <div class="contact-item d-flex mb-3">
-                                <div class="icon-box bg-primary bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center icon-animate me-3" style="width: 45px; height: 45px; min-width: 45px;">
-                                    <i class="bi bi-geo-alt-fill text-primary fs-4"></i>
+                                <div class="icon-box bg-dark rounded-circle d-flex align-items-center justify-content-center icon-animate me-3" style="width: 45px; height: 45px; min-width: 45px;">
+                                    <i class="bi bi-geo-alt-fill text-danger fs-4"></i>
                                 </div>
                                 <div>
                                     <p class="mb-0 text-light">Calle Principal #123, <br>Santo Domingo, República Dominicana</p>
@@ -235,8 +317,8 @@
                             </div>
 
                             <div class="contact-item d-flex mb-3">
-                                <div class="icon-box bg-primary bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center icon-animate me-3" style="width: 45px; height: 45px; min-width: 45px;">
-                                    <i class="bi bi-telephone-fill text-primary fs-4"></i>
+                                <div class="icon-box bg-dark rounded-circle d-flex align-items-center justify-content-center icon-animate me-3" style="width: 45px; height: 45px; min-width: 45px;">
+                                    <i class="bi bi-telephone-fill text-danger fs-4"></i>
                                 </div>
                                 <div>
                                     <h6 class="fw-bold text-white mb-1">Llamanos</h6>
@@ -246,8 +328,8 @@
                             </div>
 
                             <div class="contact-item d-flex mb-3">
-                                <div class="icon-box bg-primary bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center icon-animate me-3" style="width: 45px; height: 45px; min-width: 45px;">
-                                    <i class="bi bi-envelope-fill text-primary fs-4"></i>
+                                <div class="icon-box bg-dark rounded-circle d-flex align-items-center justify-content-center icon-animate me-3" style="width: 45px; height: 45px; min-width: 45px;">
+                                    <i class="bi bi-envelope-fill text-danger fs-4"></i>
                                 </div>
                                 <div>
                                     <h6 class="fw-bold text-white mb-1">Email</h6>
@@ -261,35 +343,35 @@
                 <!-- Enlaces rápidos y servicios -->
                 <div class="col-lg-2 col-md-6 col-sm-6" data-aos="fade-up" data-aos-delay="300">
                     <div class="footer-widget">
-                        <h4 class="text-white border-start border-primary border-3 ps-3 mb-4">Enlaces Rápidos</h4>
+                        <h4 class="text-white border-start border-danger border-3 ps-3 mb-4">Enlaces Rápidos</h4>
                         <ul class="list-unstyled footer-links">
                             <li class="mb-3">
                                 <a href="{{ route('inicio') }}" class="text-light d-flex align-items-center text-decoration-none hover-shadow transition-all">
-                                    <i class="bi bi-chevron-right text-primary me-2"></i>
+                                    <i class="bi bi-chevron-right text-danger me-2"></i>
                                     <span>Inicio</span>
                                 </a>
                             </li>
                             <li class="mb-3">
                                 <a href="{{ route('sobreNosotros') }}" class="text-light d-flex align-items-center text-decoration-none hover-shadow transition-all">
-                                    <i class="bi bi-chevron-right text-primary me-2"></i>
+                                    <i class="bi bi-chevron-right text-danger me-2"></i>
                                     <span>Sobre Nosotros</span>
                                 </a>
                             </li>
                             <li class="mb-3">
                                 <a href="{{ route('densimetros') }}" class="text-light d-flex align-items-center text-decoration-none hover-shadow transition-all">
-                                    <i class="bi bi-chevron-right text-primary me-2"></i>
+                                    <i class="bi bi-chevron-right text-danger me-2"></i>
                                     <span>Densímetros</span>
                                 </a>
                             </li>
                             <li class="mb-3">
                                 <a href="{{ route('arquitectura') }}" class="text-light d-flex align-items-center text-decoration-none hover-shadow transition-all">
-                                    <i class="bi bi-chevron-right text-primary me-2"></i>
+                                    <i class="bi bi-chevron-right text-danger me-2"></i>
                                     <span>Arquitectura</span>
                                 </a>
                             </li>
                             <li class="mb-3">
                                 <a href="#portfolio" class="text-light d-flex align-items-center text-decoration-none hover-shadow transition-all">
-                                    <i class="bi bi-chevron-right text-primary me-2"></i>
+                                    <i class="bi bi-chevron-right text-danger me-2"></i>
                                     <span>Portafolio</span>
                                 </a>
                             </li>
@@ -300,31 +382,28 @@
                 <!-- Columna de redes sociales -->
                 <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="400">
                     <div class="footer-widget">
-                        <h4 class="text-white border-start border-primary border-3 ps-3 mb-4">Redes Sociales</h4>
+                        <h4 class="text-white border-start border-danger border-3 ps-3 mb-4">Redes Sociales</h4>
 
                         <h5 class="text-white mb-3">Síguenos</h5>
                         <div class="social-links d-flex flex-wrap gap-2 mb-4">
-                            <a href="#" class="social-icon bg-primary bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center hover-shadow transition-all icon-animate" style="width: 40px; height: 40px;">
-                                <i class="bi bi-facebook text-primary"></i>
+                            <a href="#" class="social-icon bg-dark rounded-circle d-flex align-items-center justify-content-center hover-shadow transition-all icon-animate" style="width: 40px; height: 40px;">
+                                <i class="bi bi-twitter-x text-danger"></i>
                             </a>
-                            <a href="#" class="social-icon bg-primary bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center hover-shadow transition-all icon-animate" style="width: 40px; height: 40px;">
-                                <i class="bi bi-twitter-x text-primary"></i>
+                            <a href="#" class="social-icon bg-dark rounded-circle d-flex align-items-center justify-content-center hover-shadow transition-all icon-animate" style="width: 40px; height: 40px;">
+                                <i class="bi bi-instagram text-danger"></i>
                             </a>
-                            <a href="#" class="social-icon bg-primary bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center hover-shadow transition-all icon-animate" style="width: 40px; height: 40px;">
-                                <i class="bi bi-instagram text-primary"></i>
+                            <a href="#" class="social-icon bg-dark rounded-circle d-flex align-items-center justify-content-center hover-shadow transition-all icon-animate" style="width: 40px; height: 40px;">
+                                <i class="bi bi-linkedin text-danger"></i>
                             </a>
-                            <a href="#" class="social-icon bg-primary bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center hover-shadow transition-all icon-animate" style="width: 40px; height: 40px;">
-                                <i class="bi bi-linkedin text-primary"></i>
-                            </a>
-                            <a href="#" class="social-icon bg-primary bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center hover-shadow transition-all icon-animate" style="width: 40px; height: 40px;">
-                                <i class="bi bi-youtube text-primary"></i>
+                            <a href="#" class="social-icon bg-dark rounded-circle d-flex align-items-center justify-content-center hover-shadow transition-all icon-animate" style="width: 40px; height: 40px;">
+                                <i class="bi bi-youtube text-danger"></i>
                             </a>
                         </div>
 
                         <div class="footer-certification mt-4 p-3 bg-dark bg-opacity-50 rounded-3 border border-secondary border-opacity-25">
                             <div class="text-center">
-                                <div class="icon-box bg-primary bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center mx-auto mb-3 float-animation" style="width: 55px; height: 55px;">
-                                    <i class="bi bi-patch-check-fill text-primary fs-4"></i>
+                                <div class="icon-box bg-dark rounded-circle d-flex align-items-center justify-content-center mx-auto mb-3 float-animation" style="width: 55px; height: 55px;">
+                                    <i class="bi bi-patch-check-fill text-danger fs-4"></i>
                                 </div>
                                 <div>
                                     <h6 class="fw-bold text-white mb-2">Empresa Certificada</h6>
@@ -343,10 +422,10 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-md-6 text-center text-md-start">
-                    <p class="mb-md-0 text-light">© <span>2023</span> <strong class="text-primary">INDARCA</strong> - Todos los derechos reservados</p>
+                    <p class="mb-md-0 text-light">© <span>2023</span> <strong class="text-danger">INDARCA</strong> - Todos los derechos reservados</p>
                 </div>
                 <div class="col-md-6 text-center text-md-end">
-                    <p class="mb-0 text-light">Diseñado con <i class="bi bi-heart-fill text-danger"></i> por <a href="#" class="text-primary text-decoration-none">Indarca Web Team</a></p>
+                    <p class="mb-0 text-light">Diseñado con <i class="bi bi-heart-fill text-danger"></i> por <a href="#" class="text-danger text-decoration-none">Indarca Web Team</a></p>
                 </div>
             </div>
         </div>
@@ -354,17 +433,17 @@
 
     <!-- Elementos decorativos flotantes -->
     <div class="position-absolute bottom-0 start-0 translate-middle-y opacity-10 d-none d-lg-block">
-        <i class="bi bi-hexagon-fill text-primary" style="font-size: 15rem;"></i>
+        <i class="bi bi-hexagon-fill text-danger" style="font-size: 15rem;"></i>
     </div>
     <div class="position-absolute top-50 end-0 translate-middle-y opacity-10 d-none d-lg-block">
-        <i class="bi bi-circle-fill text-primary" style="font-size: 10rem;"></i>
+        <i class="bi bi-circle-fill text-danger" style="font-size: 10rem;"></i>
     </div>
 </footer>
 
 <!-- Estilos adicionales para el footer -->
 <style>
     .bg-darker {
-        background-color: #151819;
+        background-color: #1d1d1d;
     }
 
     .footer {
@@ -384,7 +463,7 @@
     }
 
     .social-icon:hover {
-        background-color: var(--bs-primary) !important;
+        background-color: var(--color-primary) !important;
     }
 
     .social-icon:hover i {
@@ -403,7 +482,7 @@
 
     .newsletter-form .form-control:focus {
         box-shadow: none;
-        border-color: var(--bs-primary);
+        border-color: var(--color-primary);
     }
 
     .newsletter-form .btn {
