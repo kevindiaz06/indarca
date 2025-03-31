@@ -171,70 +171,93 @@
     @yield('content')
 </body>
 
-<footer id="footer" class="footer">
-
-
-
-    <div class="container footer-top">
-        <div class="row gy-4">
-            <div class="col-lg-4 col-md-6 footer-about">
-                <a href="index.html" class="d-flex align-items-center">
-                    <span class="sitename">BizLand</span>
-                </a>
-                <div class="footer-contact pt-3">
-                    <p>A108 Adam Street</p>
-                    <p>New York, NY 535022</p>
-                    <p class="mt-3"><strong>Phone:</strong> <span>+1 5589 55488 55</span></p>
-                    <p><strong>Email:</strong> <span>info@example.com</span></p>
+<footer id="footer" class="footer bg-dark text-white py-5">
+    <div class="container">
+        <!-- Footer Top -->
+        <div class="row g-4 mb-4">
+            <!-- Columna de Información de Contacto -->
+            <div class="col-lg-4 col-md-6">
+                <div class="footer-brand mb-3">
+                    <a href="{{ route('inicio') }}" class="text-decoration-none">
+                        <h3 class="text-primary fw-bold">INDARCA</h3>
+                    </a>
+                </div>
+                <p class="text-light mb-3">Soluciones en arquitectura, ingeniería y densímetros nucleares para proyectos de construcción de alta calidad.</p>
+                <div class="footer-contact">
+                    <div class="d-flex align-items-center mb-2">
+                        <i class="bi bi-geo-alt-fill text-primary me-2"></i>
+                        <p class="mb-0">Calle Principal #123, Santo Domingo, Rep. Dom.</p>
+                    </div>
+                    <div class="d-flex align-items-center mb-2">
+                        <i class="bi bi-telephone-fill text-primary me-2"></i>
+                        <p class="mb-0">+1809 596 0333</p>
+                    </div>
+                    <div class="d-flex align-items-center mb-2">
+                        <i class="bi bi-envelope-fill text-primary me-2"></i>
+                        <p class="mb-0">contacto@indarca.com</p>
+                    </div>
                 </div>
             </div>
 
-            <div class="col-lg-2 col-md-3 footer-links">
-                <h4>Useful Links</h4>
-                <ul>
-                    <li><i class="bi bi-chevron-right"></i> <a href="#">Home</a></li>
-                    <li><i class="bi bi-chevron-right"></i> <a href="#">About us</a></li>
-                    <li><i class="bi bi-chevron-right"></i> <a href="#">Services</a></li>
-                    <li><i class="bi bi-chevron-right"></i> <a href="#">Terms of service</a></li>
+            <!-- Columna de Enlaces Rápidos -->
+            <div class="col-lg-2 col-md-3 col-6">
+                <h5 class="text-white border-start border-primary border-3 ps-3 mb-4">Enlaces Rápidos</h5>
+                <ul class="list-unstyled footer-links">
+                    <li class="mb-2"><a href="{{ route('inicio') }}" class="text-light text-decoration-none"><i class="bi bi-chevron-right text-primary me-1"></i> Inicio</a></li>
+                    <li class="mb-2"><a href="{{ route('sobreNosotros') }}" class="text-light text-decoration-none"><i class="bi bi-chevron-right text-primary me-1"></i> Sobre Nosotros</a></li>
+                    <li class="mb-2"><a href="{{ route('densimetros') }}" class="text-light text-decoration-none"><i class="bi bi-chevron-right text-primary me-1"></i> Densímetros</a></li>
+                    <li class="mb-2"><a href="{{ route('arquitectura') }}" class="text-light text-decoration-none"><i class="bi bi-chevron-right text-primary me-1"></i> Arquitectura</a></li>
                 </ul>
             </div>
 
-            <div class="col-lg-2 col-md-3 footer-links">
-                <h4>Our Services</h4>
-                <ul>
-                    <li><i class="bi bi-chevron-right"></i> <a href="#">Web Design</a></li>
-                    <li><i class="bi bi-chevron-right"></i> <a href="#">Web Development</a></li>
-                    <li><i class="bi bi-chevron-right"></i> <a href="#">Product Management</a></li>
-                    <li><i class="bi bi-chevron-right"></i> <a href="#">Marketing</a></li>
+            <!-- Columna de Servicios -->
+            <div class="col-lg-2 col-md-3 col-6">
+                <h5 class="text-white border-start border-primary border-3 ps-3 mb-4">Servicios</h5>
+                <ul class="list-unstyled footer-links">
+                    <li class="mb-2"><a href="#" class="text-light text-decoration-none"><i class="bi bi-chevron-right text-primary me-1"></i> Densímetros</a></li>
+                    <li class="mb-2"><a href="#" class="text-light text-decoration-none"><i class="bi bi-chevron-right text-primary me-1"></i> Arquitectura</a></li>
+                    <li class="mb-2"><a href="#" class="text-light text-decoration-none"><i class="bi bi-chevron-right text-primary me-1"></i> Ingeniería</a></li>
+                    <li class="mb-2"><a href="#" class="text-light text-decoration-none"><i class="bi bi-chevron-right text-primary me-1"></i> Consultoría</a></li>
                 </ul>
             </div>
 
+            <!-- Columna de Subscripción y Redes Sociales -->
             <div class="col-lg-4 col-md-12">
-                <h4>Follow Us</h4>
-                <p>Cras fermentum odio eu feugiat lide par naso tierra videa magna derita valies</p>
-                <div class="social-links d-flex">
-                    <a href=""><i class="bi bi-twitter-x"></i></a>
-                    <a href=""><i class="bi bi-facebook"></i></a>
-                    <a href=""><i class="bi bi-instagram"></i></a>
-                    <a href=""><i class="bi bi-linkedin"></i></a>
+                <h5 class="text-white border-start border-primary border-3 ps-3 mb-4">Síguenos</h5>
+                <p class="text-light mb-3">Conéctate con nosotros en redes sociales y mantente actualizado sobre nuestros servicios y novedades.</p>
+
+                <div class="social-links d-flex gap-2">
+                    <a href="#" class="btn btn-outline-primary rounded-circle d-flex align-items-center justify-content-center" style="width: 38px; height: 38px;">
+                        <i class="bi bi-facebook"></i>
+                    </a>
+                    <a href="#" class="btn btn-outline-primary rounded-circle d-flex align-items-center justify-content-center" style="width: 38px; height: 38px;">
+                        <i class="bi bi-twitter-x"></i>
+                    </a>
+                    <a href="#" class="btn btn-outline-primary rounded-circle d-flex align-items-center justify-content-center" style="width: 38px; height: 38px;">
+                        <i class="bi bi-instagram"></i>
+                    </a>
+                    <a href="#" class="btn btn-outline-primary rounded-circle d-flex align-items-center justify-content-center" style="width: 38px; height: 38px;">
+                        <i class="bi bi-linkedin"></i>
+                    </a>
                 </div>
             </div>
-
         </div>
     </div>
 
-    <div class="container copyright text-center mt-4">
-        <p>© <span>Copyright</span> <strong class="px-1 sitename">BizLand</strong> <span>All Rights Reserved</span></p>
-        <div class="credits">
-            <!-- All the links in the footer should remain intact. -->
-            <!-- You can delete the links only if you've purchased the pro version. -->
-            <!-- Licensing information: https://bootstrapmade.com/license/ -->
-            <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
-            Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a> Distributed by <a
-                href=“https://themewagon.com>ThemeWagon
+    <!-- Divider -->
+    <div class="border-top border-secondary my-2"></div>
+
+    <!-- Copyright -->
+    <div class="container">
+        <div class="row py-3">
+            <div class="col-md-6 text-center text-md-start">
+                <p class="mb-md-0">© <span>2023</span> <strong class="text-primary">INDARCA</strong> - Todos los derechos reservados</p>
+            </div>
+            <div class="col-md-6 text-center text-md-end">
+                <p class="mb-0">Diseñado con <i class="bi bi-heart-fill text-danger"></i> por <a href="#" class="text-primary text-decoration-none">Indarca Web Team</a></p>
+            </div>
         </div>
     </div>
-
 </footer>
 <!-- Scroll Top -->
 <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i
