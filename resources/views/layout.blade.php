@@ -96,7 +96,7 @@
                             <li><a href="#">Galería</a></li>
                         </ul>
                     </li>
-                    <li><a href="{{ route('inicio') }}#portfolio">Galería</a></li>
+
                     <li><a href="{{ route('inicio') }}#contact">Contacto</a></li>
                 </ul>
 
@@ -171,94 +171,258 @@
     @yield('content')
 </body>
 
-<footer id="footer" class="footer bg-dark text-white py-5">
-    <div class="container">
-        <!-- Footer Top -->
-        <div class="row g-4 mb-4">
-            <!-- Columna de Información de Contacto -->
-            <div class="col-lg-4 col-md-6">
-                <div class="footer-brand mb-3">
-                    <a href="{{ route('inicio') }}" class="text-decoration-none">
-                        <h3 class="text-primary fw-bold">INDARCA</h3>
-                    </a>
+<footer id="footer" class="footer position-relative">
+    <!-- Forma decorativa superior -->
+    <div class="position-absolute top-0 start-0 w-100 overflow-hidden" style="height: 80px; transform: translateY(-98%);">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" preserveAspectRatio="none" style="width: 100%; height: 100%;">
+            <path fill="#212529" fill-opacity="1" d="M0,128L48,144C96,160,192,192,288,186.7C384,181,480,139,576,149.3C672,160,768,224,864,218.7C960,213,1056,139,1152,133.3C1248,128,1344,192,1392,224L1440,256L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+        </svg>
+    </div>
+
+    <!-- Contenido principal del footer -->
+    <div class="footer-top bg-dark text-white pt-5 pb-4">
+        <div class="container">
+            <div class="row g-5">
+                <!-- Columna de la empresa -->
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="footer-widget">
+                        <div class="d-flex align-items-center mb-4">
+                            <h3 class="text-primary fw-bold mb-0">INDARCA</h3>
+                        </div>
+                        <p class="text-light mb-4">Ofrecemos soluciones innovadoras en arquitectura, ingeniería y densímetros nucleares para proyectos de construcción que superan expectativas.</p>
+
+                        <h5 class="text-white border-start border-primary border-3 ps-3 mb-3">Horario de Atención</h5>
+                        <div class="horarios-box bg-dark bg-opacity-50 p-3 rounded-3 border border-secondary border-opacity-25">
+                            <div class="horario-item d-flex align-items-center mb-3">
+                                <div class="icon-box bg-primary bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 40px; height: 40px; min-width: 40px;">
+                                    <i class="bi bi-calendar-week text-primary"></i>
+                                </div>
+                                <div class="w-100">
+                                    <div class="d-flex justify-content-between">
+                                        <span class="text-light fw-medium">Lunes - Viernes:</span>
+                                        <span class="fw-semibold text-primary">8:00 AM - 6:00 PM</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="horario-item d-flex align-items-center">
+                                <div class="icon-box bg-primary bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 40px; height: 40px; min-width: 40px;">
+                                    <i class="bi bi-calendar-check text-primary"></i>
+                                </div>
+                                <div class="w-100">
+                                    <div class="d-flex justify-content-between">
+                                        <span class="text-light fw-medium">Sábados:</span>
+                                        <span class="fw-semibold text-primary">9:00 AM - 1:00 PM</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <p class="text-light mb-3">Soluciones en arquitectura, ingeniería y densímetros nucleares para proyectos de construcción de alta calidad.</p>
-                <div class="footer-contact">
-                    <div class="d-flex align-items-center mb-2">
-                        <i class="bi bi-geo-alt-fill text-primary me-2"></i>
-                        <p class="mb-0">Calle Principal #123, Santo Domingo, Rep. Dom.</p>
-                    </div>
-                    <div class="d-flex align-items-center mb-2">
-                        <i class="bi bi-telephone-fill text-primary me-2"></i>
-                        <p class="mb-0">+1809 596 0333</p>
-                    </div>
-                    <div class="d-flex align-items-center mb-2">
-                        <i class="bi bi-envelope-fill text-primary me-2"></i>
-                        <p class="mb-0">contacto@indarca.com</p>
+
+                <!-- Columna de contacto -->
+                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="footer-widget">
+                        <h4 class="text-white border-start border-primary border-3 ps-3 mb-4">Información de Contacto</h4>
+
+                        <div class="footer-contact">
+                            <div class="contact-item d-flex mb-3">
+                                <div class="icon-box bg-primary bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center icon-animate me-3" style="width: 45px; height: 45px; min-width: 45px;">
+                                    <i class="bi bi-geo-alt-fill text-primary fs-4"></i>
+                                </div>
+                                <div>
+                                    <p class="mb-0 text-light">Calle Principal #123, <br>Santo Domingo, República Dominicana</p>
+                                </div>
+                            </div>
+
+                            <div class="contact-item d-flex mb-3">
+                                <div class="icon-box bg-primary bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center icon-animate me-3" style="width: 45px; height: 45px; min-width: 45px;">
+                                    <i class="bi bi-telephone-fill text-primary fs-4"></i>
+                                </div>
+                                <div>
+                                    <h6 class="fw-bold text-white mb-1">Llamanos</h6>
+                                    <p class="mb-0 text-light">+1809 596 0333</p>
+                                    <p class="mb-0 text-light">+1809 596 0334</p>
+                                </div>
+                            </div>
+
+                            <div class="contact-item d-flex mb-3">
+                                <div class="icon-box bg-primary bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center icon-animate me-3" style="width: 45px; height: 45px; min-width: 45px;">
+                                    <i class="bi bi-envelope-fill text-primary fs-4"></i>
+                                </div>
+                                <div>
+                                    <h6 class="fw-bold text-white mb-1">Email</h6>
+                                    <a href="mailto:contacto@indarca.com" class="text-light text-decoration-none">contacto@indarca.com</a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- Columna de Enlaces Rápidos -->
-            <div class="col-lg-2 col-md-3 col-6">
-                <h5 class="text-white border-start border-primary border-3 ps-3 mb-4">Enlaces Rápidos</h5>
-                <ul class="list-unstyled footer-links">
-                    <li class="mb-2"><a href="{{ route('inicio') }}" class="text-light text-decoration-none"><i class="bi bi-chevron-right text-primary me-1"></i> Inicio</a></li>
-                    <li class="mb-2"><a href="{{ route('sobreNosotros') }}" class="text-light text-decoration-none"><i class="bi bi-chevron-right text-primary me-1"></i> Sobre Nosotros</a></li>
-                    <li class="mb-2"><a href="{{ route('densimetros') }}" class="text-light text-decoration-none"><i class="bi bi-chevron-right text-primary me-1"></i> Densímetros</a></li>
-                    <li class="mb-2"><a href="{{ route('arquitectura') }}" class="text-light text-decoration-none"><i class="bi bi-chevron-right text-primary me-1"></i> Arquitectura</a></li>
-                </ul>
-            </div>
+                <!-- Enlaces rápidos y servicios -->
+                <div class="col-lg-2 col-md-6 col-sm-6" data-aos="fade-up" data-aos-delay="300">
+                    <div class="footer-widget">
+                        <h4 class="text-white border-start border-primary border-3 ps-3 mb-4">Enlaces Rápidos</h4>
+                        <ul class="list-unstyled footer-links">
+                            <li class="mb-3">
+                                <a href="{{ route('inicio') }}" class="text-light d-flex align-items-center text-decoration-none hover-shadow transition-all">
+                                    <i class="bi bi-chevron-right text-primary me-2"></i>
+                                    <span>Inicio</span>
+                                </a>
+                            </li>
+                            <li class="mb-3">
+                                <a href="{{ route('sobreNosotros') }}" class="text-light d-flex align-items-center text-decoration-none hover-shadow transition-all">
+                                    <i class="bi bi-chevron-right text-primary me-2"></i>
+                                    <span>Sobre Nosotros</span>
+                                </a>
+                            </li>
+                            <li class="mb-3">
+                                <a href="{{ route('densimetros') }}" class="text-light d-flex align-items-center text-decoration-none hover-shadow transition-all">
+                                    <i class="bi bi-chevron-right text-primary me-2"></i>
+                                    <span>Densímetros</span>
+                                </a>
+                            </li>
+                            <li class="mb-3">
+                                <a href="{{ route('arquitectura') }}" class="text-light d-flex align-items-center text-decoration-none hover-shadow transition-all">
+                                    <i class="bi bi-chevron-right text-primary me-2"></i>
+                                    <span>Arquitectura</span>
+                                </a>
+                            </li>
+                            <li class="mb-3">
+                                <a href="#portfolio" class="text-light d-flex align-items-center text-decoration-none hover-shadow transition-all">
+                                    <i class="bi bi-chevron-right text-primary me-2"></i>
+                                    <span>Portafolio</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
 
-            <!-- Columna de Servicios -->
-            <div class="col-lg-2 col-md-3 col-6">
-                <h5 class="text-white border-start border-primary border-3 ps-3 mb-4">Servicios</h5>
-                <ul class="list-unstyled footer-links">
-                    <li class="mb-2"><a href="#" class="text-light text-decoration-none"><i class="bi bi-chevron-right text-primary me-1"></i> Densímetros</a></li>
-                    <li class="mb-2"><a href="#" class="text-light text-decoration-none"><i class="bi bi-chevron-right text-primary me-1"></i> Arquitectura</a></li>
-                    <li class="mb-2"><a href="#" class="text-light text-decoration-none"><i class="bi bi-chevron-right text-primary me-1"></i> Ingeniería</a></li>
-                    <li class="mb-2"><a href="#" class="text-light text-decoration-none"><i class="bi bi-chevron-right text-primary me-1"></i> Consultoría</a></li>
-                </ul>
-            </div>
+                <!-- Columna de redes sociales -->
+                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="400">
+                    <div class="footer-widget">
+                        <h4 class="text-white border-start border-primary border-3 ps-3 mb-4">Redes Sociales</h4>
 
-            <!-- Columna de Subscripción y Redes Sociales -->
-            <div class="col-lg-4 col-md-12">
-                <h5 class="text-white border-start border-primary border-3 ps-3 mb-4">Síguenos</h5>
-                <p class="text-light mb-3">Conéctate con nosotros en redes sociales y mantente actualizado sobre nuestros servicios y novedades.</p>
+                        <h5 class="text-white mb-3">Síguenos</h5>
+                        <div class="social-links d-flex flex-wrap gap-2 mb-4">
+                            <a href="#" class="social-icon bg-primary bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center hover-shadow transition-all icon-animate" style="width: 40px; height: 40px;">
+                                <i class="bi bi-facebook text-primary"></i>
+                            </a>
+                            <a href="#" class="social-icon bg-primary bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center hover-shadow transition-all icon-animate" style="width: 40px; height: 40px;">
+                                <i class="bi bi-twitter-x text-primary"></i>
+                            </a>
+                            <a href="#" class="social-icon bg-primary bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center hover-shadow transition-all icon-animate" style="width: 40px; height: 40px;">
+                                <i class="bi bi-instagram text-primary"></i>
+                            </a>
+                            <a href="#" class="social-icon bg-primary bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center hover-shadow transition-all icon-animate" style="width: 40px; height: 40px;">
+                                <i class="bi bi-linkedin text-primary"></i>
+                            </a>
+                            <a href="#" class="social-icon bg-primary bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center hover-shadow transition-all icon-animate" style="width: 40px; height: 40px;">
+                                <i class="bi bi-youtube text-primary"></i>
+                            </a>
+                        </div>
 
-                <div class="social-links d-flex gap-2">
-                    <a href="#" class="btn btn-outline-primary rounded-circle d-flex align-items-center justify-content-center" style="width: 38px; height: 38px;">
-                        <i class="bi bi-facebook"></i>
-                    </a>
-                    <a href="#" class="btn btn-outline-primary rounded-circle d-flex align-items-center justify-content-center" style="width: 38px; height: 38px;">
-                        <i class="bi bi-twitter-x"></i>
-                    </a>
-                    <a href="#" class="btn btn-outline-primary rounded-circle d-flex align-items-center justify-content-center" style="width: 38px; height: 38px;">
-                        <i class="bi bi-instagram"></i>
-                    </a>
-                    <a href="#" class="btn btn-outline-primary rounded-circle d-flex align-items-center justify-content-center" style="width: 38px; height: 38px;">
-                        <i class="bi bi-linkedin"></i>
-                    </a>
+                        <div class="footer-certification mt-4 p-3 bg-dark bg-opacity-50 rounded-3 border border-secondary border-opacity-25">
+                            <div class="text-center">
+                                <div class="icon-box bg-primary bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center mx-auto mb-3 float-animation" style="width: 55px; height: 55px;">
+                                    <i class="bi bi-patch-check-fill text-primary fs-4"></i>
+                                </div>
+                                <div>
+                                    <h6 class="fw-bold text-white mb-2">Empresa Certificada</h6>
+                                    <p class="small mb-0 text-muted">ISO 9001:2015 | ISO 14001</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Divider -->
-    <div class="border-top border-secondary my-2"></div>
-
-    <!-- Copyright -->
-    <div class="container">
-        <div class="row py-3">
-            <div class="col-md-6 text-center text-md-start">
-                <p class="mb-md-0">© <span>2023</span> <strong class="text-primary">INDARCA</strong> - Todos los derechos reservados</p>
-            </div>
-            <div class="col-md-6 text-center text-md-end">
-                <p class="mb-0">Diseñado con <i class="bi bi-heart-fill text-danger"></i> por <a href="#" class="text-primary text-decoration-none">Indarca Web Team</a></p>
+    <!-- Footer inferior - Copyright -->
+    <div class="footer-bottom bg-darker py-3">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="mb-md-0 text-light">© <span>2023</span> <strong class="text-primary">INDARCA</strong> - Todos los derechos reservados</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <p class="mb-0 text-light">Diseñado con <i class="bi bi-heart-fill text-danger"></i> por <a href="#" class="text-primary text-decoration-none">Indarca Web Team</a></p>
+                </div>
             </div>
         </div>
+    </div>
+
+    <!-- Elementos decorativos flotantes -->
+    <div class="position-absolute bottom-0 start-0 translate-middle-y opacity-10 d-none d-lg-block">
+        <i class="bi bi-hexagon-fill text-primary" style="font-size: 15rem;"></i>
+    </div>
+    <div class="position-absolute top-50 end-0 translate-middle-y opacity-10 d-none d-lg-block">
+        <i class="bi bi-circle-fill text-primary" style="font-size: 10rem;"></i>
     </div>
 </footer>
+
+<!-- Estilos adicionales para el footer -->
+<style>
+    .bg-darker {
+        background-color: #151819;
+    }
+
+    .footer {
+        overflow: hidden;
+        color: rgba(255, 255, 255, 0.8);
+    }
+
+    .footer-links a {
+        transition: all 0.3s ease;
+        padding: 5px 0;
+        display: block;
+    }
+
+    .footer-links a:hover {
+        transform: translateX(5px);
+        color: var(--bs-primary) !important;
+    }
+
+    .social-icon:hover {
+        background-color: var(--bs-primary) !important;
+    }
+
+    .social-icon:hover i {
+        color: white !important;
+    }
+
+    .newsletter-form .form-control {
+        height: 48px;
+        background-color: rgba(255, 255, 255, 0.1);
+        color: white;
+    }
+
+    .newsletter-form .form-control::placeholder {
+        color: rgba(255, 255, 255, 0.6);
+    }
+
+    .newsletter-form .form-control:focus {
+        box-shadow: none;
+        border-color: var(--bs-primary);
+    }
+
+    .newsletter-form .btn {
+        height: 48px;
+    }
+
+    .float-animation {
+        animation: float 3s ease-in-out infinite;
+    }
+
+    .icon-animate {
+        animation: pulse-border 2s infinite;
+    }
+
+    .transition-all {
+        transition: all 0.3s ease;
+    }
+</style>
+
 <!-- Scroll Top -->
 <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i
         class="bi bi-arrow-up-short"></i></a>
