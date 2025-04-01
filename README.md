@@ -6,12 +6,26 @@
 
 ## Sobre INDARCA
 
-INDARCA es una aplicación web desarrollada con Laravel para la gestión de densímetros. El sistema permite:
+INDARCA es una empresa especializada en servicios de ingeniería, arquitectura y calibración de densímetros nucleares. El sistema permite:
 
 - Control y seguimiento de reparaciones de densímetros
 - Gestión de clientes y empresas
 - Sistema de consulta del estado de reparaciones
 - Panel administrativo para gestionar el proceso completo
+
+## Datos de Contacto
+
+- **Dirección**: C. C 16, Santo Domingo Este 11506, República Dominicana
+- **Teléfono**: +18095960333
+- **Horario**: Lunes - Viernes: 9:00 AM - 5:00 PM
+- **Email**: contacto@indarca.com
+
+## Redes Sociales
+
+- [LinkedIn](https://www.linkedin.com/company/indarca-srl/)
+- [Facebook](https://www.facebook.com/share/1EJq41gUNs/?mibextid=wwXIfr)
+- [Instagram](https://www.instagram.com/indarca.srl?igsh=MXZzN2l3cTBxaG1jOA==)
+- [Twitter/X](https://x.com/indarca_srl?s=11)
 
 ## Características principales
 
