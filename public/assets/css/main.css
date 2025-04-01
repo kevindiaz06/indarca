@@ -1111,7 +1111,7 @@ section,
 --------------------------------------------------------------*/
 .stats i {
   background-color: var(--accent-color);
-  color: var(--contrast-color);
+  color: #ffffff;
   border: 6px solid var(--surface-color);
   width: 64px;
   height: 64px;
@@ -1122,6 +1122,10 @@ section,
   justify-content: center;
   position: relative;
   z-index: 1;
+}
+
+.stats i::before {
+  color: #ffffff;
 }
 
 .stats .stats-item {
@@ -2035,4 +2039,9 @@ section,
   .estado-linea {
     top: 10px;
   }
+}
+
+.bi-activity::before {
+    content: "\f66b";
+    color: #ffffff;
 }
