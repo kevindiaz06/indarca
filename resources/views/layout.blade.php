@@ -93,6 +93,7 @@
         .btn-danger:hover, .btn-danger:focus {
             background-color: #d30005;
             border-color: #d30005;
+
         }
 
         .text-danger {
@@ -129,10 +130,10 @@
                 <i class="bi bi-phone d-flex align-items-center ms-4"><span>+1809 596 0333</span></i>
             </div>
             <div class="social-links d-none d-md-flex align-items-center">
-                <a href="#" class="twitter"><i class="bi bi-twitter-x"></i></a>
-                <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
-                <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
-                <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+                <a href="https://x.com/indarca_srl?s=11" class="twitter"><i class="bi bi-twitter-x"></i></a>
+                <a href="https://www.facebook.com/share/1EJq41gUNs/?mibextid=wwXIfr" class="facebook"><i class="bi bi-facebook"></i></a>
+                <a href="https://www.instagram.com/indarca.srl?igsh=MXZzN2l3cTBxaG1jOA==" class="instagram"><i class="bi bi-instagram"></i></a>
+                <a href="https://www.linkedin.com/company/indarca-srl/" class="linkedin"><i class="bi bi-linkedin"></i></a>
             </div>
         </div>
     </div><!-- End Top Bar -->
@@ -275,25 +276,14 @@
 
                         <h5 class="text-white border-start border-danger border-3 ps-3 mb-3">Horario de Atención</h5>
                         <div class="horarios-box bg-dark bg-opacity-50 p-3 rounded-3 border border-secondary border-opacity-25">
-                            <div class="horario-item d-flex align-items-center mb-3">
+                            <div class="horario-item d-flex align-items-center">
                                 <div class="icon-box bg-dark rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 40px; height: 40px; min-width: 40px;">
                                     <i class="bi bi-calendar-week text-danger"></i>
                                 </div>
                                 <div class="w-100">
                                     <div class="d-flex justify-content-between">
                                         <span class="text-light fw-medium">Lunes - Viernes:</span>
-                                        <span class="fw-semibold text-danger">8:00 AM - 6:00 PM</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="horario-item d-flex align-items-center">
-                                <div class="icon-box bg-dark rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 40px; height: 40px; min-width: 40px;">
-                                    <i class="bi bi-calendar-check text-danger"></i>
-                                </div>
-                                <div class="w-100">
-                                    <div class="d-flex justify-content-between">
-                                        <span class="text-light fw-medium">Sábados:</span>
-                                        <span class="fw-semibold text-danger">9:00 AM - 1:00 PM</span>
+                                        <span class="fw-semibold text-danger">9:00 AM - 5:00 PM</span>
                                     </div>
                                 </div>
                             </div>
@@ -312,7 +302,7 @@
                                     <i class="bi bi-geo-alt-fill text-danger fs-4"></i>
                                 </div>
                                 <div>
-                                    <p class="mb-0 text-light">Calle Principal #123, <br>Santo Domingo, República Dominicana</p>
+                                    <p class="mb-0 text-light">C. C 16, Santo Domingo Este 11506, <br>República Dominicana</p>
                                 </div>
                             </div>
 
@@ -323,7 +313,7 @@
                                 <div>
                                     <h6 class="fw-bold text-white mb-1">Llamanos</h6>
                                     <p class="mb-0 text-light">+1809 596 0333</p>
-                                    <p class="mb-0 text-light">+1809 596 0334</p>
+
                                 </div>
                             </div>
 
@@ -386,17 +376,17 @@
 
                         <h5 class="text-white mb-3">Síguenos</h5>
                         <div class="social-links d-flex flex-wrap gap-2 mb-4">
-                            <a href="#" class="social-icon bg-dark rounded-circle d-flex align-items-center justify-content-center hover-shadow transition-all icon-animate" style="width: 40px; height: 40px;">
+                            <a href="https://x.com/indarca_srl?s=11" class="social-icon bg-dark rounded-circle d-flex align-items-center justify-content-center hover-shadow transition-all icon-animate" style="width: 40px; height: 40px;">
                                 <i class="bi bi-twitter-x text-danger"></i>
                             </a>
-                            <a href="#" class="social-icon bg-dark rounded-circle d-flex align-items-center justify-content-center hover-shadow transition-all icon-animate" style="width: 40px; height: 40px;">
+                            <a href="https://www.instagram.com/indarca.srl?igsh=MXZzN2l3cTBxaG1jOA==" class="social-icon bg-dark rounded-circle d-flex align-items-center justify-content-center hover-shadow transition-all icon-animate" style="width: 40px; height: 40px;">
                                 <i class="bi bi-instagram text-danger"></i>
                             </a>
-                            <a href="#" class="social-icon bg-dark rounded-circle d-flex align-items-center justify-content-center hover-shadow transition-all icon-animate" style="width: 40px; height: 40px;">
+                            <a href="https://www.linkedin.com/company/indarca-srl/" class="social-icon bg-dark rounded-circle d-flex align-items-center justify-content-center hover-shadow transition-all icon-animate" style="width: 40px; height: 40px;">
                                 <i class="bi bi-linkedin text-danger"></i>
                             </a>
-                            <a href="#" class="social-icon bg-dark rounded-circle d-flex align-items-center justify-content-center hover-shadow transition-all icon-animate" style="width: 40px; height: 40px;">
-                                <i class="bi bi-youtube text-danger"></i>
+                            <a href="https://www.facebook.com/share/1EJq41gUNs/?mibextid=wwXIfr" class="social-icon bg-dark rounded-circle d-flex align-items-center justify-content-center hover-shadow transition-all icon-animate" style="width: 40px; height: 40px;">
+                                <i class="bi bi-facebook text-danger"></i>
                             </a>
                         </div>
 
@@ -432,10 +422,10 @@
     </div>
 
     <!-- Elementos decorativos flotantes -->
-    <div class="position-absolute bottom-0 start-0 translate-middle-y opacity-10 d-none d-lg-block">
+    <div class="position-absolute bottom-0 start-0 translate-middle-y  d-none d-lg-block">
         <i class="bi bi-hexagon-fill text-danger" style="font-size: 15rem;"></i>
     </div>
-    <div class="position-absolute top-50 end-0 translate-middle-y opacity-10 d-none d-lg-block">
+    <div class="position-absolute top-50 end-0 translate-middle-y  d-none d-lg-block">
         <i class="bi bi-circle-fill text-danger" style="font-size: 10rem;"></i>
     </div>
 </footer>
@@ -470,24 +460,6 @@
         color: white !important;
     }
 
-    .newsletter-form .form-control {
-        height: 48px;
-        background-color: rgba(255, 255, 255, 0.1);
-        color: white;
-    }
-
-    .newsletter-form .form-control::placeholder {
-        color: rgba(255, 255, 255, 0.6);
-    }
-
-    .newsletter-form .form-control:focus {
-        box-shadow: none;
-        border-color: var(--color-primary);
-    }
-
-    .newsletter-form .btn {
-        height: 48px;
-    }
 
     .float-animation {
         animation: float 3s ease-in-out infinite;

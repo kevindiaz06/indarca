@@ -77,15 +77,19 @@
             font-size: 14px;
         }
         .footer {
-            background-color: #2c3e50;
-            padding: 20px;
+            background-color: #292929;
+            padding: 30px 20px;
             text-align: center;
             font-size: 13px;
-            color: #ecf0f1;
+            color: #ffffff;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
         .contact-info {
             margin: 15px 0;
             line-height: 1.8;
+        }
+        .contact-info strong {
+            color: #dc3545;
         }
         .social-links {
             margin: 20px 0 15px;
@@ -93,14 +97,19 @@
         .social-links a {
             display: inline-block;
             margin: 0 8px;
-            color: #ecf0f1;
+            color: #ffffff;
             text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .social-links a:hover {
+            color: #dc3545;
         }
         .disclaimer {
-            border-top: 1px solid rgba(255,255,255,0.2);
+            border-top: 1px solid rgba(255,255,255,0.1);
             padding-top: 15px;
             margin-top: 15px;
             font-size: 12px;
+            color: rgba(255,255,255,0.7);
         }
     </style>
 </head>
@@ -139,8 +148,9 @@
         <div class="footer">
             <div class="contact-info">
                 <strong>INDARCA S.A.</strong><br>
-                Av. Empresarial 123, Sector Corporativo<br>
-                contacto@indarca.com | +34 900 123 456
+                Calle Principal #123, Santo Domingo<br>
+                República Dominicana<br>
+                contacto@indarca.com | +1809 596 0333
             </div>
 
             <div class="social-links">
@@ -152,7 +162,7 @@
 
             <div class="disclaimer">
                 <p>Este es un mensaje automático. Por favor, no responda a este correo.</p>
-                <p>&copy; {{ date('Y') }} INDARCA. Todos los derechos reservados.</p>
+                <p>&copy; {{ date('Y') }} <strong>INDARCA</strong>. Todos los derechos reservados.</p>
             </div>
         </div>
     </div>

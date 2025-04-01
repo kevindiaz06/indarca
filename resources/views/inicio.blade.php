@@ -160,7 +160,7 @@
                     <div class="col-xl-3 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="100">
                         <div class="service-item position-relative">
                             <div class="icon bg-dark rounded-circle d-flex align-items-center justify-content-center mb-3 icon-animate">
-                                <i class="bi bi-activity text-danger fs-3"></i>
+                                <i class="bi bi-gear-wide-connected text-danger fs-3"></i>
                             </div>
                             <h4><a href="" class="stretched-link">Calibración y mantenimiento de densímetros
                                     nucleares</a></h4>
@@ -233,8 +233,8 @@
                         <div class="card border-0 shadow-lg rounded-4 mb-4 h-100">
                             <div class="card-body p-4">
                                 <div class="d-flex align-items-center mb-3">
-                                    <div class="bg-dark rounded-circle p-3 me-3 text-danger icon-animate">
-                                        <i class="bi bi-award fs-3"></i>
+                                    <div class="icon-box bg-dark rounded-circle p-3 d-flex justify-content-center align-items-center me-3">
+                                        <i class="bi bi-award text-danger fs-1"></i>
                                     </div>
                                     <h3 class="fw-bold mb-0">Certificaciones y Reconocimientos</h3>
                                 </div>
@@ -249,7 +249,7 @@
                                     <div class="col-md-6">
                                         <div class="d-flex align-items-center p-3 bg-light rounded-3 h-100 hover-shadow">
                                             <div class="icon-box bg-dark rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 50px; height: 50px;">
-                                                <i class="bi bi-patch-check-fill text-danger fs-3"></i>
+                                                <i class="bi bi-patch-check text-danger fs-3"></i>
                                             </div>
                                             <div>
                                                 <h6 class="fw-bold mb-1">ISO 9001:2015</h6>
@@ -345,7 +345,7 @@
                     <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="400">
                         <div class="text-center p-4 rounded-4 bg-white shadow-sm hover-shadow transition-all h-100">
                             <div class="icon-box bg-dark rounded-circle p-3 d-inline-flex justify-content-center align-items-center mb-3 icon-animate">
-                                <i class="bi bi-shield-check text-danger fs-2"></i>
+                                <i class="bi bi-trophy-fill text-danger fs-2"></i>
                             </div>
                             <h5 class="fw-bold mb-3">Integridad</h5>
                             <p>Operamos con los más altos estándares éticos y profesionales en todas nuestras actividades.</p>
@@ -904,7 +904,7 @@
                                         </div>
                                         <div>
                                             <h6 class="text-white-50 mb-1 small">Dirección Principal</h6>
-                                            <p class="mb-0">Calle Principal #123, Santo Domingo, Rep. Dom.</p>
+                                            <p class="mb-0">C. C 16, Santo Domingo Este 11506 <br> República Dominicana</p>
                                         </div>
                                     </div>
 
@@ -915,7 +915,7 @@
                                         <div>
                                             <h6 class="text-white-50 mb-1 small">Teléfono</h6>
                                             <p class="mb-0">+1809 596 0333</p>
-                                            <p class="mb-0">+1809 596 0334</p>
+
                                         </div>
                                     </div>
 
@@ -935,8 +935,7 @@
                                         </div>
                                         <div>
                                             <h6 class="text-white-50 mb-1 small">Horario de Atención</h6>
-                                            <p class="mb-0">Lunes - Viernes: 8:00 AM - 6:00 PM</p>
-                                            <p class="mb-0">Sábados: 9:00 AM - 1:00 PM</p>
+                                            <p class="mb-0">Lunes - Viernes: 9:00 AM - 5:00 PM</p>
                                         </div>
                                     </div>
                                 </div>
@@ -945,16 +944,16 @@
                                 <div class="mt-5 pt-2">
                                     <h6 class="text-white-50 mb-3 small">Conéctese con nosotros</h6>
                                     <div class="d-flex gap-2">
-                                        <a href="#" class="rounded-circle d-flex align-items-center justify-content-center" style="width: 36px; height: 36px; background-color: rgba(255, 255, 255, 0.2); transition: all 0.3s ease;">
+                                        <a href="https://www.facebook.com/share/1EJq41gUNs/?mibextid=wwXIfr" class="rounded-circle d-flex align-items-center justify-content-center" style="width: 36px; height: 36px; background-color: rgba(255, 255, 255, 0.2); transition: all 0.3s ease;">
                                             <i class="bi bi-facebook text-white"></i>
                                         </a>
-                                        <a href="#" class="rounded-circle d-flex align-items-center justify-content-center" style="width: 36px; height: 36px; background-color: rgba(255, 255, 255, 0.2); transition: all 0.3s ease;">
+                                        <a href="https://x.com/indarca_srl?s=11" class="rounded-circle d-flex align-items-center justify-content-center" style="width: 36px; height: 36px; background-color: rgba(255, 255, 255, 0.2); transition: all 0.3s ease;">
                                             <i class="bi bi-twitter-x text-white"></i>
                                         </a>
-                                        <a href="#" class="rounded-circle d-flex align-items-center justify-content-center" style="width: 36px; height: 36px; background-color: rgba(255, 255, 255, 0.2); transition: all 0.3s ease;">
+                                        <a href="https://www.instagram.com/indarca.srl?igsh=MXZzN2l3cTBxaG1jOA==" class="rounded-circle d-flex align-items-center justify-content-center" style="width: 36px; height: 36px; background-color: rgba(255, 255, 255, 0.2); transition: all 0.3s ease;">
                                             <i class="bi bi-instagram text-white"></i>
                                         </a>
-                                        <a href="#" class="rounded-circle d-flex align-items-center justify-content-center" style="width: 36px; height: 36px; background-color: rgba(255, 255, 255, 0.2); transition: all 0.3s ease;">
+                                        <a href="https://www.linkedin.com/company/indarca-srl/" class="rounded-circle d-flex align-items-center justify-content-center" style="width: 36px; height: 36px; background-color: rgba(255, 255, 255, 0.2); transition: all 0.3s ease;">
                                             <i class="bi bi-linkedin text-white"></i>
                                         </a>
                                     </div>
