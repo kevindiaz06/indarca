@@ -358,9 +358,9 @@
                                 </a>
                             </li>
                             <li class="mb-3">
-                                <a href="#portfolio" class="text-light d-flex align-items-center text-decoration-none hover-shadow transition-all">
+                                <a href="{{ route('politicas.privacidad') }}" class="text-light d-flex align-items-center text-decoration-none hover-shadow transition-all">
                                     <i class="bi bi-chevron-right text-danger me-2"></i>
-                                    <span>Portafolio</span>
+                                    <span>Políticas de Privacidad</span>
                                 </a>
                             </li>
                         </ul>

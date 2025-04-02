@@ -22,6 +22,7 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\DensimetroArchivoController;
+use App\Http\Controllers\PoliticasPrivacidadController;
 
 /*
 |--------------------------------------------------------------------------
@@ -60,6 +61,7 @@ Route::get('/contacto', [ContactoController::class, 'index'])->name('contacto');
 Route::get('/densimetros', [DensimetrosController::class, 'index'])->name('densimetros');
 Route::get('/noticias', [NoticiasController::class, 'index'])->name('noticias');
 Route::get('/sobre-nosotros', [SobreNosotrosController::class, 'index'])->name('sobreNosotros');
+Route::get('/politicas-privacidad', [PoliticasPrivacidadController::class, 'index'])->name('politicas.privacidad');
 
 // Rutas para consulta de estado de densímetros - Vistas deben extender de 'layout.blade.php'
 Route::get('/estado', [EstadoController::class, 'index'])->name('estado');
