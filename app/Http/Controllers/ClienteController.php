@@ -35,4 +35,22 @@ class ClienteController extends Controller
 
         return view('usuarios.historial-incidencias', compact('densimetros'));
     }
+
+    /**
+     * Muestra el historial general del cliente.
+     *
+     * @return \Illuminate\View\View
+     */
+    public function historial()
+    {
+        $user = auth()->user();
+        $email = $user->email;
+
+        // Buscar densímetros asociados al correo del usuario
+        $densimetros = Densimetro::whereHas('cliente', function($query) use ($email) {
+            $query->where('email', $email);
+        })->orderBy('updated_at', 'desc')->get();
+
+        return view('usuarios.historial', compact('densimetros'));
+    }
 }

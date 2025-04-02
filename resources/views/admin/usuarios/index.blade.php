@@ -17,6 +17,15 @@
             <a href="{{ route('admin.dashboard') }}" class="btn btn-outline-secondary me-2">
                 <i class="bi bi-arrow-left-circle me-1"></i> Volver al Dashboard
             </a>
+            <div class="dropdown me-2">
+                <button class="btn btn-primary dropdown-toggle" type="button" id="exportDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="bi bi-download me-1"></i> Exportar
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="exportDropdown">
+                    <li><a class="dropdown-item" href="{{ route('admin.reportes.usuarios.pdf') }}?{{ http_build_query(request()->all()) }}"><i class="bi bi-file-pdf me-2"></i>Exportar PDF</a></li>
+                    <li><a class="dropdown-item" href="{{ route('admin.reportes.usuarios.excel') }}?{{ http_build_query(request()->all()) }}"><i class="bi bi-file-excel me-2"></i>Exportar Excel</a></li>
+                </ul>
+            </div>
             <a href="{{ route('admin.usuarios.crear') }}" class="btn btn-primary">
                 <i class="bi bi-person-plus me-1"></i> Nuevo Usuario
             </a>

@@ -10,6 +10,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use Barryvdh\DomPDF\Facade\Pdf as PDF;
+use Carbon\Carbon;
 
 class DensimetroController extends Controller
 {
@@ -316,5 +318,38 @@ class DensimetroController extends Controller
         // Envío del correo electrónico al cliente usando la clase Mailable
         Mail::to($cliente->email)
             ->send(new DensimetroCambioEstadoMail($densimetro));
+    }
+
+    /**
+     * Generar PDF con los detalles del densímetro
+     *
+     * @param int $id
+     * @return \Illuminate\Http\Response
+     */
+    public function generatePDF($id)
+    {
+        $densimetro = Densimetro::with(['cliente', 'archivos'])->findOrFail($id);
+
+        $date = Carbon::now()->format('d-m-Y_H-i-s');
+        $fileName = "densimetro_{$densimetro->referencia_reparacion}_{$date}.pdf";
+
+        $data = [
+            'densimetro' => $densimetro,
+            'title' => 'Ficha de Densímetro',
+            'date' => Carbon::now()->format('d/m/Y H:i:s')
+        ];
+
+        $pdf = PDF::loadView('reports.densimetro_pdf', $data);
+
+        // Configurar opciones para el PDF para permitir imágenes
+        $pdf->setPaper('a4');
+        $pdf->setOption('enable-javascript', true);
+        $pdf->setOption('enable-local-file-access', true);
+        $pdf->setOption('images', true);
+
+        // Si hay muchas imágenes, podría ser necesario aumentar el tiempo de ejecución
+        set_time_limit(300); // 5 minutos
+
+        return $pdf->download($fileName);
     }
 }

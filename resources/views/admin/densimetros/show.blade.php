@@ -91,6 +91,83 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Archivos adjuntos -->
+            <div class="card shadow mb-4">
+                <div class="card-header py-3 d-flex align-items-center justify-content-between">
+                    <h6 class="m-0 font-weight-bold">Archivos de Observación</h6>
+                </div>
+                <div class="card-body">
+                    <!-- Formulario para subir archivos -->
+                    <form action="{{ route('admin.densimetros.archivos.store', $densimetro->id) }}" method="POST" enctype="multipart/form-data" class="mb-4 border-bottom pb-4">
+                        @csrf
+                        <div class="mb-3">
+                            <label for="archivos" class="form-label">Subir archivos</label>
+                            <input type="file" class="form-control @error('archivos') is-invalid @enderror @error('archivos.*') is-invalid @enderror" id="archivos" name="archivos[]" multiple required>
+                            @error('archivos')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                            @error('archivos.*')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                            <div class="form-text">Puedes seleccionar múltiples archivos. Formatos permitidos: imágenes (JPG, PNG, GIF), documentos (PDF, DOC, XLS). Máximo 10MB por archivo.</div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="bi bi-upload me-1"></i> Subir archivos
+                        </button>
+                    </form>
+
+                    <!-- Lista de archivos adjuntos -->
+                    <h6 class="mb-3">Archivos adjuntos ({{ $densimetro->archivos->count() }})</h6>
+
+                    @if($densimetro->archivos->isEmpty())
+                        <div class="alert alert-info">
+                            No hay archivos adjuntos para este densímetro.
+                        </div>
+                    @else
+                        <div class="row">
+                            @foreach($densimetro->archivos as $archivo)
+                                <div class="col-md-6 col-lg-4 mb-3">
+                                    <div class="card h-100">
+                                        @if($archivo->tipo_archivo == 'imagen')
+                                            <a href="{{ route('admin.densimetros.archivos.show', $archivo->id) }}" target="_blank">
+                                                <img src="{{ route('admin.densimetros.archivos.show', $archivo->id) }}" class="card-img-top" alt="{{ $archivo->nombre_archivo }}" style="height: 140px; object-fit: cover;">
+                                            </a>
+                                        @elseif($archivo->tipo_archivo == 'pdf')
+                                            <div class="card-img-top bg-light d-flex align-items-center justify-content-center" style="height: 140px;">
+                                                <i class="bi bi-file-pdf text-danger" style="font-size: 3rem;"></i>
+                                            </div>
+                                        @else
+                                            <div class="card-img-top bg-light d-flex align-items-center justify-content-center" style="height: 140px;">
+                                                <i class="bi bi-file-earmark text-primary" style="font-size: 3rem;"></i>
+                                            </div>
+                                        @endif
+                                        <div class="card-body">
+                                            <h6 class="card-title text-truncate" title="{{ $archivo->nombre_archivo }}">{{ $archivo->nombre_archivo }}</h6>
+                                            <p class="card-text small">
+                                                <span class="text-muted">{{ strtoupper($archivo->extension) }} - {{ number_format($archivo->tamano / 1024, 2) }} KB</span><br>
+                                                <span class="text-muted">{{ $archivo->created_at->format('d/m/Y H:i') }}</span>
+                                            </p>
+                                            <div class="d-flex justify-content-between">
+                                                <a href="{{ route('admin.densimetros.archivos.show', $archivo->id) }}" class="btn btn-sm btn-outline-primary" target="_blank">
+                                                    <i class="bi bi-eye"></i>
+                                                </a>
+                                                <form action="{{ route('admin.densimetros.archivos.destroy', $archivo->id) }}" method="POST" onsubmit="return confirm('¿Está seguro de eliminar este archivo?');">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-sm btn-outline-danger">
+                                                        <i class="bi bi-trash"></i>
+                                                    </button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                    @endif
+                </div>
+            </div>
         </div>
 
         <!-- Información del Cliente -->
@@ -133,9 +210,9 @@
                             <i class="bi bi-envelope me-1"></i> Enviar correo al cliente
                         </button>
 
-                        <button type="button" class="btn btn-info" onclick="window.print()">
+                        <a href="{{ route('admin.densimetros.pdf', $densimetro->id) }}" class="btn btn-info">
                             <i class="bi bi-printer me-1"></i> Imprimir ficha
-                        </button>
+                        </a>
 
                         <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">
                             <i class="bi bi-trash me-1"></i> Eliminar densímetro

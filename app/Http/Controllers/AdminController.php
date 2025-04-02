@@ -40,12 +40,28 @@ class AdminController extends Controller
         // Últimas empresas registradas
         $ultimasEmpresas = Empresa::orderBy('created_at', 'desc')->take(5)->get();
 
-        // Distribución de usuarios por rol (para gráficos)
-        $distribucionRoles = [
-            'admin' => $totalAdmins,
-            'trabajador' => $totalTrabajadores,
-            'cliente' => $totalClientes
-        ];
+        // Inicializar variables para evitar errores
+        $distribucionRoles = [];
+        $usuariosPorMes = [];
+
+        // Solo calcular datos de gráficos para administradores
+        if (auth()->user()->role !== 'trabajador') {
+            // Distribución de usuarios por rol (para gráficos)
+            $distribucionRoles = [
+                'admin' => $totalAdmins,
+                'trabajador' => $totalTrabajadores,
+                'cliente' => $totalClientes
+            ];
+
+            // Obtener evolución mensual de usuarios para el gráfico de línea
+            $year = date('Y');
+
+            for ($i = 1; $i <= 12; $i++) {
+                $usuariosPorMes[$i] = User::whereYear('created_at', $year)
+                    ->whereMonth('created_at', $i)
+                    ->count();
+            }
+        }
 
         return view('admin.dashboard', compact(
             'totalUsuarios',
@@ -56,7 +72,8 @@ class AdminController extends Controller
             'totalTrabajadoresPublic',
             'ultimosUsuarios',
             'ultimasEmpresas',
-            'distribucionRoles'
+            'distribucionRoles',
+            'usuariosPorMes'
         ));
     }
 
@@ -146,5 +163,46 @@ class AdminController extends Controller
         $empresas = $query->get();
 
         return view('admin.empresas.index', compact('empresas'));
+    }
+
+    /**
+     * Actualizar los datos de los gráficos del dashboard vía AJAX
+     */
+    public function refreshDashboardData()
+    {
+        // Verificar que el usuario no sea trabajador
+        if (auth()->user()->role === 'trabajador') {
+            return response()->json([
+                'error' => 'No tienes permiso para acceder a estos datos',
+                'status' => 403
+            ], 403);
+        }
+
+        // Obtener datos actualizados para los gráficos
+        $totalAdmins = User::where('role', 'admin')->count();
+        $totalTrabajadores = User::where('role', 'trabajador')->count();
+        $totalClientes = User::where('role', 'cliente')->count();
+
+        // Distribución de usuarios por rol
+        $distribucionRoles = [
+            'admin' => $totalAdmins,
+            'trabajador' => $totalTrabajadores,
+            'cliente' => $totalClientes
+        ];
+
+        // Evolución mensual de usuarios
+        $year = date('Y');
+        $usuariosPorMes = [];
+
+        for ($i = 1; $i <= 12; $i++) {
+            $usuariosPorMes[$i] = User::whereYear('created_at', $year)
+                ->whereMonth('created_at', $i)
+                ->count();
+        }
+
+        return response()->json([
+            'distribucionRoles' => $distribucionRoles,
+            'usuariosPorMes' => $usuariosPorMes
+        ]);
     }
 }

@@ -13,9 +13,22 @@
                 </ol>
             </nav>
         </div>
-        <a href="{{ route('admin.densimetros.create') }}" class="btn btn-primary">
-            <i class="bi bi-plus-circle me-1"></i> Nuevo Densímetro
-        </a>
+        <div class="d-flex">
+            @if(Auth::user()->role === 'admin')
+            <div class="dropdown me-2">
+                <button class="btn btn-outline-primary dropdown-toggle" type="button" id="reportesDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="bi bi-file-earmark-text me-1"></i> Reportes
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="reportesDropdown">
+                    <li><a class="dropdown-item" href="{{ route('admin.reportes.densimetros.pdf') }}"><i class="bi bi-file-pdf me-1"></i> Exportar a PDF</a></li>
+                    <li><a class="dropdown-item" href="{{ route('admin.reportes.densimetros.excel') }}"><i class="bi bi-file-excel me-1"></i> Exportar a Excel</a></li>
+                </ul>
+            </div>
+            @endif
+            <a href="{{ route('admin.densimetros.create') }}" class="btn btn-primary">
+                <i class="bi bi-plus-circle me-1"></i> Nuevo Densímetro
+            </a>
+        </div>
     </div>
 
     <!-- Mensajes de éxito o error -->

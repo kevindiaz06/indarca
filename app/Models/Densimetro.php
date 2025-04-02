@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
+use App\Models\DensimetroArchivo;
 
 class Densimetro extends Model
 {
@@ -43,6 +44,14 @@ class Densimetro extends Model
     public function cliente()
     {
         return $this->belongsTo(User::class, 'cliente_id');
+    }
+
+    /**
+     * Obtiene los archivos asociados a este densímetro.
+     */
+    public function archivos()
+    {
+        return $this->hasMany(DensimetroArchivo::class);
     }
 
     /**

@@ -3,7 +3,7 @@
 @section('content')
 <div class="container-fluid">
     <!-- Page Title -->
-    <div class="d-flex align-items-center justify-content-between mb-4">
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <div>
             <h1 class="h3 mb-0 text-gray-800">Gestión de Empresas</h1>
             <nav aria-label="breadcrumb">
@@ -14,9 +14,23 @@
             </nav>
         </div>
         <div>
-            <a href="{{ route('admin.empresas.crear') }}" class="btn btn-primary">
-                <i class="bi bi-building-add me-1"></i> Nueva Empresa
-            </a>
+            <div class="d-flex">
+                <a href="{{ route('admin.dashboard') }}" class="btn btn-outline-secondary me-2">
+                    <i class="bi bi-arrow-left-circle me-1"></i> Volver al Dashboard
+                </a>
+                <div class="dropdown me-2">
+                    <button class="btn btn-primary dropdown-toggle" type="button" id="exportDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="bi bi-download me-1"></i> Exportar
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="exportDropdown">
+                        <li><a class="dropdown-item" href="{{ route('admin.reportes.empresas.pdf') }}?{{ http_build_query(request()->all()) }}"><i class="bi bi-file-pdf me-2"></i>Exportar PDF</a></li>
+                        <li><a class="dropdown-item" href="{{ route('admin.reportes.empresas.excel') }}?{{ http_build_query(request()->all()) }}"><i class="bi bi-file-excel me-2"></i>Exportar Excel</a></li>
+                    </ul>
+                </div>
+                <a href="{{ route('admin.empresas.crear') }}" class="btn btn-primary">
+                    <i class="bi bi-building-add me-1"></i> Nueva Empresa
+                </a>
+            </div>
         </div>
     </div>
 

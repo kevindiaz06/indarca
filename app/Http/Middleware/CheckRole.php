@@ -35,6 +35,6 @@ class CheckRole
         }
 
         // Si llegamos aquí, el usuario no tiene un rol permitido
-        return redirect('/')->with('error', 'No tienes permisos para acceder a esta sección.');
+        return redirect('/')->with('error', 'No tienes permisos para acceder a esta sección. Se requiere un rol superior.');
     }
 }

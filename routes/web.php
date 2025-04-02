@@ -20,6 +20,8 @@ use App\Http\Controllers\DensimetroController;
 use App\Http\Controllers\Auth\VerificationCodeController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\ClienteController;
+use App\Http\Controllers\ReportController;
+use App\Http\Controllers\DensimetroArchivoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -101,6 +103,16 @@ Route::middleware(['auth', 'role:cliente'])->group(function () {
 Route::prefix('admin')->middleware(['auth', 'role:admin,trabajador'])->group(function () {
     // Dashboard
     Route::get('/', [AdminController::class, 'index'])->name('admin.dashboard');
+    Route::get('/dashboard/refresh', [AdminController::class, 'refreshDashboardData'])->name('admin.dashboard.refresh');
+
+    // Reportes
+    Route::get('/reportes/dashboard-pdf', [ReportController::class, 'generateDashboardPDF'])->name('admin.reportes.dashboard.pdf');
+    Route::get('/reportes/usuarios-pdf', [ReportController::class, 'generateUsersPDF'])->name('admin.reportes.usuarios.pdf');
+    Route::get('/reportes/empresas-pdf', [ReportController::class, 'generateEmpresasPDF'])->name('admin.reportes.empresas.pdf');
+    Route::get('/reportes/usuarios-excel', [ReportController::class, 'generateUsersExcel'])->name('admin.reportes.usuarios.excel');
+    Route::get('/reportes/empresas-excel', [ReportController::class, 'generateEmpresasExcel'])->name('admin.reportes.empresas.excel');
+    Route::get('/reportes/densimetros-pdf', [ReportController::class, 'generateDensimetrosPDF'])->name('admin.reportes.densimetros.pdf');
+    Route::get('/reportes/densimetros-excel', [ReportController::class, 'generateDensimetrosExcel'])->name('admin.reportes.densimetros.excel');
 
     // Gestión de usuarios
     Route::get('/usuarios', [AdminController::class, 'usuarios'])->name('admin.usuarios');
@@ -126,4 +138,10 @@ Route::prefix('admin')->middleware(['auth', 'role:admin,trabajador'])->group(fun
     Route::get('/densimetros/{densimetro}/editar', [DensimetroController::class, 'edit'])->name('admin.densimetros.edit');
     Route::put('/densimetros/{densimetro}', [DensimetroController::class, 'update'])->name('admin.densimetros.update');
     Route::delete('/densimetros/{densimetro}', [DensimetroController::class, 'destroy'])->name('admin.densimetros.destroy');
+    Route::get('densimetros/{id}/pdf', [DensimetroController::class, 'generatePDF'])->name('admin.densimetros.pdf');
+
+    // Gestión de archivos de densímetros
+    Route::post('/densimetros/{densimetro}/archivos', [DensimetroArchivoController::class, 'store'])->name('admin.densimetros.archivos.store');
+    Route::get('/archivos/{archivo}', [DensimetroArchivoController::class, 'show'])->name('admin.densimetros.archivos.show');
+    Route::delete('/archivos/{archivo}', [DensimetroArchivoController::class, 'destroy'])->name('admin.densimetros.archivos.destroy');
 });

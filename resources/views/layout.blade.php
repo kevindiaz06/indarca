@@ -206,9 +206,7 @@
                         </button>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
                             @if(Auth::user()->role === 'cliente')
-                                <li><a class="dropdown-item" href="{{ route('usuario.historial-incidencias') }}"><i class="bi bi-journal-text me-2"></i>Historial de Incidencias</a></li>
-                                <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" href="{{ route('profile.edit') }}"><i class="bi bi-person me-2"></i>Mi Perfil</a></li>
+                                <li><a class="dropdown-item" href="{{ route('cliente.historial') }}"><i class="bi bi-speedometer2 me-2"></i>Panel de Cliente</a></li>
                                 <li><hr class="dropdown-divider"></li>
                             @endif
                             <li>

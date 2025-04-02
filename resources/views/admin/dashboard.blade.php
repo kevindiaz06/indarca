@@ -18,10 +18,11 @@
                     <i class="bi bi-download me-1"></i> Generar Reporte
                 </button>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="reportDropdown">
-                    <li><a class="dropdown-item" href="#"><i class="bi bi-file-pdf me-2"></i>Exportar PDF</a></li>
-                    <li><a class="dropdown-item" href="#"><i class="bi bi-file-excel me-2"></i>Exportar Excel</a></li>
+                    <li><a class="dropdown-item" href="{{ route('admin.reportes.dashboard.pdf') }}"><i class="bi bi-file-pdf me-2"></i>Exportar PDF</a></li>
+                    <li><a class="dropdown-item" href="{{ route('admin.reportes.usuarios.excel') }}"><i class="bi bi-file-excel me-2"></i>Exportar Usuarios (Excel)</a></li>
+                    <li><a class="dropdown-item" href="{{ route('admin.reportes.empresas.excel') }}"><i class="bi bi-file-excel me-2"></i>Exportar Empresas (Excel)</a></li>
                     <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="#"><i class="bi bi-printer me-2"></i>Imprimir</a></li>
+                    <li><a class="dropdown-item" href="#" onclick="window.print()"><i class="bi bi-printer me-2"></i>Imprimir Página</a></li>
                 </ul>
             </div>
         </div>
@@ -144,12 +145,16 @@
     </div>
 
     <!-- Charts Row -->
+    @if(Auth::user()->role !== 'trabajador')
     <div class="row mb-4">
         <div class="col-xl-8 col-lg-7">
             <div class="card shadow mb-4">
                 <div class="card-header py-3 d-flex align-items-center justify-content-between">
                     <h6 class="m-0 font-weight-bold">Evolución de Usuarios</h6>
                     <div class="dropdown">
+                        <button class="btn btn-sm btn-light me-2" id="refreshActivityChartBtn">
+                            <i class="bi bi-arrow-repeat"></i>
+                        </button>
                         <button class="btn btn-sm btn-light dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                             Este Año
                         </button>
@@ -195,6 +200,19 @@
             </div>
         </div>
     </div>
+    @else
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card shadow mb-4">
+                <div class="card-body text-center py-5">
+                    <i class="bi bi-lock-fill text-muted mb-3" style="font-size: 3rem;"></i>
+                    <h5 class="mb-3">Acceso restringido a los gráficos</h5>
+                    <p class="text-muted mb-0">Los usuarios con rol trabajador no tienen acceso a las visualizaciones de gráficos estadísticos.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    @endif
 
     <!-- Latest Users and Companies -->
     <div class="row">
@@ -373,6 +391,7 @@
 
 @section('scripts')
 <script>
+    @if(Auth::user()->role !== 'trabajador')
     // Datos para los gráficos
     const userDistributionData = {
         labels: ['Administradores', 'Trabajadores', 'Clientes'],
@@ -400,7 +419,20 @@
             pointHoverBorderColor: "rgba(52, 152, 219, 1)",
             pointHitRadius: 10,
             pointBorderWidth: 2,
-            data: [5, 8, 12, 15, 20, 25, 30, 35, 38, 42, 47, {{ $totalUsuarios }}]
+            data: [
+                {{ $usuariosPorMes[1] }},
+                {{ $usuariosPorMes[2] }},
+                {{ $usuariosPorMes[3] }},
+                {{ $usuariosPorMes[4] }},
+                {{ $usuariosPorMes[5] }},
+                {{ $usuariosPorMes[6] }},
+                {{ $usuariosPorMes[7] }},
+                {{ $usuariosPorMes[8] }},
+                {{ $usuariosPorMes[9] }},
+                {{ $usuariosPorMes[10] }},
+                {{ $usuariosPorMes[11] }},
+                {{ $usuariosPorMes[12] }}
+            ]
         }]
     };
 
@@ -509,21 +541,80 @@
 
         // Botón para refrescar el gráfico de distribución
         document.getElementById('refreshChartBtn').addEventListener('click', function() {
-            // Simular actualización de datos
-            const newData = [
-                Math.floor(Math.random() * 10) + {{ $distribucionRoles['admin'] }},
-                Math.floor(Math.random() * 10) + {{ $distribucionRoles['trabajador'] }},
-                Math.floor(Math.random() * 10) + {{ $distribucionRoles['cliente'] }}
-            ];
+            // Hacer una petición AJAX para obtener datos actualizados
+            fetch('{{ route("admin.dashboard.refresh") }}')
+                .then(response => response.json())
+                .then(data => {
+                    // Actualizar datos del gráfico de distribución
+                    pieChart.data.datasets[0].data = [
+                        data.distribucionRoles.admin,
+                        data.distribucionRoles.trabajador,
+                        data.distribucionRoles.cliente
+                    ];
+                    pieChart.update();
 
-            pieChart.data.datasets[0].data = newData;
-            pieChart.update();
+                    // Actualizar también el gráfico de actividad de usuarios
+                    lineChart.data.datasets[0].data = [
+                        data.usuariosPorMes[1],
+                        data.usuariosPorMes[2],
+                        data.usuariosPorMes[3],
+                        data.usuariosPorMes[4],
+                        data.usuariosPorMes[5],
+                        data.usuariosPorMes[6],
+                        data.usuariosPorMes[7],
+                        data.usuariosPorMes[8],
+                        data.usuariosPorMes[9],
+                        data.usuariosPorMes[10],
+                        data.usuariosPorMes[11],
+                        data.usuariosPorMes[12]
+                    ];
+                    lineChart.update();
 
-            // Mostrar notificación
-            showToast('Gráfico actualizado correctamente');
+                    // Mostrar notificación
+                    showToast('Gráficos actualizados correctamente');
+                })
+                .catch(error => {
+                    console.error('Error al actualizar gráfico:', error);
+                    showToast('Error al actualizar los gráficos', 'danger');
+                });
         });
 
-        // Inicializar tooltips
+        // Botón para refrescar sólo el gráfico de actividad de usuarios
+        document.getElementById('refreshActivityChartBtn').addEventListener('click', function() {
+            // Hacer una petición AJAX para obtener datos actualizados
+            fetch('{{ route("admin.dashboard.refresh") }}')
+                .then(response => response.json())
+                .then(data => {
+                    // Actualizar el gráfico de actividad de usuarios
+                    lineChart.data.datasets[0].data = [
+                        data.usuariosPorMes[1],
+                        data.usuariosPorMes[2],
+                        data.usuariosPorMes[3],
+                        data.usuariosPorMes[4],
+                        data.usuariosPorMes[5],
+                        data.usuariosPorMes[6],
+                        data.usuariosPorMes[7],
+                        data.usuariosPorMes[8],
+                        data.usuariosPorMes[9],
+                        data.usuariosPorMes[10],
+                        data.usuariosPorMes[11],
+                        data.usuariosPorMes[12]
+                    ];
+                    lineChart.update();
+
+                    // Mostrar notificación
+                    showToast('Gráfico de evolución actualizado correctamente');
+                })
+                .catch(error => {
+                    console.error('Error al actualizar gráfico:', error);
+                    showToast('Error al actualizar el gráfico de evolución', 'danger');
+                });
+        });
+    });
+    @endif
+
+    // Inicializar tooltips
+    document.addEventListener('DOMContentLoaded', function() {
         const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
         tooltipTriggerList.map(function(tooltipTriggerEl) {
             return new bootstrap.Tooltip(tooltipTriggerEl);
@@ -531,14 +622,14 @@
     });
 
     // Función para mostrar toast de notificación
-    function showToast(message) {
+    function showToast(message, type = 'success') {
         // Crear el toast si no existe
         if (!document.getElementById('liveToast')) {
             const toastContainer = document.createElement('div');
             toastContainer.className = 'toast-container position-fixed bottom-0 end-0 p-3';
 
             toastContainer.innerHTML = `
-                <div id="liveToast" class="toast align-items-center text-white bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true">
+                <div id="liveToast" class="toast align-items-center text-white border-0" role="alert" aria-live="assertive" aria-atomic="true">
                     <div class="d-flex">
                         <div class="toast-body">
                             ${message}
@@ -553,7 +644,19 @@
             document.querySelector('.toast-body').textContent = message;
         }
 
-        const toast = new bootstrap.Toast(document.getElementById('liveToast'));
+        const toastElement = document.getElementById('liveToast');
+
+        // Eliminar clases bg- anteriores
+        toastElement.classList.forEach(className => {
+            if (className.startsWith('bg-')) {
+                toastElement.classList.remove(className);
+            }
+        });
+
+        // Agregar la clase según el tipo
+        toastElement.classList.add(`bg-${type}`);
+
+        const toast = new bootstrap.Toast(toastElement);
         toast.show();
     }
 </script>
