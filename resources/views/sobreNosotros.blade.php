@@ -418,4 +418,267 @@
 
 </section><!-- /Sección de Equipo -->
 
+<!-- Sección Reconocimientos y Certificaciones -->
+<section id="reconocimientos" class="reconocimientos-certificaciones py-5 bg-light">
+    <div class="container">
+        <!-- Título de la sección -->
+        <div class="row mb-5">
+            <div class="col-12 text-center">
+                <h2 class="display-5 fw-bold mb-3">Reconocimientos y Certificaciones</h2>
+                <p class="lead text-muted col-lg-8 mx-auto">Nuestro compromiso con la excelencia avalado por entidades de prestigio</p>
+                <div class="divider-custom my-4">
+                    <div class="divider-line bg-danger"></div>
+                    <div class="divider-icon"><i class="bi bi-award-fill text-danger"></i></div>
+                    <div class="divider-line bg-danger"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Introducción -->
+        <div class="row align-items-center mb-5">
+            <div class="col-lg-6 order-lg-2">
+                <div class="card border-0 card-3d h-100">
+                    <div class="card-body p-5">
+                        <div class="d-flex align-items-center mb-4">
+                            <div class="flex-shrink-0 icon-3d">
+                                <i class="bi bi-patch-check-fill fs-2"></i>
+                            </div>
+                            <div class="flex-grow-1 ms-3">
+                                <h3 class="h3 mb-0 fw-bold">Garantía de Calidad</h3>
+                                <p class="text-muted mb-0">Estándares que nos respaldan</p>
+                            </div>
+                        </div>
+                        <p class="card-text">INDARCA ha sido reconocida por su compromiso con la calidad y la seguridad en el sector de la ingeniería y arquitectura. Contamos con certificaciones que garantizan el cumplimiento de los estándares internacionales en la calibración, mantenimiento y uso de densímetros nucleares.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 order-lg-1">
+                <div class="position-relative p-3">
+                    <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" class="img-fluid rounded-3 img-shadow" alt="Certificaciones de Calidad">
+                </div>
+            </div>
+        </div>
+
+        <!-- Certificaciones Clave -->
+        <div class="row mb-5">
+            <div class="col-12">
+                <h3 class="text-center fw-bold mb-4 section-title"><span class="border-bottom border-danger pb-2">Certificaciones Clave</span></h3>
+            </div>
+
+            <div class="col-lg-4 mb-4">
+                <div class="card h-100 border-0 shadow-sm hover-card">
+                    <div class="icon-container position-absolute d-flex justify-content-center w-100" style="top: -30px;">
+                        <div class="certificate-icon bg-danger text-white rounded-circle p-3 mx-auto shadow" style="width: 70px; height: 70px;">
+                            <i class="bi bi-radioactive fs-1"></i>
+                        </div>
+                    </div>
+                    <div class="card-body p-4 pt-5 mt-3 text-center">
+                        <h4 class="card-title fw-bold">Certificación en Seguridad Radiológica</h4>
+                        <p class="card-text">Avalada por organismos especializados en la regulación del uso de equipos nucleares.</p>
+                    </div>
+                    <div class="card-footer bg-transparent border-0 text-center pb-4">
+                        <span class="badge bg-danger px-3 py-2"><i class="bi bi-check-circle me-2"></i>Verificado</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 mb-4">
+                <div class="card h-100 border-0 shadow-sm hover-card">
+                    <div class="icon-container position-absolute d-flex justify-content-center w-100" style="top: -30px;">
+                        <div class="certificate-icon bg-danger text-white rounded-circle p-3 mx-auto shadow" style="width: 70px; height: 70px;">
+                            <i class="bi bi-rulers fs-1"></i>
+                        </div>
+                    </div>
+                    <div class="card-body p-4 pt-5 mt-3 text-center">
+                        <h4 class="card-title fw-bold">Certificación en Calibración</h4>
+                        <p class="card-text">Emitida bajo normativas ASTM y AASHTO, asegurando la precisión de los equipos de densímetros nucleares.</p>
+                    </div>
+                    <div class="card-footer bg-transparent border-0 text-center pb-4">
+                        <span class="badge bg-danger px-3 py-2"><i class="bi bi-check-circle me-2"></i>Verificado</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 mb-4">
+                <div class="card h-100 border-0 shadow-sm hover-card">
+                    <div class="icon-container position-absolute d-flex justify-content-center w-100" style="top: -30px;">
+                        <div class="certificate-icon bg-danger text-white rounded-circle p-3 mx-auto shadow" style="width: 70px; height: 70px;">
+                            <i class="bi bi-clipboard2-check fs-1"></i>
+                        </div>
+                    </div>
+                    <div class="card-body p-4 pt-5 mt-3 text-center">
+                        <h4 class="card-title fw-bold">Registro en Organismos Oficiales</h4>
+                        <p class="card-text">Cumplimiento de todas las regulaciones nacionales e internacionales para la operación y ejecución de proyectos.</p>
+                    </div>
+                    <div class="card-footer bg-transparent border-0 text-center pb-4">
+                        <span class="badge bg-danger px-3 py-2"><i class="bi bi-check-circle me-2"></i>Verificado</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Cursos y Capacitaciones -->
+        <div class="row mb-5">
+            <div class="col-12 text-center mb-5">
+                <h3 class="fw-bold mb-3 section-title"><span class="border-bottom border-danger pb-2">Cursos y Capacitaciones</span></h3>
+                <p class="text-muted">INDARCA ofrece formación especializada para profesionales del sector, garantizando el conocimiento y manejo adecuado de densímetros nucleares.</p>
+            </div>
+
+            <!-- Programas de capacitación -->
+            <div class="col-md-4 mb-4 mb-md-0">
+                <div class="curso-card card border-0 shadow-sm h-100 position-relative">
+                    <img src="https://images.pexels.com/photos/8636622/pexels-photo-8636622.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" class="card-img-top" alt="Curso de Manejo y Seguridad">
+                    <div class="card-body p-4">
+                        <div class="curso-badge position-absolute top-0 end-0 mt-3 me-3">
+                            <span class="badge bg-danger">Certificado</span>
+                        </div>
+                        <h4 class="card-title fw-bold mb-3">Manejo y Seguridad de Densímetros Nucleares</h4>
+                        <ul class="list-unstyled mb-0">
+                            <li class="mb-2 d-flex align-items-center">
+                                <i class="bi bi-check-circle-fill text-danger me-2"></i>
+                                <span>Uso correcto del equipo</span>
+                            </li>
+                            <li class="mb-2 d-flex align-items-center">
+                                <i class="bi bi-check-circle-fill text-danger me-2"></i>
+                                <span>Protocolos de seguridad radiológica</span>
+                            </li>
+                            <li class="d-flex align-items-center">
+                                <i class="bi bi-check-circle-fill text-danger me-2"></i>
+                                <span>Mantenimiento y calibración</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 mb-4 mb-md-0">
+                <div class="curso-card card border-0 shadow-sm h-100 position-relative">
+                    <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" class="card-img-top" alt="Certificación en Técnicas de Medición">
+                    <div class="card-body p-4">
+                        <div class="curso-badge position-absolute top-0 end-0 mt-3 me-3">
+                            <span class="badge bg-danger">Certificado</span>
+                        </div>
+                        <h4 class="card-title fw-bold mb-3">Técnicas de Medición con Densímetros</h4>
+                        <ul class="list-unstyled mb-0">
+                            <li class="mb-2 d-flex align-items-center">
+                                <i class="bi bi-check-circle-fill text-danger me-2"></i>
+                                <span>Aplicación en suelos y asfaltos</span>
+                            </li>
+                            <li class="mb-2 d-flex align-items-center">
+                                <i class="bi bi-check-circle-fill text-danger me-2"></i>
+                                <span>Interpretación de resultados</span>
+                            </li>
+                            <li class="d-flex align-items-center">
+                                <i class="bi bi-check-circle-fill text-danger me-2"></i>
+                                <span>Buenas prácticas en medición</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="curso-card card border-0 shadow-sm h-100 position-relative">
+                    <img src="https://images.unsplash.com/photo-1556155092-490a1ba16284?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" class="card-img-top" alt="Capacitación en Normativas">
+                    <div class="card-body p-4">
+                        <div class="curso-badge position-absolute top-0 end-0 mt-3 me-3">
+                            <span class="badge bg-danger">Certificado</span>
+                        </div>
+                        <h4 class="card-title fw-bold mb-3">Normativas y Regulaciones</h4>
+                        <ul class="list-unstyled mb-0">
+                            <li class="mb-2 d-flex align-items-center">
+                                <i class="bi bi-check-circle-fill text-danger me-2"></i>
+                                <span>Legislación sobre equipos nucleares</span>
+                            </li>
+                            <li class="mb-2 d-flex align-items-center">
+                                <i class="bi bi-check-circle-fill text-danger me-2"></i>
+                                <span>Normativas ASTM y AASHTO</span>
+                            </li>
+                            <li class="d-flex align-items-center">
+                                <i class="bi bi-check-circle-fill text-danger me-2"></i>
+                                <span>Cumplimiento de estándares</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contacto para más información -->
+        <div class="row">
+            <div class="col-12">
+                <div class="contact-info-card bg-white rounded-4 shadow-sm p-4 p-md-5 text-center position-relative overflow-hidden">
+                    <div class="contact-bg-shape position-absolute" style="opacity: 0.05; right: -100px; top: -100px; width: 500px; height: 500px; border-radius: 50%; background-color: var(--color-primary);"></div>
+                    <div class="position-relative">
+                        <i class="bi bi-envelope-paper-fill text-danger display-1 mb-3"></i>
+                        <h3 class="fw-bold mb-3">¿Interesado en nuestros programas de capacitación?</h3>
+                        <p class="mb-4">Para más información sobre inscripciones y fechas, contáctanos a través de nuestros canales oficiales.</p>
+                        <a href="{{ route('inicio') }}#contact" class="btn btn-danger btn-lg px-4 py-2 rounded-pill">
+                            <i class="bi bi-send me-2"></i>Contáctanos
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        /* Estilos específicos para la sección de reconocimientos */
+        .hover-card {
+            transition: all 0.3s ease;
+            border-radius: 12px;
+            margin-top: 40px;
+            position: relative;
+        }
+
+        .hover-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 1rem 3rem rgba(0,0,0,0.15) !important;
+        }
+
+        .certificate-icon {
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2;
+        }
+
+        .hover-card:hover .certificate-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .curso-card {
+            transition: all 0.3s ease;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .curso-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 1rem 3rem rgba(0,0,0,0.15) !important;
+        }
+
+        .curso-card img {
+            height: 200px;
+            object-fit: cover;
+            transition: all 0.5s ease;
+        }
+
+        .curso-card:hover img {
+            transform: scale(1.05);
+        }
+
+        .contact-info-card {
+            transition: all 0.3s ease;
+            border-left: 5px solid var(--color-primary);
+        }
+
+        .contact-info-card:hover {
+            box-shadow: 0 1rem 3rem rgba(0,0,0,0.15) !important;
+        }
+    </style>
+</section>
+<!-- Fin Sección Reconocimientos y Certificaciones -->
+
 @endsection

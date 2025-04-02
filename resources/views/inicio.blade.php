@@ -1009,7 +1009,7 @@
                                 @endif
 
                                 <!-- Formulario de contacto -->
-                                <form action="/contacto/enviar" method="post" class="row g-4" data-aos="fade-up">
+                                <form action="/contacto/enviar" method="post" class="row g-4" data-aos="fade-up" id="contactForm">
                                     @csrf
                                     <!-- Nombre -->
                                     <div class="col-md-6">
@@ -1086,7 +1086,7 @@
                                             <div class="form-text small text-muted mb-3 mb-md-0">
                                                 <i class="bi bi-shield-lock me-1"></i> Su información está protegida por nuestra política de privacidad
                                             </div>
-                                            <button type="submit" class="btn btn-danger px-4 py-2 shadow">
+                                            <button type="submit" class="btn btn-danger px-4 py-2 shadow" id="submitBtn">
                                                 <i class="bi bi-send me-2"></i>Enviar mensaje
                                             </button>
                                         </div>
@@ -1191,6 +1191,31 @@
                             setTimeout(function() {
                                 mapOverlay.style.display = 'none';
                             }, 300);
+                        });
+                    }
+
+                    // Prevenir envíos múltiples del formulario
+                    const contactForm = document.getElementById('contactForm');
+                    const submitBtn = document.getElementById('submitBtn');
+
+                    if (contactForm && submitBtn) {
+                        contactForm.addEventListener('submit', function() {
+                            // Deshabilitar el botón de envío
+                            submitBtn.disabled = true;
+                            // Cambiar el texto del botón para indicar proceso
+                            submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Enviando...';
+
+                            // Si el formulario se envía normalmente (no por AJAX), mantener el botón deshabilitado
+                            setTimeout(function() {
+                                if (!submitBtn.disabled) return; // Si ya fue habilitado por alguna razón, no hacer nada
+
+                                // Verificar si hubo algún error (en caso de que la página se recargue con errores)
+                                const hasErrors = document.querySelector('.is-invalid');
+                                if (hasErrors) {
+                                    submitBtn.disabled = false;
+                                    submitBtn.innerHTML = '<i class="bi bi-send me-2"></i>Enviar mensaje';
+                                }
+                            }, 2000);
                         });
                     }
                 });

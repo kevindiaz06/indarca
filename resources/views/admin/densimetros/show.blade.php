@@ -206,7 +206,7 @@
                             <i class="bi bi-pencil me-1"></i> Editar densímetro
                         </a>
 
-                        <button type="button" class="btn btn-success" onclick="alert('Esta funcionalidad enviaría un correo al cliente.')">
+                        <button type="button" class="btn btn-success" id="sendEmailBtn" onclick="sendEmailToClient(this)">
                             <i class="bi bi-envelope me-1"></i> Enviar correo al cliente
                         </button>
 
@@ -238,13 +238,45 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                <form action="{{ route('admin.densimetros.destroy', $densimetro->id) }}" method="POST">
+                <form action="{{ route('admin.densimetros.destroy', $densimetro->id) }}" method="POST" id="deleteForm">
                     @csrf
                     @method('DELETE')
-                    <button type="submit" class="btn btn-danger">Eliminar</button>
+                    <button type="submit" class="btn btn-danger" id="deleteBtn">Eliminar</button>
                 </form>
             </div>
         </div>
     </div>
 </div>
+
+<script>
+// Función para manejar el envío de correo al cliente
+function sendEmailToClient(button) {
+    // Deshabilitar el botón para prevenir múltiples clics
+    button.disabled = true;
+    // Cambiar el texto del botón
+    button.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Enviando correo...';
+
+    // Simulamos una operación de envío (por ahora solo muestra un alert)
+    setTimeout(function() {
+        alert('Esta funcionalidad enviaría un correo al cliente.');
+        // Restaurar el botón después de completar la acción
+        button.disabled = false;
+        button.innerHTML = '<i class="bi bi-envelope me-1"></i> Enviar correo al cliente';
+    }, 1000);
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    const deleteForm = document.getElementById('deleteForm');
+    const deleteBtn = document.getElementById('deleteBtn');
+
+    if (deleteForm && deleteBtn) {
+        deleteForm.addEventListener('submit', function() {
+            // Deshabilitar el botón de envío
+            deleteBtn.disabled = true;
+            // Cambiar el texto del botón para indicar proceso
+            deleteBtn.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Eliminando...';
+        });
+    }
+});
+</script>
 @endsection

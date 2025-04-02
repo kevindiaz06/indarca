@@ -31,7 +31,7 @@
             <span class="badge bg-primary">Ref: {{ $densimetro->referencia_reparacion }}</span>
         </div>
         <div class="card-body">
-            <form action="{{ route('admin.densimetros.update', $densimetro->id) }}" method="POST">
+            <form action="{{ route('admin.densimetros.update', $densimetro->id) }}" method="POST" id="editForm">
                 @csrf
                 @method('PUT')
 
@@ -124,7 +124,7 @@
 
                 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                     <a href="{{ route('admin.densimetros.index') }}" class="btn btn-outline-secondary me-md-2">Cancelar</a>
-                    <button type="submit" class="btn btn-primary">
+                    <button type="submit" class="btn btn-primary" id="submitBtn">
                         <i class="bi bi-save me-1"></i> Guardar Cambios
                     </button>
                 </div>
@@ -132,4 +132,21 @@
         </div>
     </div>
 </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const editForm = document.getElementById('editForm');
+    const submitBtn = document.getElementById('submitBtn');
+
+    if (editForm && submitBtn) {
+        editForm.addEventListener('submit', function() {
+            // Deshabilitar el botón de envío
+            submitBtn.disabled = true;
+            // Cambiar el texto del botón para indicar proceso
+            submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Guardando...';
+        });
+    }
+});
+</script>
+
 @endsection
