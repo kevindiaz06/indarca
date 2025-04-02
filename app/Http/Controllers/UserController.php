@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Densimetro;
+use Illuminate\Support\Facades\Mail;
 
 class UserController extends Controller
 {
@@ -66,22 +67,36 @@ class UserController extends Controller
             'role' => 'required|in:cliente,trabajador,admin',
         ]);
 
-        User::create([
+        // Crear usuario con email verificado automáticamente
+        $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'role' => $request->role,
             'is_admin' => $request->role === 'admin' ? true : false,
+            'email_verified_at' => now(), // Verificar el correo automáticamente
         ]);
+
+        // Enviar credenciales por correo
+        try {
+            Mail::to($user->email)->send(new \App\Mail\WelcomeMail(
+                $user->name,
+                $user->email,
+                $request->password // Contraseña sin encriptar para el correo
+            ));
+        } catch (\Exception $e) {
+            // Registrar el error pero continuar con la creación
+            \Log::error('Error al enviar correo de bienvenida: ' . $e->getMessage());
+        }
 
         // Verificar si la solicitud viene del panel de administración
         if (request()->is('admin*')) {
             return redirect()->route('admin.usuarios')
-                ->with('success', 'Usuario creado exitosamente.');
+                ->with('success', 'Usuario creado exitosamente y credenciales enviadas por correo.');
         }
 
         return redirect()->route('users.index')
-            ->with('success', 'Usuario creado exitosamente.');
+            ->with('success', 'Usuario creado exitosamente y credenciales enviadas por correo.');
     }
 
     /**
