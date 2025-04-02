@@ -6,6 +6,10 @@ use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\ValidationException;
+use App\Models\User;
+use App\Models\PendingVerification;
+use Carbon\Carbon;
 
 class LoginController extends Controller
 {
@@ -51,6 +55,36 @@ class LoginController extends Controller
     }
 
     /**
+     * Valida la solicitud de inicio de sesión.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return void
+     *
+     * @throws \Illuminate\Validation\ValidationException
+     */
+    protected function validateLogin(Request $request)
+    {
+        $request->validate([
+            $this->username() => 'required|string',
+            'password' => 'required|string',
+        ]);
+
+        // Verificar si existe una verificación pendiente para este correo
+        $pendingVerification = PendingVerification::where('email', $request->{$this->username()})->first();
+
+        if ($pendingVerification) {
+            // Redireccionar a la página de verificación
+            throw ValidationException::withMessages([
+                $this->username() => [
+                    'Esta cuenta aún no ha sido verificada. Por favor, introduzca el código de verificación enviado a su correo.',
+                    'verification_pending' => true,
+                    'email' => $request->{$this->username()},
+                ],
+            ])->redirectTo(route('verification.notice', ['email' => $request->{$this->username()}]));
+        }
+    }
+
+    /**
      * Procesa la respuesta después de que el usuario es autenticado.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -59,6 +93,12 @@ class LoginController extends Controller
      */
     protected function authenticated(Request $request, $user)
     {
+        // Verificar si el usuario no está verificado y verificarlo automáticamente
+        if ($user->email_verified_at === null) {
+            $user->email_verified_at = Carbon::now();
+            $user->save();
+        }
+
         session()->flash('login_success', true);
 
         // Redirigir a administradores y clientes al panel de administración

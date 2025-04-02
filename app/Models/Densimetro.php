@@ -60,6 +60,28 @@ class Densimetro extends Model
     }
 
     /**
+     * Busca un densímetro por su número de serie.
+     *
+     * @param string $numeroSerie
+     * @return Densimetro|null
+     */
+    public static function buscarPorNumeroSerie($numeroSerie)
+    {
+        return static::where('numero_serie', $numeroSerie)->first();
+    }
+
+    /**
+     * Verifica si un densímetro ya existe en la base de datos.
+     *
+     * @param string $numeroSerie
+     * @return bool
+     */
+    public static function existePorNumeroSerie($numeroSerie)
+    {
+        return static::where('numero_serie', $numeroSerie)->exists();
+    }
+
+    /**
      * Genera una referencia única para el densímetro.
      *
      * @return string

@@ -412,10 +412,10 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-md-6 text-center text-md-start">
-                    <p class="mb-md-0 text-light">© <span>2023</span> <strong class="text-danger">INDARCA</strong> - Todos los derechos reservados</p>
+                    <p class="mb-md-0 text-light">© <span>2025</span> <strong class="text-danger">INDARCA</strong> - Todos los derechos reservados</p>
                 </div>
                 <div class="col-md-6 text-center text-md-end">
-                    <p class="mb-0 text-light">Diseñado con <i class="bi bi-heart-fill text-danger"></i> por <a href="#" class="text-danger text-decoration-none">Indarca Web Team</a></p>
+                    <p class="mb-0 text-light">Diseñado por <a href="#" class="text-danger text-decoration-none">Indarca Web Team</a></p>
                 </div>
             </div>
         </div>
@@ -449,7 +449,7 @@
 
     .footer-links a:hover {
         transform: translateX(5px);
-        color: var(--bs-primary) !important;
+        color: var(--color-primary) !important;
     }
 
     .social-icon:hover {

@@ -5,8 +5,8 @@
     <div class="row justify-content-center">
         <div class="col-md-8 col-lg-6">
             <div class="card shadow rounded-4 border-0">
-                <div class="card-header bg-primary text-white py-3 text-center rounded-top-4">
-                    <h4 class="mb-0">{{ __('Registro de Usuario') }}</h4>
+                <div class="card-header bg-primary py-3 text-center rounded-top-4">
+                    <h4 class="mb-0 text-white">{{ __('Registro de Usuario') }}</h4>
                 </div>
 
                 <div class="card-body p-4">

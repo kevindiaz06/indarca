@@ -68,16 +68,42 @@ class DensimetroController extends Controller
                             ->withInput();
         }
 
-        // Verificar si el densímetro ya está en reparación
-        if (Densimetro::where('numero_serie', $request->numero_serie)
-                      ->whereNull('fecha_finalizacion')
-                      ->exists()) {
-            return redirect()->back()
-                ->withErrors(['numero_serie' => 'Este densímetro ya está en proceso de reparación y no puede registrarse nuevamente hasta que finalice.'])
-                ->withInput();
+        // Verificar si el densímetro ya existe en la base de datos
+        $densimetroExistente = Densimetro::buscarPorNumeroSerie($request->numero_serie);
+
+        if ($densimetroExistente) {
+            // Si el densímetro ya tiene una reparación en curso, mostrar error
+            if ($densimetroExistente->fecha_finalizacion === null) {
+                return redirect()->back()
+                    ->withErrors(['numero_serie' => 'Este densímetro ya está en proceso de reparación y no puede registrarse nuevamente hasta que finalice.'])
+                    ->withInput();
+            }
+
+            // Si el densímetro existe pero está finalizado, recuperar sus datos y crear nueva reparación
+            $cliente = User::findOrFail($request->cliente_id);
+            $referencia = Densimetro::generarReferencia();
+
+            $densimetro = new Densimetro([
+                'cliente_id' => $request->cliente_id,
+                'numero_serie' => $request->numero_serie,
+                'marca' => $densimetroExistente->marca,  // Usar datos existentes
+                'modelo' => $densimetroExistente->modelo, // Usar datos existentes
+                'fecha_entrada' => now()->toDateString(),
+                'referencia_reparacion' => $referencia,
+                'estado' => 'recibido',
+                'observaciones' => $request->observaciones,
+            ]);
+
+            $densimetro->save();
+
+            // Enviar correo electrónico al cliente
+            $this->enviarCorreoRecepcion($cliente, $densimetro);
+
+            return redirect()->route('admin.densimetros.index')
+                ->with('success', 'Nueva reparación registrada para un densímetro existente. Se ha enviado un correo al cliente con la referencia.');
         }
 
-        // Generar una referencia única para la reparación
+        // Si el densímetro no existe, crear un nuevo registro
         $referencia = Densimetro::generarReferencia();
 
         // Crear el nuevo registro de densímetro
@@ -163,14 +189,36 @@ class DensimetroController extends Controller
         // Actualizar el densímetro
         $densimetro = Densimetro::findOrFail($id);
 
-        // Verificar si está cambiando el número de serie y si el nuevo ya está en reparación
-        if ($request->numero_serie !== $densimetro->numero_serie &&
-            Densimetro::where('numero_serie', $request->numero_serie)
-                      ->whereNull('fecha_finalizacion')
-                      ->exists()) {
-            return redirect()->back()
-                ->withErrors(['numero_serie' => 'Este densímetro ya está en proceso de reparación y no puede registrarse nuevamente hasta que finalice.'])
-                ->withInput();
+        // Verificar si está cambiando el número de serie
+        if ($request->numero_serie !== $densimetro->numero_serie) {
+            // Buscar si existe otro densímetro con ese número de serie y que esté en reparación
+            $otroEnReparacion = Densimetro::where('id', '!=', $id)
+                                        ->where('numero_serie', $request->numero_serie)
+                                        ->whereNull('fecha_finalizacion')
+                                        ->exists();
+
+            if ($otroEnReparacion) {
+                return redirect()->back()
+                    ->withErrors(['numero_serie' => 'Este número de serie ya está asignado a otro densímetro en reparación.'])
+                    ->withInput();
+            }
+
+            // Si existe otro densímetro con el mismo número de serie pero finalizado,
+            // podríamos considerar usar los datos de marca y modelo si no se proporcionaron nuevos
+            $otroFinalizado = Densimetro::where('id', '!=', $id)
+                                      ->where('numero_serie', $request->numero_serie)
+                                      ->whereNotNull('fecha_finalizacion')
+                                      ->first();
+
+            if ($otroFinalizado && (empty($request->marca) || empty($request->modelo))) {
+                // Autocompletar datos si no se proporcionaron
+                if (empty($request->marca)) {
+                    $request->merge(['marca' => $otroFinalizado->marca]);
+                }
+                if (empty($request->modelo)) {
+                    $request->merge(['modelo' => $otroFinalizado->modelo]);
+                }
+            }
         }
 
         // Guardar el estado anterior para verificar si cambió

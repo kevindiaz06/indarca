@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use App\Models\VerificationCode;
+use App\Models\PendingVerification;
 use App\Notifications\VerifyEmailWithCode;
 use Carbon\Carbon;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -15,6 +16,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\Notification;
 
 class RegisterController extends Controller
 {
@@ -58,7 +60,7 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email', 'unique:pending_verifications,email'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
     }
@@ -90,44 +92,31 @@ class RegisterController extends Controller
     {
         $this->validator($request->all())->validate();
 
-        event(new Registered($user = $this->create($request->all())));
-
         try {
             // Generar código aleatorio de 6 dígitos
             $code = str_pad(random_int(0, 999999), 6, '0', STR_PAD_LEFT);
 
-            // Crear el registro de verificación si la tabla existe
-            if(Schema::hasTable('verification_codes')) {
-                VerificationCode::create([
-                    'user_id' => $user->id,
-                    'code' => $code,
-                    'expires_at' => Carbon::now()->addMinutes(60), // El código expira en 60 minutos
-                ]);
+            // Almacenar los datos del usuario y el código en pending_verifications
+            PendingVerification::create([
+                'email' => $request->email,
+                'name' => $request->name,
+                'password' => Hash::make($request->password),
+                'code' => $code,
+                'expires_at' => Carbon::now()->addMinutes(60), // El código expira en 60 minutos
+            ]);
 
-                // Enviar el código por correo electrónico
-                $user->notify(new VerifyEmailWithCode($code));
+            // Enviar el código por correo electrónico usando Notification facade
+            Notification::route('mail', [
+                $request->email => $request->name ?? 'Usuario',
+            ])->notify(new VerifyEmailWithCode($code));
 
-                // Redirigir a la página de verificación
-                return redirect()->route('verification.notice', ['email' => $user->email]);
-            } else {
-                // Si la tabla no existe, simplemente marca al usuario como verificado
-                $user->email_verified_at = Carbon::now();
-                $user->save();
+            // Redirigir a la página de verificación
+            return redirect()->route('verification.notice', ['email' => $request->email]);
 
-                // Inicia sesión automáticamente
-                Auth::login($user);
-
-                return redirect()->intended(RouteServiceProvider::HOME);
-            }
         } catch (\Exception $e) {
-            // En caso de error, marcar al usuario como verificado y continuar
-            $user->email_verified_at = Carbon::now();
-            $user->save();
-
-            // Inicia sesión automáticamente
-            Auth::login($user);
-
-            return redirect()->intended(RouteServiceProvider::HOME);
+            // En caso de error, registrar el error y mostrar mensaje
+            \Log::error('Error en el proceso de registro: ' . $e->getMessage());
+            return back()->withErrors(['error' => 'Ocurrió un error durante el registro. Por favor, inténtelo de nuevo.']);
         }
     }
 

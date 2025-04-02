@@ -5,8 +5,8 @@
     <div class="row justify-content-center">
         <div class="col-lg-8">
             <div class="card border-0 shadow-sm rounded-3">
-                <div class="card-header bg-primary text-white py-3">
-                    <h4 class="mb-0"><i class="bi bi-clipboard-data me-2"></i>Consulta de Estado de Densímetros</h4>
+                <div class="card-header bg-primary py-3">
+                    <h4 class="mb-0 text-white"><i class="bi bi-clipboard-data me-2"></i>Consulta de Estado de Densímetros</h4>
                 </div>
                 <div class="card-body p-4">
                     <p class="text-muted mb-4">Introduzca la referencia de reparación que recibió por correo electrónico para consultar el estado actual de su densímetro.</p>

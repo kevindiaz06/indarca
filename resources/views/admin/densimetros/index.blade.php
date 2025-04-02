@@ -111,7 +111,6 @@
     </div>
 </div>
 @endsection
-
 @section('scripts')
 <script>
     // Búsqueda en la tabla
@@ -133,3 +132,4 @@
     });
 </script>
 @endsection
+

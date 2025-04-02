@@ -7,6 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 use Illuminate\Support\Facades\URL;
+use Illuminate\Notifications\AnonymousNotifiable;
 
 class VerifyEmailWithCode extends Notification implements ShouldQueue
 {
@@ -49,6 +50,22 @@ class VerifyEmailWithCode extends Notification implements ShouldQueue
      */
     public function toMail($notifiable)
     {
+        // Si es una "AnonymousNotifiable" (desde Notification::route)
+        if ($notifiable instanceof AnonymousNotifiable) {
+            // Obtener el correo electrónico (la clave) y el nombre (el valor)
+            $email = array_key_first($notifiable->routes['mail']);
+            $name = $notifiable->routes['mail'][$email];
+
+            return (new MailMessage)
+                ->subject('Verificación de Cuenta - INDARCA')
+                ->view('emails.verification-code', [
+                    'nombre' => $name,
+                    'codigo' => $this->code,
+                    'url' => ''
+                ]);
+        }
+
+        // Si es un modelo User completo
         $verificationUrl = URL::temporarySignedRoute(
             'verification.verify',
             now()->addMinutes(60),

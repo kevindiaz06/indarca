@@ -418,10 +418,10 @@ url("./fonts/bootstrap-icons.woff?dd67030699838ea613ee6dbda90effa6") format("wof
 .bi-chevron-left::before { content: "\f284"; }
 .bi-chevron-right::before { content: "\f285"; }
 .bi-chevron-up::before { content: "\f286"; }
-.bi-circle-fill::before { content: "\f287"; opacity: 0.1;}
+.bi-circle-fill::before { content: "\f287"; opacity: 0.3;}
 .bi-circle-half::before { content: "\f288"; }
 .bi-circle-square::before { content: "\f289"; }
-.bi-circle::before { content: "\f28a"; opacity: 0.1;}
+.bi-circle::before { content: "\f28a"; opacity: 0.3;}
 .bi-clipboard-check::before { content: "\f28b"; }
 .bi-clipboard-data::before { content: "\f28c"; }
 .bi-clipboard-minus::before { content: "\f28d"; }
@@ -821,7 +821,7 @@ url("./fonts/bootstrap-icons.woff?dd67030699838ea613ee6dbda90effa6") format("wof
 .bi-heptagon-fill::before { content: "\f418"; }
 .bi-heptagon-half::before { content: "\f419"; }
 .bi-heptagon::before { content: "\f41a"; }
-.bi-hexagon-fill::before { content: "\f41b"; opacity: 0.1;}
+.bi-hexagon-fill::before { content: "\f41b"; opacity: 0.3;}
 .bi-hexagon-half::before { content: "\f41c"; }
 .bi-hexagon::before { content: "\f41d"; }
 .bi-hourglass-bottom::before { content: "\f41e"; }

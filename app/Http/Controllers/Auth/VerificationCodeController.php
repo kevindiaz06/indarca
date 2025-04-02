@@ -5,12 +5,14 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\VerificationCode;
+use App\Models\PendingVerification;
 use App\Notifications\VerifyEmailWithCode;
 use App\Providers\RouteServiceProvider;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\Notification;
 
 class VerificationCodeController extends Controller
 {
@@ -23,48 +25,40 @@ class VerificationCodeController extends Controller
     public function verify(Request $request)
     {
         $request->validate([
-            'email' => 'required|email|exists:users,email',
+            'email' => 'required|email',
             'code' => 'required|string|size:6',
         ]);
 
-        $user = User::where('email', $request->email)->first();
+        // Buscar en las verificaciones pendientes
+        $pendingVerification = PendingVerification::where('email', $request->email)
+            ->where('code', $request->code)
+            ->where('expires_at', '>', Carbon::now())
+            ->first();
 
-        if (!$user) {
-            return back()->withErrors(['email' => 'No se encontró un usuario con este correo electrónico.']);
+        if (!$pendingVerification) {
+            return back()->withErrors(['code' => 'El código es inválido o ha expirado.']);
         }
 
         try {
-            if (Schema::hasTable('verification_codes')) {
-                $verificationCode = VerificationCode::where('user_id', $user->id)
-                    ->where('code', $request->code)
-                    ->where('expires_at', '>', Carbon::now())
-                    ->first();
+            // Crear el usuario verificado
+            $user = User::create([
+                'name' => $pendingVerification->name,
+                'email' => $pendingVerification->email,
+                'password' => $pendingVerification->password, // Ya está hasheado
+                'role' => 'cliente',
+                'is_admin' => false,
+                'email_verified_at' => Carbon::now() // Marcar como verificado inmediatamente
+            ]);
 
-                if (!$verificationCode) {
-                    return back()->withErrors(['code' => 'El código es inválido o ha expirado.']);
-                }
+            // Eliminar la verificación pendiente
+            $pendingVerification->delete();
 
-                // Elimina el código de verificación utilizado
-                $verificationCode->delete();
-            }
-
-            // Marca al usuario como verificado
-            $user->email_verified_at = Carbon::now();
-            $user->save();
-
-            // Inicia sesión automáticamente
+            // Iniciar sesión automáticamente
             Auth::login($user);
 
             return redirect()->route('home')->with('status', 'Tu correo electrónico ha sido verificado correctamente.');
         } catch (\Exception $e) {
-            // En caso de error, marcar al usuario como verificado y continuar
-            $user->email_verified_at = Carbon::now();
-            $user->save();
-
-            // Inicia sesión automáticamente
-            Auth::login($user);
-
-            return redirect()->intended(RouteServiceProvider::HOME);
+            return back()->withErrors(['error' => 'Ocurrió un error durante la verificación. Por favor, inténtelo de nuevo.']);
         }
     }
 
@@ -77,57 +71,33 @@ class VerificationCodeController extends Controller
     public function resend(Request $request)
     {
         $request->validate([
-            'email' => 'required|email|exists:users,email',
+            'email' => 'required|email',
         ]);
 
-        $user = User::where('email', $request->email)->first();
+        // Buscar en las verificaciones pendientes
+        $pendingVerification = PendingVerification::where('email', $request->email)->first();
 
-        if (!$user) {
-            return back()->withErrors(['email' => 'No se encontró un usuario con este correo electrónico.']);
+        if (!$pendingVerification) {
+            return back()->withErrors(['email' => 'No se encontró un registro pendiente para este correo electrónico.']);
         }
 
         try {
-            if (Schema::hasTable('verification_codes')) {
-                // Elimina códigos anteriores
-                VerificationCode::where('user_id', $user->id)->delete();
+            // Generar nuevo código aleatorio de 6 dígitos
+            $code = str_pad(random_int(0, 999999), 6, '0', STR_PAD_LEFT);
 
-                // Generar código aleatorio de 6 dígitos
-                $code = str_pad(random_int(0, 999999), 6, '0', STR_PAD_LEFT);
+            // Actualizar el código y la fecha de expiración
+            $pendingVerification->code = $code;
+            $pendingVerification->expires_at = Carbon::now()->addMinutes(60);
+            $pendingVerification->save();
 
-                // Crear el registro de verificación
-                VerificationCode::create([
-                    'user_id' => $user->id,
-                    'code' => $code,
-                    'expires_at' => Carbon::now()->addMinutes(60), // El código expira en 60 minutos
-                ]);
+            // Enviar el código por correo electrónico usando Notification facade
+            Notification::route('mail', [
+                $pendingVerification->email => $pendingVerification->name ?? 'Usuario',
+            ])->notify(new VerifyEmailWithCode($code));
 
-                // Enviar el código por correo electrónico
-                $user->notify(new VerifyEmailWithCode($code));
-
-                return back()->with('status', 'Se ha enviado un nuevo código de verificación a tu correo electrónico.');
-            } else {
-                // Si la tabla no existe, simplemente marca al usuario como verificado
-                $user->email_verified_at = Carbon::now();
-                $user->save();
-
-                // Inicia sesión automáticamente si no está ya iniciada
-                if (!Auth::check()) {
-                    Auth::login($user);
-                }
-
-                return redirect()->intended(RouteServiceProvider::HOME);
-            }
+            return back()->with('status', 'Se ha enviado un nuevo código de verificación a tu correo electrónico.');
         } catch (\Exception $e) {
-            // En caso de error, verificar al usuario automáticamente
-            $user->email_verified_at = Carbon::now();
-            $user->save();
-
-            // Inicia sesión automáticamente si no está ya iniciada
-            if (!Auth::check()) {
-                Auth::login($user);
-            }
-
-            return redirect()->intended(RouteServiceProvider::HOME);
+            return back()->withErrors(['error' => 'Ocurrió un error al reenviar el código. Por favor, inténtelo de nuevo.']);
         }
     }
 }
