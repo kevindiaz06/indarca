@@ -149,38 +149,40 @@
 
             <nav id="navmenu" class="navmenu">
                 <ul>
-                    <li><a href="{{ route('inicio') }}" class="active">Inicio</a></li>
+                    <li><a href="{{ route('inicio') }}" class="{{ request()->routeIs('inicio') ? 'active' : '' }}">Inicio</a></li>
                     <li class="dropdown"><a href="{{ route('sobreNosotros') }}" class="{{ request()->routeIs('sobreNosotros') ? 'active' : '' }}">
                         <span>Sobre Nosotros</span>
                         <i class="bi bi-chevron-down toggle-dropdown"></i>
                     </a>
                         <ul>
-                            <li><a href="{{ route('sobreNosotros') }}#Historia">Historia</a></li>
+                            <li><a href="{{ route('sobreNosotros') }}">Historia</a></li>
                             <li><a href="{{ route('sobreNosotros') }}#MisionVisionValores">Misión, visión y valores</a></li>
                             <li><a href="{{ route('sobreNosotros') }}#team">Equipo</a></li>
                             <li><a href="{{ route('sobreNosotros') }}#reconocimientos">Reconocimientos y certificaciones</a></li>
                         </ul>
                     </li>
-                    <li class="dropdown"><a href="{{ route('densimetros') }}"><span>Densímetros Nucleares</span> <i
+                    <li class="dropdown"><a href="{{ route('densimetros') }}" class="{{ request()->routeIs('densimetros') ? 'active' : '' }}"><span>Densímetros Nucleares</span> <i
                                 class="bi bi-chevron-down toggle-dropdown"></i></a>
                         <ul>
-                            <li><a href="#">Información General</a></li>
-                            <li><a href="#">Servicios</a></li>
-                            <li><a href="#">Marcas y Modelos</a></li>
-                            <li><a href="#">Preguntas Frecuentes</a></li>
+                            <li><a href="{{ route('densimetros') }}#introduccion">Información General</a></li>
+                            <li><a href="{{ route('densimetros') }}#aplicaciones">Aplicaciones</a></li>
+                            <li><a href="{{ route('densimetros') }}#modelos">Marcas y Modelos</a></li>
+                            <li><a href="{{ route('densimetros') }}#servicios">Servicios</a></li>
+                            <li><a href="{{ route('densimetros') }}#faq">Preguntas Frecuentes</a></li>
                         </ul>
                     </li>
-                    <li class="dropdown"><a href="{{ route('arquitectura') }}"><span>Arquitectura e Ingeniería</span> <i
+                    <li class="dropdown"><a href="{{ route('arquitectura') }}" class="{{ request()->routeIs('arquitectura') ? 'active' : '' }}"><span>Arquitectura e Ingeniería</span> <i
                                 class="bi bi-chevron-down toggle-dropdown"></i></a>
                         <ul>
-                            <li><a href="#">Proyectos Realizados</a></li>
-                            <li><a href="#">Servicios</a></li>
-                            <li><a href="#">Asesoría Técnica</a></li>
-                            <li><a href="#">Galería</a></li>
+                            <li><a href="{{ route('arquitectura') }}#introduccion">Introducción</a></li>
+                            <li><a href="{{ route('arquitectura') }}#servicios">Servicios</a></li>
+                            <li><a href="{{ route('arquitectura') }}#proyectos">Proyectos Realizados</a></li>
+                            <li><a href="{{ route('arquitectura') }}#compromiso">Compromiso con la Calidad</a></li>
+                            <li><a href="{{ route('arquitectura') }}#contacto">Contacto</a></li>
                         </ul>
                     </li>
 
-                    <li><a href="{{ route('inicio') }}#contact">Contacto</a></li>
+                    <li><a href="{{ route('inicio') }}#contact" class="{{ request()->is('contacto') ? 'active' : '' }}">Contacto</a></li>
                 </ul>
 
                 <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
@@ -191,7 +193,7 @@
                     <a href="{{ route('login') }}" class="btn btn-sm btn-outline-primary me-2">
                         <i class="bi bi-box-arrow-in-right me-1"></i>Iniciar Sesión
                     </a>
-                    <a href="/estado" class="btn btn-sm btn-primary">
+                    <a href="{{ route('estado') }}" class="btn btn-sm btn-primary">
                         <i class="bi bi-clipboard-data me-1"></i>Estado
                     </a>
                 @else
