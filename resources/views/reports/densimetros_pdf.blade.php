@@ -1,185 +1,63 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ $title }}</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-            font-size: 12px;
-        }
-        h1 {
-            text-align: center;
-            color: #2C3E50;
-            font-size: 20px;
-            margin-bottom: 5px;
-        }
-        .subtitle {
-            text-align: center;
-            color: #7f8c8d;
-            margin-bottom: 20px;
-            font-size: 14px;
-        }
-        .logo {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        .section {
-            margin-bottom: 30px;
-        }
-        .section-title {
-            background-color: #f8f9fa;
-            padding: 8px;
-            border-left: 4px solid #3498DB;
-            font-weight: bold;
-            margin-bottom: 15px;
-        }
-        .filter-info {
-            background-color: #f8f9fa;
-            padding: 8px;
-            margin-bottom: 15px;
-            font-size: 10px;
-            border: 1px solid #ddd;
-        }
-        .stats-container {
-            display: flex;
-            flex-wrap: wrap;
-            margin-bottom: 20px;
-            gap: 10px;
-        }
-        .stat-card {
-            background-color: #f8f9fa;
-            border-left: 4px solid #3498DB;
-            padding: 10px;
-            margin-bottom: 10px;
-            width: 30%;
-            box-sizing: border-box;
-        }
-        .stat-label {
-            font-size: 10px;
-            color: #7f8c8d;
-            margin-bottom: 3px;
-        }
-        .stat-value {
-            font-size: 16px;
-            font-weight: bold;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 20px;
-        }
-        th {
-            background-color: #f8f9fa;
-            border-bottom: 2px solid #ddd;
-            padding: 8px;
-            text-align: left;
-            font-weight: bold;
-            font-size: 11px;
-        }
-        td {
-            border-bottom: 1px solid #ddd;
-            padding: 8px;
-            font-size: 10px;
-        }
-        tr:nth-child(even) {
-            background-color: #f8f9fa;
-        }
-        .status-badge {
-            display: inline-block;
-            padding: 3px 6px;
-            border-radius: 3px;
-            color: white;
-            font-size: 9px;
-            text-align: center;
-        }
-        .status-recibido {
-            background-color: #6c757d;
-        }
-        .status-en_reparacion {
-            background-color: #007bff;
-        }
-        .status-finalizado {
-            background-color: #28a745;
-        }
-        .status-entregado {
-            background-color: #17a2b8;
-        }
-        .page-number {
-            text-align: center;
-            color: #7f8c8d;
-            font-size: 10px;
-            margin-top: 20px;
-        }
-        .footer {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            text-align: center;
-            font-size: 10px;
-            color: #7f8c8d;
-            border-top: 1px solid #ddd;
-            padding-top: 5px;
-        }
-    </style>
-</head>
-<body>
-    <div class="logo">
-        <b>INDARCA</b> - Panel de Administración
-    </div>
+@extends('reports.pdf_layout')
 
-    <h1>{{ $title }}</h1>
-    <div class="subtitle">Generado el {{ $date }}</div>
+@section('title', 'INDARCA - Reporte de Densímetros')
+@section('document_title', 'Reporte de Densímetros')
+@section('document_date', $date)
 
-    @if(isset($filters) && count(array_filter($filters)) > 0)
-    <div class="filter-info">
-        <strong>Filtros aplicados:</strong>
-        @if(isset($filters['search']) && !empty($filters['search']))
-            Búsqueda: "{{ $filters['search'] }}"
-        @endif
-        @if(isset($filters['estado']) && !empty($filters['estado']))
-            Estado: {{ $filters['estado'] === 'recibido' ? 'Recibido' : ($filters['estado'] === 'en_reparacion' ? 'En reparación' : ($filters['estado'] === 'finalizado' ? 'Finalizado' : 'Entregado')) }}
-        @endif
-        @if(isset($filters['cliente_id']) && !empty($filters['cliente_id']))
-            Cliente ID: {{ $filters['cliente_id'] }}
-        @endif
-    </div>
+@section('content')
+@if(isset($filters) && count(array_filter($filters)) > 0)
+<div style="background-color: #f8f9fa; padding: 10px; margin-bottom: 20px; font-size: 11px; border: 1px solid #eee; border-radius: 4px;">
+    <strong>Filtros aplicados:</strong>
+    @if(isset($filters['search']) && !empty($filters['search']))
+        Búsqueda: "{{ $filters['search'] }}"
     @endif
+    @if(isset($filters['estado']) && !empty($filters['estado']))
+        Estado: {{ $filters['estado'] === 'recibido' ? 'Recibido' : ($filters['estado'] === 'en_reparacion' ? 'En reparación' : ($filters['estado'] === 'finalizado' ? 'Finalizado' : 'Entregado')) }}
+    @endif
+    @if(isset($filters['cliente_id']) && !empty($filters['cliente_id']))
+        Cliente ID: {{ $filters['cliente_id'] }}
+    @endif
+</div>
+@endif
 
-    <div class="section">
-        <div class="section-title">Resumen de Densímetros</div>
+<div class="section">
+    <div class="section-title">Resumen de Densímetros</div>
 
-        <div class="stats-container">
-            <div class="stat-card">
-                <div class="stat-label">Total Densímetros</div>
-                <div class="stat-value">{{ $totalDensimetros }}</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-label">Recibidos</div>
-                <div class="stat-value">{{ $totalRecibidos }}</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-label">En Reparación</div>
-                <div class="stat-value">{{ $totalEnReparacion }}</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-label">Finalizados</div>
-                <div class="stat-value">{{ $totalFinalizados }}</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-label">Entregados</div>
-                <div class="stat-value">{{ $totalEntregados }}</div>
-            </div>
+    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-bottom: 20px;">
+        <div style="background-color: #f8f9fa; border-left: 4px solid #3498DB; padding: 12px; border-radius: 4px;">
+            <div style="font-size: 10px; color: #7f8c8d; text-transform: uppercase;">Total Densímetros</div>
+            <div style="font-size: 24px; font-weight: bold; color: #2C3E50;">{{ $totalDensimetros }}</div>
+        </div>
+
+        <div style="background-color: #f8f9fa; border-left: 4px solid #f39c12; padding: 12px; border-radius: 4px;">
+            <div style="font-size: 10px; color: #7f8c8d; text-transform: uppercase;">En Reparación</div>
+            <div style="font-size: 24px; font-weight: bold; color: #2C3E50;">{{ $totalEnReparacion }}</div>
+        </div>
+
+        <div style="background-color: #f8f9fa; border-left: 4px solid #2ECC71; padding: 12px; border-radius: 4px;">
+            <div style="font-size: 10px; color: #7f8c8d; text-transform: uppercase;">Finalizados</div>
+            <div style="font-size: 24px; font-weight: bold; color: #2C3E50;">{{ $totalFinalizados }}</div>
         </div>
     </div>
 
-    <div class="section">
-        <div class="section-title">Listado de Densímetros</div>
+    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin-bottom: 20px;">
+        <div style="background-color: #f8f9fa; border-left: 4px solid #6c757d; padding: 12px; border-radius: 4px;">
+            <div style="font-size: 10px; color: #7f8c8d; text-transform: uppercase;">Recibidos</div>
+            <div style="font-size: 24px; font-weight: bold; color: #2C3E50;">{{ $totalRecibidos }}</div>
+        </div>
 
-        <table>
+        <div style="background-color: #f8f9fa; border-left: 4px solid #17a2b8; padding: 12px; border-radius: 4px;">
+            <div style="font-size: 10px; color: #7f8c8d; text-transform: uppercase;">Entregados</div>
+            <div style="font-size: 24px; font-weight: bold; color: #2C3E50;">{{ $totalEntregados }}</div>
+        </div>
+    </div>
+</div>
+
+<div class="section">
+    <div class="section-title">Listado de Densímetros</div>
+
+    <table>
+        <thead>
             <tr>
                 <th>Ref</th>
                 <th>Número Serie</th>
@@ -189,6 +67,8 @@
                 <th>F. Entrada</th>
                 <th>F. Finalización</th>
             </tr>
+        </thead>
+        <tbody>
             @forelse($densimetros as $densimetro)
             <tr>
                 <td>{{ $densimetro->referencia_reparacion }}</td>
@@ -197,13 +77,13 @@
                 <td>{{ $densimetro->cliente ? $densimetro->cliente->name : 'No asignado' }}</td>
                 <td>
                     @if($densimetro->estado === 'recibido')
-                        <span class="status-badge status-recibido">Recibido</span>
+                        <span class="estado estado-recibido">Recibido</span>
                     @elseif($densimetro->estado === 'en_reparacion')
-                        <span class="status-badge status-en_reparacion">En reparación</span>
+                        <span class="estado estado-en_reparacion">En reparación</span>
                     @elseif($densimetro->estado === 'finalizado')
-                        <span class="status-badge status-finalizado">Finalizado</span>
+                        <span class="estado estado-finalizado">Finalizado</span>
                     @elseif($densimetro->estado === 'entregado')
-                        <span class="status-badge status-entregado">Entregado</span>
+                        <span class="estado estado-entregado">Entregado</span>
                     @endif
                 </td>
                 <td>{{ $densimetro->fecha_entrada->format('d/m/Y') }}</td>
@@ -211,16 +91,18 @@
             </tr>
             @empty
             <tr>
-                <td colspan="7" style="text-align: center;">No se encontraron densímetros con los filtros seleccionados</td>
+                <td colspan="7" style="text-align: center; padding: 15px;">No se encontraron densímetros con los filtros seleccionados</td>
             </tr>
             @endforelse
-        </table>
+        </tbody>
+    </table>
+</div>
 
-        <div class="subtitle">Total: {{ count($densimetros) }} densímetros</div>
-    </div>
+<div style="background-color: #f8f9fa; padding: 10px; border-radius: 4px; margin-top: 20px; text-align: center;">
+    <strong>Total:</strong> {{ count($densimetros) }} densímetros
+</div>
+@endsection
 
-    <div class="footer">
-        INDARCA © {{ date('Y') }} - Reporte generado automáticamente
-    </div>
-</body>
-</html>
+@section('footer_extra')
+Generado por: {{ Auth::user()->name }}
+@endsection
