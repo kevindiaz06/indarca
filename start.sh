@@ -3,59 +3,8 @@ set -e
 
 cd /var/www/html
 
-echo "Verificando variables de entorno:"
-echo "DATABASE_URL: $DATABASE_URL"
-echo "RENDER_EXTERNAL_URL: $RENDER_EXTERNAL_URL"
-
-# Configurar valores predeterminados si las variables no están definidas
-if [ -z "$DATABASE_URL" ]; then
-  echo "ADVERTENCIA: DATABASE_URL no está definido, usando valor predeterminado"
-  DATABASE_URL="postgres://usuario:mi_contraseña_secreta@db-postgresql-nyc1-12345.a.db.onrender.com:5432/mi_base_de_datos"
-fi
-
-if [ -z "$RENDER_EXTERNAL_URL" ]; then
-  echo "ADVERTENCIA: RENDER_EXTERNAL_URL no está definido, usando valor predeterminado"
-  RENDER_EXTERNAL_URL="https://indarca.onrender.com"
-fi
-
-# Crear archivo .env con las variables de entorno explícitas
-echo "APP_NAME=INDARCA
-APP_ENV=production
-APP_KEY=base64:pz2/CqWrz5QNubtlx4YVOIB5MFi5MxGVlLro6kLJBDo=
-APP_DEBUG=false
-APP_URL=$RENDER_EXTERNAL_URL
-
-LOG_CHANNEL=stack
-LOG_DEPRECATIONS_CHANNEL=null
-LOG_LEVEL=error
-
-DB_CONNECTION=pgsql
-DATABASE_URL=$DATABASE_URL
-
-BROADCAST_DRIVER=log
-CACHE_DRIVER=file
-FILESYSTEM_DISK=local
-QUEUE_CONNECTION=sync
-SESSION_DRIVER=file
-SESSION_LIFETIME=120
-
-MAIL_MAILER=smtp
-MAIL_HOST=smtp.gmail.com
-MAIL_PORT=587
-MAIL_USERNAME=kevindiazmota@gmail.com
-MAIL_PASSWORD=xvukcmqkqvyhpttd
-MAIL_ENCRYPTION=tls
-MAIL_FROM_ADDRESS=kevindiazmota@gmail.com
-MAIL_FROM_NAME=\"INDARCA Servicio Técnico\"
-
-AWS_ACCESS_KEY_ID=
-AWS_SECRET_ACCESS_KEY=
-AWS_DEFAULT_REGION=us-east-1
-AWS_BUCKET=
-AWS_USE_PATH_STYLE_ENDPOINT=false" > .env
-
-echo "Verificando configuración de .env:"
-cat .env
+echo "Verificando variables de entorno DB_..."
+env | grep "^DB_"
 
 echo "Instalando dependencias de Composer..."
 composer install --no-dev --optimize-autoloader --no-interaction
@@ -72,18 +21,38 @@ php artisan route:cache
 echo "Cacheando vistas..."
 php artisan view:cache
 
-echo "Esperando a que la base de datos esté lista..."
-echo "Intentando conectar a PostgreSQL usando DATABASE_URL"
+echo "Verificando conexión a PostgreSQL..."
+if pg_isready -h "$DB_HOST" -p "$DB_PORT" -U "$DB_USERNAME"; then
+    echo "Conexión exitosa a PostgreSQL"
+else
+    echo "Error al conectar a PostgreSQL. Detalles:"
+    echo "Host: $DB_HOST"
+    echo "Puerto: $DB_PORT"
+    echo "Usuario: $DB_USERNAME"
+    echo "Base de datos: $DB_DATABASE"
 
-# Extraer host de DATABASE_URL
-DB_HOST=$(echo $DATABASE_URL | sed -E 's/^.*@([^:]+).*$/\1/')
-echo "Host de base de datos: $DB_HOST"
+    # Intentar con valores predeterminados si las variables no están configuradas
+    if [ -z "$DB_HOST" ]; then
+        echo "DB_HOST no está definido. Intentando con localhost..."
+        export DB_HOST=localhost
+    fi
 
-while ! pg_isready -h $DB_HOST
-do
-  echo "Esperando a PostgreSQL..."
-  sleep 2
-done
+    if [ -z "$DB_PORT" ]; then
+        echo "DB_PORT no está definido. Intentando con 5432..."
+        export DB_PORT=5432
+    fi
+
+    # Esperar a que PostgreSQL esté disponible
+    echo "Esperando a que PostgreSQL esté disponible..."
+    for i in {1..30}; do
+        if pg_isready -h "$DB_HOST" -p "$DB_PORT" -U "$DB_USERNAME"; then
+            echo "Conexión exitosa a PostgreSQL después de esperar"
+            break
+        fi
+        echo "Intento $i: PostgreSQL aún no está disponible. Esperando..."
+        sleep 2
+    done
+fi
 
 echo "Ejecutando migraciones..."
 php artisan migrate --force
@@ -99,5 +68,5 @@ cat /etc/nginx/conf.d/default.conf
 # Iniciar PHP-FPM
 php-fpm -D
 
-# Iniciar NGINX con depuración
-nginx -g 'daemon off;' -t
+# Iniciar NGINX
+exec nginx -g 'daemon off;'
