@@ -293,7 +293,7 @@
         <div class="logo-container">
             <img src="{{ public_path('/assets/img/logo_indarca.png') }}" class="logo" alt="INDARCA Logo">
             <div class="logo-text">
-                <div class="company-name">INDARCA</div>
+
                 <div class="company-slogan">Servicios Industriales de Calidad</div>
             </div>
         </div>
