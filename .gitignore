@@ -8,6 +8,7 @@
 .env.backup
 .env.production
 .phpunit.result.cache
+docker-compose.override.yml
 Homestead.json
 Homestead.yaml
 auth.json
@@ -16,4 +17,9 @@ yarn-error.log
 /.fleet
 /.idea
 /.vscode
+*.sublime-project
+*.sublime-workspace
+.DS_Store
+Thumbs.db
+/.laravel-cloud
 .qodo
