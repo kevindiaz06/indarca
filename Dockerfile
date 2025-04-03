@@ -17,12 +17,15 @@ RUN apk add --no-cache \
     libxslt-dev \
     icu-dev \
     icu-data-full \
-    bash
+    bash \
+    postgresql-dev \
+    postgresql-client
 
 # Instalar extensiones PHP
 RUN docker-php-ext-configure intl
 RUN docker-php-ext-install \
     pdo_mysql \
+    pdo_pgsql \
     zip \
     exif \
     pcntl \
