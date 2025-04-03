@@ -16,5 +16,5 @@ php artisan view:cache
 
 # Si estás usando una instancia Free, debes realizar
 # las migraciones de la base de datos en el comando de construcción.
-# Descomentar la siguiente línea:
+# Descomentar la siguiente línea si es necesario:
 # php artisan migrate --force
