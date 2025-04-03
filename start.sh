@@ -31,6 +31,3 @@ php-fpm -D
 
 # Iniciar NGINX
 nginx -g 'daemon off;'
-
-# Mantener el contenedor en ejecución
-tail -f /var/log/nginx/error.log
