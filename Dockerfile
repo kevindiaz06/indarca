@@ -44,17 +44,13 @@ COPY nginx.conf /etc/nginx/conf.d/default.conf
 WORKDIR /var/www/html
 
 # Copiar archivos de la aplicación
-COPY composer.json composer.lock ./
-RUN composer install --no-scripts --no-autoloader
-
-# Copiar el resto de los archivos
 COPY . .
-
-# Generar autoloader optimizado
-RUN composer dump-autoload --optimize --no-dev
 
 # Configurar permisos
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
+
+# Instalar dependencias de Composer
+RUN composer install --no-interaction --no-dev --optimize-autoloader
 
 # Script de inicio
 COPY start.sh /start.sh
