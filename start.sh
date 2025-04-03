@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Iniciar PHP-FPM
-php-fpm81
+php-fpm
 
 # Iniciar NGINX
 nginx

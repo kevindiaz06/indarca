@@ -1,38 +1,38 @@
-FROM nginx:alpine
+FROM php:8.1-fpm-alpine
 
-# Instalar PHP y dependencias necesarias
+# Instalar dependencias del sistema
 RUN apk add --no-cache \
-    php81 \
-    php81-fpm \
-    php81-mysqli \
-    php81-pdo \
-    php81-pdo_mysql \
-    php81-json \
-    php81-openssl \
-    php81-curl \
-    php81-zlib \
-    php81-xml \
-    php81-phar \
-    php81-intl \
-    php81-dom \
-    php81-xmlreader \
-    php81-ctype \
-    php81-session \
-    php81-mbstring \
-    php81-gd \
-    php81-zip \
-    php81-fileinfo \
-    php81-tokenizer \
-    php81-simplexml \
-    php81-xmlwriter \
-    php81-iconv \
-    composer
+    nginx \
+    supervisor \
+    curl \
+    git \
+    zip \
+    unzip \
+    libzip-dev \
+    libpng-dev \
+    libjpeg-turbo-dev \
+    freetype-dev \
+    libxml2-dev \
+    oniguruma-dev \
+    libxslt-dev
 
-# Configurar PHP-FPM
-RUN sed -i 's/;cgi.fix_pathinfo=1/cgi.fix_pathinfo=0/g' /etc/php81/php.ini && \
-    sed -i 's/listen = 127.0.0.1:9000/listen = \/var\/run\/php-fpm.sock/g' /etc/php81/php-fpm.d/www.conf && \
-    sed -i 's/;listen.owner = nobody/listen.owner = nginx/g' /etc/php81/php-fpm.d/www.conf && \
-    sed -i 's/;listen.group = nobody/listen.group = nginx/g' /etc/php81/php-fpm.d/www.conf
+# Instalar extensiones PHP
+RUN docker-php-ext-install \
+    pdo_mysql \
+    zip \
+    exif \
+    pcntl \
+    bcmath \
+    gd \
+    intl \
+    xsl \
+    soap
+
+# Instalar Composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+# Configurar PHP
+RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
 
 # Configurar NGINX
 COPY nginx.conf /etc/nginx/conf.d/default.conf
@@ -47,7 +47,7 @@ COPY . .
 RUN composer install --no-dev --optimize-autoloader
 
 # Configurar permisos
-RUN chown -R nginx:nginx /var/www/html/storage /var/www/html/bootstrap/cache
+RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
 
 # Script de inicio
 COPY start.sh /start.sh
