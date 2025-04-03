@@ -4,30 +4,13 @@ set -e
 cd /var/www/html
 
 echo "Verificando variables de entorno:"
-echo "POSTGRES_HOST: $POSTGRES_HOST"
-echo "POSTGRES_DATABASE: $POSTGRES_DATABASE"
-echo "POSTGRES_USER: $POSTGRES_USER"
+echo "DATABASE_URL: $DATABASE_URL"
 echo "RENDER_EXTERNAL_URL: $RENDER_EXTERNAL_URL"
 
 # Configurar valores predeterminados si las variables no están definidas
-if [ -z "$POSTGRES_HOST" ]; then
-  echo "ADVERTENCIA: POSTGRES_HOST no está definido, usando valor predeterminado"
-  POSTGRES_HOST="db-postgresql-nyc1-12345.a.db.onrender.com"
-fi
-
-if [ -z "$POSTGRES_DATABASE" ]; then
-  echo "ADVERTENCIA: POSTGRES_DATABASE no está definido, usando valor predeterminado"
-  POSTGRES_DATABASE="mi_base_de_datos"
-fi
-
-if [ -z "$POSTGRES_USER" ]; then
-  echo "ADVERTENCIA: POSTGRES_USER no está definido, usando valor predeterminado"
-  POSTGRES_USER="usuario"
-fi
-
-if [ -z "$POSTGRES_PASSWORD" ]; then
-  echo "ADVERTENCIA: POSTGRES_PASSWORD no está definido, usando valor predeterminado"
-  POSTGRES_PASSWORD="mi_contraseña_secreta"
+if [ -z "$DATABASE_URL" ]; then
+  echo "ADVERTENCIA: DATABASE_URL no está definido, usando valor predeterminado"
+  DATABASE_URL="postgres://usuario:mi_contraseña_secreta@db-postgresql-nyc1-12345.a.db.onrender.com:5432/mi_base_de_datos"
 fi
 
 if [ -z "$RENDER_EXTERNAL_URL" ]; then
@@ -47,11 +30,7 @@ LOG_DEPRECATIONS_CHANNEL=null
 LOG_LEVEL=error
 
 DB_CONNECTION=pgsql
-DB_HOST=$POSTGRES_HOST
-DB_PORT=5432
-DB_DATABASE=$POSTGRES_DATABASE
-DB_USERNAME=$POSTGRES_USER
-DB_PASSWORD=$POSTGRES_PASSWORD
+DATABASE_URL=$DATABASE_URL
 
 BROADCAST_DRIVER=log
 CACHE_DRIVER=file
@@ -94,8 +73,13 @@ echo "Cacheando vistas..."
 php artisan view:cache
 
 echo "Esperando a que la base de datos esté lista..."
-echo "Intentando conectar a PostgreSQL en $POSTGRES_HOST como usuario $POSTGRES_USER a base de datos $POSTGRES_DATABASE"
-while ! pg_isready -h $POSTGRES_HOST -p 5432 -U $POSTGRES_USER
+echo "Intentando conectar a PostgreSQL usando DATABASE_URL"
+
+# Extraer host de DATABASE_URL
+DB_HOST=$(echo $DATABASE_URL | sed -E 's/^.*@([^:]+).*$/\1/')
+echo "Host de base de datos: $DB_HOST"
+
+while ! pg_isready -h $DB_HOST
 do
   echo "Esperando a PostgreSQL..."
   sleep 2
