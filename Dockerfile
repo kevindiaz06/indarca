@@ -14,9 +14,12 @@ RUN apk add --no-cache \
     freetype-dev \
     libxml2-dev \
     oniguruma-dev \
-    libxslt-dev
+    libxslt-dev \
+    icu-dev \
+    icu-data-full
 
 # Instalar extensiones PHP
+RUN docker-php-ext-configure intl
 RUN docker-php-ext-install \
     pdo_mysql \
     zip \
