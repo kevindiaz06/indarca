@@ -8,6 +8,24 @@ echo "Verificando variables de entorno..."
 echo "DATABASE_URL definida: $([ ! -z "$DATABASE_URL" ] && echo 'SÍ' || echo 'NO')"
 echo "DB_CONNECTION: $DB_CONNECTION"
 
+# Crear archivo .env a partir de .env.example
+echo "Creando archivo .env..."
+cp .env.example .env
+
+# Actualizar valores en .env
+sed -i "s|APP_ENV=local|APP_ENV=production|g" .env
+sed -i "s|APP_DEBUG=true|APP_DEBUG=false|g" .env
+sed -i "s|APP_URL=http://localhost|APP_URL=https://indarca.onrender.com|g" .env
+sed -i "s|DB_CONNECTION=.*|DB_CONNECTION=$DB_CONNECTION|g" .env
+
+# Agregar DATABASE_URL explícitamente
+if [ ! -z "$DATABASE_URL" ]; then
+    echo "DATABASE_URL=$DATABASE_URL" >> .env
+fi
+
+echo "Contenido del archivo .env:"
+cat .env
+
 echo "Instalando dependencias de Composer..."
 composer install --no-dev --optimize-autoloader --no-interaction
 
