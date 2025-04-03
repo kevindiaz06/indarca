@@ -397,7 +397,7 @@
                                 </div>
                                 <div>
                                     <h6 class="fw-bold text-white mb-2">Empresa Certificada</h6>
-                                    <p class="small mb-0 text-muted">ISO 9001:2015 | ISO 14001</p>
+                                    <p class="small mb-0 text-white">ISO 9001:2015 | ISO 14001</p>
                                 </div>
                             </div>
                         </div>
