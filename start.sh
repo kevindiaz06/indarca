@@ -3,6 +3,38 @@ set -e
 
 cd /var/www/html
 
+echo "Verificando variables de entorno:"
+echo "POSTGRES_HOST: $POSTGRES_HOST"
+echo "POSTGRES_DATABASE: $POSTGRES_DATABASE"
+echo "POSTGRES_USER: $POSTGRES_USER"
+echo "RENDER_EXTERNAL_URL: $RENDER_EXTERNAL_URL"
+
+# Configurar valores predeterminados si las variables no están definidas
+if [ -z "$POSTGRES_HOST" ]; then
+  echo "ADVERTENCIA: POSTGRES_HOST no está definido, usando valor predeterminado"
+  POSTGRES_HOST="db-postgresql-nyc1-12345.a.db.onrender.com"
+fi
+
+if [ -z "$POSTGRES_DATABASE" ]; then
+  echo "ADVERTENCIA: POSTGRES_DATABASE no está definido, usando valor predeterminado"
+  POSTGRES_DATABASE="mi_base_de_datos"
+fi
+
+if [ -z "$POSTGRES_USER" ]; then
+  echo "ADVERTENCIA: POSTGRES_USER no está definido, usando valor predeterminado"
+  POSTGRES_USER="usuario"
+fi
+
+if [ -z "$POSTGRES_PASSWORD" ]; then
+  echo "ADVERTENCIA: POSTGRES_PASSWORD no está definido, usando valor predeterminado"
+  POSTGRES_PASSWORD="mi_contraseña_secreta"
+fi
+
+if [ -z "$RENDER_EXTERNAL_URL" ]; then
+  echo "ADVERTENCIA: RENDER_EXTERNAL_URL no está definido, usando valor predeterminado"
+  RENDER_EXTERNAL_URL="https://indarca.onrender.com"
+fi
+
 # Crear archivo .env con las variables de entorno explícitas
 echo "APP_NAME=INDARCA
 APP_ENV=production
@@ -62,14 +94,12 @@ echo "Cacheando vistas..."
 php artisan view:cache
 
 echo "Esperando a que la base de datos esté lista..."
-if [ ! -z "$POSTGRES_HOST" ]; then
-  echo "Intentando conectar a PostgreSQL en $POSTGRES_HOST como usuario $POSTGRES_USER a base de datos $POSTGRES_DATABASE"
-  while ! pg_isready -h $POSTGRES_HOST -p 5432 -U $POSTGRES_USER
-  do
-    echo "Esperando a PostgreSQL..."
-    sleep 2
-  done
-fi
+echo "Intentando conectar a PostgreSQL en $POSTGRES_HOST como usuario $POSTGRES_USER a base de datos $POSTGRES_DATABASE"
+while ! pg_isready -h $POSTGRES_HOST -p 5432 -U $POSTGRES_USER
+do
+  echo "Esperando a PostgreSQL..."
+  sleep 2
+done
 
 echo "Ejecutando migraciones..."
 php artisan migrate --force
