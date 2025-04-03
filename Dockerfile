@@ -19,7 +19,8 @@ RUN apk add --no-cache \
     icu-data-full \
     bash \
     postgresql-dev \
-    postgresql-client
+    postgresql-client \
+    procps
 
 # Instalar extensiones PHP
 RUN docker-php-ext-configure intl
@@ -43,9 +44,11 @@ RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
 
 # Configurar NGINX
 COPY nginx.conf /etc/nginx/conf.d/default.conf
+RUN rm /etc/nginx/conf.d/default.conf.default || true
 
 # Asegurarse de que la configuración de PHP-FPM esté correcta
-RUN echo "listen = /var/run/php-fpm.sock" >> /usr/local/etc/php-fpm.d/www.conf && \
+RUN mkdir -p /var/run/php && \
+    echo "listen = /var/run/php-fpm.sock" >> /usr/local/etc/php-fpm.d/www.conf && \
     echo "listen.owner = www-data" >> /usr/local/etc/php-fpm.d/www.conf && \
     echo "listen.group = www-data" >> /usr/local/etc/php-fpm.d/www.conf && \
     echo "listen.mode = 0660" >> /usr/local/etc/php-fpm.d/www.conf
@@ -63,5 +66,8 @@ RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cac
 # Script de inicio
 COPY start.sh /start.sh
 RUN chmod +x /start.sh
+
+# Exponer el puerto 80
+EXPOSE 80
 
 CMD ["/start.sh"]
