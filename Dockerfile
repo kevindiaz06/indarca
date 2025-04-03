@@ -16,7 +16,8 @@ RUN apk add --no-cache \
     oniguruma-dev \
     libxslt-dev \
     icu-dev \
-    icu-data-full
+    icu-data-full \
+    bash
 
 # Instalar extensiones PHP
 RUN docker-php-ext-configure intl
@@ -32,13 +33,19 @@ RUN docker-php-ext-install \
     soap
 
 # Instalar Composer
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 # Configurar PHP
 RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
 
 # Configurar NGINX
 COPY nginx.conf /etc/nginx/conf.d/default.conf
+
+# Asegurarse de que la configuración de PHP-FPM esté correcta
+RUN echo "listen = /var/run/php-fpm.sock" >> /usr/local/etc/php-fpm.d/www.conf && \
+    echo "listen.owner = www-data" >> /usr/local/etc/php-fpm.d/www.conf && \
+    echo "listen.group = www-data" >> /usr/local/etc/php-fpm.d/www.conf && \
+    echo "listen.mode = 0660" >> /usr/local/etc/php-fpm.d/www.conf
 
 # Crear directorio para la aplicación
 WORKDIR /var/www/html
@@ -47,7 +54,8 @@ WORKDIR /var/www/html
 COPY . .
 
 # Configurar permisos
-RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
+RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache && \
+    chmod -R 755 /var/www/html/storage /var/www/html/bootstrap/cache
 
 # Script de inicio
 COPY start.sh /start.sh
