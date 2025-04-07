@@ -442,7 +442,7 @@
                     <div class="row mb-5">
                         <div class="col-lg-8 mx-auto text-center">
                             <h3 class="fw-bold mb-4">Alianzas Estratégicas</h3>
-                            <p class="lead mb-0">Colaboramos con las empresas más importantes del sector, estableciendo relaciones de confianza basadas en la excelencia y el profesionalismo.</p>
+
                     </div>
                 </div>
 
@@ -457,7 +457,7 @@
                                 <div class="card-overlay">
                                     <div class="overlay-content">
                                         <h5 class="fw-bold">Cliente Destacado</h5>
-                                        <p class="mb-0 small">Colaboración desde 2018</p>
+
                                     </div>
                                 </div>
                             </div>
@@ -472,7 +472,6 @@
                                 <div class="card-overlay">
                                     <div class="overlay-content">
                                         <h5 class="fw-bold">Cliente Premium</h5>
-                                        <p class="mb-0 small">Socio estratégico</p>
                                     </div>
                                 </div>
                             </div>
@@ -487,7 +486,6 @@
                                 <div class="card-overlay">
                                     <div class="overlay-content">
                                         <h5 class="fw-bold">Alianza Internacional</h5>
-                                        <p class="mb-0 small">Presencia global</p>
                                     </div>
                                 </div>
                             </div>
@@ -502,7 +500,6 @@
                                 <div class="card-overlay">
                                     <div class="overlay-content">
                                         <h5 class="fw-bold">Construcción Avanzada</h5>
-                                        <p class="mb-0 small">Proyectos de alta complejidad</p>
                                     </div>
                                 </div>
                             </div>
@@ -512,12 +509,11 @@
                         <div class="col" data-aos="fade-up" data-aos-delay="300">
                             <div class="card h-100 border-0 rounded-4 client-card shadow-sm">
                                 <div class="card-body d-flex align-items-center justify-content-center p-4">
-                                    <img src="assets/img/clients/client-5.png" class="img-fluid client-img" alt="Cliente 5">
+                                    <img src="assets\img\clients\humboldtmfg.webp" class="img-fluid client-img" alt="humboldtmfg">
                                 </div>
                                 <div class="card-overlay">
                                     <div class="overlay-content">
                                         <h5 class="fw-bold">Tecnología Constructiva</h5>
-                                        <p class="mb-0 small">Innovación constante</p>
                                     </div>
                                 </div>
                             </div>
@@ -527,12 +523,11 @@
                         <div class="col" data-aos="fade-up" data-aos-delay="350">
                             <div class="card h-100 border-0 rounded-4 client-card shadow-sm">
                                 <div class="card-body d-flex align-items-center justify-content-center p-4">
-                                    <img src="assets/img/clients/client-6.png" class="img-fluid client-img" alt="Cliente 6">
+                                    <img src="assets\img\clients\humboldtscientific.svg" class="img-fluid client-img" alt="humboldtscientific">
                                 </div>
                                 <div class="card-overlay">
                                     <div class="overlay-content">
                                         <h5 class="fw-bold">Diseño Arquitectónico</h5>
-                                        <p class="mb-0 small">Estética y funcionalidad</p>
                                     </div>
                                 </div>
                             </div>
@@ -542,12 +537,11 @@
                         <div class="col" data-aos="fade-up" data-aos-delay="400">
                             <div class="card h-100 border-0 rounded-4 client-card shadow-sm">
                                 <div class="card-body d-flex align-items-center justify-content-center p-4">
-                                    <img src="assets/img/clients/client-7.png" class="img-fluid client-img" alt="Cliente 7">
+                                    <img src="assets\img\clients\instrotek.avif" class="img-fluid client-img" alt="instrotek">
                                 </div>
                                 <div class="card-overlay">
                                     <div class="overlay-content">
                                         <h5 class="fw-bold">Ingeniería Civil</h5>
-                                        <p class="mb-0 small">Proyectos sostenibles</p>
                                     </div>
                                 </div>
                             </div>
@@ -557,12 +551,11 @@
                         <div class="col" data-aos="fade-up" data-aos-delay="450">
                             <div class="card h-100 border-0 rounded-4 client-card shadow-sm">
                                 <div class="card-body d-flex align-items-center justify-content-center p-4">
-                                    <img src="assets/img/clients/client-8.png" class="img-fluid client-img" alt="Cliente 8">
+                                    <img src="assets\img\clients\troxlerlabs.png" class="img-fluid client-img" alt="Troxler">
                                 </div>
                                 <div class="card-overlay">
                                     <div class="overlay-content">
                                         <h5 class="fw-bold">Materiales Avanzados</h5>
-                                        <p class="mb-0 small">Calidad garantizada</p>
                                     </div>
                                 </div>
                             </div>

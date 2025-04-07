@@ -183,6 +183,7 @@
                     </li>
 
                     <li><a href="{{ route('inicio') }}#contact" class="{{ request()->is('contacto') ? 'active' : '' }}">Contacto</a></li>
+                    <li></li>
                 </ul>
 
                 <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
@@ -422,11 +423,11 @@
     </div>
 
     <!-- Elementos decorativos flotantes -->
-    <div class="position-absolute bottom-0 start-0 translate-middle-y  d-none d-lg-block">
-        <i class="bi bi-hexagon-fill text-danger" style="font-size: 15rem;"></i>
+    <div class="position-absolute top-0 start-0 translate-middle-y opacity-10">
+        <i class="bi bi-hexagon-fill text-primary" style="font-size: 15rem;"></i>
     </div>
-    <div class="position-absolute top-50 end-0 translate-middle-y  d-none d-lg-block">
-        <i class="bi bi-circle-fill text-danger" style="font-size: 10rem;"></i>
+    <div class="position-absolute bottom-0 end-0 translate-middle-y opacity-10">
+        <i class="bi bi-circle-fill text-primary" style="font-size: 18rem;"></i>
     </div>
 </footer>
 
