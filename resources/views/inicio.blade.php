@@ -970,35 +970,38 @@
                                     <p class="text-muted mb-0">Complete el formulario y nos pondremos en contacto a la brevedad</p>
                                 </div>
 
-                                <!-- Alertas -->
                                 @if(session('success'))
-                                    <div class="alert alert-success border-0 rounded-3 shadow-sm mb-4" role="alert">
-                                        <div class="d-flex align-items-center">
-                                            <div class="rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 48px; height: 48px; background-color: rgba(25, 135, 84, 0.15);">
-                                                <i class="bi bi-check-circle text-success fs-4"></i>
-                                            </div>
-                                            <div>
-                                                <h6 class="alert-heading mb-1">¡Mensaje enviado correctamente!</h6>
-                                                <p class="mb-0 small">{{ session('success') }}</p>
-                                            </div>
-                                            <button type="button" class="btn-close ms-auto" data-bs-dismiss="alert" aria-label="Close"></button>
-                                        </div>
-                                    </div>
+                                <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+                                <script>
+                                    document.addEventListener('DOMContentLoaded', function() {
+                                        Swal.fire({
+                                            icon: 'success',
+                                            title: '¡Mensaje enviado correctamente!',
+                                            text: '{{ session('success') }}',
+                                            showConfirmButton: false,
+                                            timer: 10000,
+                                            timerProgressBar: true,
+                                            position: 'top-end',
+                                            toast: true,
+                                            showCloseButton: true
+                                        });
+                                    });
+                                </script>
                                 @endif
 
                                 @if(session('error'))
-                                    <div class="alert alert-danger border-0 rounded-3 shadow-sm mb-4" role="alert">
-                                        <div class="d-flex align-items-center">
-                                            <div class="rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 48px; height: 48px; background-color: rgba(220, 53, 69, 0.15);">
-                                                <i class="bi bi-exclamation-circle text-danger fs-4"></i>
-                                            </div>
-                                            <div>
-                                                <h6 class="alert-heading mb-1">Ha ocurrido un error</h6>
-                                                <p class="mb-0 small">{{ session('error') }}</p>
-                                            </div>
-                                            <button type="button" class="btn-close ms-auto" data-bs-dismiss="alert" aria-label="Close"></button>
-                                        </div>
-                                    </div>
+                                <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+                                <script>
+                                    document.addEventListener('DOMContentLoaded', function() {
+                                        Swal.fire({
+                                            icon: 'error',
+                                            title: 'Ha ocurrido un error',
+                                            text: '{{ session('error') }}',
+                                            showConfirmButton: true,
+                                            confirmButtonText: 'Aceptar'
+                                        });
+                                    });
+                                </script>
                                 @endif
 
                                 <!-- Formulario de contacto -->
