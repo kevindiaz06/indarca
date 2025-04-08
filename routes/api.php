@@ -20,7 +20,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 // Buscar densímetro por número de serie
-Route::get('/densimetros/buscar', function (Request $request) {
+Route::middleware(['api.throttle:30,1'])->get('/densimetros/buscar', function (Request $request) {
     $numeroSerie = $request->query('numero_serie');
 
     if (!$numeroSerie) {
