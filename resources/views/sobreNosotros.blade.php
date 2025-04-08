@@ -327,97 +327,6 @@
     </style>
 </section><!-- /Sección de Valores Corporativos -->
 
-<!-- Team Section -->
-<section id="team" class="team section light-background">
-
-    <!-- Section Title -->
-    <div class="container section-title" data-aos="fade-up">
-        <h2>Equipo</h2>
-        <p><span>Nuestro Talentoso</span> <span class="description-title">Equipo</span></p>
-    </div><!-- End Section Title -->
-
-    <div class="container">
-
-        <div class="row gy-4">
-
-            <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
-                <div class="team-member">
-                    <div class="member-img">
-                        <img src="assets/img/team/team-1.jpg" class="img-fluid" alt="Director Ejecutivo">
-                        <div class="social">
-                            <a href=""><i class="bi bi-twitter-x"></i></a>
-                            <a href=""><i class="bi bi-facebook"></i></a>
-                            <a href=""><i class="bi bi-instagram"></i></a>
-                            <a href=""><i class="bi bi-linkedin"></i></a>
-                        </div>
-                    </div>
-                    <div class="member-info">
-                        <h4>Walter White</h4>
-                        <span>Director Ejecutivo</span>
-                    </div>
-                </div>
-            </div><!-- End Team Member -->
-
-            <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200">
-                <div class="team-member">
-                    <div class="member-img">
-                        <img src="assets/img/team/team-2.jpg" class="img-fluid" alt="Gerente de Producto">
-                        <div class="social">
-                            <a href=""><i class="bi bi-twitter-x"></i></a>
-                            <a href=""><i class="bi bi-facebook"></i></a>
-                            <a href=""><i class="bi bi-instagram"></i></a>
-                            <a href=""><i class="bi bi-linkedin"></i></a>
-                        </div>
-                    </div>
-                    <div class="member-info">
-                        <h4>Sarah Jhonson</h4>
-                        <span>Gerente de Producto</span>
-                    </div>
-                </div>
-            </div><!-- End Team Member -->
-
-            <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="300">
-                <div class="team-member">
-                    <div class="member-img">
-                        <img src="assets/img/team/team-3.jpg" class="img-fluid" alt="Director de Tecnología">
-                        <div class="social">
-                            <a href=""><i class="bi bi-twitter-x"></i></a>
-                            <a href=""><i class="bi bi-facebook"></i></a>
-                            <a href=""><i class="bi bi-instagram"></i></a>
-                            <a href=""><i class="bi bi-linkedin"></i></a>
-                        </div>
-                    </div>
-                    <div class="member-info">
-                        <h4>William Anderson</h4>
-                        <span>Director de Tecnología</span>
-                    </div>
-                </div>
-            </div><!-- End Team Member -->
-
-            <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="400">
-                <div class="team-member">
-                    <div class="member-img">
-                        <img src="assets/img/team/team-4.jpg" class="img-fluid" alt="Contadora">
-                        <div class="social">
-                            <a href=""><i class="bi bi-twitter-x"></i></a>
-                            <a href=""><i class="bi bi-facebook"></i></a>
-                            <a href=""><i class="bi bi-instagram"></i></a>
-                            <a href=""><i class="bi bi-linkedin"></i></a>
-                        </div>
-                    </div>
-                    <div class="member-info">
-                        <h4>Amanda Jepson</h4>
-                        <span>Contadora</span>
-                    </div>
-                </div>
-            </div><!-- End Team Member -->
-
-        </div>
-
-    </div>
-
-</section><!-- /Sección de Equipo -->
-
 <!-- Sección Reconocimientos y Certificaciones -->
 <section id="reconocimientos" class="reconocimientos-certificaciones py-5 bg-light">
     <div class="container">
@@ -680,5 +589,266 @@
     </style>
 </section>
 <!-- Fin Sección Reconocimientos y Certificaciones -->
+
+<!-- Team Section -->
+<section id="team" class="team-section py-5">
+    <div class="container">
+        <!-- Título de la sección -->
+        <div class="row mb-5">
+            <div class="col-12 text-center">
+                <h2 class="display-5 fw-bold mb-3">Nuestro Equipo</h2>
+                <p class="lead text-muted col-lg-8 mx-auto">El talento detrás de cada proyecto exitoso</p>
+                <div class="divider-custom my-4">
+                    <div class="divider-line bg-danger"></div>
+                    <div class="divider-icon">★</div>
+                    <div class="divider-line bg-danger"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tarjetas del equipo -->
+        <div class="row g-4 justify-content-center">
+            <!-- Miembro 1 -->
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="team-card h-100">
+                    <div class="card border-0 shadow-sm h-100">
+                        <div class="position-relative team-img-container">
+                            <img src="assets/img/team/team-1.jpg" class="card-img-top team-img" alt="Director Ejecutivo">
+                            <div class="team-overlay">
+                                <div class="team-social">
+                                    <a href="#" class="text-white mx-2"><i class="bi bi-linkedin"></i></a>
+                                    <a href="#" class="text-white mx-2"><i class="bi bi-twitter"></i></a>
+                                    <a href="#" class="text-white mx-2"><i class="bi bi-instagram"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body text-center">
+                            <h4 class="card-title fw-bold mb-1">Walter White</h4>
+                            <p class="text-danger fw-semibold mb-3">Director Ejecutivo</p>
+                            <p class="card-text fst-italic text-muted">"Liderando el camino hacia la innovación y excelencia en cada proyecto."</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Miembro 2 -->
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="team-card h-100">
+                    <div class="card border-0 shadow-sm h-100">
+                        <div class="position-relative team-img-container">
+                            <img src="assets/img/team/team-2.jpg" class="card-img-top team-img" alt="Gerente de Producto">
+                            <div class="team-overlay">
+                                <div class="team-social">
+                                    <a href="#" class="text-white mx-2"><i class="bi bi-linkedin"></i></a>
+                                    <a href="#" class="text-white mx-2"><i class="bi bi-twitter"></i></a>
+                                    <a href="#" class="text-white mx-2"><i class="bi bi-instagram"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body text-center">
+                            <h4 class="card-title fw-bold mb-1">Sarah Jhonson</h4>
+                            <p class="text-danger fw-semibold mb-3">Gerente de Producto</p>
+                            <p class="card-text fst-italic text-muted">"Convirtiendo ideas en productos excepcionales que marcan la diferencia."</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Miembro 3 -->
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="team-card h-100">
+                    <div class="card border-0 shadow-sm h-100">
+                        <div class="position-relative team-img-container">
+                            <img src="assets/img/team/team-3.jpg" class="card-img-top team-img" alt="Director de Tecnología">
+                            <div class="team-overlay">
+                                <div class="team-social">
+                                    <a href="#" class="text-white mx-2"><i class="bi bi-linkedin"></i></a>
+                                    <a href="#" class="text-white mx-2"><i class="bi bi-twitter"></i></a>
+                                    <a href="#" class="text-white mx-2"><i class="bi bi-instagram"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body text-center">
+                            <h4 class="card-title fw-bold mb-1">William Anderson</h4>
+                            <p class="text-danger fw-semibold mb-3">Director de Tecnología</p>
+                            <p class="card-text fst-italic text-muted">"Implementando soluciones tecnológicas innovadoras para superar retos complejos."</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Miembro 4 -->
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="team-card h-100">
+                    <div class="card border-0 shadow-sm h-100">
+                        <div class="position-relative team-img-container">
+                            <img src="assets/img/team/team-4.jpg" class="card-img-top team-img" alt="Contadora">
+                            <div class="team-overlay">
+                                <div class="team-social">
+                                    <a href="#" class="text-white mx-2"><i class="bi bi-linkedin"></i></a>
+                                    <a href="#" class="text-white mx-2"><i class="bi bi-twitter"></i></a>
+                                    <a href="#" class="text-white mx-2"><i class="bi bi-instagram"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body text-center">
+                            <h4 class="card-title fw-bold mb-1">Amanda Jepson</h4>
+                            <p class="text-danger fw-semibold mb-3">Contadora</p>
+                            <p class="card-text fst-italic text-muted">"Gestionando los recursos financieros con precisión para un crecimiento sostenible."</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Botón para unirse al equipo -->
+        <div class="row mt-4">
+            <div class="col-12 text-center">
+                <a href="#" class="btn btn-outline-danger btn-lg px-5 py-3 rounded-pill fw-bold">
+                    <i class="bi bi-person-plus-fill me-2"></i>Únete a Nuestro Equipo
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Estilos específicos para la sección de equipo -->
+    <style>
+        /* Estilos generales */
+        .team-section {
+            background-color: #ffffff;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Divider personalizado */
+        .divider-custom {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .divider-line {
+            width: 40%;
+            height: 2px;
+            opacity: 0.25;
+        }
+
+        .divider-icon {
+            font-size: 1.5rem;
+            margin: 0 1rem;
+            color: #dc3545;
+        }
+
+        /* Estilos para las tarjetas de equipo */
+        .team-card .card {
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .team-card .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1) !important;
+        }
+
+        /* Contenedor de imagen */
+        .team-img-container {
+            overflow: hidden;
+            height: 300px;
+        }
+
+        .team-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .team-card:hover .team-img {
+            transform: scale(1.05);
+        }
+
+        /* Overlay para redes sociales */
+        .team-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(220, 53, 69, 0.9), transparent);
+            overflow: hidden;
+            width: 100%;
+            height: 0;
+            transition: .5s ease;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            padding-bottom: 20px;
+        }
+
+        .team-card:hover .team-overlay {
+            height: 100%;
+        }
+
+        .team-social {
+            transition: all 0.3s ease;
+            opacity: 0;
+        }
+
+        .team-card:hover .team-social {
+            opacity: 1;
+        }
+
+        .team-social a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.25);
+            backdrop-filter: blur(5px);
+            text-align: center;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .team-social a:hover {
+            background: white;
+            color: #dc3545 !important;
+            transform: translateY(-5px);
+        }
+
+        /* Estilo para títulos de miembros */
+        .team-card h4 {
+            position: relative;
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+
+        .team-card h4::after {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 2px;
+            background-color: #dc3545;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            transition: width 0.3s ease;
+        }
+
+        .team-card:hover h4::after {
+            width: 80px;
+        }
+    </style>
+</section>
+<!-- End Team Section -->
+
+</section>
+<!-- Fin Sección Sobre Nosotros -->
 
 @endsection
