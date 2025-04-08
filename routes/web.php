@@ -146,4 +146,15 @@ Route::prefix('admin')->middleware(['auth', 'role:admin,trabajador'])->group(fun
     Route::post('/densimetros/{densimetro}/archivos', [DensimetroArchivoController::class, 'store'])->name('admin.densimetros.archivos.store');
     Route::get('/archivos/{archivo}', [DensimetroArchivoController::class, 'show'])->name('admin.densimetros.archivos.show');
     Route::delete('/archivos/{archivo}', [DensimetroArchivoController::class, 'destroy'])->name('admin.densimetros.archivos.destroy');
+
+    // Gestión del equipo (sección Vistas)
+    Route::group(['middleware' => ['role:admin']], function () {
+        Route::get('/team', [App\Http\Controllers\Admin\TeamController::class, 'index'])->name('admin.team.index');
+        Route::get('/team/create', [App\Http\Controllers\Admin\TeamController::class, 'create'])->name('admin.team.create');
+        Route::post('/team', [App\Http\Controllers\Admin\TeamController::class, 'store'])->name('admin.team.store');
+        Route::get('/team/{teamMember}/edit', [App\Http\Controllers\Admin\TeamController::class, 'edit'])->name('admin.team.edit');
+        Route::put('/team/{teamMember}', [App\Http\Controllers\Admin\TeamController::class, 'update'])->name('admin.team.update');
+        Route::delete('/team/{teamMember}', [App\Http\Controllers\Admin\TeamController::class, 'destroy'])->name('admin.team.destroy');
+        Route::post('/team/update-order', [App\Http\Controllers\Admin\TeamController::class, 'updateOrder'])->name('admin.team.update-order');
+    });
 });

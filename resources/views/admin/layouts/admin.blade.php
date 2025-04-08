@@ -87,6 +87,21 @@
             border-left: 3px solid var(--secondary-color);
         }
 
+        /* Submenu styles */
+        #sidebar ul ul a {
+            padding-left: 30px;
+            background: rgba(0, 0, 0, 0.15);
+            font-size: 0.9rem;
+        }
+
+        #sidebar ul ul a:hover {
+            background: rgba(0, 0, 0, 0.25);
+        }
+
+        #sidebar ul ul li.active > a {
+            background: rgba(0, 0, 0, 0.25);
+        }
+
         /* Navbar */
         .admin-navbar {
             background-color: #fff;
@@ -211,6 +226,18 @@
                     <a href="{{ route('admin.densimetros.index') }}">
                         <i class="bi bi-tools me-2"></i> Densímetros
                     </a>
+                </li>
+                <li class="{{ request()->routeIs('admin.views*') ? 'active' : '' }}">
+                    <a href="#viewsSubmenu" data-bs-toggle="collapse" aria-expanded="{{ request()->routeIs('admin.views*') ? 'true' : 'false' }}" class="dropdown-toggle">
+                        <i class="bi bi-layout-text-window me-2"></i> Vistas
+                    </a>
+                    <ul class="collapse list-unstyled {{ request()->routeIs('admin.views*') ? 'show' : '' }}" id="viewsSubmenu">
+                        <li class="{{ request()->routeIs('admin.team*') ? 'active' : '' }}">
+                            <a href="{{ route('admin.team.index') }}" class="ps-4">
+                                <i class="bi bi-people-fill me-2"></i> Equipo
+                            </a>
+                        </li>
+                    </ul>
                 </li>
                 <li>
                     <a href="#">
