@@ -607,143 +607,133 @@
         </div>
 
         <!-- Tarjetas del equipo -->
-        @if(count($teamMembers) <= 4)
-            <!-- Visualización normal para 4 o menos miembros -->
-            <div class="row g-4 justify-content-center">
-                @forelse($teamMembers as $member)
-                <!-- Miembro {{ $loop->iteration }} -->
-                <div class="col-lg-3 col-md-6 mb-4">
-                    <div class="team-card h-100">
-                        <div class="card border-0 shadow-sm h-100">
-                            <div class="position-relative team-img-container">
-                                @if($member->image)
-                                    <img src="{{ Storage::url($member->image) }}" class="card-img-top team-img" alt="{{ $member->name }}">
-                                @else
-                                    <img src="{{ asset('assets/img/team/team-' . ($loop->iteration % 4 + 1) . '.jpg') }}" class="card-img-top team-img" alt="{{ $member->name }}">
-                                @endif
-                                <div class="team-overlay">
-                                    <div class="team-social">
-                                        @if(is_array($member->social_networks) && count($member->social_networks) > 0)
-                                            @foreach($member->social_networks as $network)
-                                                <a href="{{ $network['url'] }}" class="text-white mx-2" target="_blank">
-                                                    <i class="bi {{ $network['icon'] ?? 'bi-link' }}"></i>
-                                                </a>
-                                            @endforeach
-                                        @else
-                                            <a href="#" class="text-white mx-2"><i class="bi bi-linkedin"></i></a>
-                                            <a href="#" class="text-white mx-2"><i class="bi bi-twitter"></i></a>
-                                            <a href="#" class="text-white mx-2"><i class="bi bi-instagram"></i></a>
-                                        @endif
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card-body text-center">
-                                <h4 class="card-title fw-bold mb-1">{{ $member->name }}</h4>
-                                <p class="text-danger fw-semibold mb-3">{{ $member->position }}</p>
-                                @if($member->short_description)
-                                    <p class="card-text fst-italic text-muted">"{{ $member->short_description }}"</p>
-                                @endif
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                @empty
-                <!-- Miembro por defecto si no hay ninguno en la base de datos -->
-                <div class="col-lg-3 col-md-6 mb-4">
-                    <div class="team-card h-100">
-                        <div class="card border-0 shadow-sm h-100">
-                            <div class="position-relative team-img-container">
-                                <img src="assets/img/team/team-1.jpg" class="card-img-top team-img" alt="Director Ejecutivo">
-                                <div class="team-overlay">
-                                    <div class="team-social">
-                                        <a href="#" class="text-white mx-2"><i class="bi bi-linkedin"></i></a>
-                                        <a href="#" class="text-white mx-2"><i class="bi bi-twitter"></i></a>
-                                        <a href="#" class="text-white mx-2"><i class="bi bi-instagram"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card-body text-center">
-                                <h4 class="card-title fw-bold mb-1">Walter White</h4>
-                                <p class="text-danger fw-semibold mb-3">Director Ejecutivo</p>
-                                <p class="card-text fst-italic text-muted">"Liderando el camino hacia la innovación y excelencia en cada proyecto."</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                @endforelse
-            </div>
-        @else
-            <!-- Carrusel para más de 4 miembros -->
-            <div id="teamCarousel" class="carousel slide" data-bs-ride="carousel">
-                <div class="carousel-inner">
-                    @php
-                        $totalMembers = count($teamMembers);
-                        $totalSlides = ceil($totalMembers / 4);
-                    @endphp
-
-                    @for($i = 0; $i < $totalSlides; $i++)
-                        <div class="carousel-item {{ $i == 0 ? 'active' : '' }}">
-                            <div class="row g-4 justify-content-center">
-                                @foreach($teamMembers->slice($i * 4, 4) as $member)
-                                <div class="col-lg-3 col-md-6 mb-4">
-                                    <div class="team-card h-100">
-                                        <div class="card border-0 shadow-sm h-100">
-                                            <div class="position-relative team-img-container">
-                                                @if($member->image)
-                                                    <img src="{{ Storage::url($member->image) }}" class="card-img-top team-img" alt="{{ $member->name }}">
-                                                @else
-                                                    <img src="{{ asset('assets/img/team/team-' . ($loop->iteration % 4 + 1) . '.jpg') }}" class="card-img-top team-img" alt="{{ $member->name }}">
-                                                @endif
-                                                <div class="team-overlay">
-                                                    <div class="team-social">
-                                                        @if(is_array($member->social_networks) && count($member->social_networks) > 0)
-                                                            @foreach($member->social_networks as $network)
-                                                                <a href="{{ $network['url'] }}" class="text-white mx-2" target="_blank">
-                                                                    <i class="bi {{ $network['icon'] ?? 'bi-link' }}"></i>
-                                                                </a>
-                                                            @endforeach
-                                                        @else
-                                                            <a href="#" class="text-white mx-2"><i class="bi bi-linkedin"></i></a>
-                                                            <a href="#" class="text-white mx-2"><i class="bi bi-twitter"></i></a>
-                                                            <a href="#" class="text-white mx-2"><i class="bi bi-instagram"></i></a>
-                                                        @endif
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="card-body text-center">
-                                                <h4 class="card-title fw-bold mb-1">{{ $member->name }}</h4>
-                                                <p class="text-danger fw-semibold mb-3">{{ $member->position }}</p>
-                                                @if($member->short_description)
-                                                    <p class="card-text fst-italic text-muted">"{{ $member->short_description }}"</p>
-                                                @endif
-                                            </div>
+        @if(count($teamMembers) > 0)
+            @if(count($teamMembers) <= 4)
+                <!-- Visualización normal para 4 o menos miembros -->
+                <div class="row g-4 justify-content-center">
+                    @foreach($teamMembers as $member)
+                    <!-- Miembro {{ $loop->iteration }} -->
+                    <div class="col-lg-3 col-md-6 mb-4">
+                        <div class="team-card h-100">
+                            <div class="card border-0 shadow-sm h-100">
+                                <div class="position-relative team-img-container">
+                                    @if($member->image)
+                                        <img src="{{ Storage::url($member->image) }}" class="card-img-top team-img" alt="{{ $member->name }}">
+                                    @else
+                                        <img src="{{ asset('assets/img/team/team-' . ($loop->iteration % 4 + 1) . '.jpg') }}" class="card-img-top team-img" alt="{{ $member->name }}">
+                                    @endif
+                                    <div class="team-overlay">
+                                        <div class="team-social">
+                                            @if(is_array($member->social_networks) && count($member->social_networks) > 0)
+                                                @foreach($member->social_networks as $network)
+                                                    <a href="{{ $network['url'] }}" class="text-white mx-2" target="_blank">
+                                                        <i class="bi {{ $network['icon'] ?? 'bi-link' }}"></i>
+                                                    </a>
+                                                @endforeach
+                                            @else
+                                                <a href="#" class="text-white mx-2"><i class="bi bi-linkedin"></i></a>
+                                                <a href="#" class="text-white mx-2"><i class="bi bi-x"></i></a>
+                                                <a href="#" class="text-white mx-2"><i class="bi bi-instagram"></i></a>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
-                                @endforeach
+                                <div class="card-body text-center">
+                                    <h4 class="card-title fw-bold mb-1">{{ $member->name }}</h4>
+                                    <p class="text-danger fw-semibold mb-3">{{ $member->position }}</p>
+                                    @if($member->short_description)
+                                        <p class="card-text fst-italic text-muted">"{{ $member->short_description }}"</p>
+                                    @endif
+                                </div>
                             </div>
                         </div>
-                    @endfor
+                    </div>
+                    @endforeach
                 </div>
+            @else
+                <!-- Carrusel para más de 4 miembros -->
+                <div id="teamCarousel" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        @php
+                            $totalMembers = count($teamMembers);
+                            $totalSlides = ceil($totalMembers / 4);
+                        @endphp
 
-                <!-- Controles de navegación del carrusel -->
-                <button class="carousel-control-prev" type="button" data-bs-target="#teamCarousel" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon bg-danger rounded p-3" aria-hidden="true"></span>
-                    <span class="visually-hidden">Anterior</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#teamCarousel" data-bs-slide="next">
-                    <span class="carousel-control-next-icon bg-danger rounded p-3" aria-hidden="true"></span>
-                    <span class="visually-hidden">Siguiente</span>
-                </button>
+                        @for($i = 0; $i < $totalSlides; $i++)
+                            <div class="carousel-item {{ $i == 0 ? 'active' : '' }}">
+                                <div class="row g-4 justify-content-center">
+                                    @foreach($teamMembers->slice($i * 4, 4) as $member)
+                                    <div class="col-lg-3 col-md-6 mb-4">
+                                        <div class="team-card h-100">
+                                            <div class="card border-0 shadow-sm h-100">
+                                                <div class="position-relative team-img-container">
+                                                    @if($member->image)
+                                                        <img src="{{ Storage::url($member->image) }}" class="card-img-top team-img" alt="{{ $member->name }}">
+                                                    @else
+                                                        <img src="{{ asset('assets/img/team/team-' . ($loop->iteration % 4 + 1) . '.jpg') }}" class="card-img-top team-img" alt="{{ $member->name }}">
+                                                    @endif
+                                                    <div class="team-overlay">
+                                                        <div class="team-social">
+                                                            @if(is_array($member->social_networks) && count($member->social_networks) > 0)
+                                                                @foreach($member->social_networks as $network)
+                                                                    <a href="{{ $network['url'] }}" class="text-white mx-2" target="_blank">
+                                                                        <i class="bi {{ $network['icon'] ?? 'bi-link' }}"></i>
+                                                                    </a>
+                                                                @endforeach
+                                                            @else
+                                                                <a href="#" class="text-white mx-2"><i class="bi bi-linkedin"></i></a>
+                                                                <a href="#" class="text-white mx-2"><i class="bi bi-x"></i></a>
+                                                                <a href="#" class="text-white mx-2"><i class="bi bi-instagram"></i></a>
+                                                            @endif
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="card-body text-center">
+                                                    <h4 class="card-title fw-bold mb-1">{{ $member->name }}</h4>
+                                                    <p class="text-danger fw-semibold mb-3">{{ $member->position }}</p>
+                                                    @if($member->short_description)
+                                                        <p class="card-text fst-italic text-muted">"{{ $member->short_description }}"</p>
+                                                    @endif
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @endforeach
+                                </div>
+                            </div>
+                        @endfor
+                    </div>
 
-                <!-- Indicadores del carrusel -->
-                <div class="carousel-indicators position-relative mt-4">
-                    @for($i = 0; $i < $totalSlides; $i++)
-                        <button type="button" data-bs-target="#teamCarousel" data-bs-slide-to="{{ $i }}"
-                                class="{{ $i == 0 ? 'active' : '' }}"
-                                aria-current="{{ $i == 0 ? 'true' : 'false' }}"
-                                aria-label="Slide {{ $i + 1 }}"></button>
-                    @endfor
+                    <!-- Controles de navegación del carrusel -->
+                    <button class="carousel-control-prev" type="button" data-bs-target="#teamCarousel" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon bg-danger rounded p-3" aria-hidden="true"></span>
+                        <span class="visually-hidden">Anterior</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#teamCarousel" data-bs-slide="next">
+                        <span class="carousel-control-next-icon bg-danger rounded p-3" aria-hidden="true"></span>
+                        <span class="visually-hidden">Siguiente</span>
+                    </button>
+
+                    <!-- Indicadores del carrusel -->
+                    <div class="carousel-indicators position-relative mt-4">
+                        @for($i = 0; $i < $totalSlides; $i++)
+                            <button type="button" data-bs-target="#teamCarousel" data-bs-slide-to="{{ $i }}"
+                                    class="{{ $i == 0 ? 'active' : '' }}"
+                                    aria-current="{{ $i == 0 ? 'true' : 'false' }}"
+                                    aria-label="Slide {{ $i + 1 }}"></button>
+                        @endfor
+                    </div>
+                </div>
+            @endif
+        @else
+            <!-- Mensaje cuando no hay miembros en el equipo -->
+            <div class="row">
+                <div class="col-12 text-center py-5">
+                    <div class="empty-team-container">
+                        <i class="bi bi-people display-1 text-muted mb-3"></i>
+                        <h4 class="text-muted">Próximamente conocerás a nuestro equipo</h4>
+                        <p class="text-muted mb-4">Estamos trabajando en presentar a los talentosos profesionales detrás de INDARCA</p>
+                    </div>
                 </div>
             </div>
         @endif
