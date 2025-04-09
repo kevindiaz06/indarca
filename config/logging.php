@@ -54,7 +54,7 @@ return [
     'channels' => [
         'stack' => [
             'driver' => 'stack',
-            'channels' => ['single', 'daily', 'slack'],
+            'channels' => ['single', 'daily', 'slack', 'performance'],
             'ignore_exceptions' => false,
         ],
 
@@ -138,6 +138,14 @@ return [
             'path' => storage_path('logs/error.log'),
             'level' => 'error',
             'days' => 14,
+        ],
+
+        'performance' => [
+            'driver' => 'daily',
+            'path' => storage_path('logs/performance.log'),
+            'level' => env('LOG_LEVEL', 'debug'),
+            'days' => 14,
+            'replace_placeholders' => true,
         ],
     ],
 
