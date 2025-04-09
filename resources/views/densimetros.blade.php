@@ -237,7 +237,7 @@
 <div class="container-fluid py-5 text-white text-center" style="background-image: url('https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'); background-size: cover; background-position: center; position: relative;">
     <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.5) 100%);"></div>
     <div class="container position-relative py-5">
-        <h1 class="display-3 fw-bold mb-4">DENSÍMETROS NUCLEARES</h1>
+        <h1 class="display-3 fw-bold mb-4 text-white">DENSÍMETROS NUCLEARES</h1>
         <p class="lead fs-4">Tecnología avanzada para mediciones precisas en ingeniería civil</p>
         <div class="divider-custom my-4">
             <div class="divider-line bg-warning"></div>
