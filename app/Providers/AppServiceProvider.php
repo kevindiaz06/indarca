@@ -5,6 +5,8 @@ namespace App\Providers;
 use App\Models\User;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -35,5 +37,32 @@ class AppServiceProvider extends ServiceProvider
 
             $view->with(compact('totalClientes', 'totalTrabajadores'));
         });
+
+        if (config('app.debug')) {
+            DB::listen(function ($query) {
+                Log::channel('performance')->info(
+                    'Query executed',
+                    [
+                        'sql' => $query->sql,
+                        'bindings' => $query->bindings,
+                        'time' => $query->time,
+                    ]
+                );
+            });
+        }
+
+        // Monitoreo de memoria
+        if (config('app.debug')) {
+            register_shutdown_function(function () {
+                $memoryUsage = memory_get_peak_usage(true);
+                Log::channel('performance')->info(
+                    'Memory Usage',
+                    [
+                        'peak_memory' => $memoryUsage,
+                        'peak_memory_mb' => round($memoryUsage / 1024 / 1024, 2),
+                    ]
+                );
+            });
+        }
     }
 }

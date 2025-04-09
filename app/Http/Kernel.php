@@ -22,6 +22,7 @@ class Kernel extends HttpKernel
         \App\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
         \App\Http\Middleware\XssProtection::class,
+        \App\Http\Middleware\RateLimit::class,
     ];
 
     /**
@@ -41,7 +42,7 @@ class Kernel extends HttpKernel
         ],
 
         'api' => [
-            // \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
+            \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
             \Illuminate\Routing\Middleware\ThrottleRequests::class.':api',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
@@ -70,5 +71,6 @@ class Kernel extends HttpKernel
         'role' => \App\Http\Middleware\CheckRole::class,
         'xss' => \App\Http\Middleware\XssProtection::class,
         'jwt.verify' => \App\Http\Middleware\ValidateJwtToken::class,
+        'permission' => \App\Http\Middleware\CheckPermission::class,
     ];
 }
