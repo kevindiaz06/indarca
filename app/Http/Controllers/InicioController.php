@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Empresa;
 use Illuminate\Http\Request;
 
 class InicioController extends Controller
@@ -15,6 +16,11 @@ class InicioController extends Controller
         // Obtener conteo de trabajadores (suma de 'admin' y 'trabajador')
         $totalTrabajadores = User::whereIn('role', ['admin', 'trabajador'])->count();
 
-        return view('inicio', compact('totalClientes', 'totalTrabajadores'));
+        // Obtener todas las empresas ordenadas primero por destacado y luego por fecha de creación
+        $empresas = Empresa::orderBy('destacado', 'desc')
+                          ->orderBy('created_at', 'desc')
+                          ->get();
+
+        return view('inicio', compact('totalClientes', 'totalTrabajadores', 'empresas'));
     }
 }

@@ -25,5 +25,8 @@ class Empresa extends Model
         'nombre',
         'direccion',
         'telefono',
+        'logo',
+        'tipo_cliente',
+        'destacado',
     ];
 }

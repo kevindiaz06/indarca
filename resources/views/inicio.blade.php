@@ -442,125 +442,191 @@
                     <div class="row mb-5">
                         <div class="col-lg-8 mx-auto text-center">
                             <h3 class="fw-bold mb-4">Alianzas Estratégicas</h3>
-
-                    </div>
-                </div>
-
-                    <!-- Grid de logos de clientes -->
-                    <div class="row row-cols-2 row-cols-md-4 row-cols-lg-4 g-4 position-relative">
-                        <!-- Cliente 1 -->
-                        <div class="col" data-aos="fade-up" data-aos-delay="100">
-                            <div class="card h-100 border-0 rounded-4 client-card shadow-sm">
-                                <div class="card-body d-flex align-items-center justify-content-center p-4">
-                                    <img src="assets/img/clients/client-1.png" class="img-fluid client-img" alt="Cliente 1">
-                                </div>
-                                <div class="card-overlay">
-                                    <div class="overlay-content">
-                                        <h5 class="fw-bold">Cliente Destacado</h5>
-
-                                    </div>
-                                </div>
-                            </div>
-            </div>
-
-                        <!-- Cliente 2 -->
-                        <div class="col" data-aos="fade-up" data-aos-delay="150">
-                            <div class="card h-100 border-0 rounded-4 client-card shadow-sm">
-                                <div class="card-body d-flex align-items-center justify-content-center p-4">
-                                    <img src="assets/img/clients/client-2.png" class="img-fluid client-img" alt="Cliente 2">
-                                </div>
-                                <div class="card-overlay">
-                                    <div class="overlay-content">
-                                        <h5 class="fw-bold">Cliente Premium</h5>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Cliente 3 -->
-                        <div class="col" data-aos="fade-up" data-aos-delay="200">
-                            <div class="card h-100 border-0 rounded-4 client-card shadow-sm">
-                                <div class="card-body d-flex align-items-center justify-content-center p-4">
-                                    <img src="assets/img/clients/client-3.png" class="img-fluid client-img" alt="Cliente 3">
-                                </div>
-                                <div class="card-overlay">
-                                    <div class="overlay-content">
-                                        <h5 class="fw-bold">Alianza Internacional</h5>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Cliente 4 -->
-                        <div class="col" data-aos="fade-up" data-aos-delay="250">
-                            <div class="card h-100 border-0 rounded-4 client-card shadow-sm">
-                                <div class="card-body d-flex align-items-center justify-content-center p-4">
-                                    <img src="assets/img/clients/client-4.png" class="img-fluid client-img" alt="Cliente 4">
-                                </div>
-                                <div class="card-overlay">
-                                    <div class="overlay-content">
-                                        <h5 class="fw-bold">Construcción Avanzada</h5>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Cliente 5 -->
-                        <div class="col" data-aos="fade-up" data-aos-delay="300">
-                            <div class="card h-100 border-0 rounded-4 client-card shadow-sm">
-                                <div class="card-body d-flex align-items-center justify-content-center p-4">
-                                    <img src="assets\img\clients\humboldtmfg.webp" class="img-fluid client-img" alt="humboldtmfg">
-                                </div>
-                                <div class="card-overlay">
-                                    <div class="overlay-content">
-                                        <h5 class="fw-bold">Tecnología Constructiva</h5>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Cliente 6 -->
-                        <div class="col" data-aos="fade-up" data-aos-delay="350">
-                            <div class="card h-100 border-0 rounded-4 client-card shadow-sm">
-                                <div class="card-body d-flex align-items-center justify-content-center p-4">
-                                    <img src="assets\img\clients\humboldtscientific.svg" class="img-fluid client-img" alt="humboldtscientific">
-                                </div>
-                                <div class="card-overlay">
-                                    <div class="overlay-content">
-                                        <h5 class="fw-bold">Diseño Arquitectónico</h5>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Cliente 7 -->
-                        <div class="col" data-aos="fade-up" data-aos-delay="400">
-                            <div class="card h-100 border-0 rounded-4 client-card shadow-sm">
-                                <div class="card-body d-flex align-items-center justify-content-center p-4">
-                                    <img src="assets\img\clients\instrotek.avif" class="img-fluid client-img" alt="instrotek">
-                                </div>
-                                <div class="card-overlay">
-                                    <div class="overlay-content">
-                                        <h5 class="fw-bold">Ingeniería Civil</h5>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Cliente 8 -->
-                        <div class="col" data-aos="fade-up" data-aos-delay="450">
-                            <div class="card h-100 border-0 rounded-4 client-card shadow-sm">
-                                <div class="card-body d-flex align-items-center justify-content-center p-4">
-                                    <img src="assets\img\clients\troxlerlabs.png" class="img-fluid client-img" alt="Troxler">
-                                </div>
-                                <div class="card-overlay">
-                                    <div class="overlay-content">
-                                        <h5 class="fw-bold">Materiales Avanzados</h5>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                     </div>
+
+                    @if(isset($empresas) && $empresas->count() > 0)
+                        <!-- Carrusel de empresas -->
+                        <div id="empresasCarrusel" class="carousel slide" data-bs-ride="false" data-bs-touch="true">
+                            <div class="carousel-inner">
+                                @php
+                                    $totalEmpresas = $empresas->count();
+                                    $totalPaginas = ceil($totalEmpresas / 8);
+                                @endphp
+
+                                @for($pagina = 0; $pagina < $totalPaginas; $pagina++)
+                                    <div class="carousel-item {{ $pagina == 0 ? 'active' : '' }}">
+                                        <div class="row row-cols-2 row-cols-md-4 row-cols-lg-4 g-4 position-relative">
+                                            @foreach($empresas->slice($pagina * 8, 8) as $empresa)
+                                                <div class="col" data-aos="fade-up">
+                                                    <div class="card h-100 border-0 rounded-4 client-card shadow-sm {{ $empresa->destacado ? 'border border-danger border-2' : '' }}">
+                                                        <div class="card-body d-flex align-items-center justify-content-center p-4">
+                                                            @if($empresa->logo)
+                                                                <img src="{{ asset('storage/' . $empresa->logo) }}" class="img-fluid client-img" alt="{{ $empresa->nombre }}">
+                                                            @else
+                                                                <div class="text-center">
+                                                                    <div class="display-4 text-muted mb-2">
+                                                                        <i class="bi bi-building"></i>
+                                                                    </div>
+                                                                    <h6 class="mb-0 fw-bold">{{ $empresa->nombre }}</h6>
+                                                                </div>
+                                                            @endif
+                                                        </div>
+                                                        <div class="card-overlay">
+                                                            <div class="overlay-content">
+                                                                <span class="badge bg-dark rounded-pill px-3 py-2 mb-2">
+                                                                    {{ $empresa->tipo_cliente }}
+                                                                </span>
+                                                                <h5 class="fw-bold">{{ $empresa->nombre }}</h5>
+                                                                @if($empresa->destacado)
+                                                                    <div class="mt-2">
+                                                                        <span class="badge bg-warning text-dark rounded-pill px-3 py-2">
+                                                                            <i class="bi bi-star-fill me-1"></i> Destacado
+                                                                        </span>
+                                                                    </div>
+                                                                @endif
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                @endfor
+                            </div>
+
+                            @if($totalPaginas > 1)
+                                <!-- Controles de navegación -->
+                                <div class="position-relative">
+                                    <button class="carousel-control-prev" type="button" data-bs-target="#empresasCarrusel" data-bs-slide="prev">
+                                        <span class="carousel-control-prev-icon bg-danger rounded-circle p-3" aria-hidden="true"></span>
+                                        <span class="visually-hidden">Anterior</span>
+                                    </button>
+                                    <button class="carousel-control-next" type="button" data-bs-target="#empresasCarrusel" data-bs-slide="next">
+                                        <span class="carousel-control-next-icon bg-danger rounded-circle p-3" aria-hidden="true"></span>
+                                        <span class="visually-hidden">Siguiente</span>
+                                    </button>
+                                </div>
+
+                                <!-- Indicadores de página con texto informativo -->
+                                <div class="text-center mt-4">
+                                    <div class="carousel-indicators">
+                                        @for($i = 0; $i < $totalPaginas; $i++)
+                                            <button type="button" data-bs-target="#empresasCarrusel" data-bs-slide-to="{{ $i }}" class="{{ $i == 0 ? 'active' : '' }}" aria-current="{{ $i == 0 ? 'true' : 'false' }}" aria-label="Página {{ $i + 1 }}"></button>
+                                        @endfor
+                                    </div>
+                                    <p class="text-muted small mt-3">Desliza para ver más empresas (<span id="paginaActual">1</span>/<span id="totalPaginas">{{ $totalPaginas }}</span>)</p>
+                                </div>
+
+                                <!-- Script para actualizar el contador de páginas -->
+                                <script>
+                                    document.addEventListener('DOMContentLoaded', function() {
+                                        const carousel = document.getElementById('empresasCarrusel');
+                                        const paginaActual = document.getElementById('paginaActual');
+
+                                        carousel.addEventListener('slide.bs.carousel', function(event) {
+                                            paginaActual.textContent = event.to + 1;
+                                        });
+                                    });
+                                </script>
+                            @endif
+                        </div>
+                    @else
+                        <!-- Grid de logos de clientes - placeholders -->
+                        <div class="row row-cols-2 row-cols-md-4 row-cols-lg-4 g-4 position-relative">
+                            <!-- Cliente 1 (placeholder) -->
+                            <div class="col" data-aos="fade-up" data-aos-delay="100">
+                                <div class="card h-100 border-0 rounded-4 client-card shadow-sm">
+                                    <div class="card-body d-flex align-items-center justify-content-center p-4">
+                                        <img src="assets/img/clients/client-1.png" class="img-fluid client-img" alt="Cliente 1">
+                                    </div>
+                                    <div class="card-overlay">
+                                        <div class="overlay-content">
+                                            <span class="badge bg-dark rounded-pill px-3 py-2 mb-2">
+                                                Cliente Habitual
+                                            </span>
+                                            <h5 class="fw-bold">Cliente Destacado</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Cliente 2 (placeholder) -->
+                            <div class="col" data-aos="fade-up" data-aos-delay="150">
+                                <div class="card h-100 border-0 rounded-4 client-card shadow-sm">
+                                    <div class="card-body d-flex align-items-center justify-content-center p-4">
+                                        <img src="assets/img/clients/client-2.png" class="img-fluid client-img" alt="Cliente 2">
+                                    </div>
+                                    <div class="card-overlay">
+                                        <div class="overlay-content">
+                                            <span class="badge bg-dark rounded-pill px-3 py-2 mb-2">
+                                                Patrocinador
+                                            </span>
+                                            <h5 class="fw-bold">Cliente Premium</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Cliente 3 (placeholder) -->
+                            <div class="col" data-aos="fade-up" data-aos-delay="200">
+                                <div class="card h-100 border-0 rounded-4 client-card shadow-sm">
+                                    <div class="card-body d-flex align-items-center justify-content-center p-4">
+                                        <img src="assets/img/clients/client-3.png" class="img-fluid client-img" alt="Cliente 3">
+                                    </div>
+                                    <div class="card-overlay">
+                                        <div class="overlay-content">
+                                            <span class="badge bg-dark rounded-pill px-3 py-2 mb-2">
+                                                Colaborador
+                                            </span>
+                                            <h5 class="fw-bold">Alianza Internacional</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Cliente 4 (placeholder) -->
+                            <div class="col" data-aos="fade-up" data-aos-delay="250">
+                                <div class="card h-100 border-0 rounded-4 client-card shadow-sm">
+                                    <div class="card-body d-flex align-items-center justify-content-center p-4">
+                                        <img src="assets/img/clients/client-4.png" class="img-fluid client-img" alt="Cliente 4">
+                                    </div>
+                                    <div class="card-overlay">
+                                        <div class="overlay-content">
+                                            <span class="badge bg-dark rounded-pill px-3 py-2 mb-2">
+                                                Cliente Habitual
+                                            </span>
+                                            <h5 class="fw-bold">Construcción Avanzada</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Clientes 5-8 (placeholders) -->
+                            @for($i = 0; $i < 4; $i++)
+                            <div class="col" data-aos="fade-up" data-aos-delay="{{ 300 + $i*50 }}">
+                                <div class="card h-100 border-0 rounded-4 client-card shadow-sm">
+                                    <div class="card-body d-flex align-items-center justify-content-center p-4">
+                                        <div class="text-center">
+                                            <div class="display-4 text-muted mb-2">
+                                                <i class="bi bi-building"></i>
+                                            </div>
+                                            <h6 class="mb-0 fw-bold">Cliente {{ $i + 5 }}</h6>
+                                        </div>
+                                    </div>
+                                    <div class="card-overlay">
+                                        <div class="overlay-content">
+                                            <span class="badge bg-dark rounded-pill px-3 py-2 mb-2">
+                                                Cliente Habitual
+                                            </span>
+                                            <h5 class="fw-bold">Cliente {{ $i + 5 }}</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            @endfor
+                        </div>
+                    @endif
 
                     <!-- Call to action -->
                     <div class="text-center mt-5 pt-3">
@@ -613,6 +679,53 @@
 
                 .opacity-10 {
                     opacity: 0.1;
+                }
+
+                /* Estilos personalizados para el carrusel */
+                #empresasCarrusel .carousel-control-prev,
+                #empresasCarrusel .carousel-control-next {
+                    width: 40px;
+                    height: 40px;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    opacity: 0.9;
+                }
+
+                #empresasCarrusel .carousel-control-prev {
+                    left: -20px;
+                }
+
+                #empresasCarrusel .carousel-control-next {
+                    right: -20px;
+                }
+
+                #empresasCarrusel .carousel-control-prev-icon,
+                #empresasCarrusel .carousel-control-next-icon {
+                    width: 24px;
+                    height: 24px;
+                    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+                }
+
+                #empresasCarrusel .carousel-indicators {
+                    bottom: -40px;
+                    margin-bottom: 0;
+                }
+
+                #empresasCarrusel .carousel-indicators button {
+                    width: 10px;
+                    height: 10px;
+                    border-radius: 50%;
+                    background-color: #D90000;
+                    opacity: 0.3;
+                    margin: 0 4px;
+                }
+
+                #empresasCarrusel .carousel-indicators button.active {
+                    opacity: 1;
+                }
+
+                #empresasCarrusel .carousel-item {
+                    padding-bottom: 20px;
                 }
             </style>
         </section><!-- /Clients Section -->

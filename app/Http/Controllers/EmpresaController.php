@@ -61,13 +61,30 @@ class EmpresaController extends Controller
             'nombre' => 'required|string|max:255',
             'direccion' => 'required|string|max:255',
             'telefono' => 'required|string|max:20',
+            'logo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'tipo_cliente' => 'required|in:Cliente Habitual,Colaborador,Patrocinador',
+            'destacado' => 'nullable|boolean',
         ]);
 
-        Empresa::create([
+        $data = [
             'nombre' => $request->nombre,
             'direccion' => $request->direccion,
             'telefono' => $request->telefono,
-        ]);
+            'tipo_cliente' => $request->tipo_cliente,
+            'destacado' => $request->has('destacado'),
+        ];
+
+        // Manejo de la imagen
+        if ($request->hasFile('logo')) {
+            $archivo = $request->file('logo');
+            $nombreArchivo = time() . '_' . $archivo->getClientOriginalName();
+
+            // Guardar en storage/app/public/logos
+            $path = $archivo->storeAs('logos', $nombreArchivo, 'public');
+            $data['logo'] = $path;
+        }
+
+        Empresa::create($data);
 
         // Verificar si la solicitud viene del panel de administración
         if (request()->is('admin*')) {
@@ -130,11 +147,32 @@ class EmpresaController extends Controller
             'nombre' => 'required|string|max:255',
             'direccion' => 'required|string|max:255',
             'telefono' => 'required|string|max:20',
+            'logo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'tipo_cliente' => 'required|in:Cliente Habitual,Colaborador,Patrocinador',
+            'destacado' => 'nullable|boolean',
         ]);
 
         $empresa->nombre = $request->nombre;
         $empresa->direccion = $request->direccion;
         $empresa->telefono = $request->telefono;
+        $empresa->tipo_cliente = $request->tipo_cliente;
+        $empresa->destacado = $request->has('destacado');
+
+        // Manejo de la imagen
+        if ($request->hasFile('logo')) {
+            // Eliminar imagen anterior si existe
+            if ($empresa->logo && \Storage::disk('public')->exists($empresa->logo)) {
+                \Storage::disk('public')->delete($empresa->logo);
+            }
+
+            $archivo = $request->file('logo');
+            $nombreArchivo = time() . '_' . $archivo->getClientOriginalName();
+
+            // Guardar en storage/app/public/logos
+            $path = $archivo->storeAs('logos', $nombreArchivo, 'public');
+            $empresa->logo = $path;
+        }
+
         $empresa->save();
 
         // Verificar si la solicitud viene del panel de administración

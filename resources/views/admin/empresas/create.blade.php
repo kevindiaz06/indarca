@@ -31,7 +31,7 @@
                     <h6 class="m-0 font-weight-bold">Información de la Empresa</h6>
                 </div>
                 <div class="card-body p-4">
-                    <form method="POST" action="{{ route('admin.empresas.store') }}">
+                    <form method="POST" action="{{ route('admin.empresas.store') }}" enctype="multipart/form-data">
                         @csrf
 
                         <div class="mb-4">
@@ -67,6 +67,50 @@
                                 <input id="telefono" type="text" class="form-control @error('telefono') is-invalid @enderror" name="telefono" value="{{ old('telefono') }}" required placeholder="Número de teléfono">
                             </div>
                             @error('telefono')
+                                <div class="invalid-feedback d-block">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="logo" class="form-label fw-medium">{{ __('Logo de la empresa') }}</label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-light"><i class="bi bi-image"></i></span>
+                                <input id="logo" type="file" class="form-control @error('logo') is-invalid @enderror" name="logo" accept="image/*">
+                            </div>
+                            <small class="text-muted">Formatos permitidos: JPG, PNG, GIF, SVG. Tamaño máximo: 2MB.</small>
+                            @error('logo')
+                                <div class="invalid-feedback d-block">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="tipo_cliente" class="form-label fw-medium">{{ __('Tipo de Cliente') }} <span class="text-danger">*</span></label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-light"><i class="bi bi-tag"></i></span>
+                                <select id="tipo_cliente" class="form-select @error('tipo_cliente') is-invalid @enderror" name="tipo_cliente" required>
+                                    <option value="Cliente Habitual" {{ old('tipo_cliente') == 'Cliente Habitual' ? 'selected' : '' }}>Cliente Habitual</option>
+                                    <option value="Colaborador" {{ old('tipo_cliente') == 'Colaborador' ? 'selected' : '' }}>Colaborador</option>
+                                    <option value="Patrocinador" {{ old('tipo_cliente') == 'Patrocinador' ? 'selected' : '' }}>Patrocinador</option>
+                                </select>
+                            </div>
+                            @error('tipo_cliente')
+                                <div class="invalid-feedback d-block">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+
+                        <div class="mb-4">
+                            <div class="form-check form-switch">
+                                <input id="destacado" type="checkbox" class="form-check-input @error('destacado') is-invalid @enderror" name="destacado" {{ old('destacado') ? 'checked' : '' }}>
+                                <label for="destacado" class="form-check-label fw-medium">{{ __('Mostrar como destacado') }}</label>
+                            </div>
+                            <small class="text-muted">Las empresas destacadas aparecerán primero en la página principal.</small>
+                            @error('destacado')
                                 <div class="invalid-feedback d-block">
                                     {{ $message }}
                                 </div>
