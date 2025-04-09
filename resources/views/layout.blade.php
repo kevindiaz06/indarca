@@ -141,8 +141,8 @@
                         <ul>
                             <li><a href="{{ route('sobreNosotros') }}">Historia</a></li>
                             <li><a href="{{ route('sobreNosotros') }}#MisionVisionValores">Misión, visión y valores</a></li>
-                            <li><a href="{{ route('sobreNosotros') }}#team">Equipo</a></li>
                             <li><a href="{{ route('sobreNosotros') }}#reconocimientos">Reconocimientos y certificaciones</a></li>
+                            <li><a href="{{ route('sobreNosotros') }}#team">Equipo</a></li>
                         </ul>
                     </li>
                     <li class="dropdown"><a href="{{ route('densimetros') }}" class="{{ request()->routeIs('densimetros') ? 'active' : '' }}"><span>Densímetros Nucleares</span> <i
