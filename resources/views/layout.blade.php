@@ -16,9 +16,7 @@
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com" rel="preconnect">
     <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
     <!-- Vendor CSS Files -->
     <link href="{{ asset('assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
@@ -122,21 +120,7 @@
 </head>
 <header id="header" class="header sticky-top">
 
-    <div class="topbar d-flex align-items-center">
-        <div class="container d-flex justify-content-center justify-content-md-between">
-            <div class="contact-info d-flex align-items-center">
-                <i class="bi bi-envelope d-flex align-items-center"><a
-                        href="mailto:contact@example.com">contacto@indarca.com</a></i>
-                <i class="bi bi-phone d-flex align-items-center ms-4"><span>+1809 596 0333</span></i>
-            </div>
-            <div class="social-links d-none d-md-flex align-items-center">
-                <a href="https://x.com/indarca_srl?s=11" class="twitter"><i class="bi bi-twitter-x"></i></a>
-                <a href="https://www.facebook.com/share/1EJq41gUNs/?mibextid=wwXIfr" class="facebook"><i class="bi bi-facebook"></i></a>
-                <a href="https://www.instagram.com/indarca.srl?igsh=MXZzN2l3cTBxaG1jOA==" class="instagram"><i class="bi bi-instagram"></i></a>
-                <a href="https://www.linkedin.com/company/indarca-srl/" class="linkedin"><i class="bi bi-linkedin"></i></a>
-            </div>
-        </div>
-    </div><!-- End Top Bar -->
+
 
     <div class="branding d-flex align-items-cente">
 
