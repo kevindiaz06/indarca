@@ -361,16 +361,16 @@
 
                         <h5 class="text-white mb-3">Síguenos</h5>
                         <div class="social-links d-flex flex-wrap gap-2 mb-4">
-                            <a href="https://x.com/indarca_srl?s=11" class="social-icon bg-dark rounded-circle d-flex align-items-center justify-content-center hover-shadow transition-all icon-animate" style="width: 40px; height: 40px;">
+                            <a href="https://x.com/indarca_srl?s=11" class="social-icon bg-dark rounded-circle d-flex align-items-center justify-content-center hover-shadow transition-all icon-animate" style="width: 40px; height: 40px;" target="_blank">
                                 <i class="bi bi-twitter-x text-danger"></i>
                             </a>
-                            <a href="https://www.instagram.com/indarca.srl?igsh=MXZzN2l3cTBxaG1jOA==" class="social-icon bg-dark rounded-circle d-flex align-items-center justify-content-center hover-shadow transition-all icon-animate" style="width: 40px; height: 40px;">
+                            <a href="https://www.instagram.com/indarca.srl?igsh=MXZzN2l3cTBxaG1jOA==" class="social-icon bg-dark rounded-circle d-flex align-items-center justify-content-center hover-shadow transition-all icon-animate" style="width: 40px; height: 40px;" target="_blank">
                                 <i class="bi bi-instagram text-danger"></i>
                             </a>
-                            <a href="https://www.linkedin.com/company/indarca-srl/" class="social-icon bg-dark rounded-circle d-flex align-items-center justify-content-center hover-shadow transition-all icon-animate" style="width: 40px; height: 40px;">
+                            <a href="https://www.linkedin.com/company/indarca-srl" class="social-icon bg-dark rounded-circle d-flex align-items-center justify-content-center hover-shadow transition-all icon-animate" style="width: 40px; height: 40px; z-index: 10; position: relative;" target="_blank" rel="noopener">
                                 <i class="bi bi-linkedin text-danger"></i>
                             </a>
-                            <a href="https://www.facebook.com/share/1EJq41gUNs/?mibextid=wwXIfr" class="social-icon bg-dark rounded-circle d-flex align-items-center justify-content-center hover-shadow transition-all icon-animate" style="width: 40px; height: 40px;">
+                            <a href="https://www.facebook.com/profile.php?id=100069160367684" class="social-icon bg-dark rounded-circle d-flex align-items-center justify-content-center hover-shadow transition-all icon-animate" style="width: 40px; height: 40px; z-index: 10; position: relative;" target="_blank" rel="noopener">
                                 <i class="bi bi-facebook text-danger"></i>
                             </a>
                         </div>

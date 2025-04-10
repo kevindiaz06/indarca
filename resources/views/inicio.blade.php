@@ -410,7 +410,7 @@
                         <div class="stats-item">
                             <span data-purecounter-start="0" data-purecounter-end="{{ $totalTrabajadores ?? 0 }}" data-purecounter-duration="5"
                                 class="purecounter"></span>
-                            <p>Trabajadores</p>
+                            <p>Empleados</p>
                         </div>
                     </div><!-- End Stats Item -->
 
