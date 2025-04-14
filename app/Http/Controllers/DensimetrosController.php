@@ -4,10 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class DensimetrosController extends Controller
+class DensimetrosController extends BaseViewController
 {
-    public function index()
+    public function __construct()
     {
-        return view('densimetros');
+        parent::__construct('densimetros');
     }
 }

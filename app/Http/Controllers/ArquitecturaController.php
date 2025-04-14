@@ -4,10 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class ArquitecturaController extends Controller
+class ArquitecturaController extends BaseViewController
 {
-    public function index()
+    public function __construct()
     {
-        return view('arquitectura');
+        parent::__construct('arquitectura');
     }
 }

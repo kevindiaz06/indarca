@@ -4,10 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class PoliticasPrivacidadController extends Controller
+class PoliticasPrivacidadController extends BaseViewController
 {
-    public function index()
+    public function __construct()
     {
-        return view('politicas-privacidad');
+        parent::__construct('politicas-privacidad');
     }
 }

@@ -227,6 +227,7 @@
                         <i class="bi bi-tools me-2"></i> Densímetros
                     </a>
                 </li>
+                @if(Auth::user()->role === 'admin')
                 <li class="{{ request()->routeIs('admin.views*') ? 'active' : '' }}">
                     <a href="#viewsSubmenu" data-bs-toggle="collapse" aria-expanded="{{ request()->routeIs('admin.views*') ? 'true' : 'false' }}" class="dropdown-toggle">
                         <i class="bi bi-layout-text-window me-2"></i> Vistas
@@ -239,6 +240,7 @@
                         </li>
                     </ul>
                 </li>
+                @endif
                 <li>
                     <a href="#">
                         <i class="bi bi-gear me-2"></i> Configuración

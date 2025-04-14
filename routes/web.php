@@ -6,7 +6,6 @@ use App\Http\Controllers\ArquitecturaController;
 use App\Http\Controllers\ContactoController;
 use App\Http\Controllers\DensimetrosController;
 use App\Http\Controllers\InicioController;
-use App\Http\Controllers\NoticiasController;
 use App\Http\Controllers\SobreNosotrosController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\EstadoController;
@@ -59,7 +58,6 @@ Route::get('/', [InicioController::class, 'index'])->name('inicio');
 Route::get('/arquitectura', [ArquitecturaController::class, 'index'])->name('arquitectura');
 Route::get('/contacto', [ContactoController::class, 'index'])->name('contacto');
 Route::get('/densimetros', [DensimetrosController::class, 'index'])->name('densimetros');
-Route::get('/noticias', [NoticiasController::class, 'index'])->name('noticias');
 Route::get('/sobre-nosotros', [SobreNosotrosController::class, 'index'])->name('sobreNosotros');
 Route::get('/politicas-privacidad', [PoliticasPrivacidadController::class, 'index'])->name('politicas.privacidad');
 

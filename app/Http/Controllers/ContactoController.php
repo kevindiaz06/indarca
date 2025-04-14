@@ -4,10 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class ContactoController extends Controller
+class ContactoController extends BaseViewController
 {
-    public function index()
+    public function __construct()
     {
-        return view('contacto');
+        parent::__construct('contacto');
     }
 }
