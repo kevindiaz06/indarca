@@ -66,6 +66,9 @@ Route::get('/politicas-privacidad', [PoliticasPrivacidadController::class, 'inde
 // Rutas para consulta de estado de densímetros - Vistas deben extender de 'layout.blade.php'
 Route::get('/estado', [EstadoController::class, 'index'])->name('estado');
 Route::post('/estado/consultar', [EstadoController::class, 'consultar'])->name('estado.consultar');
+Route::post('/estado/calibracion', [EstadoController::class, 'consultarCalibracion'])->name('calibracion.consultar');
+Route::get('/estado/pdf/{referencia}', [EstadoController::class, 'generarPDF'])->name('estado.pdf');
+Route::get('/calibracion/pdf/{numero_serie}/{marca}/{modelo}', [EstadoController::class, 'generarCalibracionPDF'])->name('calibracion.pdf');
 
 // Rutas para formularios - Formularios del sitio público
 Route::post('/contacto/enviar', [ContactoFormularioController::class, 'enviar'])->name('contacto.enviar');

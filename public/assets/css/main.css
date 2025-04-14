@@ -22,9 +22,22 @@
   --background-color: #ffffff; /* Background color for the entire website, including individual sections */
   --default-color: #444444; /* Default color used for the majority of the text content across the entire website */
   --heading-color: #222222; /* Color for headings, subheadings and title throughout the website */
-  --accent-color: #cc0000; /* Accent color that represents your brand on the website. It's used for buttons, links, and other elements that need to stand out */
+  --accent-color: #F40006; /* Accent color that represents your brand on the website. It's used for buttons, links, and other elements that need to stand out */
   --surface-color: #ffffff; /* The surface color is used as a background of boxed elements within sections, such as cards, icon boxes, or other elements that require a visual separation from the global background. */
   --contrast-color: #ffffff; /* Contrast color for text, ensuring readability against backgrounds of accent, heading, or default colors. */
+
+  /* Personalización de colores de Bootstrap */
+  --bs-danger: #F40006;
+  --bs-danger-rgb: 244, 0, 6;
+  --bs-danger-text-emphasis: #F40006;
+  --bs-danger-bg-subtle: #ffe0e1;
+  --bs-danger-border-subtle: #ffcacc;
+
+  /* Asegura que todos los elementos de Bootstrap que usan rojo usen nuestro color */
+  --bs-btn-bg: var(--bs-danger);
+  --bs-btn-border-color: var(--bs-danger);
+  --bs-btn-hover-bg: #d10005;
+  --bs-btn-hover-border-color: #c40005;
 }
 
 /* Nav Menu Colors - The following color variables are used specifically for the navigation menu. They are separate from the global colors to allow for more customization options */
@@ -2044,4 +2057,51 @@ section,
 .bi-activity::before {
     content: "\f66b";
     color: #ffffff;
+}
+
+/* Override Bootstrap's danger button styles */
+.btn-danger {
+  --bs-btn-color: #fff;
+  --bs-btn-bg: #F40006;
+  --bs-btn-border-color: #F40006;
+  --bs-btn-hover-color: #fff;
+  --bs-btn-hover-bg: #d10005;
+  --bs-btn-hover-border-color: #c40005;
+  --bs-btn-focus-shadow-rgb: 245, 38, 43;
+  --bs-btn-active-color: #fff;
+  --bs-btn-active-bg: #c40005;
+  --bs-btn-active-border-color: #b80004;
+  --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  --bs-btn-disabled-color: #fff;
+  --bs-btn-disabled-bg: #F40006;
+  --bs-btn-disabled-border-color: #F40006;
+}
+
+.btn-outline-danger {
+  --bs-btn-color: #F40006;
+  --bs-btn-border-color: #F40006;
+  --bs-btn-hover-color: #fff;
+  --bs-btn-hover-bg: #F40006;
+  --bs-btn-hover-border-color: #F40006;
+  --bs-btn-focus-shadow-rgb: 244, 0, 6;
+  --bs-btn-active-color: #fff;
+  --bs-btn-active-bg: #F40006;
+  --bs-btn-active-border-color: #F40006;
+  --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  --bs-btn-disabled-color: #F40006;
+  --bs-btn-disabled-bg: transparent;
+  --bs-btn-disabled-border-color: #F40006;
+  --bs-gradient: none;
+}
+
+.bg-danger {
+  background-color: #F40006 !important;
+}
+
+.text-danger {
+  color: #F40006 !important;
+}
+
+.border-danger {
+  border-color: #F40006 !important;
 }

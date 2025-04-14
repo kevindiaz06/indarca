@@ -156,20 +156,8 @@
             bottom: 0;
             left: 0;
             right: 0;
-            border-top: 1px solid #eee;
-            padding-top: 10px;
-            display: flex;
-            justify-content: space-between;
-            font-size: 10px;
-            color: #7f8c8d;
-        }
-
-        .footer-left {
-            text-align: left;
-        }
-
-        .footer-right {
-            text-align: right;
+            padding-bottom: 10px;
+            background-color: white;
         }
 
         .page-number:after {
@@ -313,7 +301,15 @@
         <div class="document-info">
             <div class="document-title">@yield('document_title', 'Reporte')</div>
             <div class="document-date">Generado: @yield('document_date', date('d/m/Y H:i:s'))</div>
-            <div class="document-author">Autor: {{ Auth::user()->name }} ({{ Auth::user()->role === 'admin' ? 'Administrador' : (Auth::user()->role === 'trabajador' ? 'Trabajador' : 'Cliente') }})</div>
+            <div class="document-author">
+                Autor:
+                @if(Auth::check())
+                    {{ Auth::user()->name }}
+                    ({{ Auth::user()->role === 'admin' ? 'Administrador' : (Auth::user()->role === 'trabajador' ? 'Trabajador' : 'Cliente') }})
+                @else
+                    Sistema INDARCA
+                @endif
+            </div>
             @hasSection('reference_number')
             <div class="reference-number">@yield('reference_number')</div>
             @endif
@@ -341,20 +337,25 @@
     </div>
     @endif
 
-    <div class="footer">
-        <div class="footer-left">
-            INDARCA © {{ date('Y') }} - Documento oficial
-        </div>
-        <div class="footer-right">
-            Página <span class="page-number"></span>
-            @hasSection('footer_extra')
-            | @yield('footer_extra')
-            @endif
-        </div>
-    </div>
+    <div style="height: 30px;"></div>
 
-    <div style="position: fixed; bottom: 20px; left: 20px; font-size: 8px; color: #999; text-align: left;">
-        ID: {{ md5(Auth::id() . time() . rand(1000,9999)) }} | Fecha emisión: {{ date('d/m/Y H:i:s') }}
+    <div class="footer">
+        <div style="width: 100%; margin-bottom: 25px;">
+            <div style="display: flex; justify-content: space-between; border-top: 1px solid #eee; padding-top: 10px; font-size: 10px; color: #7f8c8d;">
+                <div style="text-align: left;">
+                    INDARCA © {{ date('Y') }} - Documento oficial
+                </div>
+                <div style="text-align: right;">
+                    Página <span class="page-number"></span>
+                    @hasSection('footer_extra')
+                     | @yield('footer_extra')
+                    @endif
+                </div>
+            </div>
+            <div style="font-size: 8px; color: #999; text-align: left; margin-top: 5px; position: relative;">
+                ID: {{ md5((Auth::id() ?: 0) . time() . rand(1000,9999)) }} | Fecha emisión: {{ date('d/m/Y H:i:s') }}
+            </div>
+        </div>
     </div>
 </body>
 </html>

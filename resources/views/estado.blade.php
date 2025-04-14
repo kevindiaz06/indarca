@@ -4,14 +4,15 @@
 <div class="container py-5">
     <div class="row justify-content-center">
         <div class="col-lg-8">
-            <div class="card border-0 shadow-sm rounded-3">
+            <!-- Primera tarjeta: Consulta por referencia -->
+            <div class="card border-0 shadow-sm rounded-3 mb-4">
                 <div class="card-header bg-primary py-3">
                     <h4 class="mb-0 text-white"><i class="bi bi-clipboard-data me-2"></i>Consulta de Estado de Densímetros</h4>
                 </div>
                 <div class="card-body p-4">
                     <p class="text-muted mb-4">Introduzca la referencia de reparación que recibió por correo electrónico para consultar el estado actual de su densímetro.</p>
 
-                    <form action="{{ route('estado.consultar') }}" method="POST" class="mb-4">
+                    <form action="{{ route('estado.consultar') }}" method="POST">
                         @csrf
                         <div class="input-group mb-3">
                             <span class="input-group-text bg-light"><i class="bi bi-search"></i></span>
@@ -23,105 +24,71 @@
                             @enderror
                         </div>
                     </form>
-
-                    @if(isset($estado))
-                    <div class="border-top pt-4">
-                        <div class="d-flex align-items-center justify-content-between mb-4">
-                            <h5 class="mb-0">Resultado de la Consulta</h5>
-                            <span class="badge bg-primary">{{ $estado['referencia'] }}</span>
-                        </div>
-
-                        <div class="row mb-4">
-                            <div class="col-md-6">
-                                <p class="mb-1 fw-bold">Número de Serie</p>
-                                <p>{{ $estado['numero_serie'] }}</p>
-                            </div>
-                            <div class="col-md-6">
-                                <p class="mb-1 fw-bold">Fecha de Entrada</p>
-                                <p>{{ $estado['fecha_entrada'] }}</p>
-                            </div>
-                        </div>
-
-                        <div class="row mb-4">
-                            <div class="col-md-6">
-                                <p class="mb-1 fw-bold">Marca</p>
-                                <p>{{ $estado['marca'] ?: 'No especificada' }}</p>
-                            </div>
-                            <div class="col-md-6">
-                                <p class="mb-1 fw-bold">Modelo</p>
-                                <p>{{ $estado['modelo'] ?: 'No especificado' }}</p>
-                            </div>
-                        </div>
-
-                        <div class="mb-4">
-                            <p class="mb-1 fw-bold">Estado Actual</p>
-                            <div class="estado-timeline">
-                                <div class="d-flex justify-content-between position-relative mb-1">
-                                    <div class="estado-punto {{ $estado['estado'] == 'Recibido' ? 'activo' : ($estado['estado'] == 'En reparación' || $estado['estado'] == 'Reparación finalizada' || $estado['estado'] == 'Entregado al cliente' ? 'completado' : '') }}">
-                                        <i class="bi bi-box"></i>
-                                    </div>
-                                    <div class="estado-punto {{ $estado['estado'] == 'En reparación' ? 'activo' : ($estado['estado'] == 'Reparación finalizada' || $estado['estado'] == 'Entregado al cliente' ? 'completado' : '') }}">
-                                        <i class="bi bi-tools"></i>
-                                    </div>
-                                    <div class="estado-punto {{ $estado['estado'] == 'Reparación finalizada' ? 'activo' : ($estado['estado'] == 'Entregado al cliente' ? 'completado' : '') }}">
-                                        <i class="bi bi-check-circle"></i>
-                                    </div>
-                                    <div class="estado-punto {{ $estado['estado'] == 'Entregado al cliente' ? 'activo' : '' }}">
-                                        <i class="bi bi-truck"></i>
-                                    </div>
-                                    <div class="estado-linea position-absolute"></div>
-                                </div>
-                                <div class="d-flex justify-content-between text-center">
-                                    <div class="estado-texto {{ $estado['estado'] == 'Recibido' ? 'activo' : ($estado['estado'] == 'En reparación' || $estado['estado'] == 'Reparación finalizada' || $estado['estado'] == 'Entregado al cliente' ? 'completado' : '') }}">Recibido</div>
-                                    <div class="estado-texto {{ $estado['estado'] == 'En reparación' ? 'activo' : ($estado['estado'] == 'Reparación finalizada' || $estado['estado'] == 'Entregado al cliente' ? 'completado' : '') }}">En reparación</div>
-                                    <div class="estado-texto {{ $estado['estado'] == 'Reparación finalizada' ? 'activo' : ($estado['estado'] == 'Entregado al cliente' ? 'completado' : '') }}">Finalizado</div>
-                                    <div class="estado-texto {{ $estado['estado'] == 'Entregado al cliente' ? 'activo' : '' }}">Entregado</div>
-                                </div>
-                            </div>
-                        </div>
-
-                        @if(isset($estado['calibrado']) && ($estado['estado'] == 'Reparación finalizada' || $estado['estado'] == 'Entregado al cliente'))
-                        <div class="mb-4">
-                            <p class="mb-1 fw-bold">Estado de Calibración</p>
-                            @if($estado['calibrado'] === null)
-                                <div class="badge bg-secondary p-2 mb-2">No especificado</div>
-                            @elseif($estado['calibrado'])
-                                <div class="badge bg-success p-2 mb-2">Calibrado</div>
-                                @if(isset($estado['fecha_proxima_calibracion']))
-                                <div class="mt-3">
-                                    <p class="mb-1 fw-bold">Próxima fecha de calibración</p>
-                                    <p>{{ $estado['fecha_proxima_calibracion'] }}</p>
-                                </div>
-                                @endif
-                            @else
-                                <div class="badge bg-danger p-2 mb-2">No calibrado</div>
-                            @endif
-                        </div>
-                        @endif
-
-                        @if($estado['observaciones'])
-                        <div class="mb-4">
-                            <p class="mb-1 fw-bold">Observaciones</p>
-                            <div class="border rounded p-3 bg-light">
-                                {{ $estado['observaciones'] }}
-                            </div>
-                        </div>
-                        @endif
-
-                        <div class="d-grid gap-2">
-                            <button class="btn btn-outline-primary" onclick="window.print()">
-                                <i class="bi bi-printer me-1"></i> Imprimir Resultado
-                            </button>
-                        </div>
-                    </div>
-                    @elseif($errors->any())
-                    <div class="alert alert-danger">
-                        <i class="bi bi-exclamation-triangle-fill me-2"></i>
-                        {{ $errors->first() }}
-                    </div>
-                    @endif
                 </div>
             </div>
+
+            <!-- Segunda tarjeta: Consulta por Estado de Calibración -->
+            <div class="card border-0 shadow-sm rounded-3 mb-4">
+                <div class="card-header bg-danger py-3">
+                    <h4 class="mb-0 text-white"><i class="bi bi-calendar-check me-2"></i>Consulta por Estado de Calibración</h4>
+                </div>
+                <div class="card-body p-4">
+                    <p class="text-muted mb-4">Introduzca el número de serie, marca y modelo para verificar el estado de calibración del densímetro.</p>
+
+                    <form action="{{ route('calibracion.consultar') }}" method="POST">
+                        @csrf
+                        <div class="mb-3">
+                            <label for="numero_serie" class="form-label">Número de Serie</label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-light"><i class="bi bi-upc-scan"></i></span>
+                                <input type="text" class="form-control @error('numero_serie') is-invalid @enderror" id="numero_serie" name="numero_serie" placeholder="Número de serie del densímetro" value="{{ old('numero_serie') }}" required>
+                                @error('numero_serie')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="marca" class="form-label">Marca</label>
+                                <div class="input-group">
+                                    <span class="input-group-text bg-light"><i class="bi bi-tag"></i></span>
+                                    <input type="text" class="form-control @error('marca') is-invalid @enderror" id="marca" name="marca" placeholder="Marca del densímetro" value="{{ old('marca') }}" required>
+                                    @error('marca')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="modelo" class="form-label">Modelo</label>
+                                <div class="input-group">
+                                    <span class="input-group-text bg-light"><i class="bi bi-cpu"></i></span>
+                                    <input type="text" class="form-control @error('modelo') is-invalid @enderror" id="modelo" name="modelo" placeholder="Modelo del densímetro" value="{{ old('modelo') }}" required>
+                                    @error('modelo')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
+                        <div class="d-grid mt-3">
+                            <button type="submit" class="btn btn-danger text-white">Verificar Estado de Calibración</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            @if($errors->any())
+            <div class="alert alert-danger">
+                <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                {{ $errors->first() }}
+            </div>
+            @endif
+
+            @if(session('error'))
+            <div class="alert alert-danger">
+                <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                {{ session('error') }}
+            </div>
+            @endif
 
             <div class="mt-4 text-center">
                 <p class="text-muted">¿Tiene alguna pregunta? <a href="{{ route('inicio') }}#contact">Contáctenos</a></p>

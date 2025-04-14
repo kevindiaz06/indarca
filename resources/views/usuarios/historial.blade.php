@@ -202,9 +202,9 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                <button type="button" class="btn btn-primary" onclick="window.print()">
+                <a href="{{ route('estado.pdf', $densimetro->referencia_reparacion) }}" class="btn btn-primary">
                     <i class="bi bi-printer me-1"></i> Imprimir
-                </button>
+                </a>
             </div>
         </div>
     </div>
