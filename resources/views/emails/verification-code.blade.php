@@ -117,12 +117,12 @@
         </div>
 
         <div class="content">
-            <p>Estimado/a <strong>{{ $user->name }}</strong>,</p>
+            <p>Estimado/a <strong>{{ $nombre }}</strong>,</p>
 
             <p>Gracias por registrarse en INDARCA. Para verificar su correo electrónico, utilice el siguiente código:</p>
 
             <div class="verification-code">
-                {{ $verification_code }}
+                {{ $codigo }}
             </div>
 
             <p>Este código expirará en 15 minutos. Si no ha solicitado este código, puede ignorar este mensaje.</p>
@@ -134,7 +134,7 @@
             <p>Si tiene alguna pregunta o encuentra algún problema durante el proceso de verificación, no dude en contactar con nuestro equipo de soporte.</p>
 
             <div style="text-align: center;">
-                <a href="{{ url('/login') }}" class="button">Ir a la página de inicio de sesión</a>
+                <a href="{{ !empty($url) ? $url : url('/login') }}" class="button">Ir a la página de inicio de sesión</a>
             </div>
         </div>
 

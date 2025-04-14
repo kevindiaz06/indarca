@@ -81,6 +81,7 @@
             <div class="alert alert-info mb-4">
                 <p class="mb-0">Hemos enviado un código de verificación a tu correo electrónico.</p>
                 <p class="mb-0">Por favor, revisa tu bandeja de entrada e ingresa el código de 6 dígitos a continuación.</p>
+                <p class="mb-0 mt-2"><strong>Nota:</strong> Si no encuentras el correo, revisa también tu carpeta de spam o correos no deseados.</p>
             </div>
 
             <form method="POST" action="{{ route('verification.verify') }}">

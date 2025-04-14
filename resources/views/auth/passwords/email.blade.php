@@ -13,6 +13,12 @@
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
                             {{ session('status') }}
+                            <p class="mb-0 mt-2"><strong>{{ __('Nota:') }}</strong> {{ __('Si no encuentras el correo, revisa también tu carpeta de spam o correos no deseados.') }}</p>
+                        </div>
+                    @else
+                        <div class="alert alert-info mb-4" role="alert">
+                            <p class="mb-0">{{ __('Ingresa tu correo electrónico y te enviaremos un enlace para restablecer tu contraseña.') }}</p>
+                            <p class="mb-0 mt-2"><strong>{{ __('Nota:') }}</strong> {{ __('Si no recibes el correo, revisa también tu carpeta de spam o correos no deseados.') }}</p>
                         </div>
                     @endif
 
