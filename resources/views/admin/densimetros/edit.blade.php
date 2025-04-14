@@ -109,6 +109,31 @@
                 </div>
                 @endif
 
+                <!-- Campos de Calibración - Se muestran condicionalmente según el estado -->
+                <div class="row mb-3" id="camposCalibrado" style="{{ old('estado', $densimetro->estado) == 'finalizado' || old('estado', $densimetro->estado) == 'entregado' ? '' : 'display: none;' }}">
+                    <div class="col-md-6">
+                        <label for="calibrado" class="form-label">¿Está calibrado?</label>
+                        <select class="form-select @error('calibrado') is-invalid @enderror" id="calibrado" name="calibrado">
+                            <option value="">Seleccione</option>
+                            <option value="1" {{ (old('calibrado', $densimetro->calibrado) == '1') ? 'selected' : '' }}>Sí</option>
+                            <option value="0" {{ (old('calibrado', $densimetro->calibrado) == '0' && $densimetro->calibrado !== null) ? 'selected' : '' }}>No</option>
+                        </select>
+                        @error('calibrado')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+                    <div class="col-md-6" id="campoFechaCalibrado" style="{{ (old('calibrado', $densimetro->calibrado) == '1') ? '' : 'display: none;' }}">
+                        <label for="fecha_proxima_calibracion" class="form-label">Próxima fecha de calibración</label>
+                        <input type="date" class="form-control @error('fecha_proxima_calibracion') is-invalid @enderror"
+                            id="fecha_proxima_calibracion" name="fecha_proxima_calibracion"
+                            value="{{ old('fecha_proxima_calibracion', $densimetro->fecha_proxima_calibracion instanceof \DateTime ? $densimetro->fecha_proxima_calibracion->format('Y-m-d') : $densimetro->fecha_proxima_calibracion) }}">
+                        @error('fecha_proxima_calibracion')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+                </div>
+
                 <div class="mb-3">
                     <label for="observaciones" class="form-label">Observaciones</label>
                     <textarea class="form-control @error('observaciones') is-invalid @enderror" id="observaciones" name="observaciones" rows="3">{{ old('observaciones', $densimetro->observaciones) }}</textarea>
@@ -137,6 +162,32 @@
 document.addEventListener('DOMContentLoaded', function() {
     const editForm = document.getElementById('editForm');
     const submitBtn = document.getElementById('submitBtn');
+    const estadoSelect = document.getElementById('estado');
+    const camposCalibrado = document.getElementById('camposCalibrado');
+    const calibradoSelect = document.getElementById('calibrado');
+    const campoFechaCalibrado = document.getElementById('campoFechaCalibrado');
+
+    // Mostrar/ocultar campos de calibración según el estado
+    if (estadoSelect) {
+        estadoSelect.addEventListener('change', function() {
+            if (this.value === 'finalizado' || this.value === 'entregado') {
+                camposCalibrado.style.display = '';
+            } else {
+                camposCalibrado.style.display = 'none';
+            }
+        });
+    }
+
+    // Mostrar/ocultar campo de fecha de calibración según esté calibrado o no
+    if (calibradoSelect) {
+        calibradoSelect.addEventListener('change', function() {
+            if (this.value === '1') {
+                campoFechaCalibrado.style.display = '';
+            } else {
+                campoFechaCalibrado.style.display = 'none';
+            }
+        });
+    }
 
     if (editForm && submitBtn) {
         editForm.addEventListener('submit', function() {

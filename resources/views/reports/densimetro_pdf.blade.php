@@ -56,7 +56,44 @@
             <div class="info-value">{{ $densimetro->fecha_finalizacion->format('d/m/Y') }}</div>
         </div>
         @endif
+
+        @if(($densimetro->estado == 'finalizado' || $densimetro->estado == 'entregado'))
+        <div class="info-item">
+            <div class="info-label">Estado de Calibración</div>
+            <div class="info-value">
+                @if($densimetro->calibrado === null)
+                    <span class="estado estado-secondary">No especificado</span>
+                @elseif($densimetro->calibrado)
+                    <span class="estado estado-success">Calibrado</span>
+                @else
+                    <span class="estado estado-danger">No calibrado</span>
+                @endif
+            </div>
+        </div>
+
+        @if($densimetro->calibrado && $densimetro->fecha_proxima_calibracion)
+        <div class="info-item">
+            <div class="info-label">Próxima Fecha de Calibración</div>
+            <div class="info-value">
+                {{ $densimetro->fecha_proxima_calibracion instanceof \DateTime ? $densimetro->fecha_proxima_calibracion->format('d/m/Y') : $densimetro->fecha_proxima_calibracion }}
+            </div>
+        </div>
+        @endif
+        @endif
     </div>
+
+    <!-- Sección de Calibración (destacada) -->
+    @if(($densimetro->estado == 'finalizado' || $densimetro->estado == 'entregado') && $densimetro->calibrado)
+    <div style="margin-top: 20px; margin-bottom: 20px; padding: 15px; border-radius: 4px; border: 1px solid #eee; background-color: #f8f9fa;">
+        <div style="font-weight: bold; margin-bottom: 15px; color: #d35400; border-bottom: 1px solid #eee; padding-bottom: 5px;">
+            Información Importante de Calibración
+        </div>
+
+        <div style="padding: 10px; border-left: 4px solid #f39c12; background-color: #fff3cd; font-size: 11px;">
+            <strong>Recordatorio:</strong> Para garantizar mediciones precisas y cumplir con las normativas vigentes, se recomienda recalibrar el equipo antes de {{ $densimetro->fecha_proxima_calibracion instanceof \DateTime ? $densimetro->fecha_proxima_calibracion->format('d/m/Y') : $densimetro->fecha_proxima_calibracion }}. La exactitud de las mediciones depende de la correcta calibración del densímetro.
+        </div>
+    </div>
+    @endif
 
     <div class="info-item" style="margin-top: 20px;">
         <div class="info-label">Observaciones</div>

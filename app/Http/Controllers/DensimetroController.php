@@ -178,8 +178,10 @@ class DensimetroController extends Controller
             'numero_serie' => 'required|string|max:50',
             'marca' => 'nullable|string|max:50',
             'modelo' => 'nullable|string|max:50',
-            'estado' => 'required|string|in:recibido,en_reparacion,finalizado,entregado',
+            'estado' => 'required|in:recibido,en_reparacion,finalizado,entregado',
             'observaciones' => 'nullable|string|max:500',
+            'calibrado' => 'nullable|boolean',
+            'fecha_proxima_calibracion' => 'nullable|date|required_if:calibrado,1',
         ]);
 
         if ($validator->fails()) {
@@ -232,6 +234,16 @@ class DensimetroController extends Controller
         $densimetro->modelo = $request->modelo;
         $densimetro->estado = $request->estado;
         $densimetro->observaciones = $request->observaciones;
+
+        // Manejar los campos de calibración cuando el estado es "finalizado" o "entregado"
+        if ($request->estado == 'finalizado' || $request->estado == 'entregado') {
+            $densimetro->calibrado = $request->calibrado;
+            if ($request->calibrado == 1) {
+                $densimetro->fecha_proxima_calibracion = $request->fecha_proxima_calibracion;
+            } else {
+                $densimetro->fecha_proxima_calibracion = null;
+            }
+        }
 
         // Si el estado cambia a finalizado o entregado, registrar la fecha de finalización si no existe
         if (($request->estado == 'finalizado' || $request->estado == 'entregado') && !$densimetro->fecha_finalizacion) {
@@ -329,6 +341,9 @@ class DensimetroController extends Controller
     public function generatePDF($id)
     {
         $densimetro = Densimetro::with(['cliente', 'archivos'])->findOrFail($id);
+
+        // Verificar el estado de calibración antes de generar el PDF
+        $densimetro->verificarYActualizarCalibrado();
 
         $date = Carbon::now()->format('d-m-Y_H-i-s');
         $fileName = "densimetro_{$densimetro->referencia_reparacion}_{$date}.pdf";

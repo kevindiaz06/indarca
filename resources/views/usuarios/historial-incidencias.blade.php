@@ -149,6 +149,25 @@
                     <p>{{ $densimetro->fecha_finalizacion->format('d/m/Y') }}</p>
                 </div>
                 @endif
+
+                @if(($densimetro->estado == 'finalizado' || $densimetro->estado == 'entregado'))
+                <div class="mb-4">
+                    <p class="mb-1 fw-bold">Estado de Calibración</p>
+                    @if($densimetro->calibrado === null)
+                        <span class="badge bg-secondary p-2">No especificado</span>
+                    @elseif($densimetro->calibrado)
+                        <span class="badge bg-success p-2">Calibrado</span>
+                        @if($densimetro->fecha_proxima_calibracion)
+                        <div class="mt-3">
+                            <p class="mb-1 fw-bold">Próxima fecha de calibración</p>
+                            <p>{{ $densimetro->fecha_proxima_calibracion instanceof \DateTime ? $densimetro->fecha_proxima_calibracion->format('d/m/Y') : ($densimetro->fecha_proxima_calibracion ?: 'No especificada') }}</p>
+                        </div>
+                        @endif
+                    @else
+                        <span class="badge bg-danger p-2">No calibrado</span>
+                    @endif
+                </div>
+                @endif
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>

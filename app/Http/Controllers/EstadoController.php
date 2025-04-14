@@ -53,6 +53,25 @@ class EstadoController extends Controller
             'observaciones' => $densimetro->observaciones,
         ];
 
+        // Verificar calibración si está en estado finalizado o entregado
+        if ($densimetro->estado === 'finalizado' || $densimetro->estado === 'entregado') {
+            // Verificar estado de calibración antes de mostrarlo (por si ha expirado)
+            $densimetro->verificarYActualizarCalibrado();
+
+            // Añadir información de calibración
+            $estado['calibrado'] = $densimetro->calibrado;
+
+            // Añadir fecha próxima de calibración si está calibrado
+            if ($densimetro->calibrado && $densimetro->fecha_proxima_calibracion) {
+                $fecha_proxima = $densimetro->fecha_proxima_calibracion;
+                // Asegurarse de que la fecha sea un objeto DateTime
+                if (!($fecha_proxima instanceof \DateTime)) {
+                    $fecha_proxima = \Carbon\Carbon::parse($fecha_proxima);
+                }
+                $estado['fecha_proxima_calibracion'] = $fecha_proxima->format('d/m/Y');
+            }
+        }
+
         return view('estado', ['estado' => $estado]);
     }
 

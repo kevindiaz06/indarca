@@ -80,6 +80,25 @@
                             </div>
                         </div>
 
+                        @if(isset($estado['calibrado']) && ($estado['estado'] == 'Reparación finalizada' || $estado['estado'] == 'Entregado al cliente'))
+                        <div class="mb-4">
+                            <p class="mb-1 fw-bold">Estado de Calibración</p>
+                            @if($estado['calibrado'] === null)
+                                <div class="badge bg-secondary p-2 mb-2">No especificado</div>
+                            @elseif($estado['calibrado'])
+                                <div class="badge bg-success p-2 mb-2">Calibrado</div>
+                                @if(isset($estado['fecha_proxima_calibracion']))
+                                <div class="mt-3">
+                                    <p class="mb-1 fw-bold">Próxima fecha de calibración</p>
+                                    <p>{{ $estado['fecha_proxima_calibracion'] }}</p>
+                                </div>
+                                @endif
+                            @else
+                                <div class="badge bg-danger p-2 mb-2">No calibrado</div>
+                            @endif
+                        </div>
+                        @endif
+
                         @if($estado['observaciones'])
                         <div class="mb-4">
                             <p class="mb-1 fw-bold">Observaciones</p>

@@ -241,6 +241,19 @@
             background-color: #17a2b8;
         }
 
+        /* Estados para calibración */
+        .estado-secondary {
+            background-color: #6c757d;
+        }
+
+        .estado-success {
+            background-color: #2ECC71;
+        }
+
+        .estado-danger {
+            background-color: #dc3545;
+        }
+
         /* Contenedor para observaciones */
         .observaciones {
             background-color: #f8f9fa;

@@ -80,6 +80,21 @@
                             <p class="mb-1 text-muted">Fecha de Finalización</p>
                             <h5>{{ $densimetro->fecha_finalizacion->format('d/m/Y') }}</h5>
                         </div>
+
+                        @if($densimetro->estado == 'finalizado' || $densimetro->estado == 'entregado')
+                        <div class="col-md-6">
+                            <p class="mb-1 text-muted">Estado de Calibración</p>
+                            @if($densimetro->calibrado === null)
+                                <h5><span class="badge bg-secondary">No especificado</span></h5>
+                            @elseif($densimetro->calibrado)
+                                <h5><span class="badge bg-success">Calibrado</span></h5>
+                                <p class="mb-1 text-muted mt-2">Próxima fecha de calibración</p>
+                                <h5>{{ $densimetro->fecha_proxima_calibracion instanceof \DateTime ? $densimetro->fecha_proxima_calibracion->format('d/m/Y') : ($densimetro->fecha_proxima_calibracion ?: 'No especificada') }}</h5>
+                            @else
+                                <h5><span class="badge bg-danger">No calibrado</span></h5>
+                            @endif
+                        </div>
+                        @endif
                     </div>
                     @endif
 
