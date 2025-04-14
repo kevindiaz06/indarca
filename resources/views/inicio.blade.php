@@ -169,8 +169,7 @@
                             <div class="icon bg-dark rounded-circle d-flex align-items-center justify-content-center mb-3 icon-animate">
                                 <i class="bi bi-gear-wide-connected text-danger fs-3"></i>
                             </div>
-                            <h4><a href="" class="stretched-link">Calibración y mantenimiento de densímetros
-                                    nucleares</a></h4>
+                            <h4>Calibración y mantenimiento de densímetros nucleares</h4>
                             <p>Servicio especializado para garantizar la precisión y fiabilidad de sus equipos de medición de densidad y humedad.</p>
                         </div>
                     </div><!-- End Service Item -->
@@ -180,8 +179,7 @@
                             <div class="icon bg-dark rounded-circle d-flex align-items-center justify-content-center mb-3 icon-animate">
                                 <i class="bi bi-bounding-box-circles text-danger fs-3"></i>
                             </div>
-                            <h4><a href="" class="stretched-link">Diseño y construcción de proyectos
-                                    arquitectónicos</a></h4>
+                            <h4>Diseño y construcción de proyectos arquitectónicos</h4>
                             <p>Creamos espacios funcionales y estéticos que se adaptan perfectamente a las necesidades de nuestros clientes.</p>
                         </div>
                     </div><!-- End Service Item -->
@@ -191,7 +189,7 @@
                             <div class="icon bg-dark rounded-circle d-flex align-items-center justify-content-center mb-3 icon-animate">
                                 <i class="bi bi-gear text-danger fs-3"></i>
                             </div>
-                            <h4><a href="" class="stretched-link">Supervisión y gestión de obras</a></h4>
+                            <h4>Supervisión y gestión de obras</h4>
                             <p>Control integral de proyectos para asegurar el cumplimiento de plazos, presupuestos y estándares de calidad.</p>
                         </div>
                     </div><!-- End Service Item -->
@@ -201,7 +199,7 @@
                             <div class="icon bg-dark rounded-circle d-flex align-items-center justify-content-center mb-3 icon-animate">
                                 <i class="bi bi-broadcast text-danger fs-3"></i>
                             </div>
-                            <h4><a href="" class="stretched-link">Asesoría técnica especializada</a></h4>
+                            <h4>Asesoría técnica especializada</h4>
                             <p>Consultoría profesional para optimizar sus proyectos y resolver desafíos técnicos específicos en construcción.</p>
                         </div>
                     </div><!-- End Service Item -->
@@ -885,97 +883,6 @@
             </div>
 
         </section><!-- /Portfolio Section -->
-
-
-
-        <!-- Pricing Section -->
-        <section id="pricing" class="pricing section">
-
-            <!-- Section Title -->
-            <div class="container section-title" data-aos="fade-up">
-                <h2>Precios</h2>
-                <p><span>Nuestros</span> <span class="description-title">Planes</span></p>
-            </div><!-- End Section Title -->
-
-            <div class="container">
-
-                <div class="row gy-3">
-
-                    <div class="col-xl-3 col-lg-6" data-aos="fade-up" data-aos-delay="100">
-                        <div class="pricing-item">
-                            <h3>Básico</h3>
-                            <h4><sup>$</sup>199<span> / mes</span></h4>
-                            <ul>
-                                <li>Mantenimiento básico</li>
-                                <li>Calibración trimestral</li>
-                                <li>Soporte por email</li>
-                                <li class="na">Respuesta prioritaria</li>
-                                <li class="na">Servicio 24/7</li>
-                            </ul>
-                            <div class="btn-wrap">
-                                <a href="#" class="btn-buy">Comprar</a>
-                            </div>
-                        </div>
-                    </div><!-- End Pricing Item -->
-
-                    <div class="col-xl-3 col-lg-6" data-aos="fade-up" data-aos-delay="200">
-                        <div class="pricing-item featured">
-                            <h3>Estándar</h3>
-                            <h4><sup>$</sup>399<span> / mes</span></h4>
-                            <ul>
-                                <li>Mantenimiento completo</li>
-                                <li>Calibración mensual</li>
-                                <li>Soporte telefónico</li>
-                                <li>Respuesta prioritaria</li>
-                                <li class="na">Servicio 24/7</li>
-                            </ul>
-                            <div class="btn-wrap">
-                                <a href="#" class="btn-buy">Comprar</a>
-                            </div>
-                        </div>
-                    </div><!-- End Pricing Item -->
-
-                    <div class="col-xl-3 col-lg-6" data-aos="fade-up" data-aos-delay="400">
-                        <div class="pricing-item">
-                            <h3>Profesional</h3>
-                            <h4><sup>$</sup>599<span> / mes</span></h4>
-                            <ul>
-                                <li>Mantenimiento preventivo y correctivo</li>
-                                <li>Calibración quincenal</li>
-                                <li>Soporte personalizado</li>
-                                <li>Respuesta en 24 horas</li>
-                                <li>Asesoría técnica</li>
-                            </ul>
-                            <div class="btn-wrap">
-                                <a href="#" class="btn-buy">Comprar</a>
-                            </div>
-                        </div>
-                    </div><!-- End Pricing Item -->
-
-                    <div class="col-xl-3 col-lg-6" data-aos="fade-up" data-aos-delay="400">
-                        <div class="pricing-item">
-                            <span class="advanced">Premium</span>
-                            <h3>Empresarial</h3>
-                            <h4><sup>$</sup>999<span> / mes</span></h4>
-                            <ul>
-                                <li>Servicio completo todo incluido</li>
-                                <li>Calibración semanal</li>
-                                <li>Soporte dedicado</li>
-                                <li>Respuesta inmediata</li>
-                                <li>Servicio 24/7</li>
-                            </ul>
-                            <div class="btn-wrap">
-                                <a href="#" class="btn-buy">Comprar</a>
-                            </div>
-                        </div>
-                    </div><!-- End Pricing Item -->
-
-                </div>
-
-            </div>
-
-        </section><!-- /Pricing Section -->
-
 
 
         <!-- Contact Section -->
