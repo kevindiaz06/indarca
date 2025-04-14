@@ -24,7 +24,8 @@
     },
     "environment": {
         "APP_ENV": "production",
-        "APP_DEBUG": "false",
+        "APP_DEBUG": "true",
+        "LOG_LEVEL": "debug",
         "DB_CONNECTION": "${DB_CONNECTION}",
         "DB_DATABASE": "indarca",
         "DB_USERNAME": "indarca",
