@@ -21,11 +21,11 @@
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
         .header {
-            background-color: #1a5276;
+            background-color: #dc3545;
             color: white;
             padding: 25px 20px;
             text-align: center;
-            border-bottom: 5px solid #2980b9;
+            border-bottom: 5px solid #b82634;
         }
         .header h1 {
             margin: 0;
@@ -42,7 +42,7 @@
         .button {
             display: inline-block;
             padding: 12px 28px;
-            background-color: #1a5276;
+            background-color: #dc3545;
             color: white;
             text-decoration: none;
             border-radius: 4px;
@@ -51,11 +51,11 @@
             transition: all 0.3s ease;
         }
         .button:hover {
-            background-color: #154360;
+            background-color: #b82634;
         }
         .info {
             background-color: #f8f9fa;
-            border-left: 4px solid #f39c12;
+            border-left: 4px solid #dc3545;
             padding: 15px;
             margin: 25px 0;
             font-size: 14px;
@@ -100,7 +100,7 @@
         }
         .label {
             font-weight: bold;
-            color: #1a5276;
+            color: #dc3545;
         }
         .estado {
             font-size: 1.2em;

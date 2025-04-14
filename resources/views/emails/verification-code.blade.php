@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Verificación de Cuenta - INDARCA</title>
+    <title>Verificación de Correo Electrónico - INDARCA</title>
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -21,11 +21,11 @@
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
         .header {
-            background-color: #1a5276;
+            background-color: #dc3545;
             color: white;
             padding: 25px 20px;
             text-align: center;
-            border-bottom: 5px solid #2980b9;
+            border-bottom: 5px solid #b82634;
         }
         .header h1 {
             margin: 0;
@@ -39,26 +39,10 @@
         .content {
             padding: 35px 30px;
         }
-        .verification-code {
-            background-color: #f8f9fa;
-            border-left: 4px solid #1a5276;
-            border-radius: 4px;
-            padding: 20px;
-            margin: 25px 0;
-            text-align: center;
-        }
-        .code {
-            font-family: 'Arial', sans-serif;
-            font-size: 32px;
-            font-weight: bold;
-            color: #1a5276;
-            letter-spacing: 4px;
-            margin: 10px 0;
-        }
         .button {
             display: inline-block;
             padding: 12px 28px;
-            background-color: #1a5276;
+            background-color: #dc3545;
             color: white;
             text-decoration: none;
             border-radius: 4px;
@@ -67,11 +51,11 @@
             transition: all 0.3s ease;
         }
         .button:hover {
-            background-color: #154360;
+            background-color: #b82634;
         }
         .info {
             background-color: #f8f9fa;
-            border-left: 4px solid #f39c12;
+            border-left: 4px solid #dc3545;
             padding: 15px;
             margin: 25px 0;
             font-size: 14px;
@@ -111,6 +95,17 @@
             font-size: 12px;
             color: rgba(255,255,255,0.7);
         }
+        .verification-code {
+            font-size: 32px;
+            font-weight: bold;
+            letter-spacing: 5px;
+            text-align: center;
+            padding: 20px;
+            margin: 20px 0;
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            color: #dc3545;
+        }
     </style>
 </head>
 <body>
@@ -118,31 +113,29 @@
         <div class="header">
             <!-- Logo de la empresa -->
             <img src="{{ $message->embed(public_path('images/logo.png')) }}" alt="INDARCA Logo" class="logo">
-            <h1>Verificación de Cuenta</h1>
+            <h1>Código de Verificación</h1>
         </div>
 
         <div class="content">
-            <p>Estimado/a <strong>{{ $nombre }}</strong>,</p>
+            <p>Estimado/a <strong>{{ $user->name }}</strong>,</p>
 
-            <p>Le damos la bienvenida a <strong>INDARCA</strong>. Para garantizar la seguridad de su cuenta, es necesario completar el proceso de verificación utilizando el siguiente código:</p>
+            <p>Gracias por registrarse en INDARCA. Para verificar su correo electrónico, utilice el siguiente código:</p>
 
             <div class="verification-code">
-                <p class="code">{{ $codigo }}</p>
-                <p>Este código es válido durante <strong>10 minutos</strong></p>
+                {{ $verification_code }}
             </div>
 
-            <p>Por favor, introduzca este código en la página de verificación para activar su cuenta y comenzar a utilizar nuestros servicios.</p>
-
-            <div style="text-align: center;">
-                <a href="{{ $url }}" class="button">Verificar mi cuenta</a>
-            </div>
+            <p>Este código expirará en 15 minutos. Si no ha solicitado este código, puede ignorar este mensaje.</p>
 
             <div class="info">
-                <p><strong>¿No ha solicitado esta verificación?</strong> Si no ha creado una cuenta en INDARCA, por favor ignore este mensaje o póngase en contacto con nuestro departamento de atención al cliente.</p>
+                <strong>Importante:</strong> No comparta este código con nadie. Nuestro equipo de INDARCA nunca le pedirá su código de verificación.
             </div>
 
-            <p>Atentamente,</p>
-            <p><strong>Equipo INDARCA</strong></p>
+            <p>Si tiene alguna pregunta o encuentra algún problema durante el proceso de verificación, no dude en contactar con nuestro equipo de soporte.</p>
+
+            <div style="text-align: center;">
+                <a href="{{ url('/login') }}" class="button">Ir a la página de inicio de sesión</a>
+            </div>
         </div>
 
         <div class="footer">

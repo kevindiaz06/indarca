@@ -21,11 +21,11 @@
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
         .header {
-            background-color: #1a5276;
+            background-color: #dc3545;
             color: white;
             padding: 25px 20px;
             text-align: center;
-            border-bottom: 5px solid #2980b9;
+            border-bottom: 5px solid #b82634;
         }
         .header h1 {
             margin: 0;
@@ -42,7 +42,7 @@
         .button {
             display: inline-block;
             padding: 12px 28px;
-            background-color: #1a5276;
+            background-color: #dc3545;
             color: white;
             text-decoration: none;
             border-radius: 4px;
@@ -51,11 +51,11 @@
             transition: all 0.3s ease;
         }
         .button:hover {
-            background-color: #154360;
+            background-color: #b82634;
         }
         .info {
             background-color: #f8f9fa;
-            border-left: 4px solid #f39c12;
+            border-left: 4px solid #dc3545;
             padding: 15px;
             margin: 25px 0;
             font-size: 14px;
@@ -100,18 +100,11 @@
         }
         .label {
             font-weight: bold;
-            color: #1a5276;
+            color: #dc3545;
         }
         .referencia {
-            font-size: 1.2em;
             font-weight: bold;
             color: #dc3545;
-            text-align: center;
-            padding: 15px;
-            margin: 25px 0;
-            border: 1px dashed #dc3545;
-            background-color: #f8d7da;
-            border-radius: 5px;
         }
     </style>
 </head>
@@ -120,16 +113,20 @@
         <div class="header">
             <!-- Logo de la empresa -->
             <img src="{{ $message->embed(public_path('images/logo.png')) }}" alt="INDARCA Logo" class="logo">
-            <h1>Recepción de Densímetro</h1>
+            <h1>Confirmación de Recepción de Densímetro</h1>
         </div>
 
         <div class="content">
             <p>Estimado/a <strong>{{ $cliente ? $cliente->name : 'Cliente' }}</strong>,</p>
 
-            <p>Le informamos que hemos recibido su densímetro en nuestro taller para su reparación o mantenimiento. A continuación, encontrará los detalles:</p>
+            <p>Le confirmamos que hemos recibido su densímetro en nuestras instalaciones para su revisión y/o reparación. A continuación, encontrará los detalles:</p>
 
             <div class="info-item">
-                <span class="label">Fecha de recepción:</span> {{ $fecha }}
+                <span class="label">Fecha de recepción:</span> {{ $densimetro->fecha_entrada->format('d/m/Y') }}
+            </div>
+
+            <div class="info-item">
+                <span class="label">Referencia de reparación:</span> <span class="referencia">{{ $densimetro->referencia_reparacion }}</span>
             </div>
 
             <div class="info-item">
@@ -148,18 +145,18 @@
             </div>
             @endif
 
-            <p>Su densímetro ha sido registrado con la siguiente referencia de reparación:</p>
-
-            <div class="referencia">
-                {{ $densimetro->referencia_reparacion }}
+            <div class="info-item">
+                <span class="label">Estado actual:</span> Recibido
             </div>
 
-            <p>Por favor, conserve esta referencia para cualquier consulta relacionada con su densímetro. Nos pondremos en contacto con usted cuando hayamos evaluado el equipo o cuando se complete la reparación.</p>
+            <div class="info">
+                <strong>Importante:</strong> Guarde la referencia de reparación para consultar el estado de su densímetro en cualquier momento a través de nuestra página web.
+            </div>
 
-            <p>Si tiene alguna pregunta, no dude en contactarnos.</p>
+            <p>Procederemos a revisar su densímetro y le informaremos del diagnóstico y los trabajos a realizar. Si tiene alguna pregunta, no dude en contactarnos.</p>
 
             <div style="text-align: center;">
-                <a href="{{ url('/contacto') }}" class="button">Contactar con INDARCA</a>
+                <a href="{{ url('/estado') }}" class="button">Consultar Estado</a>
             </div>
         </div>
 

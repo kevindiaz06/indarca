@@ -6,83 +6,122 @@
     <title>Bienvenido a INDARCA</title>
     <style>
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Arial', sans-serif;
             line-height: 1.6;
             color: #333;
-            margin: 0;
+            max-width: 650px;
+            margin: 0 auto;
             padding: 0;
-            background-color: #f9f9f9;
+            background-color: #f5f5f5;
         }
         .container {
-            max-width: 600px;
-            margin: 0 auto;
-            background-color: #fff;
-            border-radius: 8px;
+            background-color: #ffffff;
+            border-radius: 5px;
             overflow: hidden;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
         .header {
-            background-color: #0056b3;
-            color: #fff;
-            padding: 20px;
+            background-color: #dc3545;
+            color: white;
+            padding: 25px 20px;
             text-align: center;
+            border-bottom: 5px solid #b82634;
         }
         .header h1 {
             margin: 0;
-            font-size: 24px;
+            font-size: 22px;
+            font-weight: 600;
         }
         .logo {
-            max-width: 150px;
-            margin-bottom: 15px;
+            max-width: 180px;
+            margin-bottom: 12px;
         }
         .content {
-            padding: 30px;
-        }
-        .credentials-container {
-            background-color: #f7f7f7;
-            border-left: 4px solid #0056b3;
-            padding: 15px;
-            margin: 20px 0;
-            border-radius: 4px;
-        }
-        .credentials {
-            font-family: monospace;
-            font-size: 14px;
-            margin: 5px 0;
+            padding: 35px 30px;
         }
         .button {
             display: inline-block;
-            background-color: #0056b3;
-            color: #fff;
+            padding: 12px 28px;
+            background-color: #dc3545;
+            color: white;
             text-decoration: none;
-            padding: 12px 25px;
             border-radius: 4px;
-            margin: 20px 0;
             font-weight: 600;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+        }
+        .button:hover {
+            background-color: #b82634;
+        }
+        .info {
+            background-color: #fff8f8;
+            border-left: 4px solid #dc3545;
+            padding: 15px;
+            margin: 25px 0;
+            font-size: 14px;
         }
         .footer {
-            background-color: #f5f5f5;
-            padding: 20px;
+            background-color: #292929;
+            padding: 30px 20px;
             text-align: center;
-            font-size: 12px;
-            color: #666;
+            font-size: 13px;
+            color: #ffffff;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
         .contact-info {
-            margin-bottom: 15px;
+            margin: 15px 0;
+            line-height: 1.8;
+        }
+        .contact-info strong {
+            color: #dc3545;
         }
         .social-links {
-            margin-bottom: 15px;
+            margin: 20px 0 15px;
         }
         .social-links a {
-            color: #0056b3;
+            display: inline-block;
+            margin: 0 8px;
+            color: #ffffff;
             text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .social-links a:hover {
+            color: #dc3545;
         }
         .disclaimer {
-            font-size: 11px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 15px;
+            margin-top: 15px;
+            font-size: 12px;
+            color: rgba(255,255,255,0.7);
         }
-        .warning {
-            color: #d63031;
-            font-weight: 500;
+        .features {
+            margin: 30px 0;
+            text-align: center;
+        }
+        .feature {
+            margin-bottom: 20px;
+            padding: 0 15px;
+        }
+        .feature h3 {
+            color: #dc3545;
+            margin-bottom: 8px;
+        }
+        ul li {
+            margin-bottom: 8px;
+            position: relative;
+            padding-left: 20px;
+        }
+        ul li::before {
+            content: "•";
+            color: #dc3545;
+            font-weight: bold;
+            font-size: 18px;
+            position: absolute;
+            left: 0;
+        }
+        strong {
+            color: #dc3545;
         }
     </style>
 </head>
@@ -91,38 +130,41 @@
         <div class="header">
             <!-- Logo de la empresa -->
             <img src="{{ $message->embed(public_path('images/logo.png')) }}" alt="INDARCA Logo" class="logo">
-            <h1>Bienvenido/a a INDARCA</h1>
+            <h1>¡Bienvenido a INDARCA!</h1>
         </div>
 
         <div class="content">
-            <p>Estimado/a <strong>{{ $nombre }}</strong>,</p>
+            <p>Estimado/a <strong>{{ $user->name }}</strong>,</p>
 
-            <p>¡Le damos la bienvenida a INDARCA! Su cuenta ha sido creada con éxito por un administrador del sistema.</p>
+            <p>¡Nos complace darle la bienvenida a la plataforma de gestión de INDARCA! Su cuenta ha sido creada exitosamente y ahora puede acceder a todos nuestros servicios en línea.</p>
 
-            <p>A continuación, encontrará sus credenciales de acceso:</p>
+            <p>Con su cuenta puede:</p>
+            <ul>
+                <li>Consultar el estado de calibración de sus densímetros</li>
+                <li>Solicitar nuevas calibraciones</li>
+                <li>Recibir notificaciones sobre el estado de sus equipos</li>
+                <li>Acceder a información técnica y certificados</li>
+            </ul>
 
-            <div class="credentials-container">
-                <p class="credentials"><strong>Correo electrónico:</strong> {{ $email }}</p>
-                <p class="credentials"><strong>Contraseña:</strong> {{ $password }}</p>
+            <div class="info">
+                <strong>Información de acceso:</strong><br>
+                <strong>Usuario:</strong> {{ $user->email }}<br>
+                <strong>Contraseña:</strong> La que estableció durante el registro
             </div>
 
-            <p class="warning">Por seguridad, le recomendamos cambiar esta contraseña una vez que acceda a su cuenta.</p>
+            <p>Le recomendamos cambiar su contraseña después del primer inicio de sesión para mayor seguridad.</p>
 
             <div style="text-align: center;">
-                <a href="{{ url('/login') }}" class="button">Iniciar sesión</a>
+                <a href="{{ url('/login') }}" class="button">Iniciar Sesión</a>
             </div>
-
-            <p>Si tiene alguna pregunta o necesita asistencia, no dude en contactarnos.</p>
-
-            <p>Atentamente,</p>
-            <p><strong>Equipo INDARCA</strong></p>
         </div>
 
         <div class="footer">
             <div class="contact-info">
                 <strong>INDARCA S.A.</strong><br>
-                Av. Empresarial 123, Sector Corporativo<br>
-                contacto@indarca.com | +34 900 123 456
+                Calle Principal #123, Santo Domingo<br>
+                República Dominicana<br>
+                contacto@indarca.com | +1809 596 0333
             </div>
 
             <div class="social-links">
@@ -134,7 +176,7 @@
 
             <div class="disclaimer">
                 <p>Este es un mensaje automático. Por favor, no responda a este correo.</p>
-                <p>&copy; {{ date('Y') }} INDARCA. Todos los derechos reservados.</p>
+                <p>&copy; {{ date('Y') }} <strong>INDARCA</strong>. Todos los derechos reservados.</p>
             </div>
         </div>
     </div>

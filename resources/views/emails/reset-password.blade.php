@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nueva contraseña - INDARCA</title>
+    <title>Restablecer Contraseña - INDARCA</title>
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -21,16 +21,11 @@
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
         .header {
-            background-color: #1a5276;
+            background-color: #dc3545;
             color: white;
             padding: 25px 20px;
             text-align: center;
-            border-bottom: 5px solid #2980b9;
-        }
-        .header h1 {
-            margin: 0;
-            font-size: 22px;
-            font-weight: 600;
+            border-bottom: 5px solid #b82634;
         }
         .logo {
             max-width: 180px;
@@ -39,26 +34,21 @@
         .content {
             padding: 35px 30px;
         }
-        .password-container {
+        .reset-code {
+            display: block;
             background-color: #f8f9fa;
-            border-left: 4px solid #1a5276;
-            border-radius: 4px;
-            padding: 20px;
-            margin: 25px 0;
-            text-align: center;
-        }
-        .password {
-            font-family: 'Courier New', monospace;
+            border-left: 4px solid #dc3545;
+            padding: 15px;
+            margin: 20px 0;
             font-size: 24px;
+            text-align: center;
             font-weight: bold;
-            color: #1a5276;
             letter-spacing: 2px;
-            margin: 10px 0;
         }
         .button {
             display: inline-block;
             padding: 12px 28px;
-            background-color: #1a5276;
+            background-color: #dc3545;
             color: white;
             text-decoration: none;
             border-radius: 4px;
@@ -67,25 +57,29 @@
             transition: all 0.3s ease;
         }
         .button:hover {
-            background-color: #154360;
-        }
-        .info {
-            background-color: #f8f9fa;
-            border-left: 4px solid #f39c12;
-            padding: 15px;
-            margin: 25px 0;
-            font-size: 14px;
+            background-color: #b82634;
         }
         .footer {
-            background-color: #2c3e50;
-            padding: 20px;
+            background-color: #292929;
+            padding: 30px 20px;
             text-align: center;
             font-size: 13px;
-            color: #ecf0f1;
+            color: #ffffff;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
         .contact-info {
             margin: 15px 0;
             line-height: 1.8;
+        }
+        .contact-info strong {
+            color: #dc3545;
+        }
+        .warning {
+            background-color: #fff8f8;
+            border-left: 4px solid #dc3545;
+            padding: 15px;
+            margin: 25px 0;
+            font-size: 14px;
         }
         .social-links {
             margin: 20px 0 15px;
@@ -93,18 +87,19 @@
         .social-links a {
             display: inline-block;
             margin: 0 8px;
-            color: #ecf0f1;
+            color: #ffffff;
             text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .social-links a:hover {
+            color: #dc3545;
         }
         .disclaimer {
-            border-top: 1px solid rgba(255,255,255,0.2);
+            border-top: 1px solid rgba(255,255,255,0.1);
             padding-top: 15px;
             margin-top: 15px;
             font-size: 12px;
-        }
-        .warning {
-            color: #dc3545;
-            font-weight: bold;
+            color: rgba(255,255,255,0.7);
         }
     </style>
 </head>
@@ -113,32 +108,37 @@
         <div class="header">
             <!-- Logo de la empresa -->
             <img src="{{ $message->embed(public_path('images/logo.png')) }}" alt="INDARCA Logo" class="logo">
-            <h1>Nueva Contraseña</h1>
+            <h1>Restablecer Contraseña</h1>
         </div>
 
         <div class="content">
-            <p>Estimado/a <strong>{{ $nombre }}</strong>,</p>
+            <p>Estimado/a <strong>{{ $usuario->nombre }}</strong>,</p>
 
-            <p>Hemos recibido una solicitud para restablecer la contraseña de su cuenta. Hemos generado una nueva contraseña temporal para usted:</p>
+            <p>Hemos recibido una solicitud para restablecer la contraseña de su cuenta en INDARCA. Para continuar con el proceso, por favor utilice el siguiente código:</p>
 
-            <div class="password-container">
-                <p class="password">{{ $password }}</p>
-                <p>Esta contraseña es válida durante <strong>24 horas</strong></p>
+            <div class="reset-code">
+                {{ $codigo }}
             </div>
 
-            <p class="warning">Por seguridad, le recomendamos cambiar esta contraseña una vez que acceda a su cuenta.</p>
+            <p>Este código es válido por 30 minutos. Si no ha solicitado este cambio, puede ignorar este correo y su contraseña seguirá siendo la misma.</p>
 
-            <p>Si usted no ha solicitado este restablecimiento de contraseña, por favor póngase en contacto con nosotros inmediatamente.</p>
+            <p>Para completar el proceso, haga clic en el botón a continuación e introduzca el código cuando se le solicite:</p>
 
-            <p>Atentamente,</p>
-            <p><strong>Equipo INDARCA</strong></p>
+            <div style="text-align: center;">
+                <a href="{{ $resetUrl }}" class="button">Restablecer Contraseña</a>
+            </div>
+
+            <div class="warning">
+                <strong>Nota de seguridad:</strong> Nunca compartiremos sus datos de acceso ni le solicitaremos su contraseña por correo electrónico. Siempre acceda a nuestro sitio web directamente escribiendo la URL en su navegador.
+            </div>
         </div>
 
         <div class="footer">
             <div class="contact-info">
                 <strong>INDARCA S.A.</strong><br>
-                Av. Empresarial 123, Sector Corporativo<br>
-                contacto@indarca.com | +34 900 123 456
+                Calle Principal #123, Santo Domingo<br>
+                República Dominicana<br>
+                contacto@indarca.com | +1809 596 0333
             </div>
 
             <div class="social-links">
@@ -150,7 +150,7 @@
 
             <div class="disclaimer">
                 <p>Este es un mensaje automático. Por favor, no responda a este correo.</p>
-                <p>&copy; {{ date('Y') }} INDARCA. Todos los derechos reservados.</p>
+                <p>&copy; {{ date('Y') }} <strong>INDARCA</strong>. Todos los derechos reservados.</p>
             </div>
         </div>
     </div>

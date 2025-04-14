@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Confirmación de contacto - INDARCA</title>
+    <title>Confirmación de Contacto - INDARCA</title>
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -21,16 +21,11 @@
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
         .header {
-            background-color: #1a5276;
+            background-color: #dc3545;
             color: white;
             padding: 25px 20px;
             text-align: center;
-            border-bottom: 5px solid #2980b9;
-        }
-        .header h1 {
-            margin: 0;
-            font-size: 22px;
-            font-weight: 600;
+            border-bottom: 5px solid #b82634;
         }
         .logo {
             max-width: 180px;
@@ -39,10 +34,17 @@
         .content {
             padding: 35px 30px;
         }
+        .message-summary {
+            background-color: #f8f9fa;
+            border-left: 4px solid #dc3545;
+            padding: 15px;
+            margin: 25px 0;
+            font-size: 14px;
+        }
         .button {
             display: inline-block;
             padding: 12px 28px;
-            background-color: #1a5276;
+            background-color: #dc3545;
             color: white;
             text-decoration: none;
             border-radius: 4px;
@@ -51,25 +53,22 @@
             transition: all 0.3s ease;
         }
         .button:hover {
-            background-color: #154360;
-        }
-        .info {
-            background-color: #f8f9fa;
-            border-left: 4px solid #f39c12;
-            padding: 15px;
-            margin: 25px 0;
-            font-size: 14px;
+            background-color: #b82634;
         }
         .footer {
-            background-color: #2c3e50;
-            padding: 20px;
+            background-color: #292929;
+            padding: 30px 20px;
             text-align: center;
             font-size: 13px;
-            color: #ecf0f1;
+            color: #ffffff;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
         .contact-info {
             margin: 15px 0;
             line-height: 1.8;
+        }
+        .contact-info strong {
+            color: #dc3545;
         }
         .social-links {
             margin: 20px 0 15px;
@@ -77,14 +76,19 @@
         .social-links a {
             display: inline-block;
             margin: 0 8px;
-            color: #ecf0f1;
+            color: #ffffff;
             text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .social-links a:hover {
+            color: #dc3545;
         }
         .disclaimer {
-            border-top: 1px solid rgba(255,255,255,0.2);
+            border-top: 1px solid rgba(255,255,255,0.1);
             padding-top: 15px;
             margin-top: 15px;
             font-size: 12px;
+            color: rgba(255,255,255,0.7);
         }
     </style>
 </head>
@@ -97,25 +101,32 @@
         </div>
 
         <div class="content">
-            <p>Estimado/a <strong>{{ $nombre }}</strong>,</p>
+            <p>Estimado/a <strong>{{ $contacto['nombre'] }}</strong>,</p>
 
-            <p>Gracias por contactar con INDARCA. Hemos recibido su mensaje correctamente.</p>
+            <p>Gracias por ponerse en contacto con INDARCA. Hemos recibido su mensaje y le responderemos a la brevedad posible.</p>
 
-            <div class="info">
-                <p>Nos pondremos en contacto con usted a la mayor brevedad posible para atender su consulta.</p>
+            <p>A continuación, le mostramos un resumen de la información que nos ha proporcionado:</p>
+
+            <div class="message-summary">
+                <p><strong>Nombre:</strong> {{ $contacto['nombre'] }}</p>
+                <p><strong>Correo electrónico:</strong> {{ $contacto['email'] }}</p>
+                <p><strong>Asunto:</strong> {{ $contacto['asunto'] }}</p>
+                <p><strong>Mensaje:</strong> {{ $contacto['mensaje'] }}</p>
             </div>
 
-            <p>Si tiene alguna pregunta adicional, no dude en contactarnos nuevamente.</p>
+            <p>Si desea información adicional sobre nuestros servicios, puede visitar nuestra página web haciendo clic en el botón a continuación.</p>
 
-            <p>Atentamente,</p>
-            <p><strong>Equipo INDARCA</strong></p>
+            <div style="text-align: center;">
+                <a href="{{ url('/') }}" class="button">Visitar Nuestra Web</a>
+            </div>
         </div>
 
         <div class="footer">
             <div class="contact-info">
                 <strong>INDARCA S.A.</strong><br>
-                Av. Empresarial 123, Sector Corporativo<br>
-                contacto@indarca.com | +34 900 123 456
+                Calle Principal #123, Santo Domingo<br>
+                República Dominicana<br>
+                contacto@indarca.com | +1809 596 0333
             </div>
 
             <div class="social-links">
@@ -127,7 +138,7 @@
 
             <div class="disclaimer">
                 <p>Este es un mensaje automático. Por favor, no responda a este correo.</p>
-                <p>&copy; {{ date('Y') }} INDARCA. Todos los derechos reservados.</p>
+                <p>&copy; {{ date('Y') }} <strong>INDARCA</strong>. Todos los derechos reservados.</p>
             </div>
         </div>
     </div>
