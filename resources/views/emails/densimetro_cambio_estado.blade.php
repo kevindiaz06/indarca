@@ -54,7 +54,7 @@
             background-color: #b82634;
         }
         .info {
-            background-color: #f8f9fa;
+            background-color: #fff8f8;
             border-left: 4px solid #dc3545;
             padding: 15px;
             margin: 25px 0;

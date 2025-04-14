@@ -36,7 +36,7 @@
         }
         .reset-code {
             display: block;
-            background-color: #f8f9fa;
+            background-color: #fff8f8;
             border-left: 4px solid #dc3545;
             padding: 15px;
             margin: 20px 0;
