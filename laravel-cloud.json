@@ -24,14 +24,21 @@
     },
     "environment": {
         "APP_ENV": "production",
-        "APP_DEBUG": "true",
-        "LOG_LEVEL": "debug",
+        "APP_DEBUG": "false",
+        "LOG_LEVEL": "error",
         "LOG_DEPRECATIONS_CHANNEL": "null",
         "DB_CONNECTION": "${DB_CONNECTION}",
         "DB_DATABASE": "indarca",
         "DB_USERNAME": "indarca",
         "DB_PASSWORD": "${DB_PASSWORD}",
         "DB_HOST": "${DB_HOST}",
-        "DB_PORT": "${DB_PORT}"
+        "DB_PORT": "${DB_PORT}",
+        "QUEUE_CONNECTION": "sync",
+        "CACHE_DRIVER": "file",
+        "SESSION_DRIVER": "file",
+        "SESSION_LIFETIME": "120"
+    },
+    "compute": {
+        "memory": 1024
     }
 }

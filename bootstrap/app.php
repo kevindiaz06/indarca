@@ -43,6 +43,25 @@ $app->singleton(
 
 /*
 |--------------------------------------------------------------------------
+| Handle Application Errors In Production
+|--------------------------------------------------------------------------
+|
+| When in production, we want to properly handle errors
+| and log these without showing detailed error information
+| to users that might expose sensitive information
+|
+*/
+
+$app->singleton(
+    Illuminate\Contracts\Debug\ExceptionHandler::class,
+    App\Exceptions\Handler::class
+);
+
+// Aumentar el límite de memoria para la aplicación
+ini_set('memory_limit', '256M');
+
+/*
+|--------------------------------------------------------------------------
 | Return The Application
 |--------------------------------------------------------------------------
 |
