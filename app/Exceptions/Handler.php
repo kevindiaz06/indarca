@@ -2,7 +2,10 @@
 
 namespace App\Exceptions;
 
+use Illuminate\Auth\AuthenticationException;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Session\TokenMismatchException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Throwable;
 
@@ -55,6 +58,33 @@ class Handler extends ExceptionHandler
             }
 
             return response()->view('errors.404', [], 404);
+        });
+
+        // Registrar un handler personalizado para el error 403 (AuthorizationException)
+        $this->renderable(function (AuthorizationException $e, $request) {
+            if ($request->expectsJson()) {
+                return response()->json(['message' => 'Acceso prohibido'], 403);
+            }
+
+            return response()->view('errors.403', [], 403);
+        });
+
+        // Registrar un handler personalizado para el error 401 (AuthenticationException)
+        $this->renderable(function (AuthenticationException $e, $request) {
+            if ($request->expectsJson()) {
+                return response()->json(['message' => 'No autorizado'], 401);
+            }
+
+            return response()->view('errors.401', [], 401);
+        });
+
+        // Registrar un handler personalizado para el error 419 (TokenMismatchException)
+        $this->renderable(function (TokenMismatchException $e, $request) {
+            if ($request->expectsJson()) {
+                return response()->json(['message' => 'Página expirada'], 419);
+            }
+
+            return response()->view('errors.419', [], 419);
         });
     }
 }

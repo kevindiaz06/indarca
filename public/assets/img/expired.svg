@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="500" height="500">
+  <style>
+    .red { fill: #F40006; }
+    .dark { fill: #292929; }
+    .light { fill: #f8f9fa; }
+  </style>
+  <rect class="light" x="0" y="0" width="500" height="500" rx="20" ry="20"/>
+  <circle cx="250" cy="250" r="100" fill="#f8f9fa" stroke="#292929" stroke-width="8"/>
+  <line x1="250" y1="170" x2="250" y2="250" stroke="#292929" stroke-width="8" stroke-linecap="round"/>
+  <line x1="250" y1="250" x2="300" y2="300" stroke="#292929" stroke-width="8" stroke-linecap="round"/>
+  <circle cx="250" cy="250" r="10" fill="#292929"/>
+  <path class="red" d="M350,250 A100,100 0 0,1 250,350" stroke="#F40006" stroke-width="12" fill="none" stroke-linecap="round"/>
+  <path class="red" d="M150,250 A100,100 0 0,0 250,150" stroke="#F40006" stroke-width="12" fill="none" stroke-linecap="round"/>
+  <text x="250" y="130" font-family="Arial" font-size="60" font-weight="bold" text-anchor="middle" class="red">419</text>
+</svg>
