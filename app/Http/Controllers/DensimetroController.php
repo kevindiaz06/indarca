@@ -2,11 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Mail\DensimetroCambioEstadoMail;
-use App\Mail\DensimetroRecepcionMail;
+use App\Http\Requests\DensimetroStoreRequest;
+use App\Http\Requests\DensimetroUpdateRequest;
 use App\Models\Densimetro;
 use App\Models\User;
-use Illuminate\Http\Request;
+use App\Repositories\DensimetroRepository;
+use App\Services\DensimetroService;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\View\View;
+use App\Mail\DensimetroCambioEstadoMail;
+use App\Mail\DensimetroRecepcionMail;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -15,34 +20,45 @@ use Carbon\Carbon;
 
 class DensimetroController extends Controller
 {
+    protected DensimetroRepository $repository;
+    protected DensimetroService $service;
+
     /**
      * Constructor para aplicar middleware de autenticación y roles
+     *
+     * @param DensimetroRepository $repository
+     * @param DensimetroService $service
      */
-    public function __construct()
+    public function __construct(DensimetroRepository $repository, DensimetroService $service)
     {
         $this->middleware('auth');
         $this->middleware('role:admin,trabajador');
+        $this->repository = $repository;
+        $this->service = $service;
     }
 
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return View
      */
-    public function index()
+    public function index(): View
     {
-        $densimetros = Densimetro::with('cliente')->orderBy('created_at', 'desc')->paginate(10);
+        $this->authorize('viewAny', Densimetro::class);
+
+        $densimetros = $this->repository->getAll(10);
         return view('admin.densimetros.index', compact('densimetros'));
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return View
      */
-    public function create()
+    public function create(): View
     {
-        // Obtener sólo usuarios tipo cliente
+        $this->authorize('create', Densimetro::class);
+
         $clientes = User::where('role', 'cliente')->orderBy('name')->get();
         return view('admin.densimetros.create', compact('clientes'));
     }
@@ -50,115 +66,53 @@ class DensimetroController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param DensimetroStoreRequest $request
+     * @return RedirectResponse
      */
-    public function store(Request $request)
+    public function store(DensimetroStoreRequest $request): RedirectResponse
     {
-        // Validar la solicitud
-        $validator = Validator::make($request->all(), [
-            'cliente_id' => 'required|exists:users,id',
-            'numero_serie' => 'required|string|max:50',
-            'marca' => 'nullable|string|max:50',
-            'modelo' => 'nullable|string|max:50',
-            'observaciones' => 'nullable|string|max:500',
-        ]);
+        $this->authorize('create', Densimetro::class);
 
-        if ($validator->fails()) {
-            return redirect()->back()
-                            ->withErrors($validator)
-                            ->withInput();
-        }
+        try {
+            $data = $request->validated();
+            $cliente = User::findOrFail($data['cliente_id']);
 
-        // Verificar si el densímetro ya existe en la base de datos
-        $densimetroExistente = Densimetro::buscarPorNumeroSerie($request->numero_serie);
-
-        if ($densimetroExistente) {
-            // Si el densímetro ya tiene una reparación en curso, mostrar error
-            if ($densimetroExistente->fecha_finalizacion === null) {
-                return redirect()->back()
-                    ->withErrors(['numero_serie' => 'Este densímetro ya está en proceso de reparación y no puede registrarse nuevamente hasta que finalice.'])
-                    ->withInput();
-            }
-
-            // Si el densímetro existe pero está finalizado, recuperar sus datos y crear nueva reparación
-            $cliente = User::findOrFail($request->cliente_id);
-            $referencia = Densimetro::generarReferencia();
-
-            $densimetro = new Densimetro([
-                'cliente_id' => $request->cliente_id,
-                'numero_serie' => $request->numero_serie,
-                'marca' => $densimetroExistente->marca,  // Usar datos existentes
-                'modelo' => $densimetroExistente->modelo, // Usar datos existentes
-                'fecha_entrada' => now()->toDateString(),
-                'referencia_reparacion' => $referencia,
-                'estado' => 'recibido',
-                'observaciones' => $request->observaciones,
-            ]);
-
-            $densimetro->save();
-
-            // Enviar correo electrónico al cliente
-            $this->enviarCorreoRecepcion($cliente, $densimetro);
+            $this->service->registrarNuevo($data, $cliente);
 
             return redirect()->route('admin.densimetros.index')
-                ->with('success', 'Nueva reparación registrada para un densímetro existente. Se ha enviado un correo al cliente con la referencia.');
+                ->with('success', 'Densímetro registrado correctamente. Se ha enviado un correo al cliente con la referencia de reparación.');
+        } catch (\Exception $e) {
+            return redirect()->back()
+                ->withErrors(['error' => $e->getMessage()])
+                ->withInput();
         }
-
-        // Si el densímetro no existe, crear un nuevo registro
-        $referencia = Densimetro::generarReferencia();
-
-        // Crear el nuevo registro de densímetro
-        $densimetro = new Densimetro([
-            'cliente_id' => $request->cliente_id,
-            'numero_serie' => $request->numero_serie,
-            'marca' => $request->marca,
-            'modelo' => $request->modelo,
-            'fecha_entrada' => now()->toDateString(),
-            'referencia_reparacion' => $referencia,
-            'estado' => 'recibido',
-            'observaciones' => $request->observaciones,
-        ]);
-
-        // Si el estado inicial es finalizado o entregado, registrar la fecha de finalización
-        if ($request->has('estado') && ($request->estado == 'finalizado' || $request->estado == 'entregado')) {
-            $densimetro->estado = $request->estado;
-            $densimetro->fecha_finalizacion = now()->toDateString();
-        }
-
-        $densimetro->save();
-
-        // Obtener el cliente/usuario para enviar el correo
-        $cliente = User::findOrFail($request->cliente_id);
-
-        // Enviar correo electrónico al cliente
-        $this->enviarCorreoRecepcion($cliente, $densimetro);
-
-        return redirect()->route('admin.densimetros.index')
-                        ->with('success', 'Densímetro registrado correctamente. Se ha enviado un correo al cliente con la referencia de reparación.');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param int $id
+     * @return View
      */
-    public function show($id)
+    public function show(int $id): View
     {
-        $densimetro = Densimetro::with('cliente')->findOrFail($id);
+        $densimetro = $this->repository->findById($id);
+        $this->authorize('view', $densimetro);
+
         return view('admin.densimetros.show', compact('densimetro'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param int $id
+     * @return View
      */
-    public function edit($id)
+    public function edit(int $id): View
     {
-        $densimetro = Densimetro::findOrFail($id);
+        $densimetro = $this->repository->findById($id);
+        $this->authorize('update', $densimetro);
+
         $clientes = User::where('role', 'cliente')->orderBy('name')->get();
         return view('admin.densimetros.edit', compact('densimetro', 'clientes'));
     }
@@ -166,123 +120,67 @@ class DensimetroController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param DensimetroUpdateRequest $request
+     * @param int $id
+     * @return RedirectResponse
      */
-    public function update(Request $request, $id)
+    public function update(DensimetroUpdateRequest $request, int $id): RedirectResponse
     {
-        // Validar la solicitud
-        $validator = Validator::make($request->all(), [
-            'cliente_id' => 'required|exists:users,id',
-            'numero_serie' => 'required|string|max:50',
-            'marca' => 'nullable|string|max:50',
-            'modelo' => 'nullable|string|max:50',
-            'estado' => 'required|in:recibido,en_reparacion,finalizado,entregado',
-            'observaciones' => 'nullable|string|max:500',
-            'calibrado' => 'nullable|boolean',
-            'fecha_proxima_calibracion' => 'nullable|date|required_if:calibrado,1',
-        ]);
+        $densimetro = $this->repository->findById($id);
+        $this->authorize('update', $densimetro);
 
-        if ($validator->fails()) {
+        try {
+            $data = $request->validated();
+            $this->service->actualizar($id, $data);
+
+            return redirect()->route('admin.densimetros.index')
+                ->with('success', 'Densímetro actualizado correctamente.');
+        } catch (\Exception $e) {
             return redirect()->back()
-                            ->withErrors($validator)
-                            ->withInput();
+                ->withErrors(['error' => $e->getMessage()])
+                ->withInput();
         }
-
-        // Actualizar el densímetro
-        $densimetro = Densimetro::findOrFail($id);
-
-        // Verificar si está cambiando el número de serie
-        if ($request->numero_serie !== $densimetro->numero_serie) {
-            // Buscar si existe otro densímetro con ese número de serie y que esté en reparación
-            $otroEnReparacion = Densimetro::where('id', '!=', $id)
-                                        ->where('numero_serie', $request->numero_serie)
-                                        ->whereNull('fecha_finalizacion')
-                                        ->exists();
-
-            if ($otroEnReparacion) {
-                return redirect()->back()
-                    ->withErrors(['numero_serie' => 'Este número de serie ya está asignado a otro densímetro en reparación.'])
-                    ->withInput();
-            }
-
-            // Si existe otro densímetro con el mismo número de serie pero finalizado,
-            // podríamos considerar usar los datos de marca y modelo si no se proporcionaron nuevos
-            $otroFinalizado = Densimetro::where('id', '!=', $id)
-                                      ->where('numero_serie', $request->numero_serie)
-                                      ->whereNotNull('fecha_finalizacion')
-                                      ->first();
-
-            if ($otroFinalizado && (empty($request->marca) || empty($request->modelo))) {
-                // Autocompletar datos si no se proporcionaron
-                if (empty($request->marca)) {
-                    $request->merge(['marca' => $otroFinalizado->marca]);
-                }
-                if (empty($request->modelo)) {
-                    $request->merge(['modelo' => $otroFinalizado->modelo]);
-                }
-            }
-        }
-
-        // Guardar el estado anterior para verificar si cambió
-        $estadoAnterior = $densimetro->estado;
-
-        $densimetro->cliente_id = $request->cliente_id;
-        $densimetro->numero_serie = $request->numero_serie;
-        $densimetro->marca = $request->marca;
-        $densimetro->modelo = $request->modelo;
-        $densimetro->estado = $request->estado;
-        $densimetro->observaciones = $request->observaciones;
-
-        // Manejar los campos de calibración cuando el estado es "finalizado" o "entregado"
-        if ($request->estado == 'finalizado' || $request->estado == 'entregado') {
-            $densimetro->calibrado = $request->calibrado;
-            if ($request->calibrado == 1) {
-                $densimetro->fecha_proxima_calibracion = $request->fecha_proxima_calibracion;
-            } else {
-                $densimetro->fecha_proxima_calibracion = null;
-            }
-        }
-
-        // Si el estado cambia a finalizado o entregado, registrar la fecha de finalización si no existe
-        if (($request->estado == 'finalizado' || $request->estado == 'entregado') && !$densimetro->fecha_finalizacion) {
-            $densimetro->fecha_finalizacion = now()->toDateString();
-        }
-        // Si el estado cambia desde finalizado o entregado a otro estado (que no sea finalizado ni entregado), anular la fecha de finalización
-        elseif (($estadoAnterior == 'finalizado' || $estadoAnterior == 'entregado') &&
-                ($request->estado != 'finalizado' && $request->estado != 'entregado')) {
-            $densimetro->fecha_finalizacion = null;
-        }
-
-        $densimetro->save();
-
-        // Si cambió el estado, notificar al cliente
-        if ($estadoAnterior != $request->estado) {
-            $this->enviarCorreoCambioEstado($densimetro);
-        }
-
-        return redirect()->route('admin.densimetros.index')
-                        ->with('success', 'Densímetro actualizado correctamente.');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param int $id
+     * @return RedirectResponse
      */
-    public function destroy($id)
+    public function destroy(int $id): RedirectResponse
     {
-        $densimetro = Densimetro::findOrFail($id);
+        $densimetro = $this->repository->findById($id);
+        $this->authorize('delete', $densimetro);
 
-        // Se elimina el densímetro normalmente
-        // Ahora, si el cliente es eliminado, el densímetro permanecerá en la base de datos
-        // debido a la modificación de la relación onDelete('set null') en la migración
-        $densimetro->delete();
+        try {
+            $this->service->eliminar($id);
+            return redirect()->route('admin.densimetros.index')
+                ->with('success', 'Densímetro eliminado correctamente.');
+        } catch (\Exception $e) {
+            return redirect()->back()
+                ->withErrors(['error' => $e->getMessage()]);
+        }
+    }
 
-        return redirect()->route('admin.densimetros.index')
-                        ->with('success', 'Densímetro eliminado correctamente.');
+    /**
+     * Generar PDF con los detalles del densímetro
+     *
+     * @param int $id
+     * @return mixed
+     */
+    public function generatePDF(int $id)
+    {
+        $densimetro = $this->repository->findById($id);
+        $this->authorize('generatePDF', $densimetro);
+
+        try {
+            $result = $this->service->generarPDF($id);
+            return $result['pdf']->download($result['fileName']);
+        } catch (\Exception $e) {
+            return redirect()->back()
+                ->withErrors(['error' => 'Error al generar el PDF: ' . $e->getMessage()]);
+        }
     }
 
     /**
@@ -330,41 +228,5 @@ class DensimetroController extends Controller
         // Envío del correo electrónico al cliente usando la clase Mailable
         Mail::to($cliente->email)
             ->send(new DensimetroCambioEstadoMail($densimetro));
-    }
-
-    /**
-     * Generar PDF con los detalles del densímetro
-     *
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function generatePDF($id)
-    {
-        $densimetro = Densimetro::with(['cliente', 'archivos'])->findOrFail($id);
-
-        // Verificar el estado de calibración antes de generar el PDF
-        $densimetro->verificarYActualizarCalibrado();
-
-        $date = Carbon::now()->format('d-m-Y_H-i-s');
-        $fileName = "densimetro_{$densimetro->referencia_reparacion}_{$date}.pdf";
-
-        $data = [
-            'densimetro' => $densimetro,
-            'title' => 'Ficha de Densímetro',
-            'date' => Carbon::now()->format('d/m/Y H:i:s')
-        ];
-
-        $pdf = PDF::loadView('reports.densimetro_pdf', $data);
-
-        // Configurar opciones para el PDF para permitir imágenes
-        $pdf->setPaper('a4');
-        $pdf->setOption('enable-javascript', true);
-        $pdf->setOption('enable-local-file-access', true);
-        $pdf->setOption('images', true);
-
-        // Si hay muchas imágenes, podría ser necesario aumentar el tiempo de ejecución
-        set_time_limit(300); // 5 minutos
-
-        return $pdf->download($fileName);
     }
 }
