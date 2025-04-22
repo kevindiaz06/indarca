@@ -54,7 +54,7 @@ class ContactoFormularioController extends Controller
                 \Log::info('Correo enviado exitosamente a: ' . $destinatario);
 
                 // Enviar correo de confirmación al usuario
-                Mail::to($request->email)->send(new ConfirmacionContactoMail($request->name));
+                Mail::to($request->email)->send(new ConfirmacionContactoMail($datos));
                 \Log::info('Correo de confirmación enviado a: ' . $request->email);
 
             } catch (\Exception $e) {

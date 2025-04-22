@@ -43,7 +43,11 @@ class ContactoMail extends Mailable
         return new Content(
             view: 'emails.contacto',
             with: [
-                'datos' => $this->datos,
+                'nombre' => $this->datos['nombre'],
+                'email' => $this->datos['correo'],
+                'asunto' => $this->datos['asunto'],
+                'mensaje' => $this->datos['mensaje'],
+                'telefono' => $this->datos['telefono'] ?? null,
             ],
         );
     }

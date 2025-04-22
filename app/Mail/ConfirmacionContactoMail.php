@@ -15,15 +15,22 @@ class ConfirmacionContactoMail extends Mailable
     use Queueable, SerializesModels;
 
     public $nombre;
+    public $contacto;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($nombre)
+    public function __construct($datos)
     {
-        $this->nombre = $nombre;
+        $this->nombre = $datos['nombre'];
+        $this->contacto = [
+            'nombre' => $datos['nombre'],
+            'email' => $datos['correo'],
+            'asunto' => $datos['asunto'],
+            'mensaje' => $datos['mensaje']
+        ];
     }
 
     /**
@@ -48,6 +55,9 @@ class ConfirmacionContactoMail extends Mailable
     {
         return new Content(
             view: 'emails.confirmacion-contacto',
+            with: [
+                'contacto' => $this->contacto
+            ]
         );
     }
 
