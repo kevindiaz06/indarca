@@ -2,8 +2,36 @@
 
 @section('content')
 <div class="container py-5">
+
+
     <div class="row justify-content-center">
         <div class="col-lg-8">
+            <!-- Toast Container para alertas flotantes -->
+    <div class="toast-container position-fixed top-0 end-0 p-3" style="z-index: 1050;">
+        @if($errors->any())
+        <div class="toast align-items-center text-white bg-danger border-0 show" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="d-flex">
+                <div class="toast-body">
+                    <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                    {{ $errors->first() }}
+                </div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+        </div>
+        @endif
+
+        @if(session('error'))
+        <div class="toast align-items-center text-white bg-danger border-0 show" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="d-flex">
+                <div class="toast-body">
+                    <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                    {{ session('error') }}
+                </div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+        </div>
+        @endif
+    </div>
             <!-- Primera tarjeta: Consulta por referencia -->
             <div class="card border-0 shadow-sm rounded-3 mb-4">
                 <div class="card-header bg-primary py-3">
@@ -76,24 +104,26 @@
                 </div>
             </div>
 
-            @if($errors->any())
-            <div class="alert alert-danger">
-                <i class="bi bi-exclamation-triangle-fill me-2"></i>
-                {{ $errors->first() }}
-            </div>
-            @endif
-
-            @if(session('error'))
-            <div class="alert alert-danger">
-                <i class="bi bi-exclamation-triangle-fill me-2"></i>
-                {{ session('error') }}
-            </div>
-            @endif
-
             <div class="mt-4 text-center">
                 <p class="text-muted">¿Tiene alguna pregunta? <a href="{{ route('inicio') }}#contact">Contáctenos</a></p>
             </div>
         </div>
     </div>
 </div>
+
+@push('scripts')
+<script>
+    // Inicializar los toasts y configurarlos para desaparecer automáticamente después de 5 segundos
+    document.addEventListener('DOMContentLoaded', function() {
+        var toastElList = [].slice.call(document.querySelectorAll('.toast'));
+        var toastList = toastElList.map(function(toastEl) {
+            var toast = new bootstrap.Toast(toastEl, {
+                autohide: true,
+                delay: 5000
+            });
+            return toast;
+        });
+    });
+</script>
+@endpush
 @endsection

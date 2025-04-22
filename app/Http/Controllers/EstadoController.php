@@ -39,9 +39,10 @@ class EstadoController extends Controller
                                ->first();
 
         if (!$densimetro) {
-            return view('estado')->withErrors([
-                'referencia' => 'No se encontró ningún densímetro con esa referencia.'
-            ])->withInput();
+            // Usar session flash en lugar de withErrors para el mensaje general
+            return redirect()->route('estado')
+                             ->with('error', 'No se encontró ningún densímetro con esa referencia.')
+                             ->withInput();
         }
 
         $estado = [
