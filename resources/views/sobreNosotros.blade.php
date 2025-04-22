@@ -486,13 +486,6 @@
                                                                 <i class="bi {{ $network['icon'] ?? 'bi-link' }}"></i>
                                                             </a>
                                                         @endforeach
-                                                    @else
-                                                        <a href="#" class="text-white mx-2"><i
-                                                                class="bi bi-linkedin"></i></a>
-                                                        <a href="#" class="text-white mx-2"><i
-                                                                class="bi bi-x"></i></a>
-                                                        <a href="#" class="text-white mx-2"><i
-                                                                class="bi bi-instagram"></i></a>
                                                     @endif
                                                 </div>
                                             </div>
@@ -546,13 +539,6 @@
                                                                                     class="bi {{ $network['icon'] ?? 'bi-link' }}"></i>
                                                                             </a>
                                                                         @endforeach
-                                                                    @else
-                                                                        <a href="#" class="text-white mx-2"><i
-                                                                                class="bi bi-linkedin"></i></a>
-                                                                        <a href="#" class="text-white mx-2"><i
-                                                                                class="bi bi-x"></i></a>
-                                                                        <a href="#" class="text-white mx-2"><i
-                                                                                class="bi bi-instagram"></i></a>
                                                                     @endif
                                                                 </div>
                                                             </div>
