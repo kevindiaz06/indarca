@@ -1,139 +1,14 @@
 @extends('layout')
 @section('content')
 
-@if(session('error'))
-    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-        <strong>Error:</strong> {{ session('error') }}
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-@endif
+    @if (session('error'))
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong>Error:</strong> {{ session('error') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
 
-<style>
-/* Definición de variables de colores */
-:root {
-    --color-primary: #D90000;
-    --color-dark: #000000;
-    --color-light: #FFFFFF;
-    --color-primary-light: rgba(217, 0, 0, 0.1);
-    --color-primary-medium: rgba(217, 0, 0, 0.5);
-    --color-dark-light: rgba(0, 0, 0, 0.8);
-    --color-dark-medium: rgba(0, 0, 0, 0.5);
-    --color-dark-subtle: rgba(0, 0, 0, 0.1);
-}
 
-/* Animaciones personalizadas para los iconos */
-@keyframes pulse-border {
-    0% {
-        transform: scale(1);
-        border-color: rgba(217, 0, 0, 0.2);
-    }
-    50% {
-        transform: scale(1.05);
-        border-color: rgba(217, 0, 0, 0.6);
-    }
-    100% {
-        transform: scale(1);
-        border-color: rgba(217, 0, 0, 0.2);
-    }
-}
-
-@keyframes float {
-    0% {
-        transform: translateY(0px);
-    }
-    50% {
-        transform: translateY(-8px);
-    }
-    100% {
-        transform: translateY(0px);
-    }
-}
-
-.icon-box, .service-item .icon {
-    width: 70px;
-    height: 70px;
-    transition: all 0.4s ease;
-    border: 1px solid rgba(217, 0, 0, 0.2);
-    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.icon-animate {
-    animation: pulse-border 2s infinite;
-}
-
-.float-animation {
-    animation: float 3s ease-in-out infinite;
-}
-
-.hover-shadow {
-    transition: all 0.3s ease;
-}
-
-.hover-shadow:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
-}
-
-.service-item {
-    transition: all 0.4s ease;
-    padding: 20px;
-    border-radius: 10px;
-    background: #fff;
-    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
-}
-
-.service-item:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
-}
-
-.service-item:hover .icon {
-    background-color: var(--color-primary) !important;
-}
-
-.service-item:hover .icon i {
-    color: var(--color-light) !important;
-}
-
-.stats-item {
-    padding: 20px;
-    width: 100%;
-    background: rgba(255, 255, 255, 0.9);
-    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
-    transition: all 0.4s;
-    text-align: center;
-    border-radius: 10px;
-}
-
-.stats .icon-box {
-    animation: float 3s ease-in-out infinite;
-    background-color: #FFFFFF !important;
-}
-
-.stats .icon-box i {
-    color: #F40006 !important;
-}
-
-.stats .icon-box:hover {
-    background-color: #292929 !important;
-}
-
-.stats .icon-box:hover i {
-    color: #FFFFFF !important;
-}
-
-.stats-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
-}
-
-.transition-all {
-    transition: all 0.3s ease;
-}
-</style>
 
     <body class="main">
 
@@ -144,9 +19,11 @@
                 <div class="row gy-4">
                     <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center" data-aos="zoom-out">
                         <h1>Bienvenidos a <span>INDARCA</span></h1>
-                        <p>Soluciones innovadoras en arquitectura, ingeniería y densímetros nucleares para proyectos de construcción que superan expectativas.</p>
+                        <p>Soluciones innovadoras en arquitectura, ingeniería y densímetros nucleares para proyectos de
+                            construcción que superan expectativas.</p>
                         <div class="d-flex">
-                            <a href="#contact" class="btn-get-started" style="background-color: #D90000; border-color: #D90000;">Contáctanos</a>
+                            <a href="#contact" class="btn-get-started"
+                                style="background-color: #D90000; border-color: #D90000;">Contáctanos</a>
                             <a href="https://www.youtube.com/watch?v=Y7f98aduVJ8"
                                 class="glightbox btn-watch-video d-flex align-items-center"><i
                                     class="bi bi-play-circle text-danger"></i><span>Ver Video</span></a>
@@ -166,41 +43,49 @@
 
                     <div class="col-xl-3 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="100">
                         <div class="service-item position-relative">
-                            <div class="icon bg-dark rounded-circle d-flex align-items-center justify-content-center mb-3 icon-animate">
+                            <div
+                                class="icon bg-dark rounded-circle d-flex align-items-center justify-content-center mb-3 icon-animate">
                                 <i class="bi bi-gear-wide-connected text-danger fs-3"></i>
                             </div>
                             <h4>Calibración y mantenimiento de densímetros nucleares</h4>
-                            <p>Servicio especializado para garantizar la precisión y fiabilidad de sus equipos de medición de densidad y humedad.</p>
+                            <p>Servicio especializado para garantizar la precisión y fiabilidad de sus equipos de medición
+                                de densidad y humedad.</p>
                         </div>
                     </div><!-- End Service Item -->
 
                     <div class="col-xl-3 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="200">
                         <div class="service-item position-relative">
-                            <div class="icon bg-dark rounded-circle d-flex align-items-center justify-content-center mb-3 icon-animate">
+                            <div
+                                class="icon bg-dark rounded-circle d-flex align-items-center justify-content-center mb-3 icon-animate">
                                 <i class="bi bi-bounding-box-circles text-danger fs-3"></i>
                             </div>
                             <h4>Diseño y construcción de proyectos arquitectónicos</h4>
-                            <p>Creamos espacios funcionales y estéticos que se adaptan perfectamente a las necesidades de nuestros clientes.</p>
+                            <p>Creamos espacios funcionales y estéticos que se adaptan perfectamente a las necesidades de
+                                nuestros clientes.</p>
                         </div>
                     </div><!-- End Service Item -->
 
                     <div class="col-xl-3 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="300">
                         <div class="service-item position-relative">
-                            <div class="icon bg-dark rounded-circle d-flex align-items-center justify-content-center mb-3 icon-animate">
+                            <div
+                                class="icon bg-dark rounded-circle d-flex align-items-center justify-content-center mb-3 icon-animate">
                                 <i class="bi bi-gear text-danger fs-3"></i>
                             </div>
                             <h4>Supervisión y gestión de obras</h4>
-                            <p>Control integral de proyectos para asegurar el cumplimiento de plazos, presupuestos y estándares de calidad.</p>
+                            <p>Control integral de proyectos para asegurar el cumplimiento de plazos, presupuestos y
+                                estándares de calidad.</p>
                         </div>
                     </div><!-- End Service Item -->
 
                     <div class="col-xl-3 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="400">
                         <div class="service-item position-relative">
-                            <div class="icon bg-dark rounded-circle d-flex align-items-center justify-content-center mb-3 icon-animate">
+                            <div
+                                class="icon bg-dark rounded-circle d-flex align-items-center justify-content-center mb-3 icon-animate">
                                 <i class="bi bi-broadcast text-danger fs-3"></i>
                             </div>
                             <h4>Asesoría técnica especializada</h4>
-                            <p>Consultoría profesional para optimizar sus proyectos y resolver desafíos técnicos específicos en construcción.</p>
+                            <p>Consultoría profesional para optimizar sus proyectos y resolver desafíos técnicos específicos
+                                en construcción.</p>
                         </div>
                     </div><!-- End Service Item -->
 
@@ -224,10 +109,14 @@
                     <!-- Imagen principal con overlay de información -->
                     <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
                         <div class="position-relative rounded-4 overflow-hidden shadow-lg h-100">
-                            <img src="assets/img/ramces_carolina.jpg" alt="Equipo INDARCA" class="img-fluid w-100 h-100 object-fit-cover">
+                            <img src="assets/img/ramces_carolina.jpg" alt="Equipo INDARCA"
+                                class="img-fluid w-100 h-100 object-fit-cover">
                             <div class="position-absolute bottom-0 start-0 w-100 p-4 bg-dark bg-opacity-75 text-white">
-                                <h3 class="fw-bold border-start border-danger border-4 ps-3 mb-2 text-white">Nuestra Historia</h3>
-                                <p>Fundada en 2005, INDARCA ha evolucionado hasta convertirse en un referente en la industria de la construcción, arquitectura y calibración de densímetros nucleares en República Dominicana.</p>
+                                <h3 class="fw-bold border-start border-danger border-4 ps-3 mb-2 text-white">Nuestra
+                                    Historia</h3>
+                                <p>Fundada en 2005, INDARCA ha evolucionado hasta convertirse en un referente en la
+                                    industria de la construcción, arquitectura y calibración de densímetros nucleares en
+                                    República Dominicana.</p>
                             </div>
                         </div>
                     </div>
@@ -238,22 +127,24 @@
                         <div class="card border-0 shadow-lg rounded-4 mb-4 h-100">
                             <div class="card-body p-4">
                                 <div class="d-flex align-items-center mb-3">
-                                    <div class="icon-box bg-dark rounded-circle p-3 d-flex justify-content-center align-items-center me-3">
+                                    <div
+                                        class="icon-box bg-dark rounded-circle p-3 d-flex justify-content-center align-items-center me-3">
                                         <i class="bi bi-award text-danger fs-1"></i>
                                     </div>
                                     <h3 class="fw-bold mb-0">Certificaciones y Reconocimientos</h3>
                                 </div>
                                 <p class="fst-italic mb-4">
                                     <span class="fw-bold text-danger">INDARCA</span>
-                                ha sido reconocida por su compromiso con
-                                la calidad y la seguridad en el sector,
-                                contando con certificaciones de alto estándar en ingeniería y arquitectura.
-                            </p>
+                                    ha sido reconocida por su compromiso con
+                                    la calidad y la seguridad en el sector,
+                                    contando con certificaciones de alto estándar en ingeniería y arquitectura.
+                                </p>
 
                                 <div class="row g-3">
                                     <div class="col-md-6">
                                         <div class="d-flex align-items-center p-3 bg-light rounded-3 h-100 hover-shadow">
-                                            <div class="icon-box bg-dark rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 50px; height: 50px;">
+                                            <div class="icon-box bg-dark rounded-circle d-flex align-items-center justify-content-center me-3"
+                                                style="width: 50px; height: 50px;">
                                                 <i class="bi bi-patch-check text-danger fs-3"></i>
                                             </div>
                                             <div>
@@ -264,7 +155,8 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="d-flex align-items-center p-3 bg-light rounded-3 h-100 hover-shadow">
-                                            <div class="icon-box bg-dark rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 50px; height: 50px;">
+                                            <div class="icon-box bg-dark rounded-circle d-flex align-items-center justify-content-center me-3"
+                                                style="width: 50px; height: 50px;">
                                                 <i class="bi bi-shield-check text-danger fs-3"></i>
                                             </div>
                                             <div>
@@ -283,12 +175,15 @@
                                 <div class="card border-0 shadow h-100 rounded-4 bg-gradient hover-shadow">
                                     <div class="card-body p-4">
                                         <div class="d-flex align-items-center mb-3">
-                                            <div class="icon-box bg-dark rounded-circle p-3 d-flex justify-content-center align-items-center me-3">
+                                            <div
+                                                class="icon-box bg-dark rounded-circle p-3 d-flex justify-content-center align-items-center me-3">
                                                 <i class="bi bi-diagram-3 text-danger fs-1"></i>
                                             </div>
                                             <h4 class="card-title fw-bold mb-0">Ingeniería Innovadora</h4>
                                         </div>
-                                        <p class="card-text">Con soluciones creativas y un enfoque vanguardista, redefinimos los proyectos de ingeniería, superando expectativas en cada etapa.</p>
+                                        <p class="card-text">Con soluciones creativas y un enfoque vanguardista,
+                                            redefinimos los proyectos de ingeniería, superando expectativas en cada etapa.
+                                        </p>
                                     </div>
                                 </div>
                             </div>
@@ -297,12 +192,14 @@
                                 <div class="card border-0 shadow h-100 rounded-4 bg-gradient hover-shadow">
                                     <div class="card-body p-4">
                                         <div class="d-flex align-items-center mb-3">
-                                            <div class="icon-box bg-dark rounded-circle p-3 d-flex justify-content-center align-items-center me-3">
+                                            <div
+                                                class="icon-box bg-dark rounded-circle p-3 d-flex justify-content-center align-items-center me-3">
                                                 <i class="bi bi-fullscreen-exit text-danger fs-1"></i>
                                             </div>
                                             <h4 class="card-title fw-bold mb-0">Diseño Creativo</h4>
                                         </div>
-                                        <p class="card-text">Transformamos proyectos en obras de alto impacto, destacando por nuestra calidad y eficiencia en cada detalle constructivo.</p>
+                                        <p class="card-text">Transformamos proyectos en obras de alto impacto, destacando
+                                            por nuestra calidad y eficiencia en cada detalle constructivo.</p>
                                     </div>
                                 </div>
                             </div>
@@ -319,7 +216,8 @@
 
                     <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
                         <div class="text-center p-4 rounded-4 bg-white shadow-sm hover-shadow transition-all h-100">
-                            <div class="icon-box bg-dark rounded-circle p-3 d-inline-flex justify-content-center align-items-center mb-3 icon-animate">
+                            <div
+                                class="icon-box bg-dark rounded-circle p-3 d-inline-flex justify-content-center align-items-center mb-3 icon-animate">
                                 <i class="bi bi-stars text-danger fs-2"></i>
                             </div>
                             <h5 class="fw-bold mb-3">Excelencia</h5>
@@ -329,7 +227,8 @@
 
                     <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="200">
                         <div class="text-center p-4 rounded-4 bg-white shadow-sm hover-shadow transition-all h-100">
-                            <div class="icon-box bg-dark rounded-circle p-3 d-inline-flex justify-content-center align-items-center mb-3 icon-animate">
+                            <div
+                                class="icon-box bg-dark rounded-circle p-3 d-inline-flex justify-content-center align-items-center mb-3 icon-animate">
                                 <i class="bi bi-people-fill text-danger fs-2"></i>
                             </div>
                             <h5 class="fw-bold mb-3">Trabajo en Equipo</h5>
@@ -339,7 +238,8 @@
 
                     <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="300">
                         <div class="text-center p-4 rounded-4 bg-white shadow-sm hover-shadow transition-all h-100">
-                            <div class="icon-box bg-dark rounded-circle p-3 d-inline-flex justify-content-center align-items-center mb-3 icon-animate">
+                            <div
+                                class="icon-box bg-dark rounded-circle p-3 d-inline-flex justify-content-center align-items-center mb-3 icon-animate">
                                 <i class="bi bi-lightbulb-fill text-danger fs-2"></i>
                             </div>
                             <h5 class="fw-bold mb-3">Innovación</h5>
@@ -349,11 +249,13 @@
 
                     <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="400">
                         <div class="text-center p-4 rounded-4 bg-white shadow-sm hover-shadow transition-all h-100">
-                            <div class="icon-box bg-dark rounded-circle p-3 d-inline-flex justify-content-center align-items-center mb-3 icon-animate">
+                            <div
+                                class="icon-box bg-dark rounded-circle p-3 d-inline-flex justify-content-center align-items-center mb-3 icon-animate">
                                 <i class="bi bi-trophy-fill text-danger fs-2"></i>
                             </div>
                             <h5 class="fw-bold mb-3">Integridad</h5>
-                            <p>Operamos con los más altos estándares éticos y profesionales en todas nuestras actividades.</p>
+                            <p>Operamos con los más altos estándares éticos y profesionales en todas nuestras actividades.
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -369,18 +271,20 @@
                 <div class="row gy-4">
 
                     <div class="col-lg-3 col-md-6 d-flex flex-column align-items-center">
-                        <div class="icon-box rounded-circle d-flex align-items-center justify-content-center mb-3 float-animation">
+                        <div
+                            class="icon-box rounded-circle d-flex align-items-center justify-content-center mb-3 float-animation">
                             <i class="bi bi-emoji-smile fs-3"></i>
                         </div>
                         <div class="stats-item">
-                            <span data-purecounter-start="0" data-purecounter-end="{{ $totalClientes ?? 0 }}" data-purecounter-duration="5"
-                                class="purecounter"></span>
+                            <span data-purecounter-start="0" data-purecounter-end="{{ $totalClientes ?? 0 }}"
+                                data-purecounter-duration="5" class="purecounter"></span>
                             <p>+ Clientes</p>
                         </div>
                     </div><!-- End Stats Item -->
 
                     <div class="col-lg-3 col-md-6 d-flex flex-column align-items-center">
-                        <div class="icon-box rounded-circle d-flex align-items-center justify-content-center mb-3 float-animation">
+                        <div
+                            class="icon-box rounded-circle d-flex align-items-center justify-content-center mb-3 float-animation">
                             <i class="bi bi-journal-richtext fs-3"></i>
                         </div>
                         <div class="stats-item">
@@ -391,7 +295,8 @@
                     </div><!-- End Stats Item -->
 
                     <div class="col-lg-3 col-md-6 d-flex flex-column align-items-center">
-                        <div class="icon-box rounded-circle d-flex align-items-center justify-content-center mb-3 float-animation">
+                        <div
+                            class="icon-box rounded-circle d-flex align-items-center justify-content-center mb-3 float-animation">
                             <i class="bi bi-activity fs-3"></i>
                         </div>
                         <div class="stats-item">
@@ -402,12 +307,13 @@
                     </div><!-- End Stats Item -->
 
                     <div class="col-lg-3 col-md-6 d-flex flex-column align-items-center">
-                        <div class="icon-box rounded-circle d-flex align-items-center justify-content-center mb-3 float-animation">
+                        <div
+                            class="icon-box rounded-circle d-flex align-items-center justify-content-center mb-3 float-animation">
                             <i class="bi bi-people fs-3"></i>
                         </div>
                         <div class="stats-item">
-                            <span data-purecounter-start="0" data-purecounter-end="{{ $totalTrabajadores ?? 0 }}" data-purecounter-duration="5"
-                                class="purecounter"></span>
+                            <span data-purecounter-start="0" data-purecounter-end="{{ $totalTrabajadores ?? 0 }}"
+                                data-purecounter-duration="5" class="purecounter"></span>
                             <p>Empleados</p>
                         </div>
                     </div><!-- End Stats Item -->
@@ -427,7 +333,8 @@
             </div>
 
             <div class="container">
-                <div class="bg-gradient-light rounded-4 p-5 shadow-lg position-relative overflow-hidden" style="background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);">
+                <div class="bg-gradient-light rounded-4 p-5 shadow-lg position-relative overflow-hidden"
+                    style="background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);">
                     <!-- Elementos decorativos de fondo -->
                     <div class="position-absolute top-0 start-0 translate-middle-y opacity-10">
                         <i class="bi bi-hexagon-fill text-primary" style="font-size: 15rem;"></i>
@@ -443,7 +350,7 @@
                         </div>
                     </div>
 
-                    @if(isset($empresas) && $empresas->count() > 0)
+                    @if (isset($empresas) && $empresas->count() > 0)
                         <!-- Carrusel de empresas -->
                         <div id="empresasCarrusel" class="carousel slide" data-bs-ride="false" data-bs-touch="true">
                             <div class="carousel-inner">
@@ -452,15 +359,19 @@
                                     $totalPaginas = ceil($totalEmpresas / 8);
                                 @endphp
 
-                                @for($pagina = 0; $pagina < $totalPaginas; $pagina++)
+                                @for ($pagina = 0; $pagina < $totalPaginas; $pagina++)
                                     <div class="carousel-item {{ $pagina == 0 ? 'active' : '' }}">
                                         <div class="row row-cols-2 row-cols-md-4 row-cols-lg-4 g-4 position-relative">
-                                            @foreach($empresas->slice($pagina * 8, 8) as $empresa)
+                                            @foreach ($empresas->slice($pagina * 8, 8) as $empresa)
                                                 <div class="col" data-aos="fade-up">
-                                                    <div class="card h-100 border-0 rounded-4 client-card shadow-sm {{ $empresa->destacado ? 'border border-danger border-2' : '' }}">
-                                                        <div class="card-body d-flex align-items-center justify-content-center p-4">
-                                                            @if($empresa->logo)
-                                                                <img src="{{ asset('storage/' . $empresa->logo) }}" class="img-fluid client-img" alt="{{ $empresa->nombre }}">
+                                                    <div
+                                                        class="card h-100 border-0 rounded-4 client-card shadow-sm {{ $empresa->destacado ? 'border border-danger border-2' : '' }}">
+                                                        <div
+                                                            class="card-body d-flex align-items-center justify-content-center p-4">
+                                                            @if ($empresa->logo)
+                                                                <img src="{{ asset('storage/' . $empresa->logo) }}"
+                                                                    class="img-fluid client-img"
+                                                                    alt="{{ $empresa->nombre }}">
                                                             @else
                                                                 <div class="text-center">
                                                                     <div class="display-4 text-muted mb-2">
@@ -476,9 +387,10 @@
                                                                     {{ $empresa->tipo_cliente }}
                                                                 </span>
                                                                 <h5 class="fw-bold">{{ $empresa->nombre }}</h5>
-                                                                @if($empresa->destacado)
+                                                                @if ($empresa->destacado)
                                                                     <div class="mt-2">
-                                                                        <span class="badge bg-warning text-dark rounded-pill px-3 py-2">
+                                                                        <span
+                                                                            class="badge bg-warning text-dark rounded-pill px-3 py-2">
                                                                             <i class="bi bi-star-fill me-1"></i> Destacado
                                                                         </span>
                                                                     </div>
@@ -493,15 +405,19 @@
                                 @endfor
                             </div>
 
-                            @if($totalPaginas > 1)
+                            @if ($totalPaginas > 1)
                                 <!-- Controles de navegación -->
                                 <div class="position-relative">
-                                    <button class="carousel-control-prev" type="button" data-bs-target="#empresasCarrusel" data-bs-slide="prev">
-                                        <span class="carousel-control-prev-icon bg-danger rounded-circle p-3" aria-hidden="true"></span>
+                                    <button class="carousel-control-prev" type="button"
+                                        data-bs-target="#empresasCarrusel" data-bs-slide="prev">
+                                        <span class="carousel-control-prev-icon bg-danger rounded-circle p-3"
+                                            aria-hidden="true"></span>
                                         <span class="visually-hidden">Anterior</span>
                                     </button>
-                                    <button class="carousel-control-next" type="button" data-bs-target="#empresasCarrusel" data-bs-slide="next">
-                                        <span class="carousel-control-next-icon bg-danger rounded-circle p-3" aria-hidden="true"></span>
+                                    <button class="carousel-control-next" type="button"
+                                        data-bs-target="#empresasCarrusel" data-bs-slide="next">
+                                        <span class="carousel-control-next-icon bg-danger rounded-circle p-3"
+                                            aria-hidden="true"></span>
                                         <span class="visually-hidden">Siguiente</span>
                                     </button>
                                 </div>
@@ -509,11 +425,17 @@
                                 <!-- Indicadores de página con texto informativo -->
                                 <div class="text-center mt-4">
                                     <div class="carousel-indicators">
-                                        @for($i = 0; $i < $totalPaginas; $i++)
-                                            <button type="button" data-bs-target="#empresasCarrusel" data-bs-slide-to="{{ $i }}" class="{{ $i == 0 ? 'active' : '' }}" aria-current="{{ $i == 0 ? 'true' : 'false' }}" aria-label="Página {{ $i + 1 }}"></button>
+                                        @for ($i = 0; $i < $totalPaginas; $i++)
+                                            <button type="button" data-bs-target="#empresasCarrusel"
+                                                data-bs-slide-to="{{ $i }}"
+                                                class="{{ $i == 0 ? 'active' : '' }}"
+                                                aria-current="{{ $i == 0 ? 'true' : 'false' }}"
+                                                aria-label="Página {{ $i + 1 }}"></button>
                                         @endfor
                                     </div>
-                                    <p class="text-muted small mt-3">Desliza para ver más empresas (<span id="paginaActual">1</span>/<span id="totalPaginas">{{ $totalPaginas }}</span>)</p>
+                                    <p class="text-muted small mt-3">Desliza para ver más empresas (<span
+                                            id="paginaActual">1</span>/<span
+                                            id="totalPaginas">{{ $totalPaginas }}</span>)</p>
                                 </div>
 
                                 <!-- Script para actualizar el contador de páginas -->
@@ -536,7 +458,8 @@
                             <div class="col" data-aos="fade-up" data-aos-delay="100">
                                 <div class="card h-100 border-0 rounded-4 client-card shadow-sm">
                                     <div class="card-body d-flex align-items-center justify-content-center p-4">
-                                        <img src="assets/img/clients/client-1.png" class="img-fluid client-img" alt="Cliente 1">
+                                        <img src="assets/img/clients/client-1.png" class="img-fluid client-img"
+                                            alt="Cliente 1">
                                     </div>
                                     <div class="card-overlay">
                                         <div class="overlay-content">
@@ -553,7 +476,8 @@
                             <div class="col" data-aos="fade-up" data-aos-delay="150">
                                 <div class="card h-100 border-0 rounded-4 client-card shadow-sm">
                                     <div class="card-body d-flex align-items-center justify-content-center p-4">
-                                        <img src="assets/img/clients/client-2.png" class="img-fluid client-img" alt="Cliente 2">
+                                        <img src="assets/img/clients/client-2.png" class="img-fluid client-img"
+                                            alt="Cliente 2">
                                     </div>
                                     <div class="card-overlay">
                                         <div class="overlay-content">
@@ -570,7 +494,8 @@
                             <div class="col" data-aos="fade-up" data-aos-delay="200">
                                 <div class="card h-100 border-0 rounded-4 client-card shadow-sm">
                                     <div class="card-body d-flex align-items-center justify-content-center p-4">
-                                        <img src="assets/img/clients/client-3.png" class="img-fluid client-img" alt="Cliente 3">
+                                        <img src="assets/img/clients/client-3.png" class="img-fluid client-img"
+                                            alt="Cliente 3">
                                     </div>
                                     <div class="card-overlay">
                                         <div class="overlay-content">
@@ -587,7 +512,8 @@
                             <div class="col" data-aos="fade-up" data-aos-delay="250">
                                 <div class="card h-100 border-0 rounded-4 client-card shadow-sm">
                                     <div class="card-body d-flex align-items-center justify-content-center p-4">
-                                        <img src="assets/img/clients/client-4.png" class="img-fluid client-img" alt="Cliente 4">
+                                        <img src="assets/img/clients/client-4.png" class="img-fluid client-img"
+                                            alt="Cliente 4">
                                     </div>
                                     <div class="card-overlay">
                                         <div class="overlay-content">
@@ -601,27 +527,27 @@
                             </div>
 
                             <!-- Clientes 5-8 (placeholders) -->
-                            @for($i = 0; $i < 4; $i++)
-                            <div class="col" data-aos="fade-up" data-aos-delay="{{ 300 + $i*50 }}">
-                                <div class="card h-100 border-0 rounded-4 client-card shadow-sm">
-                                    <div class="card-body d-flex align-items-center justify-content-center p-4">
-                                        <div class="text-center">
-                                            <div class="display-4 text-muted mb-2">
-                                                <i class="bi bi-building"></i>
+                            @for ($i = 0; $i < 4; $i++)
+                                <div class="col" data-aos="fade-up" data-aos-delay="{{ 300 + $i * 50 }}">
+                                    <div class="card h-100 border-0 rounded-4 client-card shadow-sm">
+                                        <div class="card-body d-flex align-items-center justify-content-center p-4">
+                                            <div class="text-center">
+                                                <div class="display-4 text-muted mb-2">
+                                                    <i class="bi bi-building"></i>
+                                                </div>
+                                                <h6 class="mb-0 fw-bold">Cliente {{ $i + 5 }}</h6>
                                             </div>
-                                            <h6 class="mb-0 fw-bold">Cliente {{ $i + 5 }}</h6>
                                         </div>
-                                    </div>
-                                    <div class="card-overlay">
-                                        <div class="overlay-content">
-                                            <span class="badge bg-dark rounded-pill px-3 py-2 mb-2">
-                                                Cliente Habitual
-                                            </span>
-                                            <h5 class="fw-bold">Cliente {{ $i + 5 }}</h5>
+                                        <div class="card-overlay">
+                                            <div class="overlay-content">
+                                                <span class="badge bg-dark rounded-pill px-3 py-2 mb-2">
+                                                    Cliente Habitual
+                                                </span>
+                                                <h5 class="fw-bold">Cliente {{ $i + 5 }}</h5>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
                             @endfor
                         </div>
                     @endif
@@ -637,6 +563,135 @@
 
             <!-- Estilos específicos para esta sección -->
             <style>
+                :root {
+                    --color-primary: #D90000;
+                    --color-dark: #000000;
+                    --color-light: #FFFFFF;
+                    --color-primary-light: rgba(217, 0, 0, 0.1);
+                    --color-primary-medium: rgba(217, 0, 0, 0.5);
+                    --color-dark-light: rgba(0, 0, 0, 0.8);
+                    --color-dark-medium: rgba(0, 0, 0, 0.5);
+                    --color-dark-subtle: rgba(0, 0, 0, 0.1);
+                }
+
+                /* Animaciones personalizadas para los iconos */
+                @keyframes pulse-border {
+                    0% {
+                        transform: scale(1);
+                        border-color: rgba(217, 0, 0, 0.2);
+                    }
+
+                    50% {
+                        transform: scale(1.05);
+                        border-color: rgba(217, 0, 0, 0.6);
+                    }
+
+                    100% {
+                        transform: scale(1);
+                        border-color: rgba(217, 0, 0, 0.2);
+                    }
+                }
+
+                @keyframes float {
+                    0% {
+                        transform: translateY(0px);
+                    }
+
+                    50% {
+                        transform: translateY(-8px);
+                    }
+
+                    100% {
+                        transform: translateY(0px);
+                    }
+                }
+
+                .icon-box,
+                .service-item .icon {
+                    width: 70px;
+                    height: 70px;
+                    transition: all 0.4s ease;
+                    border: 1px solid rgba(217, 0, 0, 0.2);
+                    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+
+                .icon-animate {
+                    animation: pulse-border 2s infinite;
+                }
+
+                .float-animation {
+                    animation: float 3s ease-in-out infinite;
+                }
+
+                .hover-shadow {
+                    transition: all 0.3s ease;
+                }
+
+                .hover-shadow:hover {
+                    transform: translateY(-5px);
+                    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+                }
+
+                .service-item {
+                    transition: all 0.4s ease;
+                    padding: 20px;
+                    border-radius: 10px;
+                    background: #fff;
+                    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+                }
+
+                .service-item:hover {
+                    transform: translateY(-10px);
+                    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+                }
+
+                .service-item:hover .icon {
+                    background-color: var(--color-primary) !important;
+                }
+
+                .service-item:hover .icon i {
+                    color: var(--color-light) !important;
+                }
+
+                .stats-item {
+                    padding: 20px;
+                    width: 100%;
+                    background: rgba(255, 255, 255, 0.9);
+                    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+                    transition: all 0.4s;
+                    text-align: center;
+                    border-radius: 10px;
+                }
+
+                .stats .icon-box {
+                    animation: float 3s ease-in-out infinite;
+                    background-color: #FFFFFF !important;
+                }
+
+                .stats .icon-box i {
+                    color: #F40006 !important;
+                }
+
+                .stats .icon-box:hover {
+                    background-color: #292929 !important;
+                }
+
+                .stats .icon-box:hover i {
+                    color: #FFFFFF !important;
+                }
+
+                .stats-item:hover {
+                    transform: translateY(-5px);
+                    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+                }
+
+                .transition-all {
+                    transition: all 0.3s ease;
+                }
+
                 .client-card {
                     transition: all 0.3s ease;
                     overflow: hidden;
@@ -897,39 +952,50 @@
                 <!-- Presentación corporativa -->
                 <div class="row mb-5">
                     <div class="col-lg-8 mx-auto text-center">
-                        <p class="lead text-muted mb-0">Valoramos su interés en INDARCA. Nuestro equipo de especialistas está preparado para atender sus consultas y brindarle soluciones personalizadas para sus proyectos.</p>
+                        <p class="lead text-muted mb-0">Valoramos su interés en INDARCA. Nuestro equipo de especialistas
+                            está preparado para atender sus consultas y brindarle soluciones personalizadas para sus
+                            proyectos.</p>
                     </div>
                 </div>
 
                 <!-- Contenedor principal -->
-                <div class="bg-white rounded-4 shadow overflow-hidden" style="box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08) !important; transform: translateY(0); transition: all 0.3s ease;">
+                <div class="bg-white rounded-4 shadow overflow-hidden"
+                    style="box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08) !important; transform: translateY(0); transition: all 0.3s ease;">
                     <div class="row g-0">
                         <!-- Panel izquierdo - Información de contacto -->
                         <div class="col-lg-4">
-                            <div class="h-100 p-4 p-lg-5 text-white" style="background: linear-gradient(135deg, #000000 0%, #D90000 100%);">
+                            <div class="h-100 p-4 p-lg-5 text-white"
+                                style="background: linear-gradient(135deg, #000000 0%, #D90000 100%);">
                                 <!-- Logo y título -->
                                 <div class="text-center mb-5">
                                     <div class="mb-4">
-                                        <img src="{{ asset('assets/img/logo_indarca.png') }}" alt="INDARCA" class="img-fluid" style="max-height: 60px;">
+                                        <img src="{{ asset('assets/img/logo_indarca.png') }}" alt="INDARCA"
+                                            class="img-fluid" style="max-height: 60px;">
                                     </div>
-                                    <h3 class="fw-light mb-2 text-white">Centro de <span class="fw-bold">Atención</span></h3>
-                                    <div class="mx-auto" style="width: 50px; height: 3px; background-color: rgba(255, 255, 255, 0.5); margin-top: 10px;"></div>
+                                    <h3 class="fw-light mb-2 text-white">Centro de <span class="fw-bold">Atención</span>
+                                    </h3>
+                                    <div class="mx-auto"
+                                        style="width: 50px; height: 3px; background-color: rgba(255, 255, 255, 0.5); margin-top: 10px;">
+                                    </div>
                                 </div>
 
                                 <!-- Información de contacto -->
                                 <div class="mb-5">
                                     <div class="d-flex align-items-center mb-4">
-                                        <div class="me-3 rounded-circle bg-white bg-opacity-25 d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+                                        <div class="me-3 rounded-circle bg-white bg-opacity-25 d-flex align-items-center justify-content-center"
+                                            style="width: 40px; height: 40px;">
                                             <i class="bi bi-geo-alt text-white"></i>
                                         </div>
                                         <div>
                                             <h6 class="text-white-50 mb-1 small">Dirección Principal</h6>
-                                            <p class="mb-0">C. C 16, Santo Domingo Este 11506 <br> República Dominicana</p>
+                                            <p class="mb-0">C. C 16, Santo Domingo Este 11506 <br> República Dominicana
+                                            </p>
                                         </div>
                                     </div>
 
                                     <div class="d-flex align-items-center mb-4">
-                                        <div class="me-3 rounded-circle bg-white bg-opacity-25 d-flex align-items-center justify-content-center" style="width: 40px; height: 40px; background-color: rgba(255, 255, 255, 0.2);">
+                                        <div class="me-3 rounded-circle bg-white bg-opacity-25 d-flex align-items-center justify-content-center"
+                                            style="width: 40px; height: 40px; background-color: rgba(255, 255, 255, 0.2);">
                                             <i class="bi bi-telephone text-white"></i>
                                         </div>
                                         <div>
@@ -940,7 +1006,8 @@
                                     </div>
 
                                     <div class="d-flex align-items-center mb-4">
-                                        <div class="me-3 rounded-circle d-flex align-items-center justify-content-center" style="width: 40px; height: 40px; background-color: rgba(255, 255, 255, 0.2);">
+                                        <div class="me-3 rounded-circle d-flex align-items-center justify-content-center"
+                                            style="width: 40px; height: 40px; background-color: rgba(255, 255, 255, 0.2);">
                                             <i class="bi bi-envelope text-white"></i>
                                         </div>
                                         <div>
@@ -950,7 +1017,8 @@
                                     </div>
 
                                     <div class="d-flex align-items-center">
-                                        <div class="me-3 rounded-circle d-flex align-items-center justify-content-center" style="width: 40px; height: 40px; background-color: rgba(255, 255, 255, 0.2);">
+                                        <div class="me-3 rounded-circle d-flex align-items-center justify-content-center"
+                                            style="width: 40px; height: 40px; background-color: rgba(255, 255, 255, 0.2);">
                                             <i class="bi bi-clock text-white"></i>
                                         </div>
                                         <div>
@@ -964,16 +1032,24 @@
                                 <div class="mt-5 pt-2">
                                     <h6 class="text-white-50 mb-3 small">Conéctese con nosotros</h6>
                                     <div class="d-flex gap-2">
-                                        <a href="https://www.facebook.com/share/1EJq41gUNs/?mibextid=wwXIfr" class="rounded-circle d-flex align-items-center justify-content-center" style="width: 36px; height: 36px; background-color: rgba(255, 255, 255, 0.2); transition: all 0.3s ease;">
+                                        <a href="https://www.facebook.com/share/1EJq41gUNs/?mibextid=wwXIfr"
+                                            class="rounded-circle d-flex align-items-center justify-content-center"
+                                            style="width: 36px; height: 36px; background-color: rgba(255, 255, 255, 0.2); transition: all 0.3s ease;">
                                             <i class="bi bi-facebook text-white"></i>
                                         </a>
-                                        <a href="https://x.com/indarca_srl?s=11" class="rounded-circle d-flex align-items-center justify-content-center" style="width: 36px; height: 36px; background-color: rgba(255, 255, 255, 0.2); transition: all 0.3s ease;">
+                                        <a href="https://x.com/indarca_srl?s=11"
+                                            class="rounded-circle d-flex align-items-center justify-content-center"
+                                            style="width: 36px; height: 36px; background-color: rgba(255, 255, 255, 0.2); transition: all 0.3s ease;">
                                             <i class="bi bi-twitter-x text-white"></i>
                                         </a>
-                                        <a href="https://www.instagram.com/indarca.srl?igsh=MXZzN2l3cTBxaG1jOA==" class="rounded-circle d-flex align-items-center justify-content-center" style="width: 36px; height: 36px; background-color: rgba(255, 255, 255, 0.2); transition: all 0.3s ease;">
+                                        <a href="https://www.instagram.com/indarca.srl?igsh=MXZzN2l3cTBxaG1jOA=="
+                                            class="rounded-circle d-flex align-items-center justify-content-center"
+                                            style="width: 36px; height: 36px; background-color: rgba(255, 255, 255, 0.2); transition: all 0.3s ease;">
                                             <i class="bi bi-instagram text-white"></i>
                                         </a>
-                                        <a href="https://www.linkedin.com/company/indarca-srl/" class="rounded-circle d-flex align-items-center justify-content-center" style="width: 36px; height: 36px; background-color: rgba(255, 255, 255, 0.2); transition: all 0.3s ease;">
+                                        <a href="https://www.linkedin.com/company/indarca-srl/"
+                                            class="rounded-circle d-flex align-items-center justify-content-center"
+                                            style="width: 36px; height: 36px; background-color: rgba(255, 255, 255, 0.2); transition: all 0.3s ease;">
                                             <i class="bi bi-linkedin text-white"></i>
                                         </a>
                                     </div>
@@ -987,56 +1063,62 @@
                                 <!-- Título del formulario -->
                                 <div class="mb-5">
                                     <h4 class="fw-bold text-dark mb-2">Envíe su mensaje</h4>
-                                    <p class="text-muted mb-0">Complete el formulario y nos pondremos en contacto a la brevedad</p>
+                                    <p class="text-muted mb-0">Complete el formulario y nos pondremos en contacto a la
+                                        brevedad</p>
                                 </div>
 
-                                @if(session('success'))
-                                <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-                                <script>
-                                    document.addEventListener('DOMContentLoaded', function() {
-                                        Swal.fire({
-                                            icon: 'success',
-                                            title: '¡Mensaje enviado correctamente!',
-                                            text: '{{ session('success') }}',
-                                            showConfirmButton: false,
-                                            timer: 10000,
-                                            timerProgressBar: true,
-                                            position: 'top-end',
-                                            toast: true,
-                                            showCloseButton: true
+                                @if (session('success'))
+                                    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+                                    <script>
+                                        document.addEventListener('DOMContentLoaded', function() {
+                                            Swal.fire({
+                                                icon: 'success',
+                                                title: '¡Mensaje enviado correctamente!',
+                                                text: '{{ session('success') }}',
+                                                showConfirmButton: false,
+                                                timer: 10000,
+                                                timerProgressBar: true,
+                                                position: 'top-end',
+                                                toast: true,
+                                                showCloseButton: true
+                                            });
                                         });
-                                    });
-                                </script>
+                                    </script>
                                 @endif
 
-                                @if(session('error'))
-                                <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-                                <script>
-                                    document.addEventListener('DOMContentLoaded', function() {
-                                        Swal.fire({
-                                            icon: 'error',
-                                            title: 'Ha ocurrido un error',
-                                            text: '{{ session('error') }}',
-                                            showConfirmButton: true,
-                                            confirmButtonText: 'Aceptar'
+                                @if (session('error'))
+                                    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+                                    <script>
+                                        document.addEventListener('DOMContentLoaded', function() {
+                                            Swal.fire({
+                                                icon: 'error',
+                                                title: 'Ha ocurrido un error',
+                                                text: '{{ session('error') }}',
+                                                showConfirmButton: true,
+                                                confirmButtonText: 'Aceptar'
+                                            });
                                         });
-                                    });
-                                </script>
+                                    </script>
                                 @endif
 
                                 <!-- Formulario de contacto -->
-                                <form action="/contacto/enviar" method="post" class="row g-4" data-aos="fade-up" id="contactForm">
+                                <form action="/contacto/enviar" method="post" class="row g-4" data-aos="fade-up"
+                                    id="contactForm">
                                     @csrf
                                     <!-- Nombre -->
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="name-field" class="form-label text-muted fw-medium mb-2">Nombre completo</label>
+                                            <label for="name-field" class="form-label text-muted fw-medium mb-2">Nombre
+                                                completo</label>
                                             <div class="input-group shadow-sm rounded-3 overflow-hidden">
                                                 <span class="input-group-text bg-white border-end-0 text-muted">
                                                     <i class="bi bi-person"></i>
                                                 </span>
-                                                <input type="text" name="name" id="name-field" class="form-control border-start-0 @error('name') is-invalid @enderror"
-                                                    placeholder="Ingrese su nombre" value="{{ auth()->check() ? auth()->user()->name : old('name') }}" {{ auth()->check() ? 'readonly' : '' }} required>
+                                                <input type="text" name="name" id="name-field"
+                                                    class="form-control border-start-0 @error('name') is-invalid @enderror"
+                                                    placeholder="Ingrese su nombre"
+                                                    value="{{ auth()->check() ? auth()->user()->name : old('name') }}"
+                                                    {{ auth()->check() ? 'readonly' : '' }} required>
                                             </div>
                                             @error('name')
                                                 <div class="invalid-feedback d-block mt-1">{{ $message }}</div>
@@ -1047,13 +1129,17 @@
                                     <!-- Correo electrónico -->
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="email-field" class="form-label text-muted fw-medium mb-2">Correo electrónico</label>
+                                            <label for="email-field" class="form-label text-muted fw-medium mb-2">Correo
+                                                electrónico</label>
                                             <div class="input-group shadow-sm rounded-3 overflow-hidden">
                                                 <span class="input-group-text bg-white border-end-0 text-muted">
                                                     <i class="bi bi-envelope"></i>
                                                 </span>
-                                                <input type="email" name="email" id="email-field" class="form-control border-start-0 @error('email') is-invalid @enderror"
-                                                    placeholder="Ingrese su correo" value="{{ auth()->check() ? auth()->user()->email : old('email') }}" {{ auth()->check() ? 'readonly' : '' }} required>
+                                                <input type="email" name="email" id="email-field"
+                                                    class="form-control border-start-0 @error('email') is-invalid @enderror"
+                                                    placeholder="Ingrese su correo"
+                                                    value="{{ auth()->check() ? auth()->user()->email : old('email') }}"
+                                                    {{ auth()->check() ? 'readonly' : '' }} required>
                                             </div>
                                             @error('email')
                                                 <div class="invalid-feedback d-block mt-1">{{ $message }}</div>
@@ -1064,18 +1150,32 @@
                                     <!-- Departamento -->
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label for="subject-field" class="form-label text-muted fw-medium mb-2">Departamento</label>
+                                            <label for="subject-field"
+                                                class="form-label text-muted fw-medium mb-2">Departamento</label>
                                             <div class="input-group shadow-sm rounded-3 overflow-hidden">
                                                 <span class="input-group-text bg-white border-end-0 text-muted">
                                                     <i class="bi bi-building"></i>
                                                 </span>
-                                                <select name="subject" id="subject-field" class="form-select border-start-0 @error('subject') is-invalid @enderror" required>
-                                                    <option value="" disabled selected>Seleccione el departamento correspondiente</option>
-                                                    <option value="Ventas" {{ old('subject') == 'Ventas' ? 'selected' : '' }}>Departamento de Ventas</option>
-                                                    <option value="Taller" {{ old('subject') == 'Taller' ? 'selected' : '' }}>Taller y Mantenimiento</option>
-                                                    <option value="Secretaría" {{ old('subject') == 'Secretaría' ? 'selected' : '' }}>Secretaría General</option>
-                                                    <option value="Oficinas Centrales" {{ old('subject') == 'Oficinas Centrales' ? 'selected' : '' }}>Oficinas Centrales</option>
-                                                    <option value="Arquitectura" {{ old('subject') == 'Arquitectura' ? 'selected' : '' }}>Departamento de Arquitectura</option>
+                                                <select name="subject" id="subject-field"
+                                                    class="form-select border-start-0 @error('subject') is-invalid @enderror"
+                                                    required>
+                                                    <option value="" disabled selected>Seleccione el departamento
+                                                        correspondiente</option>
+                                                    <option value="Ventas"
+                                                        {{ old('subject') == 'Ventas' ? 'selected' : '' }}>Departamento de
+                                                        Ventas</option>
+                                                    <option value="Taller"
+                                                        {{ old('subject') == 'Taller' ? 'selected' : '' }}>Taller y
+                                                        Mantenimiento</option>
+                                                    <option value="Secretaría"
+                                                        {{ old('subject') == 'Secretaría' ? 'selected' : '' }}>Secretaría
+                                                        General</option>
+                                                    <option value="Oficinas Centrales"
+                                                        {{ old('subject') == 'Oficinas Centrales' ? 'selected' : '' }}>
+                                                        Oficinas Centrales</option>
+                                                    <option value="Arquitectura"
+                                                        {{ old('subject') == 'Arquitectura' ? 'selected' : '' }}>
+                                                        Departamento de Arquitectura</option>
                                                 </select>
                                             </div>
                                             @error('subject')
@@ -1087,8 +1187,10 @@
                                     <!-- Mensaje -->
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label for="message-field" class="form-label text-muted fw-medium mb-2">Su mensaje</label>
-                                            <textarea name="message" id="message-field" rows="5" class="form-control shadow-sm rounded-3 @error('message') is-invalid @enderror"
+                                            <label for="message-field" class="form-label text-muted fw-medium mb-2">Su
+                                                mensaje</label>
+                                            <textarea name="message" id="message-field" rows="5"
+                                                class="form-control shadow-sm rounded-3 @error('message') is-invalid @enderror"
                                                 placeholder="Describa detalladamente el motivo de su consulta" required>{{ old('message') }}</textarea>
                                             @error('message')
                                                 <div class="invalid-feedback d-block mt-1">{{ $message }}</div>
@@ -1100,9 +1202,11 @@
                                     <div class="col-md-12 mt-3">
                                         <div class="d-md-flex justify-content-between align-items-center">
                                             <div class="form-text small text-muted mb-3 mb-md-0">
-                                                <i class="bi bi-shield-lock me-1"></i> Su información está protegida por nuestra política de privacidad
+                                                <i class="bi bi-shield-lock me-1"></i> Su información está protegida por
+                                                nuestra política de privacidad
                                             </div>
-                                            <button type="submit" class="btn btn-danger px-4 py-2 shadow" id="submitBtn">
+                                            <button type="submit" class="btn btn-danger px-4 py-2 shadow"
+                                                id="submitBtn">
                                                 <i class="bi bi-send me-2"></i>Enviar mensaje
                                             </button>
                                         </div>
@@ -1118,16 +1222,22 @@
                     <div class="col-12">
                         <div class="card rounded-4 shadow-sm overflow-hidden border-0">
                             <div class="card-header bg-light p-3 border-0">
-                                <h5 class="card-title mb-0"><i class="bi bi-geo-alt me-2 text-danger"></i>Nuestra ubicación</h5>
+                                <h5 class="card-title mb-0"><i class="bi bi-geo-alt me-2 text-danger"></i>Nuestra
+                                    ubicación</h5>
                             </div>
                             <div class="card-body p-0 position-relative">
-                                <div id="map-overlay" class="position-absolute w-100 h-100 d-flex align-items-center justify-content-center" style="background: rgba(255, 255, 255, 0.5); z-index: 10; transition: opacity 0.3s ease;">
-                                    <button id="activate-map-btn" class="btn btn-danger rounded-pill px-4 py-2 shadow-sm" style="transition: all 0.3s ease;">
+                                <div id="map-overlay"
+                                    class="position-absolute w-100 h-100 d-flex align-items-center justify-content-center"
+                                    style="background: rgba(255, 255, 255, 0.5); z-index: 10; transition: opacity 0.3s ease;">
+                                    <button id="activate-map-btn" class="btn btn-danger rounded-pill px-4 py-2 shadow-sm"
+                                        style="transition: all 0.3s ease;">
                                         <i class="bi bi-map me-2"></i>Activar mapa interactivo
                                     </button>
                                 </div>
-                                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3621.3777486213357!2d-69.85581222117607!3d18.48678452536387!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8eaf87da711f0f45%3A0x6c001d00bc641b4!2sIndarca%20Ingenier%C3%ADa%20Dise%C3%B1o%20Arquitectura%20y%20Construcci%C3%B3n%20Avanzada!5e1!3m2!1ses!2ses!4v1743442269603!5m2!1ses!2ses"
-                                    style="border:0; width: 100%; height: 400px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                                <iframe
+                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3621.3777486213357!2d-69.85581222117607!3d18.48678452536387!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8eaf87da711f0f45%3A0x6c001d00bc641b4!2sIndarca%20Ingenier%C3%ADa%20Dise%C3%B1o%20Arquitectura%20y%20Construcci%C3%B3n%20Avanzada!5e1!3m2!1ses!2ses!4v1743442269603!5m2!1ses!2ses"
+                                    style="border:0; width: 100%; height: 400px;" allowfullscreen="" loading="lazy"
+                                    referrerpolicy="no-referrer-when-downgrade">
                                 </iframe>
                             </div>
                         </div>
@@ -1136,64 +1246,7 @@
             </div>
 
             <!-- Estilos para el formulario -->
-            <style>
-                /* Estilos para campos del formulario */
-                .form-control, .form-select, .input-group-text {
-                    padding: 0.6rem 1rem;
-                    border-color: #e8e8e8;
-                    transition: all 0.3s ease;
-                }
 
-                .form-control:focus, .form-select:focus {
-                    border-color: var(--color-primary);
-                    box-shadow: 0 0 0 0.25rem rgba(217, 0, 0, 0.15) !important;
-                    transform: translateY(-2px);
-                }
-
-                .input-group {
-                    transition: all 0.3s ease;
-                }
-
-                .input-group:focus-within {
-                    transform: translateY(-2px);
-                    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.08) !important;
-                }
-
-                textarea.form-control {
-                    resize: none;
-                }
-
-                /* Efectos hover para botones y enlaces */
-                .btn-primary:hover {
-                    transform: translateY(-2px);
-                    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
-                }
-
-                a[style*="width: 36px;"]:hover {
-                    background-color: rgba(255, 255, 255, 0.4) !important;
-                    transform: translateY(-3px);
-                }
-
-                /* Ajustes responsive */
-                @media (max-width: 992px) {
-                    .col-lg-4 .h-100 {
-                        border-radius: 0.75rem 0.75rem 0 0;
-                    }
-                }
-
-                /* Profundidad del formulario */
-                .form-group {
-                    margin-bottom: 1.25rem;
-                    position: relative;
-                    z-index: 1;
-                }
-
-                /* Efecto 3D para el contenedor principal */
-                .bg-white.rounded-4:hover {
-                    transform: translateY(-5px);
-                    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1) !important;
-                }
-            </style>
 
             <!-- Script para activar mapa al hacer clic -->
             <script>
@@ -1219,11 +1272,13 @@
                             // Deshabilitar el botón de envío
                             submitBtn.disabled = true;
                             // Cambiar el texto del botón para indicar proceso
-                            submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Enviando...';
+                            submitBtn.innerHTML =
+                                '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Enviando...';
 
                             // Si el formulario se envía normalmente (no por AJAX), mantener el botón deshabilitado
                             setTimeout(function() {
-                                if (!submitBtn.disabled) return; // Si ya fue habilitado por alguna razón, no hacer nada
+                                if (!submitBtn.disabled)
+                            return; // Si ya fue habilitado por alguna razón, no hacer nada
 
                                 // Verificar si hubo algún error (en caso de que la página se recargue con errores)
                                 const hasErrors = document.querySelector('.is-invalid');
