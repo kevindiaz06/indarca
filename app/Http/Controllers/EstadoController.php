@@ -92,12 +92,12 @@ class EstadoController extends Controller
             'modelo' => 'required|string|max:50',
         ]);
 
-        // Limpiar y normalizar los términos de búsqueda para aumentar la probabilidad de coincidencia
+        // Limpiar y normalizar los términos de búsqueda
         $numeroSerie = trim($request->numero_serie);
         $marca = trim($request->marca);
         $modelo = trim($request->modelo);
 
-        // Primero, intentar una búsqueda exacta
+        // Realizar únicamente búsqueda exacta de los tres valores: número de serie, marca y modelo
         $densimetro = Densimetro::where('numero_serie', $numeroSerie)
                               ->where('marca', $marca)
                               ->where('modelo', $modelo)
@@ -105,32 +105,9 @@ class EstadoController extends Controller
                               ->orderBy('fecha_finalizacion', 'desc')
                               ->first();
 
-        // Si no hay resultados, intentar una búsqueda más flexible
+        // Si no se encuentra coincidencia exacta, redirigir con error
         if (!$densimetro) {
-            $densimetro = Densimetro::where('numero_serie', 'like', '%' . $numeroSerie . '%')
-                                 ->where(function($query) use ($marca) {
-                                     $query->where('marca', 'like', '%' . $marca . '%')
-                                           ->orWhereRaw("LOWER(marca) LIKE ?", ['%' . strtolower($marca) . '%']);
-                                 })
-                                 ->where(function($query) use ($modelo) {
-                                     $query->where('modelo', 'like', '%' . $modelo . '%')
-                                           ->orWhereRaw("LOWER(modelo) LIKE ?", ['%' . strtolower($modelo) . '%']);
-                                 })
-                                 ->whereIn('estado', ['finalizado', 'entregado'])
-                                 ->orderBy('fecha_finalizacion', 'desc')
-                                 ->first();
-        }
-
-        if (!$densimetro) {
-            // Si aún no hay resultados, intentar solo con el número de serie
-            $densimetro = Densimetro::where('numero_serie', 'like', '%' . $numeroSerie . '%')
-                                 ->whereIn('estado', ['finalizado', 'entregado'])
-                                 ->orderBy('fecha_finalizacion', 'desc')
-                                 ->first();
-
-            if (!$densimetro) {
-                return redirect()->route('estado')->with('error', 'No se encontró ningún densímetro calibrado con esos datos o el densímetro aún está en proceso de reparación.');
-            }
+            return redirect()->route('estado')->with('error', 'No se encontró ningún densímetro con el número de serie, marca y modelo especificados. Verifique que los datos ingresados sean correctos.');
         }
 
         // Verificar estado de calibración de forma explícita
@@ -258,7 +235,7 @@ class EstadoController extends Controller
      */
     public function generarCalibracionPDF($numero_serie, $marca, $modelo)
     {
-        // Buscar el densímetro por número de serie, marca y modelo
+        // Buscar el densímetro por número de serie, marca y modelo (búsqueda exacta)
         $densimetro = Densimetro::where('numero_serie', $numero_serie)
                               ->where('marca', $marca)
                               ->where('modelo', $modelo)

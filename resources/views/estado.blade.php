@@ -61,7 +61,7 @@
                     <h4 class="mb-0 text-white"><i class="bi bi-calendar-check me-2"></i>Consulta por Estado de Calibración</h4>
                 </div>
                 <div class="card-body p-4">
-                    <p class="text-muted mb-4">Introduzca el número de serie, marca y modelo para verificar el estado de calibración del densímetro.</p>
+                    <p class="text-muted mb-4">Introduzca el número de serie, marca y modelo <strong>exactos</strong> del densímetro para verificar su estado de calibración. Todos los datos deben coincidir con los registrados en nuestro sistema.</p>
 
                     <form action="{{ route('calibracion.consultar') }}" method="POST">
                         @csrf
