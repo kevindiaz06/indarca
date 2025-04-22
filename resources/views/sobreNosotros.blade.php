@@ -601,7 +601,7 @@
             <!-- Botón para unirse al equipo -->
             <div class="row mt-4">
                 <div class="col-12 text-center">
-                    <a href="{{ route('contacto') }}"
+                    <a href="{{ route('inicio') }}#contact"
                         class="btn btn-outline-danger btn-lg px-5 py-3 rounded-pill fw-bold">
                         <i class="bi bi-person-plus-fill me-2"></i>Únete a Nuestro Equipo
                     </a>
