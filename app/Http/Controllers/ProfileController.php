@@ -26,12 +26,10 @@ class ProfileController extends Controller
 
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($user->id)],
             'password' => ['nullable', 'string', 'min:8', 'confirmed'],
         ]);
 
         $user->name = $request->name;
-        $user->email = $request->email;
 
         if ($request->filled('password')) {
             $user->password = Hash::make($request->password);

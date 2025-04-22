@@ -32,13 +32,9 @@
                                 <label for="email" class="form-label fw-medium">{{ __('Correo electrónico') }} <span class="text-danger">*</span></label>
                                 <div class="input-group">
                                     <span class="input-group-text bg-light"><i class="bi bi-envelope"></i></span>
-                                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email', Auth::user()->email) }}" required autocomplete="email">
+                                    <input id="email" type="email" class="form-control" value="{{ Auth::user()->email }}" readonly disabled>
                                 </div>
-                                @error('email')
-                                    <div class="invalid-feedback d-block">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
+                                <small class="text-muted">El correo electrónico no se puede modificar.</small>
                             </div>
 
                             <div class="row mb-4">
