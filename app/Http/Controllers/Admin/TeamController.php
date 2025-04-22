@@ -48,7 +48,7 @@ class TeamController extends Controller
             'short_description' => 'nullable|string|max:150',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
             'user_id' => 'nullable|exists:users,id',
-            'active' => 'boolean',
+            'active' => 'nullable|boolean',
             'display_order' => 'integer',
             'social_networks' => 'nullable|array',
             'social_networks.*.name' => 'nullable|string',
@@ -62,6 +62,9 @@ class TeamController extends Controller
         }
 
         $data = $request->except('image');
+
+        // Manejo explícito del checkbox active
+        $data['active'] = $request->has('active') ? true : false;
 
         // Asignar el siguiente número de orden si no se proporciona
         if (!isset($data['display_order'])) {
@@ -133,7 +136,7 @@ class TeamController extends Controller
             'short_description' => 'nullable|string|max:150',
             'image' => $imageRule,
             'user_id' => 'nullable|exists:users,id',
-            'active' => 'boolean',
+            'active' => 'nullable|boolean',
             'display_order' => 'integer',
             'social_networks' => 'nullable|array',
             'social_networks.*.name' => 'nullable|string',
@@ -147,6 +150,9 @@ class TeamController extends Controller
         }
 
         $data = $request->except('image');
+
+        // Manejo explícito del checkbox active
+        $data['active'] = $request->has('active') ? true : false;
 
         // Manejo de la imagen
         if ($request->hasFile('image')) {
