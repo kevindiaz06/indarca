@@ -1,158 +1,7 @@
 @extends('layout')
 @section('content')
 
-<style>
-    .card-3d {
-        transition: transform 0.5s ease, box-shadow 0.5s ease;
-        transform: perspective(1000px) rotateY(0deg);
-        box-shadow: 0 10px 20px rgba(0,0,0,0.1), 0 6px 6px rgba(0,0,0,0.1);
-        border-radius: 12px;
-        overflow: hidden;
-        transform-style: preserve-3d;
-        background: linear-gradient(to bottom right, #ffffff, #f8f9fa);
-    }
 
-    .card-3d:hover {
-        transform: perspective(1000px) rotateY(2deg) translateY(-5px);
-        box-shadow: 0 20px 40px rgba(0,0,0,0.2), 0 15px 12px rgba(0,0,0,0.15);
-        border-left: 4px solid #6c25be;
-    }
-
-    .icon-3d {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        background: linear-gradient(135deg, #6c25be, #9644e8);
-        color: white;
-        height: 60px;
-        width: 60px;
-        border-radius: 50%;
-        box-shadow: 0 4px 8px rgba(108, 37, 190, 0.3);
-        transform: translateZ(20px);
-    }
-
-    .img-shadow {
-        box-shadow: 0 15px 25px rgba(0,0,0,0.15);
-        transform: perspective(1000px) rotateY(-2deg);
-        transition: transform 0.5s ease, box-shadow 0.5s ease;
-    }
-
-    .img-shadow:hover {
-        transform: perspective(1000px) rotateY(0deg) translateY(-5px);
-        box-shadow: 0 25px 30px rgba(0,0,0,0.25);
-    }
-
-    .section-title h2 {
-        position: relative;
-        display: inline-block;
-    }
-
-    .section-title h2:after {
-        content: '';
-        position: absolute;
-        bottom: -10px;
-        left: 0;
-        width: 100%;
-        height: 3px;
-        background: linear-gradient(to right, #6c25be, transparent);
-    }
-
-    .divider-custom {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 100%;
-        max-width: 500px;
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    .divider-line {
-        width: 40%;
-        height: 2px;
-        opacity: 0.25;
-    }
-
-    .divider-icon {
-        font-size: 1.5rem;
-        margin: 0 1rem;
-    }
-
-    .service-card {
-        transition: all 0.4s ease;
-        border-radius: 15px;
-        overflow: hidden;
-        border: none;
-        height: 100%;
-    }
-
-    .service-card:hover {
-        transform: translateY(-10px);
-        box-shadow: 0 1rem 2rem rgba(0,0,0,0.15) !important;
-    }
-
-    .service-icon {
-        width: 70px;
-        height: 70px;
-        border-radius: 50%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-size: 2rem;
-        box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.08);
-        position: relative;
-        z-index: 1;
-        transition: all 0.3s ease;
-        background: linear-gradient(135deg, #6c25be, #9644e8);
-        color: white;
-    }
-
-    .service-card:hover .service-icon {
-        transform: scale(1.1) rotate(10deg);
-    }
-
-    .project-card {
-        transition: all 0.4s ease;
-        border-radius: 12px;
-        overflow: hidden;
-        border: none;
-        height: 100%;
-    }
-
-    .project-card:hover {
-        transform: translateY(-15px);
-        box-shadow: 0 1rem 3rem rgba(0,0,0,0.2) !important;
-    }
-
-    .project-card img {
-        height: 200px;
-        object-fit: cover;
-        transition: all 0.5s ease;
-    }
-
-    .project-card:hover img {
-        transform: scale(1.05);
-    }
-
-    .project-card .card-img-overlay {
-        background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.1) 100%);
-        transition: all 0.3s ease;
-    }
-
-    .project-card:hover .card-img-overlay {
-        background: linear-gradient(to top, rgba(108, 37, 190, 0.8) 0%, rgba(108, 37, 190, 0.1) 100%);
-    }
-
-    .contact-card {
-        transition: all 0.3s ease;
-        border-radius: 15px;
-        border-left: 5px solid #6c25be;
-    }
-
-    .contact-card:hover {
-        box-shadow: 0 1rem 3rem rgba(0,0,0,0.15) !important;
-    }
-</style>
 
 <!-- Banner principal -->
 <div class="container-fluid py-5 text-white text-center" style="background-image: url('https://images.unsplash.com/photo-1487958449943-2429e8be8625?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'); background-size: cover; background-position: center; position: relative;">
@@ -459,5 +308,157 @@
         </div>
     </div>
 </section>
+<style>
+    .card-3d {
+        transition: transform 0.5s ease, box-shadow 0.5s ease;
+        transform: perspective(1000px) rotateY(0deg);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1), 0 6px 6px rgba(0,0,0,0.1);
+        border-radius: 12px;
+        overflow: hidden;
+        transform-style: preserve-3d;
+        background: linear-gradient(to bottom right, #ffffff, #f8f9fa);
+    }
+
+    .card-3d:hover {
+        transform: perspective(1000px) rotateY(2deg) translateY(-5px);
+        box-shadow: 0 20px 40px rgba(0,0,0,0.2), 0 15px 12px rgba(0,0,0,0.15);
+        border-left: 4px solid #6c25be;
+    }
+
+    .icon-3d {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(135deg, #6c25be, #9644e8);
+        color: white;
+        height: 60px;
+        width: 60px;
+        border-radius: 50%;
+        box-shadow: 0 4px 8px rgba(108, 37, 190, 0.3);
+        transform: translateZ(20px);
+    }
+
+    .img-shadow {
+        box-shadow: 0 15px 25px rgba(0,0,0,0.15);
+        transform: perspective(1000px) rotateY(-2deg);
+        transition: transform 0.5s ease, box-shadow 0.5s ease;
+    }
+
+    .img-shadow:hover {
+        transform: perspective(1000px) rotateY(0deg) translateY(-5px);
+        box-shadow: 0 25px 30px rgba(0,0,0,0.25);
+    }
+
+    .section-title h2 {
+        position: relative;
+        display: inline-block;
+    }
+
+    .section-title h2:after {
+        content: '';
+        position: absolute;
+        bottom: -10px;
+        left: 0;
+        width: 100%;
+        height: 3px;
+        background: linear-gradient(to right, #6c25be, transparent);
+    }
+
+    .divider-custom {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        max-width: 500px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .divider-line {
+        width: 40%;
+        height: 2px;
+        opacity: 0.25;
+    }
+
+    .divider-icon {
+        font-size: 1.5rem;
+        margin: 0 1rem;
+    }
+
+    .service-card {
+        transition: all 0.4s ease;
+        border-radius: 15px;
+        overflow: hidden;
+        border: none;
+        height: 100%;
+    }
+
+    .service-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 1rem 2rem rgba(0,0,0,0.15) !important;
+    }
+
+    .service-icon {
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 2rem;
+        box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.08);
+        position: relative;
+        z-index: 1;
+        transition: all 0.3s ease;
+        background: linear-gradient(135deg, #6c25be, #9644e8);
+        color: white;
+    }
+
+    .service-card:hover .service-icon {
+        transform: scale(1.1) rotate(10deg);
+    }
+
+    .project-card {
+        transition: all 0.4s ease;
+        border-radius: 12px;
+        overflow: hidden;
+        border: none;
+        height: 100%;
+    }
+
+    .project-card:hover {
+        transform: translateY(-15px);
+        box-shadow: 0 1rem 3rem rgba(0,0,0,0.2) !important;
+    }
+
+    .project-card img {
+        height: 200px;
+        object-fit: cover;
+        transition: all 0.5s ease;
+    }
+
+    .project-card:hover img {
+        transform: scale(1.05);
+    }
+
+    .project-card .card-img-overlay {
+        background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.1) 100%);
+        transition: all 0.3s ease;
+    }
+
+    .project-card:hover .card-img-overlay {
+        background: linear-gradient(to top, rgba(108, 37, 190, 0.8) 0%, rgba(108, 37, 190, 0.1) 100%);
+    }
+
+    .contact-card {
+        transition: all 0.3s ease;
+        border-radius: 15px;
+        border-left: 5px solid #6c25be;
+    }
+
+    .contact-card:hover {
+        box-shadow: 0 1rem 3rem rgba(0,0,0,0.15) !important;
+    }
+</style>
 
 @endsection
