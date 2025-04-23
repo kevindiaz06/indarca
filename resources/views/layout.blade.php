@@ -505,6 +505,42 @@
     .transition-all {
         transition: all 0.3s ease;
     }
+
+    /* Corregir colores azules en elementos interactivos */
+    a:focus, button:focus, input:focus, textarea:focus, select:focus {
+        outline-color: var(--color-primary) !important;
+    }
+
+    .form-control:focus, .form-select:focus {
+        border-color: var(--color-primary) !important;
+        box-shadow: 0 0 0 0.25rem rgba(244, 0, 6, 0.25) !important;
+    }
+
+    /* Sobrescribir estilos de Bootstrap para enlaces y botones */
+    a {
+        color: var(--color-primary);
+    }
+
+    a:hover {
+        color: #d30005;
+    }
+
+    .dropdown-item.active, .dropdown-item:active {
+        background-color: var(--color-primary) !important;
+    }
+
+    .page-link {
+        color: var(--color-primary);
+    }
+
+    .page-link:hover {
+        color: #d30005;
+    }
+
+    .page-item.active .page-link {
+        background-color: var(--color-primary);
+        border-color: var(--color-primary);
+    }
 </style>
 
 <!-- Scroll Top -->

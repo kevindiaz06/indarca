@@ -55,6 +55,21 @@ class LoginController extends Controller
     }
 
     /**
+     * Manejar un intento de inicio de sesión.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\RedirectResponse
+     *
+     * @throws \Illuminate\Validation\ValidationException
+     */
+    protected function attemptLogin(Request $request)
+    {
+        return $this->guard()->attempt(
+            $this->credentials($request), $request->filled('remember')
+        );
+    }
+
+    /**
      * Valida la solicitud de inicio de sesión.
      *
      * @param  \Illuminate\Http\Request  $request
