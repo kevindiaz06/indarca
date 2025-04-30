@@ -106,7 +106,7 @@
         <div class="container position-relative">
             <!-- Logo principal en la parte superior -->
             <div class="text-center mb-5">
-                <img src="{{ asset('images/logo.png') }}" alt="Logo" height="70" style="filter: brightness(0) invert(1);">
+                <img src="{{ asset('assets/img/OTROS/logo_indarca.png') }}" alt="Logo" height="70" style="filter: brightness(0) invert(1);">
             </div>
 
             <div class="row justify-content-center">

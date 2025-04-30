@@ -55,7 +55,7 @@
     </div>
 
     <a href="{{ route('inicio') }}" class="logo-small">
-        <img src="{{ asset('assets/img/logo_indarca.png') }}" alt="INDARCA" height="30">
+        <img src="{{ asset('assets/img/OTROS/logo_indarca.png') }}" alt="INDARCA" height="30">
     </a>
 
     <!-- Vendor JS Files -->

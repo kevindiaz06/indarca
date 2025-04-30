@@ -41,7 +41,7 @@
                 </div>
                 <div class="col-lg-6">
                     <div class="position-relative p-3">
-                        <img src="https://fastly.picsum.photos/id/426/500/300.jpg?hmac=DbwEHoaBb3kcMaWC52bEZFDboG7L8zgkuvfBlS6O7hQ"
+                        <img src="{{ asset('assets\img\INDARCA_OFICINA\OBRA\INDARCA_OFICINA_OBRA_7.jpg') }}"
                             class="img-fluid rounded-3 img-shadow" alt="Historia">
                     </div>
                 </div>
@@ -72,7 +72,7 @@
                 </div>
                 <div class="col-lg-6">
                     <div class="position-relative p-3">
-                        <img src="https://picsum.photos/id/20/500/300" class="img-fluid rounded-3 img-shadow"
+                        <img src="{{ asset('assets\img\OTROS\OTROS_2.jpg') }}" class="img-fluid rounded-3 img-shadow"
                             alt="Misión">
                     </div>
                 </div>
@@ -104,7 +104,7 @@
                 </div>
                 <div class="col-lg-6">
                     <div class="position-relative p-3">
-                        <img src="https://picsum.photos/id/25/500/300" class="img-fluid rounded-3 img-shadow"
+                       <img src="{{ asset('assets\img\INDARCA_OFICINA\OBRA\INDARCA_OFICINA_OBRA_5.jpeg') }}" class="img-fluid rounded-3 img-shadow"
                             alt="Visión">
                     </div>
                 </div>
@@ -248,7 +248,7 @@
                 </div>
                 <div class="col-lg-6 order-lg-1">
                     <div class="position-relative p-3">
-                        <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+                        <img src="{{ asset('assets\img\DENSIMETROS\ENTRENAMIENTOS\DENSIMETROS_ENTRENAMIENTOS_30.jpeg') }}"
                             class="img-fluid rounded-3 img-shadow" alt="Certificaciones de Calidad">
                     </div>
                 </div>

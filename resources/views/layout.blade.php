@@ -50,7 +50,9 @@
             <a href="{{ route('inicio') }}" class="logo d-flex align-items-center">
                 <!-- Uncomment the line below if you also wish to use an image logo -->
                 <!--   <img src="assets/img/logo_indarca.png" alt=""> -->
-                <h1 class="sitename">INDARCA</h1>
+                <a class="navbar-brand" href="/">
+                    <img src="{{ asset('assets/img/OTROS/logo_indarca.png') }}" alt="INDARCA" height="50">
+                </a>
             </a>
 
             <nav id="navmenu" class="navmenu">

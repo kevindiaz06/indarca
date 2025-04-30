@@ -30,7 +30,7 @@
             left: 0;
             right: 0;
             z-index: -1;
-            background-image: url('{{ public_path('/assets/img/logo_indarca.png') }}');
+            background-image: url('{{ public_path('/assets/img/OTROS/logo_indarca.png') }}');
             background-position: center;
             background-repeat: no-repeat;
             background-size: contain;
@@ -292,7 +292,7 @@
 <body>
     <div class="header">
         <div class="logo-container">
-            <img src="{{ public_path('/assets/img/logo_indarca.png') }}" class="logo" alt="INDARCA Logo">
+            <img src="{{ public_path('/assets/img/OTROS/logo_indarca.png') }}" class="logo" alt="INDARCA Logo">
             <div class="logo-text">
 
                 <div class="company-slogan">Servicios Industriales de Calidad</div>
