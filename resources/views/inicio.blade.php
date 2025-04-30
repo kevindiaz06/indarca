@@ -14,24 +14,19 @@
 
         <!-- Hero Section -->
         <section id="hero" class="hero section light-background">
-
             <div class="container">
-                <div class="row gy-4">
-                    <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center" data-aos="zoom-out">
-                        <h1>Bienvenidos a <span>INDARCA</span></h1>
-                        <p>Soluciones innovadoras en arquitectura, ingeniería y densímetros nucleares para proyectos de
+                <div class="row justify-content-center align-items-center h-100">
+                    <div class="col-lg-8 text-center text-lg-start" data-aos="zoom-out">
+                        <h1 class="display-4 fw-bold mb-4">Bienvenidos a <span>INDARCA</span></h1>
+                        <p class="lead mb-4">Soluciones innovadoras en arquitectura, ingeniería y densímetros nucleares para proyectos de
                             construcción que superan expectativas.</p>
-                        <div class="d-flex">
-                            <a href="#contact" class="btn-get-started"
+                        <div class="d-flex justify-content-center justify-content-lg-start">
+                            <a href="#contact" class="btn-get-started btn-lg"
                                 style="background-color: #D90000; border-color: #D90000;">Contáctanos</a>
-                            <a href="https://www.youtube.com/watch?v=Y7f98aduVJ8"
-                                class="glightbox btn-watch-video d-flex align-items-center"><i
-                                    class="bi bi-play-circle text-danger"></i><span>Ver Video</span></a>
                         </div>
                     </div>
                 </div>
             </div>
-
         </section><!-- /Hero Section -->
 
         <!-- Featured Services Section -->
@@ -109,7 +104,7 @@
                     <!-- Imagen principal con overlay de información -->
                     <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
                         <div class="position-relative rounded-4 overflow-hidden shadow-lg h-100">
-                            <img src="assets/img/ramces_carolina.jpg" alt="Equipo INDARCA"
+                            <img src="{{ asset('img/INDARCA_OFICINA/INDARCA_OFICINA_29.jpg') }}" alt="Equipo INDARCA"
                                 class="img-fluid w-100 h-100 object-fit-cover">
                             <div class="position-absolute bottom-0 start-0 w-100 p-4 bg-dark bg-opacity-75 text-white">
                                 <h3 class="fw-bold border-start border-danger border-4 ps-3 mb-2 text-white">Nuestra
@@ -458,7 +453,7 @@
                             <div class="col" data-aos="fade-up" data-aos-delay="100">
                                 <div class="card h-100 border-0 rounded-4 client-card shadow-sm">
                                     <div class="card-body d-flex align-items-center justify-content-center p-4">
-                                        <img src="assets/img/clients/client-1.png" class="img-fluid client-img"
+                                        <img src="assets/img/clients/client-1.webp" class="img-fluid client-img"
                                             alt="Cliente 1">
                                     </div>
                                     <div class="card-overlay">
@@ -476,7 +471,7 @@
                             <div class="col" data-aos="fade-up" data-aos-delay="150">
                                 <div class="card h-100 border-0 rounded-4 client-card shadow-sm">
                                     <div class="card-body d-flex align-items-center justify-content-center p-4">
-                                        <img src="assets/img/clients/client-2.png" class="img-fluid client-img"
+                                        <img src="assets/img/clients/client-2.svg" class="img-fluid client-img"
                                             alt="Cliente 2">
                                     </div>
                                     <div class="card-overlay">
@@ -494,7 +489,7 @@
                             <div class="col" data-aos="fade-up" data-aos-delay="200">
                                 <div class="card h-100 border-0 rounded-4 client-card shadow-sm">
                                     <div class="card-body d-flex align-items-center justify-content-center p-4">
-                                        <img src="assets/img/clients/client-3.png" class="img-fluid client-img"
+                                        <img src="assets/img/clients/client-3.avif" class="img-fluid client-img"
                                             alt="Cliente 3">
                                     </div>
                                     <div class="card-overlay">
@@ -579,136 +574,359 @@
 
                     <ul class="portfolio-filters isotope-filters" data-aos="fade-up" data-aos-delay="100">
                         <li data-filter="*" class="filter-active">Todos</li>
-                        <li data-filter=".filter-app">Densímetros</li>
-                        <li data-filter=".filter-product">Arquitectura</li>
-                        <li data-filter=".filter-branding">Ingeniería</li>
+                        <li data-filter=".filter-densimetros">Densímetros</li>
+                        <li data-filter=".filter-arquitectura">Arquitectura</li>
+                        <li data-filter=".filter-modelado3d">Modelado 3D</li>
+                        <li data-filter=".filter-oficinas">Oficinas INDARCA</li>
+                        <li data-filter=".filter-capacitacion">Capacitación</li>
+                        <li data-filter=".filter-otros">Otros Proyectos</li>
                     </ul><!-- End Portfolio Filters -->
 
                     <div class="row gy-4 isotope-container" data-aos="fade-up" data-aos-delay="200">
 
-                        <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
-                            <img src="assets/img/masonry-portfolio/masonry-portfolio-1.jpg" class="img-fluid"
-                                alt="">
+                        <!-- Densímetros Items -->
+                        <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-densimetros">
+                            <img src="assets/img/DENSIMETROS/TROXLER/DENSIMETROS_TROXLER_1.jpg" class="img-fluid" alt="Densímetro Troxler">
                             <div class="portfolio-info">
-                                <h4>Densímetros 1</h4>
+                                <h4>Densímetros Troxler</h4>
                                 <p>Calibración especializada</p>
-                                <a href="assets/img/masonry-portfolio/masonry-portfolio-1.jpg" title="Densímetros 1"
-                                    data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i
-                                        class="bi bi-zoom-in"></i></a>
-                                <a href="portfolio-details.html" title="More Details" class="details-link"><i
-                                        class="bi bi-link-45deg"></i></a>
+                                <a href="assets/img/DENSIMETROS/TROXLER/DENSIMETROS_TROXLER_1.jpg" title="Densímetros Troxler" data-gallery="portfolio-gallery-densimetros" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                                <a href="portfolio-details.html" title="Más Detalles" class="details-link"><i class="bi bi-link-45deg"></i></a>
                             </div>
                         </div><!-- End Portfolio Item -->
 
-                        <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-product">
-                            <img src="assets/img/masonry-portfolio/masonry-portfolio-2.jpg" class="img-fluid"
-                                alt="">
+                        <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-densimetros">
+                            <img src="assets/img/DENSIMETROS/TROXLER/DENSIMETROS_TROXLER_2.jpg" class="img-fluid" alt="Mantenimiento Densímetros">
                             <div class="portfolio-info">
-                                <h4>Arquitectura 1</h4>
-                                <p>Proyecto residencial</p>
-                                <a href="assets/img/masonry-portfolio/masonry-portfolio-2.jpg" title="Arquitectura 1"
-                                    data-gallery="portfolio-gallery-product" class="glightbox preview-link"><i
-                                        class="bi bi-zoom-in"></i></a>
-                                <a href="portfolio-details.html" title="More Details" class="details-link"><i
-                                        class="bi bi-link-45deg"></i></a>
+                                <h4>Mantenimiento Preventivo</h4>
+                                <p>Equipos Troxler</p>
+                                <a href="assets/img/DENSIMETROS/TROXLER/DENSIMETROS_TROXLER_2.jpg" title="Mantenimiento Densímetros" data-gallery="portfolio-gallery-densimetros" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                                <a href="portfolio-details.html" title="Más Detalles" class="details-link"><i class="bi bi-link-45deg"></i></a>
                             </div>
                         </div><!-- End Portfolio Item -->
 
-                        <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-branding">
-                            <img src="assets/img/masonry-portfolio/masonry-portfolio-3.jpg" class="img-fluid"
-                                alt="">
+                        <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-densimetros">
+                            <img src="assets/img/DENSIMETROS/DENSIMETROS_1.jpeg" class="img-fluid" alt="Servicio Técnico Densímetros">
                             <div class="portfolio-info">
-                                <h4>Ingeniería 1</h4>
-                                <p>Supervisión de obra</p>
-                                <a href="assets/img/masonry-portfolio/masonry-portfolio-3.jpg" title="Ingeniería 1"
-                                    data-gallery="portfolio-gallery-branding" class="glightbox preview-link"><i
-                                        class="bi bi-zoom-in"></i></a>
-                                <a href="portfolio-details.html" title="More Details" class="details-link"><i
-                                        class="bi bi-link-45deg"></i></a>
+                                <h4>Servicio Técnico</h4>
+                                <p>Reparación de Equipos</p>
+                                <a href="assets/img/DENSIMETROS/DENSIMETROS_1.jpeg" title="Servicio Técnico Densímetros" data-gallery="portfolio-gallery-densimetros" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                                <a href="portfolio-details.html" title="Más Detalles" class="details-link"><i class="bi bi-link-45deg"></i></a>
                             </div>
                         </div><!-- End Portfolio Item -->
 
-                        <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
-                            <img src="assets/img/masonry-portfolio/masonry-portfolio-4.jpg" class="img-fluid"
-                                alt="">
+                        <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-densimetros">
+                            <img src="assets/img/DENSIMETROS/ENTRENAMIENTOS/DENSIMETROS_ENTRENAMIENTOS_1.jpg" class="img-fluid" alt="Capacitación en Densímetros">
                             <div class="portfolio-info">
-                                <h4>Densímetros 2</h4>
-                                <p>Mantenimiento preventivo</p>
-                                <a href="assets/img/masonry-portfolio/masonry-portfolio-4.jpg" title="Densímetros 2"
-                                    data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i
-                                        class="bi bi-zoom-in"></i></a>
-                                <a href="portfolio-details.html" title="More Details" class="details-link"><i
-                                        class="bi bi-link-45deg"></i></a>
+                                <h4>Capacitación Técnica</h4>
+                                <p>Entrenamiento profesional</p>
+                                <a href="assets/img/DENSIMETROS/ENTRENAMIENTOS/DENSIMETROS_ENTRENAMIENTOS_1.jpg" title="Capacitación en Densímetros" data-gallery="portfolio-gallery-densimetros" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                                <a href="portfolio-details.html" title="Más Detalles" class="details-link"><i class="bi bi-link-45deg"></i></a>
                             </div>
                         </div><!-- End Portfolio Item -->
 
-                        <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-product">
-                            <img src="assets/img/masonry-portfolio/masonry-portfolio-5.jpg" class="img-fluid"
-                                alt="">
+                        <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-densimetros">
+                            <img src="assets/img/DENSIMETROS/ENTRENAMIENTOS/DENSIMETROS_ENTRENAMIENTOS_16.jpg" class="img-fluid" alt="Laboratorio de Calibración">
                             <div class="portfolio-info">
-                                <h4>Arquitectura 2</h4>
-                                <p>Diseño comercial</p>
-                                <a href="assets/img/masonry-portfolio/masonry-portfolio-5.jpg" title="Arquitectura 2"
-                                    data-gallery="portfolio-gallery-product" class="glightbox preview-link"><i
-                                        class="bi bi-zoom-in"></i></a>
-                                <a href="portfolio-details.html" title="More Details" class="details-link"><i
-                                        class="bi bi-link-45deg"></i></a>
+                                <h4>Laboratorio de Calibración</h4>
+                                <p>Instrumentos de precisión</p>
+                                <a href="assets/img/DENSIMETROS/ENTRENAMIENTOS/DENSIMETROS_ENTRENAMIENTOS_16.jpg" title="Laboratorio de Calibración" data-gallery="portfolio-gallery-densimetros" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                                <a href="portfolio-details.html" title="Más Detalles" class="details-link"><i class="bi bi-link-45deg"></i></a>
                             </div>
                         </div><!-- End Portfolio Item -->
 
-                        <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-branding">
-                            <img src="assets/img/masonry-portfolio/masonry-portfolio-6.jpg" class="img-fluid"
-                                alt="">
+                        <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-densimetros">
+                            <img src="assets/img/DENSIMETROS/ENTRENAMIENTOS/DENSIMETROS_ENTRENAMIENTOS_28.jpg" class="img-fluid" alt="Talleres Especializados">
                             <div class="portfolio-info">
-                                <h4>Ingeniería 2</h4>
-                                <p>Consultoría estructural</p>
-                                <a href="assets/img/masonry-portfolio/masonry-portfolio-6.jpg" title="Ingeniería 2"
-                                    data-gallery="portfolio-gallery-branding" class="glightbox preview-link"><i
-                                        class="bi bi-zoom-in"></i></a>
-                                <a href="portfolio-details.html" title="More Details" class="details-link"><i
-                                        class="bi bi-link-45deg"></i></a>
+                                <h4>Talleres Especializados</h4>
+                                <p>Formación técnica certificada</p>
+                                <a href="assets/img/DENSIMETROS/ENTRENAMIENTOS/DENSIMETROS_ENTRENAMIENTOS_28.jpg" title="Talleres Especializados" data-gallery="portfolio-gallery-densimetros" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                                <a href="portfolio-details.html" title="Más Detalles" class="details-link"><i class="bi bi-link-45deg"></i></a>
                             </div>
                         </div><!-- End Portfolio Item -->
 
-                        <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
-                            <img src="assets/img/masonry-portfolio/masonry-portfolio-7.jpg" class="img-fluid"
-                                alt="">
+                        <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-densimetros">
+                            <img src="assets/img/DENSIMETROS/TROXLER/DENSIMETROS_TROXLER_5.jpeg" class="img-fluid" alt="Equipos Troxler">
                             <div class="portfolio-info">
-                                <h4>Densímetros 3</h4>
-                                <p>Reparación de equipos</p>
-                                <a href="assets/img/masonry-portfolio/masonry-portfolio-7.jpg" title="Densímetros 3"
-                                    data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i
-                                        class="bi bi-zoom-in"></i></a>
-                                <a href="portfolio-details.html" title="More Details" class="details-link"><i
-                                        class="bi bi-link-45deg"></i></a>
+                                <h4>Equipos Troxler</h4>
+                                <p>Tecnología de precisión</p>
+                                <a href="assets/img/DENSIMETROS/TROXLER/DENSIMETROS_TROXLER_5.jpeg" title="Equipos Troxler" data-gallery="portfolio-gallery-densimetros" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                                <a href="portfolio-details.html" title="Más Detalles" class="details-link"><i class="bi bi-link-45deg"></i></a>
                             </div>
                         </div><!-- End Portfolio Item -->
 
-                        <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-product">
-                            <img src="assets/img/masonry-portfolio/masonry-portfolio-8.jpg" class="img-fluid"
-                                alt="">
+                        <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-densimetros">
+                            <img src="assets/img/DENSIMETROS/TROXLER/DENSIMETROS_TROXLER_7.jpeg" class="img-fluid" alt="Calibración de Campo">
                             <div class="portfolio-info">
-                                <h4>Arquitectura 3</h4>
-                                <p>Proyecto institucional</p>
-                                <a href="assets/img/masonry-portfolio/masonry-portfolio-8.jpg" title="Arquitectura 3"
-                                    data-gallery="portfolio-gallery-product" class="glightbox preview-link"><i
-                                        class="bi bi-zoom-in"></i></a>
-                                <a href="portfolio-details.html" title="More Details" class="details-link"><i
-                                        class="bi bi-link-45deg"></i></a>
+                                <h4>Calibración de Campo</h4>
+                                <p>Verificación in situ</p>
+                                <a href="assets/img/DENSIMETROS/TROXLER/DENSIMETROS_TROXLER_7.jpeg" title="Calibración de Campo" data-gallery="portfolio-gallery-densimetros" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                                <a href="portfolio-details.html" title="Más Detalles" class="details-link"><i class="bi bi-link-45deg"></i></a>
                             </div>
                         </div><!-- End Portfolio Item -->
 
-                        <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-branding">
-                            <img src="assets/img/masonry-portfolio/masonry-portfolio-9.jpg" class="img-fluid"
-                                alt="">
+                        <!-- Arquitectura Items -->
+                        <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-arquitectura">
+                            <img src="assets/img/ARQUITECTURA/VIVIENDA/ARQUITECTURA_VIVIENDA_1.jpeg" class="img-fluid" alt="Arquitectura Vivienda">
                             <div class="portfolio-info">
-                                <h4>Ingeniería 3</h4>
-                                <p>Gestión de proyectos</p>
-                                <a href="assets/img/masonry-portfolio/masonry-portfolio-9.jpg" title="Ingeniería 3"
-                                    data-gallery="portfolio-gallery-branding" class="glightbox preview-link"><i
-                                        class="bi bi-zoom-in"></i></a>
-                                <a href="portfolio-details.html" title="More Details" class="details-link"><i
-                                        class="bi bi-link-45deg"></i></a>
+                                <h4>Proyecto Residencial</h4>
+                                <p>Vivienda unifamiliar</p>
+                                <a href="assets/img/ARQUITECTURA/VIVIENDA/ARQUITECTURA_VIVIENDA_1.jpeg" title="Proyecto Residencial" data-gallery="portfolio-gallery-arquitectura" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                                <a href="portfolio-details.html" title="Más Detalles" class="details-link"><i class="bi bi-link-45deg"></i></a>
+                            </div>
+                        </div><!-- End Portfolio Item -->
+
+                        <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-arquitectura">
+                            <img src="assets/img/ARQUITECTURA/VIVIENDA/APARTAMENTO/ARQUITECTURA_VIVIENDA_APARTAMENTO_11.jpg" class="img-fluid" alt="Apartamento Diseño">
+                            <div class="portfolio-info">
+                                <h4>Diseño de Apartamento</h4>
+                                <p>Arquitectura interior</p>
+                                <a href="assets/img/ARQUITECTURA/VIVIENDA/APARTAMENTO/ARQUITECTURA_VIVIENDA_APARTAMENTO_11.jpg" title="Diseño de Apartamento" data-gallery="portfolio-gallery-arquitectura" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                                <a href="portfolio-details.html" title="Más Detalles" class="details-link"><i class="bi bi-link-45deg"></i></a>
+                            </div>
+                        </div><!-- End Portfolio Item -->
+
+                        <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-arquitectura">
+                            <img src="assets/img/ARQUITECTURA/VIVIENDA/APARTAMENTO/ARQUITECTURA_VIVIENDA_APARTAMENTO_12.jpg" class="img-fluid" alt="Apartamento Moderno">
+                            <div class="portfolio-info">
+                                <h4>Apartamento Moderno</h4>
+                                <p>Diseño espacial</p>
+                                <a href="assets/img/ARQUITECTURA/VIVIENDA/APARTAMENTO/ARQUITECTURA_VIVIENDA_APARTAMENTO_12.jpg" title="Apartamento Moderno" data-gallery="portfolio-gallery-arquitectura" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                                <a href="portfolio-details.html" title="Más Detalles" class="details-link"><i class="bi bi-link-45deg"></i></a>
+                            </div>
+                        </div><!-- End Portfolio Item -->
+
+                        <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-arquitectura">
+                            <img src="assets/img/ARQUITECTURA/SALON/ARQUITECTURA_SALON_1.jpeg" class="img-fluid" alt="Diseño de Salón">
+                            <div class="portfolio-info">
+                                <h4>Diseño de Salón</h4>
+                                <p>Espacios comerciales</p>
+                                <a href="assets/img/ARQUITECTURA/SALON/ARQUITECTURA_SALON_1.jpeg" title="Diseño de Salón" data-gallery="portfolio-gallery-arquitectura" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                                <a href="portfolio-details.html" title="Más Detalles" class="details-link"><i class="bi bi-link-45deg"></i></a>
+                            </div>
+                        </div><!-- End Portfolio Item -->
+
+                        <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-arquitectura">
+                            <img src="assets/img/ARQUITECTURA/CLINICA-DENTAL/ARQUITECTURA_CLINICA-DENTAL_2.jpeg" class="img-fluid" alt="Clínica Dental">
+                            <div class="portfolio-info">
+                                <h4>Clínica Dental</h4>
+                                <p>Diseño funcional especializado</p>
+                                <a href="assets/img/ARQUITECTURA/CLINICA-DENTAL/ARQUITECTURA_CLINICA-DENTAL_2.jpeg" title="Clínica Dental" data-gallery="portfolio-gallery-arquitectura" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                                <a href="portfolio-details.html" title="Más Detalles" class="details-link"><i class="bi bi-link-45deg"></i></a>
+                            </div>
+                        </div><!-- End Portfolio Item -->
+
+                        <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-arquitectura">
+                            <img src="assets/img/ARQUITECTURA/SALON/ARQUITECTURA_SALON_3.JPG" class="img-fluid" alt="Centro de Eventos">
+                            <div class="portfolio-info">
+                                <h4>Centro de Eventos</h4>
+                                <p>Espacios multifuncionales</p>
+                                <a href="assets/img/ARQUITECTURA/SALON/ARQUITECTURA_SALON_3.JPG" title="Centro de Eventos" data-gallery="portfolio-gallery-arquitectura" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                                <a href="portfolio-details.html" title="Más Detalles" class="details-link"><i class="bi bi-link-45deg"></i></a>
+                            </div>
+                        </div><!-- End Portfolio Item -->
+
+                        <!-- Modelado 3D Items -->
+                        <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-modelado3d">
+                            <img src="assets/img/modelado3D/modelado3D_1.jpg" class="img-fluid" alt="Modelado 3D Visual">
+                            <div class="portfolio-info">
+                                <h4>Visualización 3D</h4>
+                                <p>Renderizado arquitectónico</p>
+                                <a href="assets/img/modelado3D/modelado3D_1.jpg" title="Visualización 3D" data-gallery="portfolio-gallery-modelado3d" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                                <a href="portfolio-details.html" title="Más Detalles" class="details-link"><i class="bi bi-link-45deg"></i></a>
+                            </div>
+                        </div><!-- End Portfolio Item -->
+
+                        <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-modelado3d">
+                            <img src="assets/img/modelado3D/modelado3D_7.jpg" class="img-fluid" alt="Diseño Conceptual 3D">
+                            <div class="portfolio-info">
+                                <h4>Diseño Conceptual</h4>
+                                <p>Modelado 3D avanzado</p>
+                                <a href="assets/img/modelado3D/modelado3D_7.jpg" title="Diseño Conceptual" data-gallery="portfolio-gallery-modelado3d" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                                <a href="portfolio-details.html" title="Más Detalles" class="details-link"><i class="bi bi-link-45deg"></i></a>
+                            </div>
+                        </div><!-- End Portfolio Item -->
+
+                        <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-modelado3d">
+                            <img src="assets/img/modelado3D/modelado3D_30.jpg" class="img-fluid" alt="Renderizado Interior 3D">
+                            <div class="portfolio-info">
+                                <h4>Renderizado Interior</h4>
+                                <p>Visualización espacial</p>
+                                <a href="assets/img/modelado3D/modelado3D_30.jpg" title="Renderizado Interior" data-gallery="portfolio-gallery-modelado3d" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                                <a href="portfolio-details.html" title="Más Detalles" class="details-link"><i class="bi bi-link-45deg"></i></a>
+                            </div>
+                        </div><!-- End Portfolio Item -->
+
+                        <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-modelado3d">
+                            <img src="assets/img/modelado3D/modelado3D_4.jpg" class="img-fluid" alt="Diseño Exterior 3D">
+                            <div class="portfolio-info">
+                                <h4>Diseño Exterior</h4>
+                                <p>Modelado arquitectónico</p>
+                                <a href="assets/img/modelado3D/modelado3D_4.jpg" title="Diseño Exterior" data-gallery="portfolio-gallery-modelado3d" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                                <a href="portfolio-details.html" title="Más Detalles" class="details-link"><i class="bi bi-link-45deg"></i></a>
+                            </div>
+                        </div><!-- End Portfolio Item -->
+
+                        <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-modelado3d">
+                            <img src="assets/img/modelado3D/modelado3D_14.jpg" class="img-fluid" alt="Concepto Urbano 3D">
+                            <div class="portfolio-info">
+                                <h4>Concepto Urbano</h4>
+                                <p>Planificación espacial</p>
+                                <a href="assets/img/modelado3D/modelado3D_14.jpg" title="Concepto Urbano" data-gallery="portfolio-gallery-modelado3d" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                                <a href="portfolio-details.html" title="Más Detalles" class="details-link"><i class="bi bi-link-45deg"></i></a>
+                            </div>
+                        </div><!-- End Portfolio Item -->
+
+                        <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-modelado3d">
+                            <img src="assets/img/modelado3D/modelado3D_28.jpg" class="img-fluid" alt="Diseño Interior 3D">
+                            <div class="portfolio-info">
+                                <h4>Diseño Interior</h4>
+                                <p>Visualización detallada</p>
+                                <a href="assets/img/modelado3D/modelado3D_28.jpg" title="Diseño Interior" data-gallery="portfolio-gallery-modelado3d" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                                <a href="portfolio-details.html" title="Más Detalles" class="details-link"><i class="bi bi-link-45deg"></i></a>
+                            </div>
+                        </div><!-- End Portfolio Item -->
+
+                        <!-- Oficinas INDARCA Items -->
+                        <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-oficinas">
+                            <img src="assets/img/INDARCA_OFICINA/INDARCA_OFICINA_1.jpg" class="img-fluid" alt="Oficinas Principales INDARCA">
+                            <div class="portfolio-info">
+                                <h4>Oficinas Principales</h4>
+                                <p>Sede corporativa INDARCA</p>
+                                <a href="assets/img/INDARCA_OFICINA/INDARCA_OFICINA_1.jpg" title="Oficinas Principales INDARCA" data-gallery="portfolio-gallery-oficinas" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                                <a href="portfolio-details.html" title="Más Detalles" class="details-link"><i class="bi bi-link-45deg"></i></a>
+                            </div>
+                        </div><!-- End Portfolio Item -->
+
+                        <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-oficinas">
+                            <img src="assets/img/INDARCA_OFICINA/INDARCA_OFICINA_20.jpg" class="img-fluid" alt="Área de Trabajo INDARCA">
+                            <div class="portfolio-info">
+                                <h4>Área de Trabajo</h4>
+                                <p>Espacio colaborativo</p>
+                                <a href="assets/img/INDARCA_OFICINA/INDARCA_OFICINA_20.jpg" title="Área de Trabajo INDARCA" data-gallery="portfolio-gallery-oficinas" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                                <a href="portfolio-details.html" title="Más Detalles" class="details-link"><i class="bi bi-link-45deg"></i></a>
+                            </div>
+                        </div><!-- End Portfolio Item -->
+
+                        <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-oficinas">
+                            <img src="assets/img/INDARCA_OFICINA/INDARCA_OFICINA_21.jpg" class="img-fluid" alt="Recepción INDARCA">
+                            <div class="portfolio-info">
+                                <h4>Área de Recepción</h4>
+                                <p>Primera impresión empresarial</p>
+                                <a href="assets/img/INDARCA_OFICINA/INDARCA_OFICINA_21.jpg" title="Recepción INDARCA" data-gallery="portfolio-gallery-oficinas" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                                <a href="portfolio-details.html" title="Más Detalles" class="details-link"><i class="bi bi-link-45deg"></i></a>
+                            </div>
+                        </div><!-- End Portfolio Item -->
+
+                        <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-oficinas">
+                            <img src="assets/img/INDARCA_OFICINA/INDARCA_OFICINA_23.jpg" class="img-fluid" alt="Sala de Reuniones INDARCA">
+                            <div class="portfolio-info">
+                                <h4>Sala de Reuniones</h4>
+                                <p>Espacio para colaboración y proyectos</p>
+                                <a href="assets/img/INDARCA_OFICINA/INDARCA_OFICINA_23.jpg" title="Sala de Reuniones INDARCA" data-gallery="portfolio-gallery-oficinas" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                                <a href="portfolio-details.html" title="Más Detalles" class="details-link"><i class="bi bi-link-45deg"></i></a>
+                            </div>
+                        </div><!-- End Portfolio Item -->
+
+                        <!-- Capacitación Personal Items -->
+                        <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-capacitacion">
+                            <img src="assets/img/CAPACITACION_PERSONAL_INDARCA/CAPACITACION_PERSONAL_INDARCA_5.jpeg" class="img-fluid" alt="Seminario de Capacitación">
+                            <div class="portfolio-info">
+                                <h4>Seminario Técnico</h4>
+                                <p>Formación continua del personal</p>
+                                <a href="assets/img/CAPACITACION_PERSONAL_INDARCA/CAPACITACION_PERSONAL_INDARCA_5.jpeg" title="Seminario de Capacitación" data-gallery="portfolio-gallery-capacitacion" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                                <a href="portfolio-details.html" title="Más Detalles" class="details-link"><i class="bi bi-link-45deg"></i></a>
+                            </div>
+                        </div><!-- End Portfolio Item -->
+
+                        <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-capacitacion">
+                            <img src="assets/img/CAPACITACION_PERSONAL_INDARCA/CAPACITACION_PERSONAL_INDARCA_7.jpg" class="img-fluid" alt="Taller Práctico">
+                            <div class="portfolio-info">
+                                <h4>Taller Práctico</h4>
+                                <p>Desarrollo de habilidades técnicas</p>
+                                <a href="assets/img/CAPACITACION_PERSONAL_INDARCA/CAPACITACION_PERSONAL_INDARCA_7.jpg" title="Taller Práctico" data-gallery="portfolio-gallery-capacitacion" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                                <a href="portfolio-details.html" title="Más Detalles" class="details-link"><i class="bi bi-link-45deg"></i></a>
+                            </div>
+                        </div><!-- End Portfolio Item -->
+
+                        <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-capacitacion">
+                            <img src="assets/img/CAPACITACION_PERSONAL_INDARCA/CAPACITACION_PERSONAL_INDARCA_6.jpg" class="img-fluid" alt="Certificación Profesional">
+                            <div class="portfolio-info">
+                                <h4>Certificación Profesional</h4>
+                                <p>Reconocimiento de competencias</p>
+                                <a href="assets/img/CAPACITACION_PERSONAL_INDARCA/CAPACITACION_PERSONAL_INDARCA_6.jpg" title="Certificación Profesional" data-gallery="portfolio-gallery-capacitacion" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                                <a href="portfolio-details.html" title="Más Detalles" class="details-link"><i class="bi bi-link-45deg"></i></a>
+                            </div>
+                        </div><!-- End Portfolio Item -->
+
+                        <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-capacitacion">
+                            <img src="assets/img/DENSIMETROS/ENTRENAMIENTOS/DENSIMETROS_ENTRENAMIENTOS_47.jpg" class="img-fluid" alt="Entrenamiento con Equipos">
+                            <div class="portfolio-info">
+                                <h4>Entrenamiento con Equipos</h4>
+                                <p>Manejo de instrumentos especializados</p>
+                                <a href="assets/img/DENSIMETROS/ENTRENAMIENTOS/DENSIMETROS_ENTRENAMIENTOS_47.jpg" title="Entrenamiento con Equipos" data-gallery="portfolio-gallery-capacitacion" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                                <a href="portfolio-details.html" title="Más Detalles" class="details-link"><i class="bi bi-link-45deg"></i></a>
+                            </div>
+                        </div><!-- End Portfolio Item -->
+
+                        <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-capacitacion">
+                            <img src="assets/img/DENSIMETROS/ENTRENAMIENTOS/DENSIMETROS_ENTRENAMIENTOS_4.jpg" class="img-fluid" alt="Capacitación Técnica">
+                            <div class="portfolio-info">
+                                <h4>Capacitación Técnica</h4>
+                                <p>Actualización de conocimientos</p>
+                                <a href="assets/img/DENSIMETROS/ENTRENAMIENTOS/DENSIMETROS_ENTRENAMIENTOS_4.jpg" title="Capacitación Técnica" data-gallery="portfolio-gallery-capacitacion" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                                <a href="portfolio-details.html" title="Más Detalles" class="details-link"><i class="bi bi-link-45deg"></i></a>
+                            </div>
+                        </div><!-- End Portfolio Item -->
+
+                        <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-capacitacion">
+                            <img src="assets/img/DENSIMETROS/ENTRENAMIENTOS/DENSIMETROS_ENTRENAMIENTOS_48.jpg" class="img-fluid" alt="Talleres Prácticos">
+                            <div class="portfolio-info">
+                                <h4>Talleres Prácticos</h4>
+                                <p>Aprendizaje experiencial</p>
+                                <a href="assets/img/DENSIMETROS/ENTRENAMIENTOS/DENSIMETROS_ENTRENAMIENTOS_48.jpg" title="Talleres Prácticos" data-gallery="portfolio-gallery-capacitacion" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                                <a href="portfolio-details.html" title="Más Detalles" class="details-link"><i class="bi bi-link-45deg"></i></a>
+                            </div>
+                        </div><!-- End Portfolio Item -->
+
+                        <!-- Otros Proyectos Items -->
+                        <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-otros">
+                            <img src="assets/img/OTROS/OTROS_2.jpg" class="img-fluid" alt="Proyecto Especial">
+                            <div class="portfolio-info">
+                                <h4>Proyecto Especial</h4>
+                                <p>Soluciones a medida</p>
+                                <a href="assets/img/OTROS/OTROS_2.jpg" title="Proyecto Especial" data-gallery="portfolio-gallery-otros" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                                <a href="portfolio-details.html" title="Más Detalles" class="details-link"><i class="bi bi-link-45deg"></i></a>
+                            </div>
+                        </div><!-- End Portfolio Item -->
+
+                        <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-otros">
+                            <img src="assets/img/OTROS/OTROS_1.jpg" class="img-fluid" alt="Servicios Adicionales">
+                            <div class="portfolio-info">
+                                <h4>Servicios Adicionales</h4>
+                                <p>Complementos a nuestra oferta</p>
+                                <a href="assets/img/OTROS/OTROS_1.jpg" title="Servicios Adicionales" data-gallery="portfolio-gallery-otros" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                                <a href="portfolio-details.html" title="Más Detalles" class="details-link"><i class="bi bi-link-45deg"></i></a>
+                            </div>
+                        </div><!-- End Portfolio Item -->
+
+                        <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-otros">
+                            <img src="assets/img/OTROS/OTROS_3.jpg" class="img-fluid" alt="Soluciones Innovadoras">
+                            <div class="portfolio-info">
+                                <h4>Soluciones Innovadoras</h4>
+                                <p>Respuestas a desafíos únicos</p>
+                                <a href="assets/img/OTROS/OTROS_3.jpg" title="Soluciones Innovadoras" data-gallery="portfolio-gallery-otros" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                                <a href="portfolio-details.html" title="Más Detalles" class="details-link"><i class="bi bi-link-45deg"></i></a>
+                            </div>
+                        </div><!-- End Portfolio Item -->
+
+                        <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-otros">
+                            <img src="assets/img/OTROS/OTROS_9.jpg" class="img-fluid" alt="Proyectos Diversos">
+                            <div class="portfolio-info">
+                                <h4>Proyectos Diversos</h4>
+                                <p>Adaptación a nuevos retos</p>
+                                <a href="assets/img/OTROS/OTROS_9.jpg" title="Proyectos Diversos" data-gallery="portfolio-gallery-otros" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                                <a href="portfolio-details.html" title="Más Detalles" class="details-link"><i class="bi bi-link-45deg"></i></a>
                             </div>
                         </div><!-- End Portfolio Item -->
 
@@ -750,7 +968,7 @@
                                 <!-- Logo y título -->
                                 <div class="text-center mb-5">
                                     <div class="mb-4">
-                                        <img src="{{ asset('assets/img/logo_indarca.png') }}" alt="INDARCA"
+                                        <img src="{{ asset('assets/img/OTROS/logo_indarca.png') }}" alt="INDARCA"
                                             class="img-fluid" style="max-height: 60px;">
                                     </div>
                                     <h3 class="fw-light mb-2 text-white">Centro de <span class="fw-bold">Atención</span>
