@@ -57,13 +57,20 @@ class EmpresaController extends Controller
      */
     public function store(Request $request)
     {
+        // Preparamos los valores booleanos para la validación
+        $request->merge([
+            'destacado' => $request->has('destacado'),
+            'activo' => $request->has('activo'),
+        ]);
+
         $request->validate([
             'nombre' => 'required|string|max:255',
             'direccion' => 'required|string|max:255',
             'telefono' => 'required|string|max:20',
             'logo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'tipo_cliente' => 'required|in:Cliente Habitual,Colaborador,Patrocinador',
-            'destacado' => 'nullable|boolean',
+            'destacado' => 'required|boolean',
+            'activo' => 'required|boolean',
         ]);
 
         $data = [
@@ -71,8 +78,15 @@ class EmpresaController extends Controller
             'direccion' => $request->direccion,
             'telefono' => $request->telefono,
             'tipo_cliente' => $request->tipo_cliente,
-            'destacado' => $request->has('destacado'),
+            'destacado' => $request->input('destacado'), // Ya es booleano
         ];
+
+        // Solo los administradores pueden cambiar el estado de visibilidad
+        if (auth()->user()->role === 'admin') {
+            $data['activo'] = $request->input('activo'); // Ya es booleano
+        }
+        // Si no es admin, $data['activo'] no se establece aquí,
+        // y el modelo Empresa usará su valor por defecto (false) para 'activo'.
 
         // Manejo de la imagen
         if ($request->hasFile('logo')) {
@@ -143,20 +157,33 @@ class EmpresaController extends Controller
     {
         $empresa = Empresa::findOrFail($id);
 
+        // Preparamos los valores booleanos para la validación
+        $request->merge([
+            'destacado' => $request->has('destacado'),
+            'activo' => $request->has('activo'),
+        ]);
+
         $request->validate([
             'nombre' => 'required|string|max:255',
             'direccion' => 'required|string|max:255',
             'telefono' => 'required|string|max:20',
             'logo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'tipo_cliente' => 'required|in:Cliente Habitual,Colaborador,Patrocinador',
-            'destacado' => 'nullable|boolean',
+            'destacado' => 'required|boolean',
+            'activo' => 'required|boolean',
         ]);
 
         $empresa->nombre = $request->nombre;
         $empresa->direccion = $request->direccion;
         $empresa->telefono = $request->telefono;
         $empresa->tipo_cliente = $request->tipo_cliente;
-        $empresa->destacado = $request->has('destacado');
+        $empresa->destacado = $request->input('destacado'); // Ya es booleano
+
+        // Solo los administradores pueden cambiar el estado de visibilidad
+        if (auth()->user()->role === 'admin') {
+            $empresa->activo = $request->input('activo'); // Ya es booleano
+        }
+        // Si no es admin, $empresa->activo no se modifica, manteniendo su valor actual.
 
         // Manejo de la imagen
         if ($request->hasFile('logo')) {

@@ -337,7 +337,7 @@
                 <!-- Programas de capacitación -->
                 <div class="col-md-4 mb-4 mb-md-0">
                     <div class="curso-card card border-0 shadow-sm h-100 position-relative">
-                        <img src="https://images.pexels.com/photos/8636622/pexels-photo-8636622.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                        <img src="{{ asset('assets\img\DENSIMETROS\ENTRENAMIENTOS\DENSIMETROS_ENTRENAMIENTOS_45.jpeg') }}"
                             class="card-img-top" alt="Curso de Manejo y Seguridad">
                         <div class="card-body p-4">
                             <div class="curso-badge position-absolute top-0 end-0 mt-3 me-3">
@@ -364,7 +364,7 @@
 
                 <div class="col-md-4 mb-4 mb-md-0">
                     <div class="curso-card card border-0 shadow-sm h-100 position-relative">
-                        <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+                        <img src="{{ asset('assets\img\DENSIMETROS\ENTRENAMIENTOS\DENSIMETROS_ENTRENAMIENTOS_9.jpeg') }}"
                             class="card-img-top" alt="Certificación en Técnicas de Medición">
                         <div class="card-body p-4">
                             <div class="curso-badge position-absolute top-0 end-0 mt-3 me-3">

@@ -345,19 +345,20 @@
                         </div>
                     </div>
 
-                    @if (isset($empresas) && $empresas->count() > 0)
+                    @if (isset($empresas) && $empresas->where('activo', true)->count() > 0)
                         <!-- Carrusel de empresas -->
                         <div id="empresasCarrusel" class="carousel slide" data-bs-ride="false" data-bs-touch="true">
                             <div class="carousel-inner">
                                 @php
-                                    $totalEmpresas = $empresas->count();
+                                    $empresasActivas = $empresas->where('activo', true);
+                                    $totalEmpresas = $empresasActivas->count();
                                     $totalPaginas = ceil($totalEmpresas / 8);
                                 @endphp
 
                                 @for ($pagina = 0; $pagina < $totalPaginas; $pagina++)
                                     <div class="carousel-item {{ $pagina == 0 ? 'active' : '' }}">
                                         <div class="row row-cols-2 row-cols-md-4 row-cols-lg-4 g-4 position-relative">
-                                            @foreach ($empresas->slice($pagina * 8, 8) as $empresa)
+                                            @foreach ($empresasActivas->slice($pagina * 8, 8) as $empresa)
                                                 <div class="col" data-aos="fade-up">
                                                     <div
                                                         class="card h-100 border-0 rounded-4 client-card shadow-sm {{ $empresa->destacado ? 'border border-danger border-2' : '' }}">
@@ -447,103 +448,30 @@
                             @endif
                         </div>
                     @else
-                        <!-- Grid de logos de clientes - placeholders -->
-                        <div class="row row-cols-2 row-cols-md-4 row-cols-lg-4 g-4 position-relative">
-                            <!-- Cliente 1 (placeholder) -->
-                            <div class="col" data-aos="fade-up" data-aos-delay="100">
-                                <div class="card h-100 border-0 rounded-4 client-card shadow-sm">
-                                    <div class="card-body d-flex align-items-center justify-content-center p-4">
-                                        <img src="{{ asset('assets/img/clients/client-1.webp') }}" class="img-fluid client-img"
-                                            alt="Cliente 1">
+                        <div class="card border-0 shadow-lg rounded-4 py-5 bg-light bg-gradient overflow-hidden position-relative">
+                            <div class="position-absolute top-0 start-0 w-100 h-100" style="background: linear-gradient(135deg, rgba(217,0,0,0.02) 0%, rgba(0,0,0,0.04) 100%);"></div>
+                            <div class="card-body text-center p-5">
+                                <div class="mb-4">
+                                    <div class="icon-box bg-white shadow-sm rounded-circle d-inline-flex mx-auto mb-3 icon-animate" style="width: 95px; height: 95px;">
+                                        <i class="bi bi-buildings text-danger" style="font-size: 3rem;"></i>
                                     </div>
-                                    <div class="card-overlay">
-                                        <div class="overlay-content">
-                                            <span class="badge bg-dark rounded-pill px-3 py-2 mb-2">
-                                                Cliente Habitual
-                                            </span>
-                                            <h5 class="fw-bold">Cliente Destacado</h5>
-                                        </div>
+                                    <h3 class="fw-bold mb-2">Alianzas en desarrollo</h3>
+                                    <div class="border-bottom border-danger w-25 mx-auto my-3 opacity-50"></div>
+                                    <p class="text-muted mb-4">Actualmente estamos estableciendo relaciones estratégicas con empresas líderes del sector.<br>¡Pronto mostraremos nuestros aliados corporativos!</p>
+                                </div>
+                                <div class="d-flex justify-content-center gap-3">
+                                    <div class="shadow-sm p-3 rounded-4 border border-light bg-white">
+                                        <i class="bi bi-building-add fs-1 text-dark opacity-50"></i>
+                                    </div>
+                                    <div class="shadow-sm p-3 rounded-4 border border-light bg-white">
+                                        <i class="bi bi-building-check fs-1 text-dark opacity-50"></i>
+                                    </div>
+                                    <div class="shadow-sm p-3 rounded-4 border border-light bg-white">
+                                        <i class="bi bi-building-gear fs-1 text-dark opacity-50"></i>
                                     </div>
                                 </div>
-                            </div>
 
-                            <!-- Cliente 2 (placeholder) -->
-                            <div class="col" data-aos="fade-up" data-aos-delay="150">
-                                <div class="card h-100 border-0 rounded-4 client-card shadow-sm">
-                                    <div class="card-body d-flex align-items-center justify-content-center p-4">
-                                        <img src="{{ asset('assets/img/clients/client-2.svg') }}" class="img-fluid client-img"
-                                            alt="Cliente 2">
-                                    </div>
-                                    <div class="card-overlay">
-                                        <div class="overlay-content">
-                                            <span class="badge bg-dark rounded-pill px-3 py-2 mb-2">
-                                                Patrocinador
-                                            </span>
-                                            <h5 class="fw-bold">Cliente Premium</h5>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
-
-                            <!-- Cliente 3 (placeholder) -->
-                            <div class="col" data-aos="fade-up" data-aos-delay="200">
-                                <div class="card h-100 border-0 rounded-4 client-card shadow-sm">
-                                    <div class="card-body d-flex align-items-center justify-content-center p-4">
-                                        <img src="{{ asset('assets/img/clients/client-3.avif') }}" class="img-fluid client-img"
-                                            alt="Cliente 3">
-                                    </div>
-                                    <div class="card-overlay">
-                                        <div class="overlay-content">
-                                            <span class="badge bg-dark rounded-pill px-3 py-2 mb-2">
-                                                Colaborador
-                                            </span>
-                                            <h5 class="fw-bold">Alianza Internacional</h5>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Cliente 4 (placeholder) -->
-                            <div class="col" data-aos="fade-up" data-aos-delay="250">
-                                <div class="card h-100 border-0 rounded-4 client-card shadow-sm">
-                                    <div class="card-body d-flex align-items-center justify-content-center p-4">
-                                        <img src="{{ asset('assets/img/clients/client-4.png') }}" class="img-fluid client-img"
-                                            alt="Cliente 4">
-                                    </div>
-                                    <div class="card-overlay">
-                                        <div class="overlay-content">
-                                            <span class="badge bg-dark rounded-pill px-3 py-2 mb-2">
-                                                Cliente Habitual
-                                            </span>
-                                            <h5 class="fw-bold">Construcción Avanzada</h5>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Clientes 5-8 (placeholders) -->
-                            @for ($i = 0; $i < 4; $i++)
-                                <div class="col" data-aos="fade-up" data-aos-delay="{{ 300 + $i * 50 }}">
-                                    <div class="card h-100 border-0 rounded-4 client-card shadow-sm">
-                                        <div class="card-body d-flex align-items-center justify-content-center p-4">
-                                            <div class="text-center">
-                                                <div class="display-4 text-muted mb-2">
-                                                    <i class="bi bi-building"></i>
-                                                </div>
-                                                <h6 class="mb-0 fw-bold">Cliente {{ $i + 5 }}</h6>
-                                            </div>
-                                        </div>
-                                        <div class="card-overlay">
-                                            <div class="overlay-content">
-                                                <span class="badge bg-dark rounded-pill px-3 py-2 mb-2">
-                                                    Cliente Habitual
-                                                </span>
-                                                <h5 class="fw-bold">Cliente {{ $i + 5 }}</h5>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            @endfor
                         </div>
                     @endif
 
@@ -1220,26 +1148,67 @@
                 <div class="row mt-5">
                     <div class="col-12">
                         <div class="card rounded-4 shadow-sm overflow-hidden border-0">
-                            <div class="card-header bg-light p-3 border-0">
-                                <h5 class="card-title mb-0"><i class="bi bi-geo-alt me-2 text-danger"></i>Nuestra
-                                    ubicación</h5>
+                            <div class="card-header bg-light p-3 border-0 d-flex justify-content-between align-items-center">
+                                <h5 class="card-title mb-0"><i class="bi bi-geo-alt me-2 text-danger"></i>Nuestra ubicación</h5>
+
                             </div>
-                            <div class="card-body p-0 position-relative">
-                                <div id="map-overlay"
-                                    class="position-absolute w-100 h-100 d-flex align-items-center justify-content-center"
-                                    style="background: rgba(255, 255, 255, 0.5); z-index: 10; transition: opacity 0.3s ease;">
-                                    <button id="activate-map-btn" class="btn btn-danger rounded-pill px-4 py-2 shadow-sm"
-                                        style="transition: all 0.3s ease;">
-                                        <i class="bi bi-map me-2"></i>Activar mapa interactivo
-                                    </button>
-                                </div>
+                            <div class="card-body p-0">
+                                <!-- Mapa interactivo de Google Maps -->
                                 <iframe
-                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3621.3777486213357!2d-69.85581222117607!3d18.48678452536387!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8eaf87da711f0f45%3A0x6c001d00bc641b4!2sIndarca%20Ingenier%C3%ADa%20Dise%C3%B1o%20Arquitectura%20y%20Construcci%C3%B3n%20Avanzada!5e1!3m2!1ses!2ses!4v1743442269603!5m2!1ses!2ses"
-                                    style="border:0; width: 100%; height: 400px;" allowfullscreen="" loading="lazy"
+                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3621.3777486213357!2d-69.85581222117607!3d18.48678452536387!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8eaf87da711f0f45%3A0x6c001d00bc641b4!2sIndarca%20Ingenier%C3%ADa%20Dise%C3%B1o%20Arquitectura%20y%20Construcci%C3%B3n%20Avanzada!5e0!3m2!1ses!2ses!4v1743442269603!5m2!1ses!2ses"
+                                    style="border:0; width: 100%; height: 400px;"
+                                    allowfullscreen=""
+                                    loading="lazy"
                                     referrerpolicy="no-referrer-when-downgrade">
                                 </iframe>
+
+                                <!-- Información de dirección flotante -->
+                                <div class="map-card-overlay">
+                                    <div class="map-card bg-white rounded-4 shadow p-3">
+                                        <div class="d-flex align-items-center mb-2">
+                                            <div class="icon-box bg-light rounded-circle d-inline-flex align-items-center justify-content-center me-3" style="width: 40px; height: 40px;">
+                                                <i class="bi bi-building text-danger"></i>
+                                            </div>
+                                            <h6 class="fw-bold mb-0">INDARCA SRL</h6>
+                                        </div>
+                                        <p class="mb-0 ps-5 small text-secondary">
+                                            <i class="bi bi-geo-alt-fill text-danger me-1"></i>
+                                            C. C 16, Santo Domingo Este 11506<br>
+                                            <span class="ps-3">República Dominicana</span>
+                                        </p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
+
+                        <!-- Estilos específicos para el mapa -->
+                        <style>
+                            .map-card-overlay {
+                                position: absolute;
+                                bottom: 20px;
+                                left: 20px;
+                                z-index: 1000;
+                                max-width: 300px;
+                            }
+
+                            .map-card {
+                                border-left: 4px solid #D90000;
+                                transition: all 0.3s ease;
+                            }
+
+                            .map-card:hover {
+                                transform: translateY(-5px);
+                            }
+
+                            @media (max-width: 576px) {
+                                .map-card-overlay {
+                                    left: 50%;
+                                    transform: translateX(-50%);
+                                    width: 90%;
+                                    max-width: none;
+                                }
+                            }
+                        </style>
                     </div>
                 </div>
             </div>
@@ -1250,18 +1219,6 @@
             <!-- Script para activar mapa al hacer clic -->
             <script>
                 document.addEventListener('DOMContentLoaded', function() {
-                    const mapOverlay = document.getElementById('map-overlay');
-                    const activateMapBtn = document.getElementById('activate-map-btn');
-
-                    if (mapOverlay && activateMapBtn) {
-                        activateMapBtn.addEventListener('click', function() {
-                            mapOverlay.style.opacity = '0';
-                            setTimeout(function() {
-                                mapOverlay.style.display = 'none';
-                            }, 300);
-                        });
-                    }
-
                     // Prevenir envíos múltiples del formulario
                     const contactForm = document.getElementById('contactForm');
                     const submitBtn = document.getElementById('submitBtn');

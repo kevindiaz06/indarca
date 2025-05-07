@@ -2,7 +2,7 @@
 @section('content')
     <!-- Banner principal -->
     <div class="container-fluid py-5 text-white text-center"
-        style="background-image: url('https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'); background-size: cover; background-position: center; position: relative;">
+        style="background-image: url({{ asset('assets/img/DENSIMETROS/TROXLER/DENSIMETROS_TROXLER_8.jpeg') }}); background-size: cover; background-position: center; position: relative;">
         <div
             style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.5) 100%);">
         </div>
@@ -45,7 +45,7 @@
                 </div>
                 <div class="col-lg-6">
                     <div class="position-relative p-3">
-                        <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+                        <img src="{{ asset('assets/img/DENSIMETROS/TROXLER/DENSIMETROS_TROXLERR_10.PNG') }}"
                             alt="Densímetro nuclear en uso" class="img-fluid rounded-3 img-shadow">
                     </div>
                 </div>
@@ -142,18 +142,18 @@
                     <div class="card model-card h-100 shadow-sm">
                         <div class="card-body p-0">
                             <div class="position-relative overflow-hidden">
-                                <img src="https://images.unsplash.com/photo-1581092335397-9583eb92d232?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
+                                <img src="{{ asset('assets/img/clients/client-4.png') }}"
                                     class="card-img-top" alt="Troxler">
-                                <div class="position-absolute top-0 start-0 p-3">
-                                    <span class="badge bg-warning px-3 py-2 rounded-pill">Premium</span>
-                                </div>
+
                             </div>
                             <div class="p-4">
                                 <h5 class="card-title fw-bold">Troxler</h5>
                                 <p class="card-text mb-0">Modelos disponibles:</p>
                                 <ul class="list-unstyled mt-2">
                                     <li class="mb-1"><i class="bi bi-check-circle-fill text-warning me-2"></i>3430</li>
+                                    <li class="mb-1"><i class="bi bi-check-circle-fill text-warning me-2"></i>3430-P</li>
                                     <li class="mb-1"><i class="bi bi-check-circle-fill text-warning me-2"></i>3440</li>
+                                    <li class="mb-1"><i class="bi bi-check-circle-fill text-warning me-2"></i>3440-P</li>
                                     <li><i class="bi bi-check-circle-fill text-warning me-2"></i>4640-B</li>
                                 </ul>
                             </div>
@@ -164,17 +164,17 @@
                     <div class="card model-card h-100 shadow-sm">
                         <div class="card-body p-0">
                             <div class="position-relative overflow-hidden">
-                                <img src="https://images.pexels.com/photos/416405/pexels-photo-416405.jpeg?auto=compress&cs=tinysrgb&w=600"
+                                <img src="{{ asset('assets/img/clients/client-2.svg') }}"
                                     class="card-img-top" alt="Humboldt">
-                                <div class="position-absolute top-0 start-0 p-3">
-                                    <span class="badge bg-warning px-3 py-2 rounded-pill">Premium</span>
-                                </div>
+
                             </div>
                             <div class="p-4">
                                 <h5 class="card-title fw-bold">Humboldt</h5>
                                 <p class="card-text mb-0">Modelos disponibles:</p>
                                 <ul class="list-unstyled mt-2">
                                     <li class="mb-1"><i class="bi bi-check-circle-fill text-warning me-2"></i>HS-5001EZ
+                                    </li>
+                                    <li class="mb-1"><i class="bi bi-check-circle-fill text-warning me-2"></i>HS-5001EZ-2
                                     </li>
                                     <li><i class="bi bi-check-circle-fill text-warning me-2"></i>HS-5001SD</li>
                                 </ul>
@@ -186,7 +186,7 @@
                     <div class="card model-card h-100 shadow-sm">
                         <div class="card-body p-0">
                             <div class="position-relative overflow-hidden">
-                                <img src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
+                                <img src="{{ asset('assets/img/clients/client-3.avif') }}"
                                     class="card-img-top" alt="Instrotek">
                             </div>
                             <div class="p-4">
@@ -194,6 +194,7 @@
                                 <p class="card-text mb-0">Modelos disponibles:</p>
                                 <ul class="list-unstyled mt-2">
                                     <li><i class="bi bi-check-circle-fill text-warning me-2"></i>Xplorer 3500</li>
+                                    <li><i class="bi bi-check-circle-fill text-warning me-2"></i>Xplorer 3500-2</li>
                                 </ul>
                             </div>
                         </div>
@@ -203,7 +204,7 @@
                     <div class="card model-card h-100 shadow-sm">
                         <div class="card-body p-0">
                             <div class="position-relative overflow-hidden">
-                                <img src="https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
+                                <img src="{{ asset('assets/img/clients/client-5.webp') }}"
                                     class="card-img-top" alt="CPN">
                             </div>
                             <div class="p-4">
@@ -249,7 +250,7 @@
                                 <div class="service-icon">
                                     <i class="bi bi-tools fs-2"></i>
                                 </div>
-                                <h4 class="fw-bold mb-0">Calibración y Mantenimiento</h4>
+                                <h4 class="fw-bold mb-0">Calibración, Mantenimiento y Reparación</h4>
                             </div>
                             <ul class="list-unstyled ps-4">
                                 <li class="mb-3 d-flex">
@@ -257,10 +258,18 @@
                                     <span>Calibraciones certificadas bajo los estándares ASTM y AASHTO, garantizando
                                         precisión en cada medición.</span>
                                 </li>
-                                <li class="d-flex">
+                                <li class="mb-3 d-flex">
                                     <i class="bi bi-check-circle-fill text-warning me-2 mt-1"></i>
                                     <span>Mantenimiento preventivo y correctivo para garantizar la precisión del equipo y
                                         prolongar su vida útil.</span>
+                                </li>
+                                <li class="mb-3 d-flex">
+                                    <i class="bi bi-check-circle-fill text-warning me-2 mt-1"></i>
+                                    <span>Reparación especializada de componentes electrónicos, mecánicos y sistemas de detección con garantía de calidad.</span>
+                                </li>
+                                <li class="d-flex">
+                                    <i class="bi bi-check-circle-fill text-warning me-2 mt-1"></i>
+                                    <span>Diagnóstico avanzado y solución de problemas en fuentes radioactivas y circuitos integrados por técnicos certificados.</span>
                                 </li>
                             </ul>
                         </div>
@@ -278,8 +287,8 @@
                             <ul class="list-unstyled ps-4">
                                 <li class="mb-3 d-flex">
                                     <i class="bi bi-check-circle-fill text-warning me-2 mt-1"></i>
-                                    <span>Disponemos de densímetros de marcas reconocidas como Troxler, Humboldt, Instrotek
-                                        y CPN para satisfacer cualquier necesidad.</span>
+                                    <span>Disponemos de densímetros de marcas reconocidas como Troxler, Humboldt e Instrotek
+                                         para satisfacer cualquier necesidad.</span>
                                 </li>
                                 <li class="d-flex">
                                     <i class="bi bi-check-circle-fill text-warning me-2 mt-1"></i>

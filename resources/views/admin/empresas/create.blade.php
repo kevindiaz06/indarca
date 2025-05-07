@@ -117,6 +117,19 @@
                             @enderror
                         </div>
 
+                        <div class="mb-4">
+                            <div class="form-check form-switch">
+                                <input id="activo" type="checkbox" class="form-check-input @error('activo') is-invalid @enderror" name="activo" {{ old('activo') ? 'checked' : '' }}>
+                                <label for="activo" class="form-check-label fw-medium">{{ __('Mostrar en la página principal') }}</label>
+                            </div>
+                            <small class="text-muted">Las empresas inactivas no se mostrarán en la página principal.</small>
+                            @error('activo')
+                                <div class="invalid-feedback d-block">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+
                         <div class="d-flex justify-content-end mt-5">
                             <a href="{{ route('admin.empresas') }}" class="btn btn-light me-2">
                                 <i class="bi bi-x-circle me-1"></i> Cancelar

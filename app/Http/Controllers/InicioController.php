@@ -16,8 +16,9 @@ class InicioController extends Controller
         // Obtener conteo de trabajadores (suma de 'admin' y 'trabajador')
         $totalTrabajadores = User::whereIn('role', ['admin', 'trabajador'])->count();
 
-        // Obtener todas las empresas ordenadas primero por destacado y luego por fecha de creación
-        $empresas = Empresa::orderBy('destacado', 'desc')
+        // Obtener todas las empresas activas ordenadas primero por destacado y luego por fecha de creación
+        $empresas = Empresa::where('activo', true)
+                          ->orderBy('destacado', 'desc')
                           ->orderBy('created_at', 'desc')
                           ->get();
 

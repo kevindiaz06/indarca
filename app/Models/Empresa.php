@@ -28,5 +28,25 @@ class Empresa extends Model
         'logo',
         'tipo_cliente',
         'destacado',
+        'activo',
+    ];
+
+    /**
+     * Los atributos que deben convertirse a tipos nativos.
+     *
+     * @var array<string, string>
+     */
+    protected $casts = [
+        'destacado' => 'boolean',
+        'activo' => 'boolean',
+    ];
+
+    /**
+     * Los atributos que tienen valores por defecto.
+     *
+     * @var array<string, mixed>
+     */
+    protected $attributes = [
+        'activo' => false,
     ];
 }
