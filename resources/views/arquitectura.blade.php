@@ -42,7 +42,7 @@
             </div>
             <div class="col-lg-6">
                 <div class="position-relative p-3">
-                    <img src="https://images.unsplash.com/photo-1503387837-b154d5074bd2?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Arquitectura moderna" class="img-fluid rounded-3 img-shadow">
+                    <img src="{{ asset('assets/img/ARQUITECTURA/SALON/ARQUITECTURA_SALON_4.png') }}" alt="Arquitectura moderna" class="img-fluid rounded-3 img-shadow">
                 </div>
             </div>
         </div>
@@ -166,7 +166,7 @@
             <div class="col-md-6 col-lg-4">
                 <div class="card project-card h-100 shadow-sm">
                     <div class="position-relative overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1504376379689-8d54347b26c6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" class="card-img" alt="Arquitectura Hospitalaria">
+                        <img src="{{ asset('assets/img/modelado3D/modelado3D_20.jpg') }}" class="card-img" alt="Arquitectura Hospitalaria">
                         <div class="card-img-overlay d-flex flex-column justify-content-end">
                             <h5 class="card-title text-white fw-bold">Arquitectura Hospitalaria</h5>
                             <p class="card-text text-white">Diseño y construcción de infraestructuras de salud optimizadas para el bienestar y seguridad de los pacientes.</p>
@@ -179,7 +179,7 @@
             <div class="col-md-6 col-lg-4">
                 <div class="card project-card h-100 shadow-sm">
                     <div class="position-relative overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1515283709260-ee29296f1534?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" class="card-img" alt="Edificaciones Comerciales">
+                        <img src="{{ asset('assets/img/modelado3D/modelado3D_24.jpg') }}" class="card-img" alt="Edificaciones Comerciales">
                         <div class="card-img-overlay d-flex flex-column justify-content-end">
                             <h5 class="card-title text-white fw-bold">Edificaciones Comerciales</h5>
                             <p class="card-text text-white">Desarrollo de oficinas, tiendas y centros de negocios modernos y funcionales.</p>
@@ -192,7 +192,7 @@
             <div class="col-md-6 col-lg-4">
                 <div class="card project-card h-100 shadow-sm">
                     <div class="position-relative overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1510798831971-661eb04b3739?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" class="card-img" alt="Viviendas">
+                        <img src="{{ asset('assets/img/modelado3D/modelado3D_43.jpg') }}" class="card-img" alt="Viviendas">
                         <div class="card-img-overlay d-flex flex-column justify-content-end">
                             <h5 class="card-title text-white fw-bold">Viviendas Unifamiliares</h5>
                             <p class="card-text text-white">Creación de espacios habitacionales adaptados a las necesidades de los clientes.</p>
@@ -205,7 +205,7 @@
             <div class="col-md-6 col-lg-4">
                 <div class="card project-card h-100 shadow-sm">
                     <div class="position-relative overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1543872084-c7bd3822856f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" class="card-img" alt="Infraestructura Educativa">
+                        <img src="{{ asset('assets/img/modelado3D/modelado3D_10.jpg') }}" class="card-img" alt="Infraestructura Educativa">
                         <div class="card-img-overlay d-flex flex-column justify-content-end">
                             <h5 class="card-title text-white fw-bold">Infraestructura Educativa</h5>
                             <p class="card-text text-white">Diseño de centros educativos con soluciones innovadoras para el aprendizaje y la interacción social.</p>
@@ -218,7 +218,7 @@
             <div class="col-md-6 col-lg-4">
                 <div class="card project-card h-100 shadow-sm">
                     <div class="position-relative overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1563178406-4cdc2923acbc?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" class="card-img" alt="Edificios Multifamiliares">
+                        <img src="{{ asset('assets/img/modelado3D/modelado3D_28.jpg') }}" class="card-img" alt="Edificios Multifamiliares">
                         <div class="card-img-overlay d-flex flex-column justify-content-end">
                             <h5 class="card-title text-white fw-bold">Viviendas Multifamiliares</h5>
                             <p class="card-text text-white">Complejos residenciales que combinan confort, seguridad y sostenibilidad.</p>
@@ -231,7 +231,7 @@
             <div class="col-md-6 col-lg-4">
                 <div class="card project-card h-100 shadow-sm">
                     <div class="position-relative overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1508450859948-4e04fabaa4ea?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" class="card-img" alt="Espacios Recreativos">
+                        <img src="{{ asset('assets/img/modelado3D/modelado3D_1.jpg') }}" class="card-img" alt="Espacios Recreativos">
                         <div class="card-img-overlay d-flex flex-column justify-content-end">
                             <h5 class="card-title text-white fw-bold">Espacios Recreativos</h5>
                             <p class="card-text text-white">Planificación y construcción de áreas de esparcimiento que promueven la integración social.</p>
