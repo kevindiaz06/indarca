@@ -1181,34 +1181,8 @@
                             </div>
                         </div>
 
-                        <!-- Estilos específicos para el mapa -->
-                        <style>
-                            .map-card-overlay {
-                                position: absolute;
-                                bottom: 20px;
-                                left: 20px;
-                                z-index: 1000;
-                                max-width: 300px;
-                            }
 
-                            .map-card {
-                                border-left: 4px solid #D90000;
-                                transition: all 0.3s ease;
-                            }
 
-                            .map-card:hover {
-                                transform: translateY(-5px);
-                            }
-
-                            @media (max-width: 576px) {
-                                .map-card-overlay {
-                                    left: 50%;
-                                    transform: translateX(-50%);
-                                    width: 90%;
-                                    max-width: none;
-                                }
-                            }
-                        </style>
                     </div>
                 </div>
             </div>
@@ -1293,7 +1267,31 @@
                     transform: translateY(0px);
                 }
             }
+            .map-card-overlay {
+                                position: absolute;
+                                bottom: 20px;
+                                left: 20px;
+                                z-index: 1000;
+                                max-width: 300px;
+                            }
 
+                            .map-card {
+                                border-left: 4px solid #D90000;
+                                transition: all 0.3s ease;
+                            }
+
+                            .map-card:hover {
+                                transform: translateY(-5px);
+                            }
+
+                            @media (max-width: 576px) {
+                                .map-card-overlay {
+                                    left: 50%;
+                                    transform: translateX(-50%);
+                                    width: 90%;
+                                    max-width: none;
+                                }
+                            }
             .icon-box,
             .service-item .icon {
                 width: 70px;
