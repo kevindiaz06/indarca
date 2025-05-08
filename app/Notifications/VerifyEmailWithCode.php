@@ -2,14 +2,14 @@
 
 namespace App\Notifications;
 
+use App\Mail\VerificationCodeMail;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Notifications\AnonymousNotifiable;
 
-class VerifyEmailWithCode extends Notification implements ShouldQueue
+class VerifyEmailWithCode extends Notification /* implements ShouldQueue */
 {
     use Queueable;
 
@@ -46,7 +46,7 @@ class VerifyEmailWithCode extends Notification implements ShouldQueue
      * Get the mail representation of the notification.
      *
      * @param  mixed  $notifiable
-     * @return \Illuminate\Notifications\Messages\MailMessage
+     * @return \App\Mail\VerificationCodeMail
      */
     public function toMail($notifiable)
     {
@@ -56,13 +56,11 @@ class VerifyEmailWithCode extends Notification implements ShouldQueue
             $email = array_key_first($notifiable->routes['mail']);
             $name = $notifiable->routes['mail'][$email];
 
-            return (new MailMessage)
-                ->subject('Verificación de Cuenta - INDARCA')
-                ->view('emails.verification-code', [
-                    'nombre' => $name,
-                    'codigo' => $this->code,
-                    'url' => ''
-                ]);
+            return new VerificationCodeMail(
+                $name,
+                $this->code,
+                ''
+            );
         }
 
         // Si es un modelo User completo
@@ -72,13 +70,11 @@ class VerifyEmailWithCode extends Notification implements ShouldQueue
             ['email' => $notifiable->getEmailForVerification()]
         );
 
-        return (new MailMessage)
-            ->subject('Verificación de Cuenta - INDARCA')
-            ->view('emails.verification-code', [
-                'nombre' => $notifiable->name,
-                'codigo' => $this->code,
-                'url' => $verificationUrl
-            ]);
+        return new VerificationCodeMail(
+            $notifiable->name,
+            $this->code,
+            $verificationUrl
+        );
     }
 
     /**

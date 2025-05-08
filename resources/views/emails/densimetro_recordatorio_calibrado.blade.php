@@ -141,8 +141,8 @@
     <div class="container">
         <div class="header">
             <!-- Logo de la empresa -->
-            <img src="{{ $message->embed('@logo_indarca.png') }}" alt="INDARCA Logo" class="logo">
-            <h1>Recordatorio de Calibración</h1>
+            <img src="{{ $message->embed($logoPath) }}" alt="INDARCA Logo" class="logo">
+            <h1>Recordatorio de Calibración de Densímetro</h1>
         </div>
 
         <div class="content">

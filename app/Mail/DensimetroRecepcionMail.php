@@ -11,7 +11,7 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class DensimetroRecepcionMail extends Mailable
+class DensimetroRecepcionMail extends BaseMail
 {
     use Queueable, SerializesModels;
 
@@ -28,6 +28,7 @@ class DensimetroRecepcionMail extends Mailable
      */
     public function __construct(User $cliente, Densimetro $densimetro)
     {
+        parent::__construct();
         $this->cliente = $cliente;
         $this->densimetro = $densimetro;
         $this->fecha = $densimetro->fecha_entrada->format('d/m/Y');

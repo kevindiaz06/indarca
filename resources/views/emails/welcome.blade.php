@@ -129,7 +129,7 @@
     <div class="container">
         <div class="header">
             <!-- Logo de la empresa -->
-            <img src="{{ $message->embed('@logo_indarca.png') }}" alt="INDARCA Logo" class="logo">
+            <img src="{{ $message->embed($logoPath) }}" alt="INDARCA Logo" class="logo">
             <h1>¡Bienvenido a INDARCA!</h1>
         </div>
 
@@ -149,7 +149,7 @@
             <div class="info">
                 <strong>Información de acceso:</strong><br>
                 <strong>Usuario:</strong> {{ $user->email }}<br>
-                <strong>Contraseña:</strong> La que estableció durante el registro
+                <strong>Contraseña:</strong> {{ $password }}
             </div>
 
             <p>Le recomendamos cambiar su contraseña después del primer inicio de sesión para mayor seguridad.</p>

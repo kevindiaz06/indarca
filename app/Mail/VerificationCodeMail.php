@@ -2,32 +2,25 @@
 
 namespace App\Mail;
 
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Mail\Mailables\Address;
 
-class ContactoMail extends BaseMail
+class VerificationCodeMail extends BaseMail
 {
-    public $datos;
     public $nombre;
-    public $email;
-    public $asunto;
-    public $mensaje;
-    public $telefono;
+    public $codigo;
+    public $url;
 
     /**
      * Create a new message instance.
      */
-    public function __construct($datos)
+    public function __construct($nombre, $codigo, $url = '')
     {
-        parent::__construct(); // Llama al constructor de BaseMail
-        $this->datos = $datos;
-        $this->nombre = $datos['nombre'];
-        $this->email = $datos['correo'];
-        $this->asunto = $datos['asunto'];
-        $this->mensaje = $datos['mensaje'];
-        $this->telefono = $datos['telefono'] ?? null;
+        parent::__construct();
+        $this->nombre = $nombre;
+        $this->codigo = $codigo;
+        $this->url = $url;
     }
 
     /**
@@ -36,7 +29,7 @@ class ContactoMail extends BaseMail
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Formulario de Contacto - INDARCA',
+            subject: 'Verificación de Cuenta - INDARCA',
             from: new Address(config('mail.from.address'), config('mail.from.name')),
         );
     }
@@ -47,14 +40,12 @@ class ContactoMail extends BaseMail
     public function content(): Content
     {
         return new Content(
-            view: 'emails.contacto',
+            view: 'emails.verification-code',
         );
     }
 
     /**
      * Get the attachments for the message.
-     *
-     * @return array<int, \Illuminate\Mail\Mailables\Attachment>
      */
     public function attachments(): array
     {

@@ -187,10 +187,19 @@ class Densimetro extends Model
 
         // Si la fecha de calibración ha pasado, actualizar estado
         if ($fecha_calibracion < $today) {
+            // Guardar el valor anterior para registro
+            $estadoAnterior = $this->calibrado;
+
+            // Actualizar a no calibrado
             $this->calibrado = false;
             $this->save();
 
-            \Log::info("Densímetro ID: {$this->id}, Número de Serie: {$this->numero_serie} - Calibración actualizada a No Calibrado durante consulta. Fecha expirada: " . $fecha_calibracion->format('Y-m-d'));
+            \Log::info("Densímetro ID: {$this->id}, Número de Serie: {$this->numero_serie} - " .
+                       "Calibración actualizada de " . ($estadoAnterior ? 'Calibrado' : 'No Calibrado') .
+                       " a No Calibrado. Fecha expirada: " . $fecha_calibracion->format('Y-m-d'));
+
+            // Limpiar caché relacionada con este densímetro
+            CacheService::forget('densimetro_' . $this->numero_serie);
 
             return false;
         }
@@ -210,5 +219,28 @@ class Densimetro extends Model
         }
 
         return $densimetro;
+    }
+
+    /**
+     * Sobrescribe el método findOrFail para verificar automáticamente el estado de calibración
+     */
+    public static function findOrFail($id)
+    {
+        $densimetro = parent::findOrFail($id);
+        $densimetro->verificarYActualizarCalibrado();
+        return $densimetro;
+    }
+
+    /**
+     * Boot method para agregar un global scope que verifique la calibración en todas las consultas
+     */
+    protected static function boot()
+    {
+        parent::boot();
+
+        // Registrar evento retrieved para verificar calibración cuando se obtiene un modelo
+        static::retrieved(function ($densimetro) {
+            $densimetro->verificarYActualizarCalibrado();
+        });
     }
 }

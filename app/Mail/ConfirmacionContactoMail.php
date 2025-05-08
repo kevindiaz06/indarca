@@ -2,18 +2,13 @@
 
 namespace App\Mail;
 
-use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
-use Illuminate\Queue\SerializesModels;
 use Illuminate\Mail\Mailables\Address;
 
-class ConfirmacionContactoMail extends Mailable
+class ConfirmacionContactoMail extends BaseMail
 {
-    use Queueable, SerializesModels;
-
     public $nombre;
     public $contacto;
 
@@ -24,6 +19,7 @@ class ConfirmacionContactoMail extends Mailable
      */
     public function __construct($datos)
     {
+        parent::__construct(); // Llama al constructor de BaseMail
         $this->nombre = $datos['nombre'];
         $this->contacto = [
             'nombre' => $datos['nombre'],

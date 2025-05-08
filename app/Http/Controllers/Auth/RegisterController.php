@@ -17,6 +17,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Notification;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\VerificationCodeMail;
 
 class RegisterController extends Controller
 {
@@ -105,17 +107,54 @@ class RegisterController extends Controller
                 'expires_at' => Carbon::now()->addMinutes(60), // El código expira en 60 minutos
             ]);
 
-            // Enviar el código por correo electrónico usando Notification facade
-            Notification::route('mail', [
-                $request->email => $request->name ?? 'Usuario',
-            ])->notify(new VerifyEmailWithCode($code));
+            // Intentamos enviar el correo, pero continuamos incluso si falla
+            try {
+                // Primero intentamos con el driver configurado en .env
+                Mail::to($request->email)
+                    ->send(new VerificationCodeMail(
+                        $request->name ?? 'Usuario',
+                        $code,
+                        ''
+                    ));
 
-            // Redirigir a la página de verificación
+                \Log::info("Correo de verificación enviado a: " . $request->email);
+            } catch (\Exception $e) {
+                // Si falla el envío, intentamos con el driver log como último recurso
+                \Log::warning('Error al enviar correo de verificación con driver principal: ' . $e->getMessage());
+
+                try {
+                    // Guardar la configuración original
+                    $originalMailer = config('mail.default');
+
+                    // Cambiar temporalmente al driver log
+                    config(['mail.default' => 'log']);
+
+                    // Intentar enviar nuevamente con el driver log
+                    Mail::to($request->email)
+                        ->send(new VerificationCodeMail(
+                            $request->name ?? 'Usuario',
+                            $code,
+                            ''
+                        ));
+
+                    \Log::info("Correo de verificación registrado en logs para: " . $request->email);
+
+                    // Restablecer la configuración original
+                    config(['mail.default' => $originalMailer]);
+                } catch (\Exception $logException) {
+                    \Log::error('Error crítico al intentar registrar correo en logs: ' . $logException->getMessage());
+                }
+            }
+
+            // Esto asegura que se registre el código en los logs para que puedas usarlo si no llega por correo
+            \Log::info("Código de verificación para {$request->email}: {$code}");
+
+            // Redirigir a la página de verificación siempre, incluso si el correo falla
             return redirect()->route('verification.notice', ['email' => $request->email]);
 
         } catch (\Exception $e) {
-            // En caso de error, registrar el error y mostrar mensaje
-            \Log::error('Error en el proceso de registro: ' . $e->getMessage());
+            // En caso de error en el proceso principal (no en el correo), registramos error
+            \Log::error('Error grave en el proceso de registro: ' . $e->getMessage());
             return back()->withErrors(['error' => 'Ocurrió un error durante el registro. Por favor, inténtelo de nuevo.']);
         }
     }
@@ -125,6 +164,21 @@ class RegisterController extends Controller
      */
     public function showVerificationNotice(Request $request)
     {
-        return view('auth.verify-code', ['email' => $request->email]);
+        // Depuración: registrar que se llegó a este método
+        \Log::info('Acceso a showVerificationNotice con email: ' . ($request->email ?? 'no proporcionado'));
+
+        // Asegurar que hay un email disponible
+        $email = $request->email;
+        if (empty($email)) {
+            return redirect()->route('register')->withErrors(['error' => 'No se proporcionó un email para la verificación.']);
+        }
+
+        // Verificar si existe una verificación pendiente para este email
+        $pendingVerification = PendingVerification::where('email', $email)->first();
+        if (!$pendingVerification) {
+            return redirect()->route('register')->withErrors(['error' => 'No se encontró verificación pendiente para este email.']);
+        }
+
+        return view('auth.verify-code', ['email' => $email]);
     }
 }

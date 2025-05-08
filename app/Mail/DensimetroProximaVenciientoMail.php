@@ -9,7 +9,7 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class DensimetroProximaVenciientoMail extends Mailable
+class DensimetroProximaVenciientoMail extends BaseMail
 {
     use Queueable, SerializesModels;
 
@@ -18,6 +18,7 @@ class DensimetroProximaVenciientoMail extends Mailable
      */
     public function __construct()
     {
+        parent::__construct(); // Llama al constructor de BaseMail
         //
     }
 

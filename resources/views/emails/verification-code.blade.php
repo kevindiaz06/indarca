@@ -112,7 +112,11 @@
     <div class="container">
         <div class="header">
             <!-- Logo de la empresa -->
-            <img src="{{ $message->embed('@logo_indarca.png') }}" alt="INDARCA Logo" class="logo">
+            @if(isset($logoPath) && $logoPath)
+                <img src="{{ $message->embed($logoPath) }}" alt="INDARCA Logo" class="logo">
+            @else
+                <h2 style="margin-bottom: 12px;">INDARCA</h2>
+            @endif
             <h1>Código de Verificación</h1>
         </div>
 

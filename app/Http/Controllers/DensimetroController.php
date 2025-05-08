@@ -136,8 +136,23 @@ class DensimetroController extends Controller
             return redirect()->route('admin.densimetros.index')
                 ->with('success', 'Densímetro actualizado correctamente.');
         } catch (\Exception $e) {
+            $message = $e->getMessage();
+
+            // Verificar si es la excepción específica de estado "entregado"
+            if (str_contains($message, 'No se pueden modificar densímetros en estado "Entregado"')) {
+                return redirect()->route('admin.densimetros.index')
+                    ->with('error', $message);
+            }
+
+            // Verificar si es un error relacionado con la calibración
+            if (str_contains($message, 'calibra')) {
+                return redirect()->back()
+                    ->withErrors(['calibrado' => $message])
+                    ->withInput();
+            }
+
             return redirect()->back()
-                ->withErrors(['error' => $e->getMessage()])
+                ->withErrors(['error' => $message])
                 ->withInput();
         }
     }

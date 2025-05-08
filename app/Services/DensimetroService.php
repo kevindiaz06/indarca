@@ -56,6 +56,8 @@ class DensimetroService
                 'referencia_reparacion' => $referencia,
                 'estado' => 'recibido',
                 'observaciones' => $data['observaciones'] ?? null,
+                'calibrado' => null,
+                'fecha_proxima_calibracion' => null,
             ];
 
             $densimetro = $this->repository->create($densimetroData);
@@ -72,12 +74,52 @@ class DensimetroService
                 'referencia_reparacion' => $referencia,
                 'estado' => 'recibido',
                 'observaciones' => $data['observaciones'] ?? null,
+                'calibrado' => null,
+                'fecha_proxima_calibracion' => null,
             ];
 
-            // Si el estado inicial es finalizado o entregado, registrar fecha de finalización
+            // Si el estado inicial es finalizado o entregado
             if (isset($data['estado']) && ($data['estado'] == 'finalizado' || $data['estado'] == 'entregado')) {
                 $densimetroData['estado'] = $data['estado'];
                 $densimetroData['fecha_finalizacion'] = now()->toDateString();
+
+                // Manejar datos de calibración
+                if (isset($data['calibrado'])) {
+                    $densimetroData['calibrado'] = $data['calibrado'];
+
+                    // Si está calibrado, debe tener fecha de próxima calibración
+                    if ($data['calibrado'] == 1) {
+                        if (isset($data['fecha_proxima_calibracion']) && !empty($data['fecha_proxima_calibracion'])) {
+                            // Verificar que la fecha esté en el futuro
+                            $fechaProxima = Carbon::parse($data['fecha_proxima_calibracion']);
+                            $hoy = Carbon::today();
+
+                            if ($fechaProxima <= $hoy) {
+                                throw new \Exception('La fecha de próxima calibración debe ser posterior a la fecha actual.');
+                            }
+
+                            $densimetroData['fecha_proxima_calibracion'] = $data['fecha_proxima_calibracion'];
+
+                            Log::info("Nuevo densímetro - Serie: {$data['numero_serie']} - " .
+                                     "Próxima calibración programada para: {$data['fecha_proxima_calibracion']}");
+                        } else if ($data['estado'] == 'entregado') {
+                            // Para entregado es obligatorio
+                            throw new \Exception('Para densímetros calibrados, debe especificar la fecha de próxima calibración antes de entregarlos al cliente.');
+                        } else {
+                            // Para finalizado, usar fecha predeterminada (1 año)
+                            $densimetroData['fecha_proxima_calibracion'] = Carbon::now()->addYear()->format('Y-m-d');
+
+                            Log::info("Nuevo densímetro - Serie: {$data['numero_serie']} - " .
+                                     "Se asignó fecha de próxima calibración predeterminada: {$densimetroData['fecha_proxima_calibracion']}");
+                        }
+                    }
+                } else if ($data['estado'] == 'entregado') {
+                    // Para estado entregado, es obligatorio especificar si está calibrado
+                    throw new \Exception('Debe especificar si el densímetro está calibrado antes de registrarlo como "Entregado".');
+                } else {
+                    // Para estado finalizado, usar valor predeterminado (no calibrado)
+                    $densimetroData['calibrado'] = 0;
+                }
             }
 
             $densimetro = $this->repository->create($densimetroData);
@@ -102,6 +144,71 @@ class DensimetroService
         $densimetro = $this->repository->findById($id);
         $estadoAnterior = $densimetro->estado;
 
+        // Verificar si el densímetro está en estado "entregado" y bloquear modificaciones
+        if ($densimetro->estado === 'entregado') {
+            throw new \Exception('No se pueden modificar densímetros en estado "Entregado". Este registro está bloqueado para evitar inconsistencias. Si necesita realizar cambios, por favor registre un nuevo ingreso del densímetro.');
+        }
+
+        // Verificar si está cambiando a un estado final (finalizado o entregado)
+        $cambiandoAEstadoFinal = ($data['estado'] == 'finalizado' || $data['estado'] == 'entregado') &&
+                                 ($estadoAnterior != 'finalizado' && $estadoAnterior != 'entregado');
+
+        // Si está cambiando a estado final, validar y ajustar datos de calibración
+        if ($cambiandoAEstadoFinal) {
+            // Asegurarse de que haya un valor para calibrado (si no se especificó, usar valor predeterminado)
+            if (!isset($data['calibrado']) || $data['calibrado'] === '') {
+                if ($data['estado'] === 'entregado') {
+                    // Para estado entregado, es obligatorio especificar el estado de calibración
+                    throw new \Exception('Debe especificar si el densímetro está calibrado antes de cambiarlo a estado "Entregado".');
+                } else {
+                    // Para estado finalizado, usar valor predeterminado (no calibrado)
+                    $data['calibrado'] = 0;
+                    Log::info("Densímetro ID: {$id} - Se asignó valor predeterminado 'No calibrado' al finalizar.");
+                }
+            }
+
+            // Si está calibrado, debe tener fecha de próxima calibración
+            if ($data['calibrado'] == 1) {
+                if (!isset($data['fecha_proxima_calibracion']) || empty($data['fecha_proxima_calibracion'])) {
+                    if ($data['estado'] === 'entregado') {
+                        throw new \Exception('Para densímetros calibrados, debe especificar la fecha de próxima calibración antes de entregarlos al cliente.');
+                    } else {
+                        // Establecer una fecha predeterminada (1 año desde hoy) para estado finalizado
+                        $data['fecha_proxima_calibracion'] = Carbon::now()->addYear()->format('Y-m-d');
+                        Log::info("Densímetro ID: {$id} - Se asignó fecha de próxima calibración predeterminada: {$data['fecha_proxima_calibracion']}");
+                    }
+                } else {
+                    // Verificar que la fecha de calibración esté en el futuro
+                    $fechaProxima = Carbon::parse($data['fecha_proxima_calibracion']);
+                    $hoy = Carbon::today();
+
+                    if ($fechaProxima <= $hoy) {
+                        throw new \Exception('La fecha de próxima calibración debe ser posterior a la fecha actual.');
+                    }
+
+                    // Registrar en log la fecha establecida de próxima calibración
+                    Log::info("Densímetro ID: {$id}, Número de Serie: {$densimetro->numero_serie} - " .
+                             "Próxima calibración programada para: {$data['fecha_proxima_calibracion']}");
+                }
+            } else {
+                // Si no está calibrado, asegurar que no tenga fecha de próxima calibración
+                $data['fecha_proxima_calibracion'] = null;
+            }
+        } else if (isset($data['calibrado'])) {
+            // Si no está cambiando a estado final pero sí está cambiando el estado de calibración
+            if ($data['calibrado'] == 1) {
+                // Si lo marca como calibrado, debe tener fecha de próxima calibración
+                if (!isset($data['fecha_proxima_calibracion']) || empty($data['fecha_proxima_calibracion'])) {
+                    // Establecer fecha predeterminada (1 año)
+                    $data['fecha_proxima_calibracion'] = Carbon::now()->addYear()->format('Y-m-d');
+                    Log::info("Densímetro ID: {$id} - Calibrado marcado como SÍ, se asignó fecha predeterminada: {$data['fecha_proxima_calibracion']}");
+                }
+            } else {
+                // Si lo marca como no calibrado, eliminar fecha de próxima calibración
+                $data['fecha_proxima_calibracion'] = null;
+            }
+        }
+
         // Verificar si está cambiando el número de serie
         if ($data['numero_serie'] !== $densimetro->numero_serie) {
             // Validar si existe otro en reparación con ese número
@@ -119,16 +226,6 @@ class DensimetroService
                 if (empty($data['modelo'])) {
                     $data['modelo'] = $otroFinalizado->modelo;
                 }
-            }
-        }
-
-        // Preparar datos de calibración
-        if ($data['estado'] == 'finalizado' || $data['estado'] == 'entregado') {
-            $data['calibrado'] = $data['calibrado'] ?? 0;
-            if ($data['calibrado'] == 1 && isset($data['fecha_proxima_calibracion'])) {
-                // La fecha ya está en los datos
-            } else {
-                $data['fecha_proxima_calibracion'] = null;
             }
         }
 
@@ -233,7 +330,7 @@ class DensimetroService
 
         try {
             Log::info('Correo de cambio de estado enviado a ' . $cliente->email . ' - Nuevo estado: ' . $densimetro->estado);
-            Mail::to($cliente->email)->send(new DensimetroCambioEstadoMail($densimetro));
+            Mail::to($cliente->email)->send(new DensimetroCambioEstadoMail($cliente, $densimetro, now()->format('d/m/Y')));
         } catch (\Exception $e) {
             Log::error('Error al enviar correo de cambio de estado: ' . $e->getMessage());
         }

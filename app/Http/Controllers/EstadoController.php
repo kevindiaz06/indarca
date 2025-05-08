@@ -97,7 +97,8 @@ class EstadoController extends Controller
         $marca = trim($request->marca);
         $modelo = trim($request->modelo);
 
-        // Realizar únicamente búsqueda exacta de los tres valores: número de serie, marca y modelo
+        // Buscar el densímetro más reciente que coincida con los criterios y esté finalizado o entregado
+        // Ordenamos por fecha_finalizacion DESC para obtener el registro más reciente
         $densimetro = Densimetro::where('numero_serie', $numeroSerie)
                               ->where('marca', $marca)
                               ->where('modelo', $modelo)
@@ -110,32 +111,43 @@ class EstadoController extends Controller
             return redirect()->route('estado')->with('error', 'No se encontró ningún densímetro con el número de serie, marca y modelo especificados. Verifique que los datos ingresados sean correctos.');
         }
 
-        // Verificar estado de calibración de forma explícita
+        // Verificar estado de calibración actual - primero actualizar en la BD si es necesario
+        $densimetro->verificarYActualizarCalibrado();
+
+        // Recargar el densímetro para asegurar que tenemos los datos más recientes
+        $densimetro->refresh();
+
+        // Determinar el estado real de calibración basado en la información actual
         $calibradoActual = false;
         $fechaProxima = null;
 
         if ($densimetro->calibrado) {
-            // Verificar si la fecha de calibración ha expirado
+            $calibradoActual = true;
+
             if ($densimetro->fecha_proxima_calibracion) {
                 $fechaProxima = \Carbon\Carbon::parse($densimetro->fecha_proxima_calibracion);
                 $hoy = \Carbon\Carbon::today();
 
-                if ($fechaProxima >= $hoy) {
-                    $calibradoActual = true;
+                // Si la fecha de próxima calibración ya pasó, el densímetro no está calibrado
+                if ($fechaProxima < $hoy) {
+                    $calibradoActual = false;
+
+                    // Actualizar el estado en la base de datos si es necesario
+                    if ($densimetro->calibrado) {
+                        $densimetro->calibrado = false;
+                        $densimetro->save();
+
+                        \Log::info("Actualizado automáticamente estado de calibración para densímetro #{$densimetro->id}, " .
+                                  "serie: {$densimetro->numero_serie} - Cambio a No calibrado por fecha vencida");
+                    }
                 }
             }
         }
 
-        // Actualizar el estado de calibración en la base de datos si cambió
-        if ($densimetro->calibrado !== $calibradoActual && $densimetro->calibrado !== null) {
-            $densimetro->calibrado = $calibradoActual;
-            $densimetro->save();
-
-            // Log para debugging
-            \Log::info("Actualizado estado de calibración para densímetro #{$densimetro->id}, serie: {$densimetro->numero_serie} - Estado anterior: " .
-                      ($densimetro->calibrado ? 'Calibrado' : 'No calibrado') .
-                      " - Nuevo estado: " . ($calibradoActual ? 'Calibrado' : 'No calibrado'));
-        }
+        // Registrar en log la información de calibración para auditoría
+        \Log::info("Consultando calibración para densímetro #{$densimetro->id}, serie: {$densimetro->numero_serie}, " .
+                 "Calibrado: " . ($calibradoActual ? 'Sí' : 'No') . ", " .
+                 "Próxima fecha: " . ($fechaProxima ? $fechaProxima->format('Y-m-d') : 'No establecida'));
 
         // Preparar los datos para la vista
         $calibracion = [
@@ -243,18 +255,35 @@ class EstadoController extends Controller
                               ->orderBy('fecha_finalizacion', 'desc')
                               ->firstOrFail();
 
-        // Verificar estado de calibración
+        // Verificar y actualizar el estado de calibración antes de generar el PDF
+        $densimetro->verificarYActualizarCalibrado();
+
+        // Recargar el densímetro para asegurar que tenemos los datos más recientes
+        $densimetro->refresh();
+
+        // Determinar el estado real de calibración basado en la información actual
         $calibradoActual = false;
         $fechaProxima = null;
 
         if ($densimetro->calibrado) {
-            // Verificar si la fecha de calibración ha expirado
+            $calibradoActual = true;
+
             if ($densimetro->fecha_proxima_calibracion) {
                 $fechaProxima = \Carbon\Carbon::parse($densimetro->fecha_proxima_calibracion);
                 $hoy = \Carbon\Carbon::today();
 
-                if ($fechaProxima >= $hoy) {
-                    $calibradoActual = true;
+                // Si la fecha de próxima calibración ya pasó, el densímetro no está calibrado
+                if ($fechaProxima < $hoy) {
+                    $calibradoActual = false;
+
+                    // Actualizar el estado en la base de datos si es necesario
+                    if ($densimetro->calibrado) {
+                        $densimetro->calibrado = false;
+                        $densimetro->save();
+
+                        \Log::info("Actualizado automáticamente estado de calibración para densímetro #{$densimetro->id}, " .
+                                  "serie: {$densimetro->numero_serie} - Cambio a No calibrado por fecha vencida (PDF)");
+                    }
                 }
             }
         }
@@ -274,7 +303,7 @@ class EstadoController extends Controller
 
         $data = [
             'calibracion' => $calibracion,
-            'title' => 'Estado de Calibración de Densímetro',
+            'title' => 'Estado de Calibración',
             'date' => Carbon::now()->format('d/m/Y H:i:s')
         ];
 

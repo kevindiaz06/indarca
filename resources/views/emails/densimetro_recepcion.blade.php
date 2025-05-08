@@ -112,7 +112,7 @@
     <div class="container">
         <div class="header">
             <!-- Logo de la empresa -->
-            <img src="{{ $message->embed('@logo_indarca.png') }}" alt="INDARCA Logo" class="logo">
+            <img src="{{ $message->embed($logoPath) }}" alt="INDARCA Logo" class="logo">
             <h1>Confirmación de Recepción de Densímetro</h1>
         </div>
 

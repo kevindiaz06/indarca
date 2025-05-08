@@ -3,6 +3,7 @@
 namespace App\Mail;
 
 use App\Models\Densimetro;
+use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -10,7 +11,7 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class DensimetroCambioEstadoMail extends Mailable
+class DensimetroCambioEstadoMail extends BaseMail
 {
     use Queueable, SerializesModels;
 
@@ -21,14 +22,17 @@ class DensimetroCambioEstadoMail extends Mailable
     /**
      * Create a new message instance.
      *
+     * @param User $cliente
      * @param Densimetro $densimetro
+     * @param string $fecha
      * @return void
      */
-    public function __construct(Densimetro $densimetro)
+    public function __construct(User $cliente, Densimetro $densimetro, $fecha)
     {
+        parent::__construct();
+        $this->cliente = $cliente;
         $this->densimetro = $densimetro;
-        $this->cliente = $densimetro->cliente ?? null;
-        $this->fecha = now()->format('d/m/Y');
+        $this->fecha = $fecha;
     }
 
     /**

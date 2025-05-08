@@ -2,29 +2,27 @@
 
 namespace App\Mail;
 
-use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
-use Illuminate\Queue\SerializesModels;
 use Illuminate\Mail\Mailables\Address;
 
-class WelcomeMail extends Mailable
+class WelcomeMail extends BaseMail
 {
-    use Queueable, SerializesModels;
-
-    public $nombre;
-    public $email;
+    public $user;
     public $password;
 
     /**
      * Create a new message instance.
      */
-    public function __construct($nombre, $email, $password)
+    public function __construct($name, $email, $password)
     {
-        $this->nombre = $nombre;
-        $this->email = $email;
+        parent::__construct(); // Llama al constructor de BaseMail para inicializar la ruta del logo
+        // Creamos un objeto con los datos para mantener la compatibilidad con la plantilla
+        $this->user = (object)[
+            'name' => $name,
+            'email' => $email
+        ];
         $this->password = $password;
     }
 
@@ -46,6 +44,9 @@ class WelcomeMail extends Mailable
     {
         return new Content(
             view: 'emails.welcome',
+            with: [
+                'password' => $this->password
+            ]
         );
     }
 
