@@ -21,8 +21,7 @@
                         <p class="lead mb-4">Soluciones innovadoras en arquitectura, ingeniería y densímetros nucleares para proyectos de
                             construcción que superan expectativas.</p>
                         <div class="d-flex justify-content-center justify-content-lg-start">
-                            <a href="#contact" class="btn-get-started btn-lg"
-                                style="background-color: #D90000; border-color: #D90000;">Contáctanos</a>
+                            <a href="#contact" class="btn-get-started btn-lg">Contáctanos</a>
                         </div>
                     </div>
                 </div>
@@ -1162,22 +1161,6 @@
                                     referrerpolicy="no-referrer-when-downgrade">
                                 </iframe>
 
-                                <!-- Información de dirección flotante -->
-                                <div class="map-card-overlay">
-                                    <div class="map-card bg-white rounded-4 shadow p-3">
-                                        <div class="d-flex align-items-center mb-2">
-                                            <div class="icon-box bg-light rounded-circle d-inline-flex align-items-center justify-content-center me-3" style="width: 40px; height: 40px;">
-                                                <i class="bi bi-building text-danger"></i>
-                                            </div>
-                                            <h6 class="fw-bold mb-0">INDARCA SRL</h6>
-                                        </div>
-                                        <p class="mb-0 ps-5 small text-secondary">
-                                            <i class="bi bi-geo-alt-fill text-danger me-1"></i>
-                                            C. C 16, Santo Domingo Este 11506<br>
-                                            <span class="ps-3">República Dominicana</span>
-                                        </p>
-                                    </div>
-                                </div>
                             </div>
                         </div>
 
@@ -1466,6 +1449,36 @@
             #empresasCarrusel .carousel-item {
                 padding-bottom: 20px;
             }
+
+            /* Styles for Hero Button */
+            .btn-get-started {
+                background-color: var(--color-primary);
+                border: 2px solid var(--color-primary);
+                color: var(--color-light) !important; /* Ensure text is light over primary background */
+                padding: 0.75rem 1.5rem; /* Generous padding for a main CTA */
+                border-radius: 0.5rem;   /* 8px rounded corners for a modern look */
+                text-transform: uppercase; /* Common for corporate buttons */
+                font-weight: 600; /* Bold text */
+                letter-spacing: 0.5px; /* Slight spacing for readability */
+                transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out, border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+                text-decoration: none; /* Remove underline from link */
+                line-height: 1.5; /* Standard line height for buttons */
+                display: inline-block; /* Behaves like a block for padding/margin but flows inline */
+                text-align: center; /* Center text within the button */
+                vertical-align: middle; /* Align properly if next to other inline elements */
+                cursor: pointer; /* Indicates it's clickable */
+                box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Subtle initial shadow */
+            }
+
+            .btn-get-started:hover,
+            .btn-get-started:focus { /* Style for hover and focus states for accessibility */
+                background-color: var(--color-light); /* Light background on hover */
+                color: var(--color-light) !important; /* Black text on hover */
+                border-color: var(--color-primary); /* Keep primary border */
+                box-shadow: 0 4px 12px rgba(217,0,0,0.2); /* More pronounced shadow on hover, using primary color tone */
+                text-decoration: none; /* Ensure no underline on hover/focus */
+            }
+            /* End Styles for Hero Button */
         </style>
 
     </body>

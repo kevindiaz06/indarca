@@ -96,7 +96,7 @@
     <div class="container">
         <div class="header">
             <!-- Logo de la empresa -->
-            <img src="{{ $message->embed(public_path('images/logo.png')) }}" alt="INDARCA Logo" class="logo">
+            <img src="{{ $message->embed('@logo_indarca.png') }}" alt="INDARCA Logo" class="logo">
             <h1>Confirmación de Contacto</h1>
         </div>
 
@@ -113,27 +113,31 @@
                 <p><strong>Asunto:</strong> {{ $contacto['asunto'] }}</p>
                 <p><strong>Mensaje:</strong> {{ $contacto['mensaje'] }}</p>
             </div>
-
-            <p>Si desea información adicional sobre nuestros servicios, puede visitar nuestra página web haciendo clic en el botón a continuación.</p>
-
-            <div style="text-align: center;">
-                <a href="{{ url('/') }}" class="button">Visitar Nuestra Web</a>
-            </div>
         </div>
 
         <div class="footer">
             <div class="contact-info">
                 <strong>INDARCA S.A.</strong><br>
-                Calle Principal #123, Santo Domingo<br>
+                C. C 16, Santo Domingo Este 11506<br>
                 República Dominicana<br>
                 contacto@indarca.com | +1809 596 0333
             </div>
 
             <div class="social-links">
-                <a href="#">LinkedIn</a> |
-                <a href="#">Twitter</a> |
-                <a href="#">Facebook</a> |
-                <a href="#">Instagram</a>
+                <a href="https://x.com/indarca_srl?s=11">Twitter</a> |
+                <a href="https://www.instagram.com/indarca.srl?igsh=MXZzN2l3cTBxaG1jOA==">Instagram</a> |
+                <a href="https://www.linkedin.com/company/indarca-srl">LinkedIn</a> |
+                <a href="https://www.facebook.com/profile.php?id=100069160367684">Facebook</a>
+            </div>
+
+            <div style="margin: 15px 0;">
+                <strong>Horario de Atención:</strong><br>
+                Lunes - Viernes: 9:00 AM - 5:00 PM
+            </div>
+
+            <div style="margin: 15px 0;">
+                <strong>Empresa Certificada:</strong><br>
+                ISO 9001:2015 | ISO 14001
             </div>
 
             <div class="disclaimer">

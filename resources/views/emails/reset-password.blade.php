@@ -107,7 +107,7 @@
     <div class="container">
         <div class="header">
             <!-- Logo de la empresa -->
-            <img src="{{ $message->embed(public_path('images/logo.png')) }}" alt="INDARCA Logo" class="logo">
+            <img src="{{ $message->embed('@logo_indarca.png') }}" alt="INDARCA Logo" class="logo">
             <h1>Restablecer Contraseña</h1>
         </div>
 
@@ -122,12 +122,6 @@
 
             <p>Este código es válido por 30 minutos. Si no ha solicitado este cambio, puede ignorar este correo y su contraseña seguirá siendo la misma.</p>
 
-            <p>Para completar el proceso, haga clic en el botón a continuación e introduzca el código cuando se le solicite:</p>
-
-            <div style="text-align: center;">
-                <a href="{{ $resetUrl }}" class="button">Restablecer Contraseña</a>
-            </div>
-
             <div class="warning">
                 <strong>Nota de seguridad:</strong> Nunca compartiremos sus datos de acceso ni le solicitaremos su contraseña por correo electrónico. Siempre acceda a nuestro sitio web directamente escribiendo la URL en su navegador.
             </div>
@@ -136,16 +130,26 @@
         <div class="footer">
             <div class="contact-info">
                 <strong>INDARCA S.A.</strong><br>
-                Calle Principal #123, Santo Domingo<br>
+                C. C 16, Santo Domingo Este 11506<br>
                 República Dominicana<br>
                 contacto@indarca.com | +1809 596 0333
             </div>
 
             <div class="social-links">
-                <a href="#">LinkedIn</a> |
-                <a href="#">Twitter</a> |
-                <a href="#">Facebook</a> |
-                <a href="#">Instagram</a>
+                <a href="https://x.com/indarca_srl?s=11">Twitter</a> |
+                <a href="https://www.instagram.com/indarca.srl?igsh=MXZzN2l3cTBxaG1jOA==">Instagram</a> |
+                <a href="https://www.linkedin.com/company/indarca-srl">LinkedIn</a> |
+                <a href="https://www.facebook.com/profile.php?id=100069160367684">Facebook</a>
+            </div>
+
+            <div style="margin: 15px 0;">
+                <strong>Horario de Atención:</strong><br>
+                Lunes - Viernes: 9:00 AM - 5:00 PM
+            </div>
+
+            <div style="margin: 15px 0;">
+                <strong>Empresa Certificada:</strong><br>
+                ISO 9001:2015 | ISO 14001
             </div>
 
             <div class="disclaimer">
