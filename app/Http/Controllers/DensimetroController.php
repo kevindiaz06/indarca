@@ -242,6 +242,6 @@ class DensimetroController extends Controller
 
         // Envío del correo electrónico al cliente usando la clase Mailable
         Mail::to($cliente->email)
-            ->send(new DensimetroCambioEstadoMail($densimetro));
+            ->send(new DensimetroCambioEstadoMail($cliente, $densimetro, now()->format('d/m/Y')));
     }
 }

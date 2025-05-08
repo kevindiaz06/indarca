@@ -8,18 +8,47 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Mail\Mailables\Address;
+use App\Models\Densimetro;
+use App\Models\User;
 
-class DensimetroProximaVenciientoMail extends BaseMail
+class DensimetroProximoVencimientoMail extends BaseMail
 {
     use Queueable, SerializesModels;
 
     /**
-     * Create a new message instance.
+     * El densímetro que está por vencer.
+     *
+     * @var Densimetro
      */
-    public function __construct()
+    public $densimetro;
+
+    /**
+     * El cliente propietario del densímetro.
+     *
+     * @var User
+     */
+    public $cliente;
+
+    /**
+     * Días restantes para el vencimiento.
+     *
+     * @var int
+     */
+    public $diasRestantes;
+
+    /**
+     * Create a new message instance.
+     *
+     * @param Densimetro $densimetro
+     * @param int $diasRestantes
+     */
+    public function __construct(Densimetro $densimetro, int $diasRestantes)
     {
         parent::__construct(); // Llama al constructor de BaseMail
-        //
+        $this->densimetro = $densimetro;
+        $this->cliente = $densimetro->cliente;
+        $this->diasRestantes = $diasRestantes;
     }
 
     /**
@@ -28,7 +57,8 @@ class DensimetroProximaVenciientoMail extends BaseMail
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Densimetro Proxima Venciiento Mail',
+            subject: "IMPORTANTE: Próximo Vencimiento de Calibración de Densímetro - {$this->diasRestantes} días restantes",
+            from: new Address(config('mail.from.address'), config('mail.from.name')),
         );
     }
 
@@ -38,7 +68,7 @@ class DensimetroProximaVenciientoMail extends BaseMail
     public function content(): Content
     {
         return new Content(
-            view: 'view.name',
+            view: 'emails.densimetro_recordatorio_calibrado',
         );
     }
 

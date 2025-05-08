@@ -7,6 +7,7 @@ use App\Models\Densimetro;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\DensimetroRecordatorioCalibrado;
+use App\Mail\DensimetroProximoVencimientoMail;
 use Carbon\Carbon;
 
 class CheckCalibrationDates extends Command
@@ -95,8 +96,9 @@ class CheckCalibrationDates extends Command
         }
 
         try {
+            // Usar la nueva clase para el envío de correos
             Mail::to($densimetro->cliente->email)
-                ->send(new DensimetroRecordatorioCalibrado($densimetro, $diasRestantes));
+                ->send(new DensimetroProximoVencimientoMail($densimetro, $diasRestantes));
 
             Log::info("Recordatorio de calibración enviado al cliente {$densimetro->cliente->email} para el densímetro {$densimetro->numero_serie}. Días restantes: {$diasRestantes}");
         } catch (\Exception $e) {
