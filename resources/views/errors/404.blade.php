@@ -8,7 +8,7 @@
             <h2 class="mb-4">Página no encontrada</h2>
             <p class="mb-4">Lo sentimos, la página que estás buscando no existe o ha sido movida.</p>
             <div class="mb-5">
-                <img src="{{ asset('assets/img/not-found.svg') }}" alt="Página no encontrada" class="img-fluid" style="max-height: 300px;">
+                <i class="bi bi-file-earmark-x text-danger" style="font-size: 150px;"></i>
             </div>
             <a href="{{ route('inicio') }}" class="btn btn-primary">
                 <i class="bi bi-house-door me-2"></i>Volver al inicio

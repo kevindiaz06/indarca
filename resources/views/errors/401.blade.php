@@ -8,7 +8,7 @@
             <h2 class="mb-4">No autorizado</h2>
             <p class="mb-4">Lo sentimos, necesitas iniciar sesión para acceder a esta página.</p>
             <div class="mb-5">
-                <img src="{{ asset('assets/img/unauthorized.svg') }}" alt="No autorizado" class="img-fluid" style="max-height: 300px;">
+                <i class="bi bi-shield-lock text-warning" style="font-size: 150px;"></i>
             </div>
             <div class="d-flex justify-content-center gap-3">
                 <a href="{{ route('login') }}" class="btn btn-primary">

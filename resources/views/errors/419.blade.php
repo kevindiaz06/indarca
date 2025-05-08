@@ -8,7 +8,7 @@
             <h2 class="mb-4">Página expirada</h2>
             <p class="mb-4">Lo sentimos, tu sesión ha expirado. Por favor, vuelve a intentarlo.</p>
             <div class="mb-5">
-                <img src="{{ asset('assets/img/expired.svg') }}" alt="Página expirada" class="img-fluid" style="max-height: 300px;">
+                <i class="bi bi-hourglass-split text-warning" style="font-size: 150px;"></i>
             </div>
             <a href="{{ url()->previous() }}" class="btn btn-primary me-2">
                 <i class="bi bi-arrow-repeat me-2"></i>Reintentar

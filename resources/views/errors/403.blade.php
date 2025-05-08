@@ -8,7 +8,7 @@
             <h2 class="mb-4">Acceso prohibido</h2>
             <p class="mb-4">Lo sentimos, no tienes permisos para acceder a esta página.</p>
             <div class="mb-5">
-                <img src="{{ asset('assets/img/forbidden.svg') }}" alt="Acceso prohibido" class="img-fluid" style="max-height: 300px;">
+                <i class="bi bi-slash-circle text-danger" style="font-size: 150px;"></i>
             </div>
             <a href="{{ route('inicio') }}" class="btn btn-primary">
                 <i class="bi bi-house-door me-2"></i>Volver al inicio
