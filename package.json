@@ -9,15 +9,13 @@
         "@vitejs/plugin-react": "^4.2.0",
         "axios": "^1.1.2",
         "bootstrap": "^5.2.3",
-        "laravel-vite-plugin": "^0.7.2",
+        "laravel-vite-plugin": "^0.8.0",
         "lodash": "^4.17.19",
-        "postcss": "^8.1.14",
+        "postcss": "^8.4.27",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
         "sass": "^1.56.1",
+        "tailwindcss": "^3.4.0",
         "vite": "^4.0.0"
-    },
-    "dependencies": {
-        "cloudflared": "^0.7.0"
     }
 }
