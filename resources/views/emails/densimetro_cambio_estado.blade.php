@@ -5,134 +5,193 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Actualización de Estado de Densímetro - INDARCA</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+
         body {
-            font-family: 'Arial', sans-serif;
-            line-height: 1.6;
-            color: #333;
+            font-family: 'Montserrat', 'Arial', sans-serif;
+            line-height: 1.7;
+            color: #2d3748;
             max-width: 650px;
             margin: 0 auto;
             padding: 0;
-            background-color: #f5f5f5;
+            background-color: #f7f7f7;
         }
         .container {
             background-color: #ffffff;
-            border-radius: 5px;
+            border-radius: 8px;
             overflow: hidden;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            margin: 20px auto;
         }
         .header {
-            background-color: #dc3545;
+            background: linear-gradient(135deg, #dc3545 0%, #a91c2c 100%);
             color: white;
-            padding: 25px 20px;
+            padding: 32px 25px;
             text-align: center;
-            border-bottom: 5px solid #b82634;
         }
         .header h1 {
             margin: 0;
-            font-size: 22px;
+            font-size: 24px;
             font-weight: 600;
+            letter-spacing: 0.5px;
         }
         .logo {
             max-width: 180px;
-            margin-bottom: 12px;
+            margin-bottom: 18px;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.15));
         }
         .content {
-            padding: 35px 30px;
+            padding: 40px 35px;
+            color: #4a5568;
         }
         .button {
             display: inline-block;
-            padding: 12px 28px;
-            background-color: #dc3545;
+            padding: 14px 30px;
+            background: linear-gradient(to right, #dc3545, #a91c2c);
             color: white;
             text-decoration: none;
-            border-radius: 4px;
+            border-radius: 6px;
             font-weight: 600;
-            margin-top: 20px;
+            margin-top: 25px;
             transition: all 0.3s ease;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(220, 53, 69, 0.2);
         }
         .button:hover {
-            background-color: #b82634;
+            background: linear-gradient(to right, #c82333, #971924);
+            box-shadow: 0 6px 12px rgba(220, 53, 69, 0.3);
+            transform: translateY(-2px);
         }
         .info {
             background-color: #fff8f8;
             border-left: 4px solid #dc3545;
-            padding: 15px;
-            margin: 25px 0;
-            font-size: 14px;
+            border-radius: 0 6px 6px 0;
+            padding: 20px;
+            margin: 28px 0;
+            font-size: 15px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
         }
         .footer {
-            background-color: #292929;
-            padding: 30px 20px;
+            background: linear-gradient(to bottom, #292929, #1a1a1a);
+            padding: 35px 25px;
             text-align: center;
-            font-size: 13px;
-            color: #ffffff;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 14px;
+            color: #e0e0e0;
         }
         .contact-info {
-            margin: 15px 0;
-            line-height: 1.8;
+            margin: 18px 0;
+            line-height: 1.9;
         }
         .contact-info strong {
-            color: #dc3545;
+            color: #f8b0b7;
+            font-weight: 600;
         }
         .social-links {
-            margin: 20px 0 15px;
+            margin: 25px 0 20px;
         }
         .social-links a {
             display: inline-block;
-            margin: 0 8px;
+            margin: 0 10px;
             color: #ffffff;
             text-decoration: none;
-            transition: color 0.3s ease;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid transparent;
+            padding-bottom: 2px;
         }
         .social-links a:hover {
-            color: #dc3545;
+            color: #f8b0b7;
+            border-bottom: 1px solid #f8b0b7;
         }
         .disclaimer {
             border-top: 1px solid rgba(255,255,255,0.1);
-            padding-top: 15px;
-            margin-top: 15px;
+            padding-top: 18px;
+            margin-top: 18px;
             font-size: 12px;
-            color: rgba(255,255,255,0.7);
+            color: rgba(255,255,255,0.6);
         }
         .info-item {
-            margin-bottom: 10px;
+            margin-bottom: 14px;
+            background-color: #fafafa;
+            border-radius: 6px;
+            padding: 10px 15px;
+            border: 1px solid #eee;
         }
         .label {
-            font-weight: bold;
+            font-weight: 600;
             color: #dc3545;
         }
         .estado {
-            font-size: 1.2em;
+            font-size: 1.3em;
             font-weight: bold;
             text-align: center;
-            padding: 15px;
-            margin: 25px 0;
-            border-radius: 5px;
+            padding: 20px;
+            margin: 28px 0;
+            border-radius: 6px;
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.05);
+            letter-spacing: 0.5px;
         }
         .estado-recibido {
             color: #0d6efd;
-            background-color: #cfe2ff;
-            border: 1px solid #0d6efd;
+            background: linear-gradient(to right, #cfe2ff, #e6efff);
+            border: 1px solid rgba(13, 110, 253, 0.2);
         }
         .estado-en_reparacion {
             color: #fd7e14;
-            background-color: #fff3cd;
-            border: 1px solid #fd7e14;
+            background: linear-gradient(to right, #fff3cd, #fff9e6);
+            border: 1px solid rgba(253, 126, 20, 0.2);
         }
         .estado-finalizado {
             color: #198754;
-            background-color: #d1e7dd;
-            border: 1px solid #198754;
+            background: linear-gradient(to right, #d1e7dd, #e8f5f0);
+            border: 1px solid rgba(25, 135, 84, 0.2);
         }
         .estado-entregado {
             color: #6c757d;
-            background-color: #e2e3e5;
-            border: 1px solid #6c757d;
+            background: linear-gradient(to right, #e2e3e5, #f0f0f2);
+            border: 1px solid rgba(108, 117, 125, 0.2);
         }
         .referencia {
-            font-weight: bold;
+            font-weight: 600;
             color: #dc3545;
+            background-color: #fff8f8;
+            padding: 3px 8px;
+            border-radius: 4px;
+        }
+        .section-title {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: #333;
+            border-bottom: 2px solid #f3f3f3;
+            padding-bottom: 8px;
+            font-weight: 600;
+        }
+        .highlight-box {
+            background-color: #fafafa;
+            border-radius: 6px;
+            padding: 15px;
+            margin: 20px 0;
+            border: 1px solid #eee;
+        }
+        .cert-badges {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 15px 0;
+        }
+        .cert-badge {
+            background-color: #333;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+        .details-box {
+            background: #f9f9f9;
+            border-radius: 6px;
+            padding: 20px;
+            margin: 25px 0;
+            border: 1px solid #eee;
         }
     </style>
 </head>
@@ -149,29 +208,32 @@
 
             <p>Le informamos que el estado de su densímetro ha sido actualizado en nuestro sistema. A continuación, encontrará los detalles:</p>
 
-            <div class="info-item">
-                <span class="label">Fecha de actualización:</span> {{ $fecha }}
-            </div>
+            <div class="details-box">
+                <div class="section-title">Información del equipo</div>
+                <div class="info-item">
+                    <span class="label">Fecha de actualización:</span> {{ $fecha }}
+                </div>
 
-            <div class="info-item">
-                <span class="label">Referencia de reparación:</span> <span class="referencia">{{ $densimetro->referencia_reparacion }}</span>
-            </div>
+                <div class="info-item">
+                    <span class="label">Referencia de reparación:</span> <span class="referencia">{{ $densimetro->referencia_reparacion }}</span>
+                </div>
 
-            <div class="info-item">
-                <span class="label">Número de serie:</span> {{ $densimetro->numero_serie }}
-            </div>
+                <div class="info-item">
+                    <span class="label">Número de serie:</span> {{ $densimetro->numero_serie }}
+                </div>
 
-            @if($densimetro->marca)
-            <div class="info-item">
-                <span class="label">Marca:</span> {{ $densimetro->marca }}
-            </div>
-            @endif
+                @if($densimetro->marca)
+                <div class="info-item">
+                    <span class="label">Marca:</span> {{ $densimetro->marca }}
+                </div>
+                @endif
 
-            @if($densimetro->modelo)
-            <div class="info-item">
-                <span class="label">Modelo:</span> {{ $densimetro->modelo }}
+                @if($densimetro->modelo)
+                <div class="info-item">
+                    <span class="label">Modelo:</span> {{ $densimetro->modelo }}
+                </div>
+                @endif
             </div>
-            @endif
 
             <p>El estado de su densímetro ha cambiado a:</p>
 
@@ -195,13 +257,19 @@
             </div>
 
             @if($densimetro->estado == 'finalizado')
-            <div class="info-item" style="margin-top: 15px; text-align: center;">
-                <span class="label">Fecha de finalización:</span> {{ $densimetro->fecha_finalizacion->format('d/m/Y') }}
+            <div class="highlight-box">
+                <div class="info-item" style="margin: 0; border: none; background: transparent; padding: 0;">
+                    <span class="label">Fecha de finalización:</span> {{ $densimetro->fecha_finalizacion->format('d/m/Y') }}
+                </div>
+                <p style="margin-bottom: 0;">Su densímetro ha sido reparado y está listo para ser recogido. Por favor, contacte con nosotros para coordinar la entrega.</p>
             </div>
-            <p>Su densímetro ha sido reparado y está listo para ser recogido. Por favor, contacte con nosotros para coordinar la entrega.</p>
             @endif
 
             <p>Si tiene alguna pregunta sobre el estado de su densímetro, no dude en contactarnos.</p>
+
+            <div style="text-align: center; margin: 30px 0 20px;">
+                <a href="https://indarca.com/login" class="button">Ver detalles en la plataforma</a>
+            </div>
         </div>
 
         <div class="footer">
@@ -219,14 +287,14 @@
                 <a href="https://www.facebook.com/profile.php?id=100069160367684">Facebook</a>
             </div>
 
-            <div style="margin: 15px 0;">
+            <div style="margin: 18px 0;">
                 <strong>Horario de Atención:</strong><br>
                 Lunes - Viernes: 9:00 AM - 5:00 PM
             </div>
 
-            <div style="margin: 15px 0;">
-                <strong>Empresa Certificada:</strong><br>
-                ISO 9001:2015 | ISO 14001
+            <div class="cert-badges">
+                <span class="cert-badge">ISO 9001:2015</span>
+                <span class="cert-badge">ISO 14001</span>
             </div>
 
             <div class="disclaimer">

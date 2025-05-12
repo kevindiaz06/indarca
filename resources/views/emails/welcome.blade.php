@@ -5,112 +5,130 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bienvenido a INDARCA</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+
         body {
-            font-family: 'Arial', sans-serif;
-            line-height: 1.6;
-            color: #333;
+            font-family: 'Montserrat', 'Arial', sans-serif;
+            line-height: 1.7;
+            color: #2d3748;
             max-width: 650px;
             margin: 0 auto;
             padding: 0;
-            background-color: #f5f5f5;
+            background-color: #f7f7f7;
         }
         .container {
             background-color: #ffffff;
-            border-radius: 5px;
+            border-radius: 8px;
             overflow: hidden;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            margin: 20px auto;
         }
         .header {
-            background-color: #dc3545;
+            background: linear-gradient(135deg, #dc3545 0%, #a91c2c 100%);
             color: white;
-            padding: 25px 20px;
+            padding: 32px 25px;
             text-align: center;
-            border-bottom: 5px solid #b82634;
         }
         .header h1 {
             margin: 0;
-            font-size: 22px;
+            font-size: 24px;
             font-weight: 600;
+            letter-spacing: 0.5px;
         }
         .logo {
             max-width: 180px;
-            margin-bottom: 12px;
+            margin-bottom: 18px;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.15));
         }
         .content {
-            padding: 35px 30px;
+            padding: 40px 35px;
+            color: #4a5568;
         }
         .button {
             display: inline-block;
-            padding: 12px 28px;
-            background-color: #dc3545;
+            padding: 14px 30px;
+            background: linear-gradient(to right, #dc3545, #a91c2c);
             color: white;
             text-decoration: none;
-            border-radius: 4px;
+            border-radius: 6px;
             font-weight: 600;
-            margin-top: 20px;
+            margin-top: 25px;
             transition: all 0.3s ease;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(220, 53, 69, 0.2);
         }
         .button:hover {
-            background-color: #b82634;
+            background: linear-gradient(to right, #c82333, #971924);
+            box-shadow: 0 6px 12px rgba(220, 53, 69, 0.3);
+            transform: translateY(-2px);
         }
         .info {
             background-color: #fff8f8;
             border-left: 4px solid #dc3545;
-            padding: 15px;
-            margin: 25px 0;
-            font-size: 14px;
+            border-radius: 0 6px 6px 0;
+            padding: 20px;
+            margin: 28px 0;
+            font-size: 15px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
         }
         .footer {
-            background-color: #292929;
-            padding: 30px 20px;
+            background: linear-gradient(to bottom, #292929, #1a1a1a);
+            padding: 35px 25px;
             text-align: center;
-            font-size: 13px;
-            color: #ffffff;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 14px;
+            color: #e0e0e0;
         }
         .contact-info {
-            margin: 15px 0;
-            line-height: 1.8;
+            margin: 18px 0;
+            line-height: 1.9;
         }
         .contact-info strong {
-            color: #dc3545;
+            color: #f8b0b7;
+            font-weight: 600;
         }
         .social-links {
-            margin: 20px 0 15px;
+            margin: 25px 0 20px;
         }
         .social-links a {
             display: inline-block;
-            margin: 0 8px;
+            margin: 0 10px;
             color: #ffffff;
             text-decoration: none;
-            transition: color 0.3s ease;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid transparent;
+            padding-bottom: 2px;
         }
         .social-links a:hover {
-            color: #dc3545;
+            color: #f8b0b7;
+            border-bottom: 1px solid #f8b0b7;
         }
         .disclaimer {
             border-top: 1px solid rgba(255,255,255,0.1);
-            padding-top: 15px;
-            margin-top: 15px;
+            padding-top: 18px;
+            margin-top: 18px;
             font-size: 12px;
-            color: rgba(255,255,255,0.7);
+            color: rgba(255,255,255,0.6);
         }
         .features {
-            margin: 30px 0;
-            text-align: center;
+            margin: 35px 0;
         }
         .feature {
-            margin-bottom: 20px;
+            margin-bottom: 22px;
             padding: 0 15px;
         }
         .feature h3 {
             color: #dc3545;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        ul {
+            padding-left: 15px;
         }
         ul li {
-            margin-bottom: 8px;
+            margin-bottom: 12px;
             position: relative;
             padding-left: 20px;
+            list-style-type: none;
         }
         ul li::before {
             content: "•";
@@ -122,6 +140,36 @@
         }
         strong {
             color: #dc3545;
+            font-weight: 600;
+        }
+        .section-title {
+            font-size: 18px;
+            margin-bottom: 15px;
+            color: #333;
+            border-bottom: 2px solid #f3f3f3;
+            padding-bottom: 8px;
+            font-weight: 600;
+        }
+        .highlight-box {
+            background-color: #fafafa;
+            border-radius: 6px;
+            padding: 15px;
+            margin: 15px 0;
+            border: 1px solid #eee;
+        }
+        .cert-badges {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 15px 0;
+        }
+        .cert-badge {
+            background-color: #333;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
         }
     </style>
 </head>
@@ -136,14 +184,14 @@
         <div class="content">
             <p>Estimado/a <strong>{{ $user->name }}</strong>,</p>
 
-            <p>¡Nos complace darle la bienvenida a la plataforma de gestión de INDARCA! Su cuenta ha sido creada exitosamente y ahora puede acceder a todos nuestros servicios en línea.</p>
+            <p>¡Nos complace darle la bienvenida a la plataforma de gestión de INDARCA! Su cuenta ha sido creada exitosamente y ahora puede acceder a todos nuestros servicios digitales.</p>
 
-            <p>Con su cuenta puede:</p>
+            <div class="section-title">Beneficios de su cuenta</div>
             <ul>
-                <li>Consultar el estado de calibración de sus densímetros</li>
-                <li>Solicitar nuevas calibraciones</li>
-                <li>Recibir notificaciones sobre el estado de sus equipos</li>
-                <li>Acceder a información técnica y certificados</li>
+                <li>Consultar el estado de calibración de sus densímetros en tiempo real</li>
+                <li>Solicitar nuevas calibraciones con solo unos clics</li>
+                <li>Recibir notificaciones personalizadas sobre el estado de sus equipos</li>
+                <li>Acceder a información técnica y certificados de forma segura</li>
             </ul>
 
             <div class="info">
@@ -152,7 +200,15 @@
                 <strong>Contraseña:</strong> {{ $password }}
             </div>
 
-            <p>Le recomendamos cambiar su contraseña después del primer inicio de sesión para mayor seguridad.</p>
+            <p>Por seguridad, le recomendamos cambiar su contraseña después del primer inicio de sesión.</p>
+
+            <div style="text-align: center; margin: 35px 0 25px;">
+                <a href="https://indarca.com/login" class="button">Iniciar sesión ahora</a>
+            </div>
+
+            <div class="highlight-box">
+                <p style="margin-top: 0;">Si necesita ayuda con su cuenta o tiene preguntas sobre nuestros servicios, nuestro equipo de soporte está disponible para asistirle.</p>
+            </div>
         </div>
 
         <div class="footer">
@@ -170,14 +226,14 @@
                 <a href="https://www.facebook.com/profile.php?id=100069160367684">Facebook</a>
             </div>
 
-            <div style="margin: 15px 0;">
+            <div style="margin: 18px 0;">
                 <strong>Horario de Atención:</strong><br>
                 Lunes - Viernes: 9:00 AM - 5:00 PM
             </div>
 
-            <div style="margin: 15px 0;">
-                <strong>Empresa Certificada:</strong><br>
-                ISO 9001:2015 | ISO 14001
+            <div class="cert-badges">
+                <span class="cert-badge">ISO 9001:2015</span>
+                <span class="cert-badge">ISO 14001</span>
             </div>
 
             <div class="disclaimer">
