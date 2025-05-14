@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>{{ config('app.name', 'INDARCA') }} - Iniciar Sesión</title>
+    <title>{{ config('app.name', 'INDARCA') }} - {{ __('general.login') }}</title>
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -115,8 +115,8 @@
                     <div class="card border-0 shadow-lg"
                          style="border-radius: 16px; backdrop-filter: blur(10px); background-color: rgba(255, 255, 255, 0.9);">
                         <div class="card-body p-5">
-                            <h2 class="text-center fw-bold mb-1" style="color: var(--color-dark);">{{ __('Bienvenido') }}</h2>
-                            <p class="text-center text-muted mb-4">{{ __('Accede a tu cuenta para continuar') }}</p>
+                            <h2 class="text-center fw-bold mb-1" style="color: var(--color-dark);">{{ __('auth.welcome') }}</h2>
+                            <p class="text-center text-muted mb-4">{{ __('auth.access_account') }}</p>
 
                             <form method="POST" action="{{ route('login') }}">
                                 @csrf
@@ -128,7 +128,7 @@
                                                name="email" value="{{ old('email') }}"
                                                required autocomplete="email" autofocus
                                                placeholder="Correo electrónico">
-                                        <label for="email">{{ __('Correo Electrónico') }}</label>
+                                        <label for="email">{{ __('auth.email') }}</label>
                                     </div>
                                     @error('email')
                                         <div class="small mt-2" style="color: var(--color-primary);">
@@ -143,7 +143,7 @@
                                                class="form-control @error('password') is-invalid @enderror"
                                                name="password" required autocomplete="current-password"
                                                placeholder="Contraseña">
-                                        <label for="password">{{ __('Contraseña') }}</label>
+                                        <label for="password">{{ __('auth.password') }}</label>
                                         <button class="btn btn-light border-0 position-absolute end-0 top-50 translate-middle-y me-2 d-flex align-items-center justify-content-center"
                                                 type="button" id="togglePassword" style="width: 38px; height: 38px; z-index: 5; border-radius: 50%;">
                                             <i class="bi bi-eye" id="toggleIcon" style="color: var(--color-gray);"></i>
@@ -160,29 +160,29 @@
                                     <div class="form-check">
                                         <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
                                         <label class="form-check-label" for="remember">
-                                            {{ __('Recordar sesión') }}
+                                            {{ __('auth.remember_me') }}
                                         </label>
                                     </div>
 
                                     @if (Route::has('password.request'))
                                         <a class="text-decoration-none small" href="{{ route('password.request') }}" style="color: var(--color-primary);">
-                                            {{ __('¿Olvidaste tu contraseña?') }}
+                                            {{ __('auth.forgot_password') }}
                                         </a>
                                     @endif
                                 </div>
 
                                 <div class="d-grid gap-2 mb-4">
                                     <button type="submit" class="btn btn-primary py-3 rounded-pill fw-medium">
-                                        {{ __('Iniciar Sesión') }}
+                                        {{ __('auth.login') }}
                                     </button>
                                 </div>
 
                                 @if (Route::has('register'))
                                     <div class="text-center">
                                         <p class="mb-0">
-                                            {{ __('¿No tienes cuenta?') }}
+                                            {{ __('auth.no_account') }}
                                             <a class="text-decoration-none fw-medium" href="{{ route('register') }}" style="color: var(--color-primary);">
-                                                {{ __('Regístrate aquí') }}
+                                                {{ __('auth.register_here') }}
                                             </a>
                                         </p>
                                     </div>
@@ -190,7 +190,7 @@
 
                                 <div class="text-center mt-4">
                                     <a href="{{ route('inicio') }}" class="text-decoration-none d-inline-flex align-items-center" style="color: var(--color-primary);">
-                                        <i class="bi bi-arrow-left me-2"></i>{{ __('Volver a INDARCA') }}
+                                        <i class="bi bi-arrow-left me-2"></i>{{ __('auth.back_to_site') }}
                                     </a>
                                 </div>
                             </form>
@@ -199,7 +199,7 @@
 
                     <div class="text-center mt-4">
                         <p class="text-white mb-0 small">
-                            © {{ date('Y') }} Indarca. Todos los derechos reservados.
+                            © {{ date('Y') }} Indarca. {{ __('auth.all_rights_reserved') }}
                         </p>
                     </div>
                 </div>
@@ -239,8 +239,8 @@
         document.addEventListener('DOMContentLoaded', function() {
             Swal.fire({
                 icon: 'success',
-                title: '¡Bienvenido!',
-                text: 'Has iniciado sesión correctamente.',
+                title: '{{ __('auth.welcome') }}!',
+                text: '{{ __('auth.login_success') }}',
                 showConfirmButton: false,
                 timer: 10000,
                 timerProgressBar: true,

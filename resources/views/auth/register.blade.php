@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>{{ config('app.name', 'INDARCA') }} - Registro</title>
+    <title>{{ config('app.name', 'INDARCA') }} - {{ __('general.register') }}</title>
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -106,7 +106,7 @@
         <div class="container position-relative">
             <!-- Logo principal en la parte superior -->
             <div class="text-center mb-5">
-                <img src="{{ asset('images/logo.png') }}" alt="Logo" height="70" style="filter: brightness(0) invert(1);">
+                <img src="{{ asset('assets/img/OTROS/logo_indarca.png') }}" alt="Logo" height="70" style="filter: brightness(0) invert(1);">
             </div>
 
             <div class="row justify-content-center">
@@ -115,8 +115,8 @@
                     <div class="card border-0 shadow-lg"
                          style="border-radius: 16px; backdrop-filter: blur(10px); background-color: rgba(255, 255, 255, 0.9);">
                         <div class="card-body p-5">
-                            <h2 class="text-center fw-bold mb-1" style="color: var(--color-dark);">{{ __('Crear cuenta') }}</h2>
-                            <p class="text-center text-muted mb-4">{{ __('Completa el formulario para registrarte') }}</p>
+                            <h2 class="text-center fw-bold mb-1" style="color: var(--color-dark);">{{ __('auth.create_account') }}</h2>
+                            <p class="text-center text-muted mb-4">{{ __('auth.complete_form') }}</p>
 
                             <form method="POST" action="{{ route('register') }}">
                                 @csrf
@@ -128,7 +128,7 @@
                                                name="name" value="{{ old('name') }}"
                                                required autocomplete="name" autofocus
                                                placeholder="Nombre completo">
-                                        <label for="name">{{ __('Nombre Completo') }}</label>
+                                        <label for="name">{{ __('auth.full_name') }}</label>
                                     </div>
                                     @error('name')
                                         <div class="small mt-2" style="color: var(--color-primary);">
@@ -144,7 +144,7 @@
                                                name="email" value="{{ old('email') }}"
                                                required autocomplete="email"
                                                placeholder="Correo electrónico">
-                                        <label for="email">{{ __('Correo Electrónico') }}</label>
+                                        <label for="email">{{ __('auth.email') }}</label>
                                     </div>
                                     @error('email')
                                         <div class="small mt-2" style="color: var(--color-primary);">
@@ -159,7 +159,7 @@
                                                class="form-control @error('password') is-invalid @enderror"
                                                name="password" required autocomplete="new-password"
                                                placeholder="Contraseña">
-                                        <label for="password">{{ __('Contraseña') }}</label>
+                                        <label for="password">{{ __('auth.password') }}</label>
                                         <button class="btn btn-light border-0 position-absolute end-0 top-50 translate-middle-y me-2 d-flex align-items-center justify-content-center"
                                                 type="button" id="togglePassword" style="width: 38px; height: 38px; z-index: 5; border-radius: 50%;">
                                             <i class="bi bi-eye" id="toggleIcon" style="color: var(--color-gray);"></i>
@@ -170,7 +170,7 @@
                                             <strong>{{ $message }}</strong>
                                         </div>
                                     @enderror
-                                    <div class="form-text small mt-1">La contraseña debe tener al menos 8 caracteres</div>
+                                    <div class="form-text small mt-1">{{ __('auth.password_requirements') }}</div>
                                 </div>
 
                                 <div class="mb-4">
@@ -179,7 +179,7 @@
                                                class="form-control"
                                                name="password_confirmation" required autocomplete="new-password"
                                                placeholder="Confirmar contraseña">
-                                        <label for="password-confirm">{{ __('Confirmar Contraseña') }}</label>
+                                        <label for="password-confirm">{{ __('auth.confirm_password') }}</label>
                                         <button class="btn btn-light border-0 position-absolute end-0 top-50 translate-middle-y me-2 d-flex align-items-center justify-content-center"
                                                 type="button" id="togglePasswordConfirm" style="width: 38px; height: 38px; z-index: 5; border-radius: 50%;">
                                             <i class="bi bi-eye" id="toggleIconConfirm" style="color: var(--color-gray);"></i>
@@ -189,22 +189,22 @@
 
                                 <div class="d-grid gap-2 mb-4">
                                     <button type="submit" class="btn btn-primary py-3 rounded-pill fw-medium">
-                                        {{ __('Crear Cuenta') }}
+                                        {{ __('auth.create_account') }}
                                     </button>
                                 </div>
 
                                 <div class="text-center">
                                     <p class="mb-0">
-                                        {{ __('¿Ya tienes cuenta?') }}
+                                        {{ __('auth.already_account') }}
                                         <a class="text-decoration-none fw-medium" href="{{ route('login') }}" style="color: var(--color-primary);">
-                                            {{ __('Inicia sesión aquí') }}
+                                            {{ __('auth.login_here') }}
                                         </a>
                                     </p>
                                 </div>
 
                                 <div class="text-center mt-4">
                                     <a href="{{ route('inicio') }}" class="text-decoration-none d-inline-flex align-items-center" style="color: var(--color-primary);">
-                                        <i class="bi bi-arrow-left me-2"></i>{{ __('Volver a INDARCA') }}
+                                        <i class="bi bi-arrow-left me-2"></i>{{ __('auth.back_to_site') }}
                                     </a>
                                 </div>
                             </form>
@@ -213,7 +213,7 @@
 
                     <div class="text-center mt-4">
                         <p class="text-white mb-0 small">
-                            © {{ date('Y') }} Indarca. Todos los derechos reservados.
+                            © {{ date('Y') }} Indarca. {{ __('auth.all_rights_reserved') }}
                         </p>
                     </div>
                 </div>

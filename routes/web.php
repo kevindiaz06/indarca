@@ -22,6 +22,7 @@ use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\DensimetroArchivoController;
 use App\Http\Controllers\PoliticasPrivacidadController;
+use App\Http\Controllers\LanguageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -159,3 +160,7 @@ Route::prefix('admin')->middleware(['auth', 'role:admin,trabajador'])->group(fun
         Route::post('/team/update-order', [App\Http\Controllers\Admin\TeamController::class, 'updateOrder'])->name('admin.team.update-order');
     });
 });
+
+// Ruta para cambiar el idioma
+Route::get('/change-language/{locale}', [LanguageController::class, 'changeLanguage'])
+    ->name('change.language');

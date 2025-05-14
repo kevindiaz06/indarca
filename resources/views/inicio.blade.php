@@ -3,7 +3,7 @@
 
     @if (session('error'))
         <div class="alert alert-danger alert-dismissible fade show" role="alert">
-            <strong>Error:</strong> {{ session('error') }}
+            <strong>{{ __('general.error') }}:</strong> {{ session('error') }}
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     @endif
@@ -22,11 +22,10 @@
             <div class="container">
                 <div class="row justify-content-center align-items-center h-100">
                     <div class="col-lg-8 text-center text-lg-start" data-aos="zoom-out">
-                        <h1 class="display-4 fw-bold mb-4">Bienvenidos a <span>INDARCA</span></h1>
-                        <p class="lead mb-4">Soluciones innovadoras en arquitectura, ingeniería y densímetros nucleares para proyectos de
-                            construcción que superan expectativas.</p>
+                        <h1 class="display-4 fw-bold mb-4">{!! __('inicio.hero_title') !!}</h1>
+                        <p class="lead mb-4">{{ __('inicio.hero_description') }}</p>
                         <div class="d-flex justify-content-center justify-content-lg-start">
-                            <a href="#contact" class="btn-get-started btn-lg">Contáctanos</a>
+                            <a href="#contact" class="btn-get-started btn-lg">{{ __('inicio.contact_us_button') }}</a>
                         </div>
                     </div>
                 </div>
@@ -46,9 +45,8 @@
                                 class="icon bg-dark rounded-circle d-flex align-items-center justify-content-center mb-3 icon-animate">
                                 <i class="bi bi-gear-wide-connected text-danger fs-3"></i>
                             </div>
-                            <h4>Calibración y mantenimiento de densímetros nucleares</h4>
-                            <p>Servicio especializado para garantizar la precisión y fiabilidad de sus equipos de medición
-                                de densidad y humedad.</p>
+                            <h4>{{ __('inicio.service_densimeters_title') }}</h4>
+                            <p>{{ __('inicio.service_densimeters_desc') }}</p>
                         </div>
                     </div><!-- End Service Item -->
 
@@ -56,11 +54,10 @@
                         <div class="service-item position-relative">
                             <div
                                 class="icon bg-dark rounded-circle d-flex align-items-center justify-content-center mb-3 icon-animate">
-                                <i class="bi bi-bounding-box-circles text-danger fs-3"></i>
+                                <i class="bi bi-buildings-fill text-danger fs-3"></i>
                             </div>
-                            <h4>Diseño y construcción de proyectos arquitectónicos</h4>
-                            <p>Creamos espacios funcionales y estéticos que se adaptan perfectamente a las necesidades de
-                                nuestros clientes.</p>
+                            <h4>{{ __('inicio.service_design_title') }}</h4>
+                            <p>{{ __('inicio.service_design_desc') }}</p>
                         </div>
                     </div><!-- End Service Item -->
 
@@ -68,11 +65,10 @@
                         <div class="service-item position-relative">
                             <div
                                 class="icon bg-dark rounded-circle d-flex align-items-center justify-content-center mb-3 icon-animate">
-                                <i class="bi bi-gear text-danger fs-3"></i>
+                                <i class="bi bi-clipboard-data-fill text-danger fs-3"></i>
                             </div>
-                            <h4>Supervisión y gestión de obras</h4>
-                            <p>Control integral de proyectos para asegurar el cumplimiento de plazos, presupuestos y
-                                estándares de calidad.</p>
+                            <h4>{{ __('inicio.service_supervision_title') }}</h4>
+                            <p>{{ __('inicio.service_supervision_desc') }}</p>
                         </div>
                     </div><!-- End Service Item -->
 
@@ -80,11 +76,10 @@
                         <div class="service-item position-relative">
                             <div
                                 class="icon bg-dark rounded-circle d-flex align-items-center justify-content-center mb-3 icon-animate">
-                                <i class="bi bi-broadcast text-danger fs-3"></i>
+                                <i class="bi bi-people-fill text-danger fs-3"></i>
                             </div>
-                            <h4>Asesoría técnica especializada</h4>
-                            <p>Consultoría profesional para optimizar sus proyectos y resolver desafíos técnicos específicos
-                                en construcción.</p>
+                            <h4>{{ __('inicio.service_advisory_title') }}</h4>
+                            <p>{{ __('inicio.service_advisory_desc') }}</p>
                         </div>
                     </div><!-- End Service Item -->
 

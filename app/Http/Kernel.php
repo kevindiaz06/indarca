@@ -39,6 +39,7 @@ class Kernel extends HttpKernel
             \App\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
             \App\Http\Middleware\EnsureEmailIsVerified::class,
+            \App\Http\Middleware\Localization::class,
         ],
 
         'api' => [
@@ -72,5 +73,6 @@ class Kernel extends HttpKernel
         'xss' => \App\Http\Middleware\XssProtection::class,
         'jwt.verify' => \App\Http\Middleware\ValidateJwtToken::class,
         'permission' => \App\Http\Middleware\CheckPermission::class,
+        'localize' => \App\Http\Middleware\Localization::class,
     ];
 }

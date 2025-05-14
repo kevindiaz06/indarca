@@ -6,8 +6,8 @@
         <div class="container">
             <div class="row mb-5">
                 <div class="col-12 text-center">
-                    <h2 class="display-5 fw-bold mb-3">Nuestra Identidad</h2>
-                    <p class="lead text-muted col-lg-8 mx-auto">Los pilares que guían nuestro camino hacia la excelencia</p>
+                    <h2 class="display-5 fw-bold mb-3">{{ __('sobre_nosotros.identity_title') }}</h2>
+                    <p class="lead text-muted col-lg-8 mx-auto">{{ __('sobre_nosotros.identity_subtitle') }}</p>
                     <div class="divider-custom my-4">
                         <div class="divider-line bg-danger"></div>
                         <div class="divider-icon"><i class="bi bi-star-fill text-danger"></i></div>
@@ -26,23 +26,18 @@
                                     <i class="bi bi-house-heart fs-2"></i>
                                 </div>
                                 <div class="flex-grow-1 ms-3">
-                                    <h3 class="h3 mb-0 fw-bold">Historia</h3>
-                                    <p class="text-muted mb-0">Nuestros inicios</p>
+                                    <h3 class="h3 mb-0 fw-bold">{{ __('sobre_nosotros.history_title') }}</h3>
+                                    <p class="text-muted mb-0">{{ __('sobre_nosotros.history_subtitle') }}</p>
                                 </div>
                             </div>
-                            <p class="card-text">Fundada el 3 de octubre de 2014, por el Ing. Ramcés Gómez y la Arq. Gloria
-                                Carolina Santos; INDARCA, SRL es el sueño materializado de dos dominicanos soñadores que
-                                solo teniendo ideas y nada más que los respaldara, se atrevieron a emprender. Y de esta
-                                forma causar un impacto de inspiración a todas las personas que, de una forma u otra, a
-                                través de sus habilidades quieren hacer a la Republica Dominicana y el mundo un lugar de
-                                mejores oportunidades y digno para vivir.</p>
+                            <p class="card-text">{{ __('sobre_nosotros.history_desc') }}</p>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <div class="position-relative p-3">
                         <img src="{{ asset('assets\img\INDARCA_OFICINA\OBRA\INDARCA_OFICINA_OBRA_7.jpg') }}"
-                            class="img-fluid rounded-3 img-shadow" alt="Historia">
+                            class="img-fluid rounded-3 img-shadow" alt="{{ __('sobre_nosotros.history_title') }}">
                     </div>
                 </div>
             </div>
@@ -57,23 +52,18 @@
                                     <i class="bi bi-bullseye fs-2"></i>
                                 </div>
                                 <div class="flex-grow-1 ms-3">
-                                    <h3 class="h3 mb-0 fw-bold">Misión</h3>
-                                    <p class="text-muted mb-0">Nuestro propósito y compromiso</p>
+                                    <h3 class="h3 mb-0 fw-bold">{{ __('sobre_nosotros.mission_title') }}</h3>
+                                    <p class="text-muted mb-0">{{ __('sobre_nosotros.mission_subtitle') }}</p>
                                 </div>
                             </div>
-                            <p class="card-text">INDARCA, SRL es una empresa comprometida con brindar soluciones efectivas,
-                                responsables y creativas a nuestros clientes, tanto en el ámbito del servicio técnico de
-                                laboratorio como en el desarrollo de proyectos arquitectónicos e ingeniería. Nos enfocamos
-                                en ofrecer un servicio de alto nivel, cumpliendo con los más altos estándares de calidad y
-                                rendimiento, incorporando constantemente tecnología e innovación para optimizar nuestros
-                                procesos y garantizar la excelencia en cada proyecto.</p>
+                            <p class="card-text">{{ __('sobre_nosotros.mission_desc') }}</p>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <div class="position-relative p-3">
                         <img src="{{ asset('assets\img\OTROS\OTROS_2.jpg') }}" class="img-fluid rounded-3 img-shadow"
-                            alt="Misión">
+                            alt="{{ __('sobre_nosotros.mission_title') }}">
                     </div>
                 </div>
             </div>
@@ -88,24 +78,18 @@
                                     <i class="bi bi-eye fs-2"></i>
                                 </div>
                                 <div class="flex-grow-1 ms-3">
-                                    <h3 class="h3 mb-0 fw-bold">Visión</h3>
-                                    <p class="text-muted mb-0">El futuro que nos inspira</p>
+                                    <h3 class="h3 mb-0 fw-bold">{{ __('sobre_nosotros.vision_title') }}</h3>
+                                    <p class="text-muted mb-0">{{ __('sobre_nosotros.vision_subtitle') }}</p>
                                 </div>
                             </div>
-                            <p class="card-text">Nuestra misión no es solo liderar, es redefinir el estándar. En <span
-                                    class="fw-bold">INDARCA</span>, no seguimos tendencias, las creamos. Somos una empresa
-                                organizada, confiable e innovadora, que no se conforma con lo ordinario. Aspiramos a la
-                                excelencia absoluta y trabajamos cada día para superar no solo las expectativas, sino
-                                cualquier límite impuesto. No buscamos solo ganancias, buscamos impacto. Queremos ser el
-                                motor de crecimiento de nuestra nación, generando empleo, revolucionando ideas y dejando
-                                huella.</p>
+                            <p class="card-text">{!! __('sobre_nosotros.vision_desc') !!}</p>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <div class="position-relative p-3">
                        <img src="{{ asset('assets\img\INDARCA_OFICINA\OBRA\INDARCA_OFICINA_OBRA_5.jpeg') }}" class="img-fluid rounded-3 img-shadow"
-                            alt="Visión">
+                            alt="{{ __('sobre_nosotros.vision_title') }}">
                     </div>
                 </div>
             </div>
@@ -118,9 +102,8 @@
             <!-- Título de la sección -->
             <div class="row mb-5">
                 <div class="col-12 text-center">
-                    <h2 class="display-5 fw-bold mb-3">Nuestros Valores</h2>
-                    <p class="lead text-muted col-lg-8 mx-auto">Los principios fundamentales que guían nuestras acciones y
-                        definen nuestra identidad corporativa</p>
+                    <h2 class="display-5 fw-bold mb-3">{{ __('sobre_nosotros.values_title') }}</h2>
+                    <p class="lead text-muted col-lg-8 mx-auto">{{ __('sobre_nosotros.values_subtitle') }}</p>
                     <div class="divider-custom my-4">
                         <div class="divider-line bg-danger"></div>
                         <div class="divider-icon"><i class="bi bi-star-fill text-danger"></i></div>
@@ -141,9 +124,8 @@
                                 </div>
                             </div>
                             <div class="valor-content p-4">
-                                <h4 class="card-title fw-bold mb-3">Excelencia</h4>
-                                <p class="card-text">Buscamos la perfección en cada detalle, elevando constantemente
-                                    nuestros estándares para entregar productos y servicios de calidad excepcional.</p>
+                                <h4 class="card-title fw-bold mb-3">{{ __('sobre_nosotros.excellence_title') }}</h4>
+                                <p class="card-text">{{ __('sobre_nosotros.excellence_desc') }}</p>
                             </div>
                         </div>
                     </div>
@@ -159,9 +141,8 @@
                                 </div>
                             </div>
                             <div class="valor-content p-4">
-                                <h4 class="card-title fw-bold mb-3">Innovación</h4>
-                                <p class="card-text">Fomentamos el pensamiento creativo y la búsqueda constante de
-                                    soluciones disruptivas para los desafíos más complejos en nuestro campo.</p>
+                                <h4 class="card-title fw-bold mb-3">{{ __('sobre_nosotros.innovation_title') }}</h4>
+                                <p class="card-text">{{ __('sobre_nosotros.innovation_desc') }}</p>
                             </div>
                         </div>
                     </div>
@@ -177,9 +158,8 @@
                                 </div>
                             </div>
                             <div class="valor-content p-4">
-                                <h4 class="card-title fw-bold mb-3">Integridad</h4>
-                                <p class="card-text">Actuamos con honestidad, transparencia y ética en todas nuestras
-                                    relaciones, construyendo confianza tanto interna como externamente.</p>
+                                <h4 class="card-title fw-bold mb-3">{{ __('sobre_nosotros.integrity_title') }}</h4>
+                                <p class="card-text">{{ __('sobre_nosotros.integrity_desc') }}</p>
                             </div>
                         </div>
                     </div>
@@ -195,9 +175,8 @@
                                 </div>
                             </div>
                             <div class="valor-content p-4">
-                                <h4 class="card-title fw-bold mb-3">Compromiso</h4>
-                                <p class="card-text">Nos dedicamos plenamente a cada proyecto con pasión y determinación,
-                                    asumiendo la responsabilidad de entregar resultados que superen expectativas.</p>
+                                <h4 class="card-title fw-bold mb-3">{{ __('sobre_nosotros.commitment_title') }}</h4>
+                                <p class="card-text">{{ __('sobre_nosotros.commitment_desc') }}</p>
                             </div>
                         </div>
                     </div>

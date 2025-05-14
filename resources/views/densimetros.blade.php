@@ -7,8 +7,8 @@
             style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.5) 100%);">
         </div>
         <div class="container position-relative py-5">
-            <h1 class="display-3 fw-bold mb-4 text-white">DENSÍMETROS NUCLEARES</h1>
-            <p class="lead fs-4">Tecnología avanzada para mediciones precisas en ingeniería civil</p>
+            <h1 class="display-3 fw-bold mb-4 text-white">{{ __('densimetros.banner_title') }}</h1>
+            <p class="lead fs-4">{{ __('densimetros.banner_subtitle') }}</p>
             <div class="divider-custom my-4">
                 <div class="divider-line bg-warning"></div>
                 <div class="divider-icon"><i class="bi bi-radioactive text-warning"></i></div>
@@ -29,16 +29,13 @@
                                     <i class="bi bi-gear-fill fs-2"></i>
                                 </div>
                                 <div class="flex-grow-1 ms-3">
-                                    <h2 class="fw-bold mb-0">¿Qué es un densímetro nuclear?</h2>
-                                    <p class="text-muted mb-0">Tecnología de precisión</p>
+                                    <h2 class="fw-bold mb-0">{{ __('densimetros.intro_title') }}</h2>
+                                    <p class="text-muted mb-0">{{ __('densimetros.intro_subtitle') }}</p>
                                 </div>
                             </div>
-                            <p class="fs-5">Es un equipo que emplea tecnología nuclear para medir la densidad y humedad
-                                del suelo, mezclas asfálticas y otros materiales de construcción sin necesidad de extraer
-                                muestras. Es una herramienta esencial en la ingeniería civil para garantizar la calidad y
-                                seguridad de las estructuras.</p>
+                            <p class="fs-5">{{ __('densimetros.intro_desc') }}</p>
                             <a href="#servicios" class="btn btn-warning btn-lg mt-3 rounded-pill">
-                                <i class="bi bi-arrow-right-circle me-2"></i>Conoce nuestros servicios
+                                <i class="bi bi-arrow-right-circle me-2"></i>{{ __('densimetros.know_services') }}
                             </a>
                         </div>
                     </div>
@@ -58,8 +55,8 @@
         <div class="container">
             <div class="row mb-5">
                 <div class="col-12 text-center">
-                    <h2 class="display-5 fw-bold mb-3">Aplicaciones del densímetro nuclear</h2>
-                    <p class="lead text-muted col-lg-8 mx-auto">Soluciones de alta precisión para múltiples escenarios</p>
+                    <h2 class="display-5 fw-bold mb-3">{{ __('densimetros.applications_title') }}</h2>
+                    <p class="lead text-muted col-lg-8 mx-auto">{{ __('densimetros.applications_subtitle') }}</p>
                     <div class="divider-custom my-4">
                         <div class="divider-line bg-warning"></div>
                         <div class="divider-icon"><i class="bi bi-tools text-warning"></i></div>
@@ -75,9 +72,8 @@
                             <div class="application-icon">
                                 <i class="bi bi-cone-striped"></i>
                             </div>
-                            <h5 class="card-title fw-bold">Control de calidad</h5>
-                            <p class="card-text">En la construcción de carreteras, aeropuertos y pavimentos para garantizar
-                                su durabilidad y seguridad.</p>
+                            <h5 class="card-title fw-bold">{{ __('densimetros.quality_control_title') }}</h5>
+                            <p class="card-text">{{ __('densimetros.quality_control_desc') }}</p>
                         </div>
                     </div>
                 </div>
@@ -87,9 +83,8 @@
                             <div class="application-icon">
                                 <i class="bi bi-layers-fill"></i>
                             </div>
-                            <h5 class="card-title fw-bold">Evaluación de compactación</h5>
-                            <p class="card-text">En suelos y materiales de relleno para construcción, asegurando cimientos
-                                sólidos y estables.</p>
+                            <h5 class="card-title fw-bold">{{ __('densimetros.compaction_title') }}</h5>
+                            <p class="card-text">{{ __('densimetros.compaction_desc') }}</p>
                         </div>
                     </div>
                 </div>
@@ -99,9 +94,8 @@
                             <div class="application-icon">
                                 <i class="bi bi-moisture"></i>
                             </div>
-                            <h5 class="card-title fw-bold">Medición de humedad</h5>
-                            <p class="card-text">En diferentes capas del terreno para análisis precisos que previenen
-                                problemas estructurales a futuro.</p>
+                            <h5 class="card-title fw-bold">{{ __('densimetros.moisture_title') }}</h5>
+                            <p class="card-text">{{ __('densimetros.moisture_desc') }}</p>
                         </div>
                     </div>
                 </div>
@@ -111,9 +105,8 @@
                             <div class="application-icon">
                                 <i class="bi bi-clipboard-check-fill"></i>
                             </div>
-                            <h5 class="card-title fw-bold">Verificación</h5>
-                            <p class="card-text">De especificaciones en proyectos de infraestructura para cumplir con
-                                normativas y requerimientos técnicos.</p>
+                            <h5 class="card-title fw-bold">{{ __('densimetros.verification_title') }}</h5>
+                            <p class="card-text">{{ __('densimetros.verification_desc') }}</p>
                         </div>
                     </div>
                 </div>
@@ -126,9 +119,8 @@
         <div class="container">
             <div class="row mb-5">
                 <div class="col-12 text-center">
-                    <h2 class="display-5 fw-bold mb-3">Marcas y Modelos Disponibles</h2>
-                    <p class="lead text-muted col-lg-8 mx-auto">En INDARCA trabajamos con equipos de las principales marcas
-                        del sector, garantizando calidad y precisión en cada medición</p>
+                    <h2 class="display-5 fw-bold mb-3">{{ __('densimetros.brands_title') }}</h2>
+                    <p class="lead text-muted col-lg-8 mx-auto">{{ __('densimetros.brands_subtitle') }}</p>
                     <div class="divider-custom my-4">
                         <div class="divider-line bg-warning"></div>
                         <div class="divider-icon"><i class="bi bi-award-fill text-warning"></i></div>
@@ -148,7 +140,7 @@
                             </div>
                             <div class="p-4">
                                 <h5 class="card-title fw-bold">Troxler</h5>
-                                <p class="card-text mb-0">Modelos disponibles:</p>
+                                <p class="card-text mb-0">{{ __('densimetros.available_models') }}</p>
                                 <ul class="list-unstyled mt-2">
                                     <li class="mb-1"><i class="bi bi-check-circle-fill text-warning me-2"></i>3430</li>
                                     <li class="mb-1"><i class="bi bi-check-circle-fill text-warning me-2"></i>3430-P</li>
@@ -170,7 +162,7 @@
                             </div>
                             <div class="p-4">
                                 <h5 class="card-title fw-bold">Humboldt</h5>
-                                <p class="card-text mb-0">Modelos disponibles:</p>
+                                <p class="card-text mb-0">{{ __('densimetros.available_models') }}</p>
                                 <ul class="list-unstyled mt-2">
                                     <li class="mb-1"><i class="bi bi-check-circle-fill text-warning me-2"></i>HS-5001EZ
                                     </li>
@@ -191,7 +183,7 @@
                             </div>
                             <div class="p-4">
                                 <h5 class="card-title fw-bold">Instrotek</h5>
-                                <p class="card-text mb-0">Modelos disponibles:</p>
+                                <p class="card-text mb-0">{{ __('densimetros.available_models') }}</p>
                                 <ul class="list-unstyled mt-2">
                                     <li><i class="bi bi-check-circle-fill text-warning me-2"></i>Xplorer 3500</li>
                                     <li><i class="bi bi-check-circle-fill text-warning me-2"></i>Xplorer 3500-2</li>
@@ -209,7 +201,7 @@
                             </div>
                             <div class="p-4">
                                 <h5 class="card-title fw-bold">CPN</h5>
-                                <p class="card-text mb-0">Modelos disponibles:</p>
+                                <p class="card-text mb-0">{{ __('densimetros.available_models') }}</p>
                                 <ul class="list-unstyled mt-2">
                                     <li class="mb-1"><i class="bi bi-check-circle-fill text-warning me-2"></i>MC-3</li>
                                     <li><i class="bi bi-check-circle-fill text-warning me-2"></i>MC-1DRP</li>
@@ -220,8 +212,7 @@
                 </div>
             </div>
             <div class="text-center mt-4">
-                <p class="fst-italic">Si necesitas un modelo específico, consúltanos para disponibilidad y opciones de
-                    compra o alquiler.</p>
+                <p class="fst-italic">{{ __('densimetros.specific_model_note') }}</p>
             </div>
         </div>
     </section>
@@ -231,9 +222,8 @@
         <div class="container">
             <div class="row mb-5">
                 <div class="col-12 text-center">
-                    <h2 class="display-5 fw-bold mb-3">Servicios de INDARCA en Densímetros Nucleares</h2>
-                    <p class="lead text-muted col-lg-8 mx-auto">Soluciones integrales para cada necesidad en el ámbito de
-                        los densímetros nucleares</p>
+                    <h2 class="display-5 fw-bold mb-3">{{ __('densimetros.services_title') }}</h2>
+                    <p class="lead text-muted col-lg-8 mx-auto">{{ __('densimetros.services_subtitle') }}</p>
                     <div class="divider-custom my-4">
                         <div class="divider-line bg-warning"></div>
                         <div class="divider-icon"><i class="bi bi-gear-wide-connected text-warning"></i></div>
@@ -250,26 +240,24 @@
                                 <div class="service-icon">
                                     <i class="bi bi-tools fs-2"></i>
                                 </div>
-                                <h4 class="fw-bold mb-0">Calibración, Mantenimiento y Reparación</h4>
+                                <h4 class="fw-bold mb-0">{{ __('densimetros.service_calibration_title') }}</h4>
                             </div>
                             <ul class="list-unstyled ps-4">
                                 <li class="mb-3 d-flex">
                                     <i class="bi bi-check-circle-fill text-warning me-2 mt-1"></i>
-                                    <span>Calibraciones certificadas bajo los estándares ASTM y AASHTO, garantizando
-                                        precisión en cada medición.</span>
+                                    <span>{{ __('densimetros.service_calibration_1') }}</span>
                                 </li>
                                 <li class="mb-3 d-flex">
                                     <i class="bi bi-check-circle-fill text-warning me-2 mt-1"></i>
-                                    <span>Mantenimiento preventivo y correctivo para garantizar la precisión del equipo y
-                                        prolongar su vida útil.</span>
+                                    <span>{{ __('densimetros.service_calibration_2') }}</span>
                                 </li>
                                 <li class="mb-3 d-flex">
                                     <i class="bi bi-check-circle-fill text-warning me-2 mt-1"></i>
-                                    <span>Reparación especializada de componentes electrónicos, mecánicos y sistemas de detección con garantía de calidad.</span>
+                                    <span>{{ __('densimetros.service_calibration_3') }}</span>
                                 </li>
                                 <li class="d-flex">
                                     <i class="bi bi-check-circle-fill text-warning me-2 mt-1"></i>
-                                    <span>Diagnóstico avanzado y solución de problemas en fuentes radioactivas y circuitos integrados por técnicos certificados.</span>
+                                    <span>{{ __('densimetros.service_calibration_4') }}</span>
                                 </li>
                             </ul>
                         </div>
@@ -282,18 +270,16 @@
                                 <div class="service-icon">
                                     <i class="bi bi-cart-plus fs-2"></i>
                                 </div>
-                                <h4 class="fw-bold mb-0">Alquiler y Venta de Equipos</h4>
+                                <h4 class="fw-bold mb-0">{{ __('densimetros.service_rental_title') }}</h4>
                             </div>
                             <ul class="list-unstyled ps-4">
                                 <li class="mb-3 d-flex">
                                     <i class="bi bi-check-circle-fill text-warning me-2 mt-1"></i>
-                                    <span>Disponemos de densímetros de marcas reconocidas como Troxler, Humboldt e Instrotek
-                                         para satisfacer cualquier necesidad.</span>
+                                    <span>{{ __('densimetros.service_rental_1') }}</span>
                                 </li>
                                 <li class="d-flex">
                                     <i class="bi bi-check-circle-fill text-warning me-2 mt-1"></i>
-                                    <span>Opciones de alquiler a corto y largo plazo según las necesidades del cliente, con
-                                        soporte técnico incluido.</span>
+                                    <span>{{ __('densimetros.service_rental_2') }}</span>
                                 </li>
                             </ul>
                         </div>
@@ -306,22 +292,20 @@
                                 <div class="service-icon">
                                     <i class="bi bi-mortarboard-fill fs-2"></i>
                                 </div>
-                                <h4 class="fw-bold mb-0">Capacitación y Certificación</h4>
+                                <h4 class="fw-bold mb-0">{{ __('densimetros.service_training_title') }}</h4>
                             </div>
                             <ul class="list-unstyled ps-4">
                                 <li class="mb-3 d-flex">
                                     <i class="bi bi-check-circle-fill text-warning me-2 mt-1"></i>
-                                    <span>Formación en el manejo seguro de densímetros nucleares con instructores
-                                        certificados.</span>
+                                    <span>{{ __('densimetros.service_training_1') }}</span>
                                 </li>
                                 <li class="mb-3 d-flex">
                                     <i class="bi bi-check-circle-fill text-warning me-2 mt-1"></i>
-                                    <span>Capacitación en normativas y seguridad radiológica para un uso responsable.</span>
+                                    <span>{{ __('densimetros.service_training_2') }}</span>
                                 </li>
                                 <li class="d-flex">
                                     <i class="bi bi-check-circle-fill text-warning me-2 mt-1"></i>
-                                    <span>Certificaciones para operadores de equipos nucleares con validez
-                                        internacional.</span>
+                                    <span>{{ __('densimetros.service_training_3') }}</span>
                                 </li>
                             </ul>
                         </div>
@@ -334,23 +318,20 @@
                                 <div class="service-icon">
                                     <i class="bi bi-headset fs-2"></i>
                                 </div>
-                                <h4 class="fw-bold mb-0">Asesoría Técnica Especializada</h4>
+                                <h4 class="fw-bold mb-0">{{ __('densimetros.service_advisory_title') }}</h4>
                             </div>
                             <ul class="list-unstyled ps-4">
                                 <li class="mb-3 d-flex">
                                     <i class="bi bi-check-circle-fill text-warning me-2 mt-1"></i>
-                                    <span>Consultoría en normativas internacionales para el uso de densímetros con expertos
-                                        en el área.</span>
+                                    <span>{{ __('densimetros.service_advisory_1') }}</span>
                                 </li>
                                 <li class="mb-3 d-flex">
                                     <i class="bi bi-check-circle-fill text-warning me-2 mt-1"></i>
-                                    <span>Apoyo en la gestión de licencias y permisos para su operación legal y
-                                        segura.</span>
+                                    <span>{{ __('densimetros.service_advisory_2') }}</span>
                                 </li>
                                 <li class="d-flex">
                                     <i class="bi bi-check-circle-fill text-warning me-2 mt-1"></i>
-                                    <span>Implementación de protocolos de seguridad en obras para prevenir
-                                        accidentes.</span>
+                                    <span>{{ __('densimetros.service_advisory_3') }}</span>
                                 </li>
                             </ul>
                         </div>
@@ -370,11 +351,8 @@
                             <div class="icon-3d mx-auto mb-4" style="width: 90px; height: 90px;">
                                 <i class="bi bi-shield-check fs-1"></i>
                             </div>
-                            <h3 class="fw-bold mb-3">Compromiso con la Seguridad</h3>
-                            <p class="fs-5 mb-0">En INDARCA, garantizamos el uso responsable de los densímetros nucleares
-                                con medidas de seguridad rigurosas, cumpliendo con las regulaciones locales e
-                                internacionales. La protección de nuestros clientes y del medio ambiente es nuestra
-                                prioridad.</p>
+                            <h3 class="fw-bold mb-3">{{ __('densimetros.commitment_title') }}</h3>
+                            <p class="fs-5 mb-0">{{ __('densimetros.commitment_desc') }}</p>
                         </div>
                     </div>
                 </div>
@@ -387,9 +365,8 @@
         <div class="container">
             <div class="row mb-5">
                 <div class="col-12 text-center">
-                    <h2 class="display-5 fw-bold mb-3">Preguntas Frecuentes (FAQ)</h2>
-                    <p class="lead text-muted col-lg-8 mx-auto">Resolvemos tus dudas sobre el uso y manejo de densímetros
-                        nucleares</p>
+                    <h2 class="display-5 fw-bold mb-3">{{ __('densimetros.faq_title') }}</h2>
+                    <p class="lead text-muted col-lg-8 mx-auto">{{ __('densimetros.faq_subtitle') }}</p>
                     <div class="divider-custom my-4">
                         <div class="divider-line bg-warning"></div>
                         <div class="divider-icon"><i class="bi bi-question-circle-fill text-warning"></i></div>
@@ -405,16 +382,13 @@
                             <h2 class="accordion-header" id="headingOne">
                                 <button class="accordion-button" type="button" data-bs-toggle="collapse"
                                     data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                    <i class="bi bi-patch-question-fill text-warning me-2"></i> ¿Es necesario tener una
-                                    licencia para operar un densímetro nuclear?
+                                    <i class="bi bi-patch-question-fill text-warning me-2"></i> {{ __('densimetros.faq_1_question') }}
                                 </button>
                             </h2>
                             <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
                                 data-bs-parent="#faqAccordion">
                                 <div class="accordion-body">
-                                    Sí, en la mayoría de los países se requiere una licencia otorgada por las autoridades de
-                                    regulación nuclear. Además, los operadores deben recibir capacitación certificada en
-                                    seguridad radiológica para garantizar un manejo seguro del equipo.
+                                    {{ __('densimetros.faq_1_answer') }}
                                 </div>
                             </div>
                         </div>
@@ -422,16 +396,13 @@
                             <h2 class="accordion-header" id="headingTwo">
                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                     data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                    <i class="bi bi-patch-question-fill text-warning me-2"></i> ¿Cada cuánto tiempo se debe
-                                    calibrar un densímetro nuclear?
+                                    <i class="bi bi-patch-question-fill text-warning me-2"></i> {{ __('densimetros.faq_2_question') }}
                                 </button>
                             </h2>
                             <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
                                 data-bs-parent="#faqAccordion">
                                 <div class="accordion-body">
-                                    Se recomienda realizar una calibración anual para asegurar la precisión del equipo y
-                                    cumplir con los estándares internacionales. Sin embargo, en caso de uso intensivo o
-                                    condiciones adversas, pueden requerirse calibraciones más frecuentes.
+                                    {{ __('densimetros.faq_2_answer') }}
                                 </div>
                             </div>
                         </div>
@@ -439,16 +410,13 @@
                             <h2 class="accordion-header" id="headingThree">
                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                     data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                    <i class="bi bi-patch-question-fill text-warning me-2"></i> ¿Qué tan seguro es el uso
-                                    de un densímetro nuclear?
+                                    <i class="bi bi-patch-question-fill text-warning me-2"></i> {{ __('densimetros.faq_3_question') }}
                                 </button>
                             </h2>
                             <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
                                 data-bs-parent="#faqAccordion">
                                 <div class="accordion-body">
-                                    Los densímetros nucleares están diseñados con estrictas medidas de seguridad para evitar
-                                    la exposición a la radiación. Sin embargo, es obligatorio seguir protocolos de manejo
-                                    seguro y contar con la capacitación adecuada para minimizar cualquier riesgo potencial.
+                                    {{ __('densimetros.faq_3_answer') }}
                                 </div>
                             </div>
                         </div>
@@ -456,17 +424,13 @@
                             <h2 class="accordion-header" id="headingFour">
                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                     data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                                    <i class="bi bi-patch-question-fill text-warning me-2"></i> ¿Puedo alquilar un
-                                    densímetro en INDARCA sin ser operador certificado?
+                                    <i class="bi bi-patch-question-fill text-warning me-2"></i> {{ __('densimetros.faq_4_question') }}
                                 </button>
                             </h2>
                             <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour"
                                 data-bs-parent="#faqAccordion">
                                 <div class="accordion-body">
-                                    No, para alquilar un densímetro nuclear es necesario contar con la certificación
-                                    correspondiente y cumplir con los requisitos de seguridad exigidos por la normativa
-                                    vigente. En INDARCA ofrecemos programas de certificación para quienes necesiten operar
-                                    estos equipos.
+                                    {{ __('densimetros.faq_4_answer') }}
                                 </div>
                             </div>
                         </div>
@@ -488,12 +452,10 @@
                         </div>
                         <div class="position-relative">
                             <i class="bi bi-envelope-paper-fill text-warning display-1 mb-3"></i>
-                            <h3 class="fw-bold mb-3">Consulta por nuestros planes de mantenimiento, certificaciones y
-                                alquiler de equipos</h3>
-                            <p class="mb-4">Estamos para ayudarte en todos tus proyectos de ingeniería civil con equipos
-                                de alta calidad y el respaldo de los mejores profesionales</p>
+                            <h3 class="fw-bold mb-3">{{ __('densimetros.cta_title') }}</h3>
+                            <p class="mb-4">{{ __('densimetros.cta_subtitle') }}</p>
                             <a href="{{ route('inicio') }}#contact" class="btn btn-warning btn-lg px-4 py-2 rounded-pill">
-                                <i class="bi bi-send me-2"></i>Contáctanos ahora
+                                <i class="bi bi-send me-2"></i>{{ __('densimetros.contact_us_now') }}
                             </a>
                         </div>
                     </div>

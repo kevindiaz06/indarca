@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
     <meta charset="utf-8">
@@ -38,11 +38,27 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" rel="stylesheet">
 
     <!-- Estilos personalizados para el tema monocromático -->
-
+    <style>
+        .language-selector {
+            margin-right: 15px;
+        }
+        .language-selector .dropdown-menu {
+            min-width: 120px;
+        }
+        .language-selector .dropdown-item {
+            padding: 0.5rem 1rem;
+            display: flex;
+            align-items: center;
+        }
+        .language-selector .dropdown-item .flag-icon {
+            margin-right: 8px;
+        }
+        .language-selector .dropdown-toggle::after {
+            margin-left: 0.5em;
+        }
+    </style>
 </head>
 <header id="header" class="header sticky-top">
-
-
 
     <div class="branding d-flex align-items-cente">
 
@@ -58,46 +74,43 @@
             <nav id="navmenu" class="navmenu">
                 <ul>
                     <li><a href="{{ route('inicio') }}"
-                            class="{{ request()->routeIs('inicio') ? 'active' : '' }}">Inicio</a></li>
+                            class="{{ request()->routeIs('inicio') ? 'active' : '' }}">{{ __('general.home') }}</a></li>
                     <li class="dropdown"><a href="{{ route('sobreNosotros') }}"
                             class="{{ request()->routeIs('sobreNosotros') ? 'active' : '' }}">
-                            <span>Sobre Nosotros</span>
+                            <span>{{ __('general.about') }}</span>
                             <i class="bi bi-chevron-down toggle-dropdown"></i>
                         </a>
                         <ul>
-                            <li><a href="{{ route('sobreNosotros') }}">Historia</a></li>
-                            <li><a href="{{ route('sobreNosotros') }}#MisionVisionValores">Misión, visión y valores</a>
+                            <li><a href="{{ route('sobreNosotros') }}">{{ __('general.history') }}</a></li>
+                            <li><a href="{{ route('sobreNosotros') }}#MisionVisionValores">{{ __('general.mission_vision_values') }}</a>
                             </li>
-                            <li><a href="{{ route('sobreNosotros') }}#reconocimientos">Reconocimientos y
-                                    certificaciones</a></li>
-                            <li><a href="{{ route('sobreNosotros') }}#team">Equipo</a></li>
+                            <li><a href="{{ route('sobreNosotros') }}#reconocimientos">{{ __('general.recognitions_certifications') }}</a></li>
+                            <li><a href="{{ route('sobreNosotros') }}#team">{{ __('general.team') }}</a></li>
                         </ul>
                     </li>
                     <li class="dropdown"><a href="{{ route('densimetros') }}"
-                            class="{{ request()->routeIs('densimetros') ? 'active' : '' }}"><span>Densímetros
-                                Nucleares</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+                            class="{{ request()->routeIs('densimetros') ? 'active' : '' }}"><span>{{ __('general.densimeters') }}</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
                         <ul>
-                            <li><a href="{{ route('densimetros') }}#introduccion">Información General</a></li>
-                            <li><a href="{{ route('densimetros') }}#aplicaciones">Aplicaciones</a></li>
-                            <li><a href="{{ route('densimetros') }}#modelos">Marcas y Modelos</a></li>
-                            <li><a href="{{ route('densimetros') }}#servicios">Servicios</a></li>
-                            <li><a href="{{ route('densimetros') }}#faq">Preguntas Frecuentes</a></li>
+                            <li><a href="{{ route('densimetros') }}#introduccion">{{ __('general.general_info') }}</a></li>
+                            <li><a href="{{ route('densimetros') }}#aplicaciones">{{ __('general.applications') }}</a></li>
+                            <li><a href="{{ route('densimetros') }}#modelos">{{ __('general.brands_models') }}</a></li>
+                            <li><a href="{{ route('densimetros') }}#servicios">{{ __('general.services_section') }}</a></li>
+                            <li><a href="{{ route('densimetros') }}#faq">{{ __('general.faq') }}</a></li>
                         </ul>
                     </li>
                     <li class="dropdown"><a href="{{ route('arquitectura') }}"
-                            class="{{ request()->routeIs('arquitectura') ? 'active' : '' }}"><span>Arquitectura e
-                                Ingeniería</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+                            class="{{ request()->routeIs('arquitectura') ? 'active' : '' }}"><span>{{ __('general.architecture') }}</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
                         <ul>
-                            <li><a href="{{ route('arquitectura') }}#introduccion">Introducción</a></li>
-                            <li><a href="{{ route('arquitectura') }}#servicios">Servicios</a></li>
-                            <li><a href="{{ route('arquitectura') }}#proyectos">Proyectos Realizados</a></li>
-                            <li><a href="{{ route('arquitectura') }}#compromiso">Compromiso con la Calidad</a></li>
-                            <li><a href="{{ route('arquitectura') }}#contacto">Contacto</a></li>
+                            <li><a href="{{ route('arquitectura') }}#introduccion">{{ __('general.introduction') }}</a></li>
+                            <li><a href="{{ route('arquitectura') }}#servicios">{{ __('general.services_offered') }}</a></li>
+                            <li><a href="{{ route('arquitectura') }}#proyectos">{{ __('general.completed_projects') }}</a></li>
+                            <li><a href="{{ route('arquitectura') }}#compromiso">{{ __('general.quality_commitment') }}</a></li>
+                            <li><a href="{{ route('arquitectura') }}#contacto">{{ __('general.contact_section') }}</a></li>
                         </ul>
                     </li>
 
                     <li><a href="{{ route('inicio') }}#contact"
-                            class="{{ request()->is('contacto') ? 'active' : '' }}">Contacto</a></li>
+                            class="{{ request()->is('contacto') ? 'active' : '' }}">{{ __('general.contact') }}</a></li>
                     <li></li>
                 </ul>
 
@@ -105,17 +118,41 @@
             </nav>
 
             <div class="auth-buttons d-flex align-items-center">
+                <!-- Selector de idioma -->
+                <div class="language-selector dropdown">
+                    <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" id="languageDropdown"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        @if (app()->getLocale() == 'es')
+                            <i class="bi bi-globe me-1"></i> ES
+                        @else
+                            <i class="bi bi-globe me-1"></i> EN
+                        @endif
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="languageDropdown">
+                        <li>
+                            <a class="dropdown-item {{ app()->getLocale() == 'es' ? 'active' : '' }}" href="{{ route('change.language', 'es') }}">
+                                <span class="flag-icon">🇪🇸</span> {{ __('general.spanish') }}
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item {{ app()->getLocale() == 'en' ? 'active' : '' }}" href="{{ route('change.language', 'en') }}">
+                                <span class="flag-icon">🇺🇸</span> {{ __('general.english') }}
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
                 @guest
-                    <a href="{{ route('login') }}" class="btn btn-sm btn-outline-primary me-2">
-                        <i class="bi bi-box-arrow-in-right me-1"></i>Iniciar Sesión
+                    <a href="{{ route('login') }}" class="btn btn-sm btn-outline-primary ms-2 me-2">
+                        <i class="bi bi-box-arrow-in-right me-1"></i>{{ __('general.login') }}
                     </a>
                     <a href="{{ route('estado') }}" class="btn btn-sm btn-primary">
-                        <i class="bi bi-clipboard-data me-1"></i>Estado
+                        <i class="bi bi-clipboard-data me-1"></i>{{ __('general.status') }}
                     </a>
                 @else
                     @if (Auth::user()->isStaff())
-                        <a href="{{ route('admin.dashboard') }}" class="btn btn-sm btn-outline-primary me-2">
-                            <i class="bi bi-speedometer2 me-1"></i>Panel Admin
+                        <a href="{{ route('admin.dashboard') }}" class="btn btn-sm btn-outline-primary ms-2 me-2">
+                            <i class="bi bi-speedometer2 me-1"></i>{{ __('general.dashboard') }}
                         </a>
                     @endif
                     <div class="dropdown">
@@ -126,7 +163,7 @@
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
                             @if (Auth::user()->role === 'cliente')
                                 <li><a class="dropdown-item" href="{{ route('cliente.historial') }}"><i
-                                            class="bi bi-speedometer2 me-2"></i>Panel de Cliente</a></li>
+                                            class="bi bi-speedometer2 me-2"></i>{{ __('general.client_panel') }}</a></li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
@@ -134,7 +171,7 @@
                             <li>
                                 <a class="dropdown-item text-danger" href="{{ route('logout') }}"
                                     onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                    <i class="bi bi-box-arrow-right me-2"></i>{{ __('Cerrar Sesión') }}
+                                    <i class="bi bi-box-arrow-right me-2"></i>{{ __('general.logout') }}
                                 </a>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                     @csrf
@@ -157,8 +194,8 @@
         document.addEventListener('DOMContentLoaded', function() {
             Swal.fire({
                 icon: 'success',
-                title: '¡Bienvenido!',
-                text: 'Has iniciado sesión correctamente.',
+                title: '{{ __('general.welcome') }}!',
+                text: '{{ __('general.login_success_message') }}',
                 showConfirmButton: false,
                 timer: 10000,
                 timerProgressBar: true,
@@ -196,10 +233,9 @@
                         <div class="d-flex align-items-center mb-4">
                             <h3 class="text-danger fw-bold mb-0">INDARCA</h3>
                         </div>
-                        <p class="text-light mb-4">Ofrecemos soluciones innovadoras en arquitectura, ingeniería y
-                            densímetros nucleares para proyectos de construcción que superan expectativas.</p>
+                        <p class="text-light mb-4">{{ __('general.company_info') }}</p>
 
-                        <h5 class="text-white border-start border-danger border-3 ps-3 mb-3">Horario de Atención</h5>
+                        <h5 class="text-white border-start border-danger border-3 ps-3 mb-3">{{ __('general.business_hours') }}</h5>
                         <div
                             class="horarios-box bg-dark bg-opacity-50 p-3 rounded-3 border border-secondary border-opacity-25">
                             <div class="horario-item d-flex align-items-center">
@@ -209,7 +245,7 @@
                                 </div>
                                 <div class="w-100">
                                     <div class="d-flex justify-content-between">
-                                        <span class="text-light fw-medium">Lunes - Viernes:</span>
+                                        <span class="text-light fw-medium">{{ __('general.monday_friday') }}:</span>
                                         <span class="fw-semibold text-danger">9:00 AM - 5:00 PM</span>
                                     </div>
                                 </div>
@@ -221,7 +257,7 @@
                 <!-- Columna de contacto -->
                 <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="200">
                     <div class="footer-widget">
-                        <h4 class="text-white border-start border-danger border-3 ps-3 mb-4">Información de Contacto
+                        <h4 class="text-white border-start border-danger border-3 ps-3 mb-4">{{ __('general.contact_info') }}
                         </h4>
 
                         <div class="footer-contact">
@@ -242,7 +278,7 @@
                                     <i class="bi bi-telephone-fill text-danger fs-4"></i>
                                 </div>
                                 <div>
-                                    <h6 class="fw-bold text-white mb-1">Llamanos</h6>
+                                    <h6 class="fw-bold text-white mb-1">{{ __('general.call_us') }}</h6>
                                     <p class="mb-0 text-light">+1809 596 0333</p>
 
                                 </div>
@@ -266,41 +302,41 @@
                 <!-- Enlaces rápidos y servicios -->
                 <div class="col-lg-2 col-md-6 col-sm-6" data-aos="fade-up" data-aos-delay="300">
                     <div class="footer-widget">
-                        <h4 class="text-white border-start border-danger border-3 ps-3 mb-4">Enlaces Rápidos</h4>
+                        <h4 class="text-white border-start border-danger border-3 ps-3 mb-4">{{ __('general.quick_links') }}</h4>
                         <ul class="list-unstyled footer-links">
                             <li class="mb-3">
                                 <a href="{{ route('inicio') }}"
                                     class="text-light d-flex align-items-center text-decoration-none hover-shadow transition-all">
                                     <i class="bi bi-chevron-right text-danger me-2"></i>
-                                    <span>Inicio</span>
+                                    <span>{{ __('general.home') }}</span>
                                 </a>
                             </li>
                             <li class="mb-3">
                                 <a href="{{ route('sobreNosotros') }}"
                                     class="text-light d-flex align-items-center text-decoration-none hover-shadow transition-all">
                                     <i class="bi bi-chevron-right text-danger me-2"></i>
-                                    <span>Sobre Nosotros</span>
+                                    <span>{{ __('general.about') }}</span>
                                 </a>
                             </li>
                             <li class="mb-3">
                                 <a href="{{ route('densimetros') }}"
                                     class="text-light d-flex align-items-center text-decoration-none hover-shadow transition-all">
                                     <i class="bi bi-chevron-right text-danger me-2"></i>
-                                    <span>Densímetros</span>
+                                    <span>{{ __('general.densimeters') }}</span>
                                 </a>
                             </li>
                             <li class="mb-3">
                                 <a href="{{ route('arquitectura') }}"
                                     class="text-light d-flex align-items-center text-decoration-none hover-shadow transition-all">
                                     <i class="bi bi-chevron-right text-danger me-2"></i>
-                                    <span>Arquitectura</span>
+                                    <span>{{ __('general.architecture') }}</span>
                                 </a>
                             </li>
                             <li class="mb-3">
                                 <a href="{{ route('politicas.privacidad') }}"
                                     class="text-light d-flex align-items-center text-decoration-none hover-shadow transition-all">
                                     <i class="bi bi-chevron-right text-danger me-2"></i>
-                                    <span>Políticas de Privacidad</span>
+                                    <span>{{ __('general.privacy_policies') }}</span>
                                 </a>
                             </li>
                         </ul>
@@ -310,9 +346,9 @@
                 <!-- Columna de redes sociales -->
                 <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="400">
                     <div class="footer-widget">
-                        <h4 class="text-white border-start border-danger border-3 ps-3 mb-4">Redes Sociales</h4>
+                        <h4 class="text-white border-start border-danger border-3 ps-3 mb-4">{{ __('general.social_networks') }}</h4>
 
-                        <h5 class="text-white mb-3">Síguenos</h5>
+                        <h5 class="text-white mb-3">{{ __('general.follow_us_text') }}</h5>
                         <div class="social-links d-flex flex-wrap gap-2 mb-4">
                             <a href="https://x.com/indarca_srl?s=11"
                                 class="social-icon bg-dark rounded-circle d-flex align-items-center justify-content-center hover-shadow transition-all icon-animate"
@@ -346,7 +382,7 @@
                                     <i class="bi bi-patch-check-fill text-danger fs-4"></i>
                                 </div>
                                 <div>
-                                    <h6 class="fw-bold text-white mb-2">Empresa Certificada</h6>
+                                    <h6 class="fw-bold text-white mb-2">{{ __('general.certified_company') }}</h6>
                                     <p class="small mb-0 text-white">ISO 9001:2015 | ISO 14001</p>
                                 </div>
                             </div>
@@ -363,11 +399,11 @@
             <div class="row align-items-center">
                 <div class="col-md-6 text-center text-md-start">
                     <p class="mb-md-0 text-light">© <span>2025</span> <strong class="text-danger">INDARCA</strong> -
-                        Todos los derechos reservados</p>
+                        {{ __('general.all_rights_reserved') }}</p>
                 </div>
                 <div class="col-md-6 text-center text-md-end">
-                    <p class="mb-0 text-light">Diseñado por <a href="#"
-                            class="text-danger text-decoration-none">Indarca Web Team</a></p>
+                    <p class="mb-0 text-light">{{ __('general.designed_by') }} <a href="#"
+                            class="text-danger text-decoration-none">{{ __('general.web_team') }}</a></p>
                 </div>
             </div>
         </div>

@@ -7,8 +7,8 @@
 <div class="container-fluid py-5 text-white text-center" style="background-image: url('https://images.unsplash.com/photo-1487958449943-2429e8be8625?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'); background-size: cover; background-position: center; position: relative;">
     <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, rgba(108, 37, 190, 0.8) 0%, rgba(150, 68, 232, 0.5) 100%);"></div>
     <div class="container position-relative py-5">
-        <h1 class="display-3 fw-bold mb-4">ARQUITECTURA & INGENIERÍA</h1>
-        <p class="lead fs-4">Transformamos ideas en espacios funcionales y estéticos con innovación y excelencia</p>
+        <h1 class="display-3 fw-bold mb-4">{{ __('arquitectura.banner_title') }}</h1>
+        <p class="lead fs-4">{{ __('arquitectura.banner_subtitle') }}</p>
         <div class="divider-custom my-4">
             <div class="divider-line bg-white"></div>
             <div class="divider-icon"><i class="bi bi-buildings-fill text-white"></i></div>
@@ -29,13 +29,13 @@
                                 <i class="bi bi-building-gear fs-2"></i>
                             </div>
                             <div class="flex-grow-1 ms-3">
-                                <h2 class="fw-bold mb-0">Arquitectura e Ingeniería en INDARCA</h2>
-                                <p class="text-muted mb-0">Excelencia en cada proyecto</p>
+                                <h2 class="fw-bold mb-0">{{ __('arquitectura.intro_title') }}</h2>
+                                <p class="text-muted mb-0">{{ __('arquitectura.intro_subtitle') }}</p>
                             </div>
                         </div>
-                        <p class="fs-5">INDARCA se especializa en una variedad de servicios en los campos de la arquitectura e ingeniería, asegurando soluciones innovadoras y eficientes para cada proyecto. Nuestro enfoque multidisciplinario y nuestro compromiso con la calidad nos permiten desarrollar proyectos que combinan funcionalidad, estética y sostenibilidad.</p>
+                        <p class="fs-5">{{ __('arquitectura.intro_desc') }}</p>
                         <a href="#servicios" class="btn btn-primary btn-lg mt-3 rounded-pill" style="background-color: #6c25be; border-color: #6c25be;">
-                            <i class="bi bi-arrow-right-circle me-2"></i>Conoce nuestros servicios
+                            <i class="bi bi-arrow-right-circle me-2"></i>{{ __('arquitectura.know_services') }}
                         </a>
                     </div>
                 </div>
@@ -54,8 +54,8 @@
     <div class="container">
         <div class="row mb-5">
             <div class="col-12 text-center">
-                <h2 class="display-5 fw-bold mb-3">Servicios Ofrecidos</h2>
-                <p class="lead text-muted col-lg-8 mx-auto">Soluciones integrales para tus proyectos arquitectónicos y de ingeniería</p>
+                <h2 class="display-5 fw-bold mb-3">{{ __('arquitectura.services_title') }}</h2>
+                <p class="lead text-muted col-lg-8 mx-auto">{{ __('arquitectura.services_subtitle') }}</p>
                 <div class="divider-custom my-4">
                     <div class="divider-line bg-primary"></div>
                     <div class="divider-icon"><i class="bi bi-gear-wide-connected text-primary" style="color: #6c25be !important;"></i></div>
@@ -72,8 +72,8 @@
                         <div class="service-icon mx-auto mb-4">
                             <i class="bi bi-building"></i>
                         </div>
-                        <h4 class="card-title fw-bold">Diseño y Construcción</h4>
-                        <p class="card-text">Desarrollo de proyectos residenciales, comerciales e industriales con un enfoque en funcionalidad, estética y sostenibilidad.</p>
+                        <h4 class="card-title fw-bold">{{ __('arquitectura.service_design_title') }}</h4>
+                        <p class="card-text">{{ __('arquitectura.service_design_desc') }}</p>
                     </div>
                 </div>
             </div>
@@ -85,8 +85,8 @@
                         <div class="service-icon mx-auto mb-4">
                             <i class="bi bi-clipboard-check"></i>
                         </div>
-                        <h4 class="card-title fw-bold">Supervisión y Gestión</h4>
-                        <p class="card-text">Aseguramos la correcta ejecución de proyectos conforme a normativas y estándares de calidad en cada etapa del proceso.</p>
+                        <h4 class="card-title fw-bold">{{ __('arquitectura.service_supervision_title') }}</h4>
+                        <p class="card-text">{{ __('arquitectura.service_supervision_desc') }}</p>
                     </div>
                 </div>
             </div>
@@ -98,8 +98,8 @@
                         <div class="service-icon mx-auto mb-4">
                             <i class="bi bi-calculator"></i>
                         </div>
-                        <h4 class="card-title fw-bold">Presupuestos y Planificación</h4>
-                        <p class="card-text">Elaboración de presupuestos detallados y planificación estratégica para optimizar recursos y tiempos de ejecución.</p>
+                        <h4 class="card-title fw-bold">{{ __('arquitectura.service_budget_title') }}</h4>
+                        <p class="card-text">{{ __('arquitectura.service_budget_desc') }}</p>
                     </div>
                 </div>
             </div>
@@ -111,8 +111,8 @@
                         <div class="service-icon mx-auto mb-4">
                             <i class="bi bi-house-heart"></i>
                         </div>
-                        <h4 class="card-title fw-bold">Arquitectura de Interiores</h4>
-                        <p class="card-text">Diseño de espacios interiores y paisajismo, combinando estética y funcionalidad para crear ambientes armoniosos.</p>
+                        <h4 class="card-title fw-bold">{{ __('arquitectura.service_interior_title') }}</h4>
+                        <p class="card-text">{{ __('arquitectura.service_interior_desc') }}</p>
                     </div>
                 </div>
             </div>
@@ -124,8 +124,8 @@
                         <div class="service-icon mx-auto mb-4">
                             <i class="bi bi-box"></i>
                         </div>
-                        <h4 class="card-title fw-bold">Renderizado y Modelado 3D</h4>
-                        <p class="card-text">Visualización avanzada de proyectos arquitectónicos para una mejor comprensión y toma de decisiones.</p>
+                        <h4 class="card-title fw-bold">{{ __('arquitectura.service_3d_title') }}</h4>
+                        <p class="card-text">{{ __('arquitectura.service_3d_desc') }}</p>
                     </div>
                 </div>
             </div>
@@ -137,8 +137,8 @@
                         <div class="service-icon mx-auto mb-4">
                             <i class="bi bi-diagram-3"></i>
                         </div>
-                        <h4 class="card-title fw-bold">Consultoría Técnica</h4>
-                        <p class="card-text">Asesoramiento en normativas de construcción, materiales innovadores y procesos constructivos eficientes.</p>
+                        <h4 class="card-title fw-bold">{{ __('arquitectura.service_consulting_title') }}</h4>
+                        <p class="card-text">{{ __('arquitectura.service_consulting_desc') }}</p>
                     </div>
                 </div>
             </div>
@@ -151,8 +151,8 @@
     <div class="container">
         <div class="row mb-5">
             <div class="col-12 text-center">
-                <h2 class="display-5 fw-bold mb-3">Proyectos Destacados</h2>
-                <p class="lead text-muted col-lg-8 mx-auto">Nuestras obras más emblemáticas que definen nuestra trayectoria y excelencia</p>
+                <h2 class="display-5 fw-bold mb-3">{{ __('arquitectura.projects_title') }}</h2>
+                <p class="lead text-muted col-lg-8 mx-auto">{{ __('arquitectura.projects_subtitle') }}</p>
                 <div class="divider-custom my-4">
                     <div class="divider-line bg-primary"></div>
                     <div class="divider-icon"><i class="bi bi-star-fill text-primary" style="color: #6c25be !important;"></i></div>
@@ -168,8 +168,8 @@
                     <div class="position-relative overflow-hidden">
                         <img src="{{ asset('assets/img/modelado3D/modelado3D_20.jpg') }}" class="card-img" alt="Arquitectura Hospitalaria">
                         <div class="card-img-overlay d-flex flex-column justify-content-end">
-                            <h5 class="card-title text-white fw-bold">Arquitectura Hospitalaria</h5>
-                            <p class="card-text text-white">Diseño y construcción de infraestructuras de salud optimizadas para el bienestar y seguridad de los pacientes.</p>
+                            <h5 class="card-title text-white fw-bold">{{ __('arquitectura.project_hospital_title') }}</h5>
+                            <p class="card-text text-white">{{ __('arquitectura.project_hospital_desc') }}</p>
                         </div>
                     </div>
                 </div>
@@ -181,8 +181,8 @@
                     <div class="position-relative overflow-hidden">
                         <img src="{{ asset('assets/img/modelado3D/modelado3D_24.jpg') }}" class="card-img" alt="Edificaciones Comerciales">
                         <div class="card-img-overlay d-flex flex-column justify-content-end">
-                            <h5 class="card-title text-white fw-bold">Edificaciones Comerciales</h5>
-                            <p class="card-text text-white">Desarrollo de oficinas, tiendas y centros de negocios modernos y funcionales.</p>
+                            <h5 class="card-title text-white fw-bold">{{ __('arquitectura.project_commercial_title') }}</h5>
+                            <p class="card-text text-white">{{ __('arquitectura.project_commercial_desc') }}</p>
                         </div>
                     </div>
                 </div>
@@ -194,8 +194,8 @@
                     <div class="position-relative overflow-hidden">
                         <img src="{{ asset('assets/img/modelado3D/modelado3D_43.jpg') }}" class="card-img" alt="Viviendas">
                         <div class="card-img-overlay d-flex flex-column justify-content-end">
-                            <h5 class="card-title text-white fw-bold">Viviendas Unifamiliares</h5>
-                            <p class="card-text text-white">Creación de espacios habitacionales adaptados a las necesidades de los clientes.</p>
+                            <h5 class="card-title text-white fw-bold">{{ __('arquitectura.project_housing_title') }}</h5>
+                            <p class="card-text text-white">{{ __('arquitectura.project_housing_desc') }}</p>
                         </div>
                     </div>
                 </div>
@@ -207,8 +207,8 @@
                     <div class="position-relative overflow-hidden">
                         <img src="{{ asset('assets/img/modelado3D/modelado3D_10.jpg') }}" class="card-img" alt="Infraestructura Educativa">
                         <div class="card-img-overlay d-flex flex-column justify-content-end">
-                            <h5 class="card-title text-white fw-bold">Infraestructura Educativa</h5>
-                            <p class="card-text text-white">Diseño de centros educativos con soluciones innovadoras para el aprendizaje y la interacción social.</p>
+                            <h5 class="card-title text-white fw-bold">{{ __('arquitectura.project_education_title') }}</h5>
+                            <p class="card-text text-white">{{ __('arquitectura.project_education_desc') }}</p>
                         </div>
                     </div>
                 </div>
@@ -220,8 +220,8 @@
                     <div class="position-relative overflow-hidden">
                         <img src="{{ asset('assets/img/modelado3D/modelado3D_28.jpg') }}" class="card-img" alt="Edificios Multifamiliares">
                         <div class="card-img-overlay d-flex flex-column justify-content-end">
-                            <h5 class="card-title text-white fw-bold">Viviendas Multifamiliares</h5>
-                            <p class="card-text text-white">Complejos residenciales que combinan confort, seguridad y sostenibilidad.</p>
+                            <h5 class="card-title text-white fw-bold">{{ __('arquitectura.project_multifamily_title') }}</h5>
+                            <p class="card-text text-white">{{ __('arquitectura.project_multifamily_desc') }}</p>
                         </div>
                     </div>
                 </div>
@@ -233,8 +233,8 @@
                     <div class="position-relative overflow-hidden">
                         <img src="{{ asset('assets/img/modelado3D/modelado3D_1.jpg') }}" class="card-img" alt="Espacios Recreativos">
                         <div class="card-img-overlay d-flex flex-column justify-content-end">
-                            <h5 class="card-title text-white fw-bold">Espacios Recreativos</h5>
-                            <p class="card-text text-white">Planificación y construcción de áreas de esparcimiento que promueven la integración social.</p>
+                            <h5 class="card-title text-white fw-bold">{{ __('arquitectura.project_recreation_title') }}</h5>
+                            <p class="card-text text-white">{{ __('arquitectura.project_recreation_desc') }}</p>
                         </div>
                     </div>
                 </div>
@@ -253,14 +253,14 @@
                         <div class="icon-3d mx-auto mb-4" style="width: 90px; height: 90px;">
                             <i class="bi bi-trophy fs-1"></i>
                         </div>
-                        <h3 class="fw-bold mb-4">Compromiso con la Calidad y la Innovación</h3>
-                        <p class="fs-5 mb-4">INDARCA se distingue por su enfoque en la excelencia y la innovación, utilizando materiales de alta calidad, técnicas constructivas avanzadas y un equipo multidisciplinario altamente capacitado. Cada proyecto se desarrolla con un profundo respeto por el entorno y un compromiso con la sostenibilidad.</p>
+                        <h3 class="fw-bold mb-4">{{ __('arquitectura.commitment_title') }}</h3>
+                        <p class="fs-5 mb-4">{{ __('arquitectura.commitment_desc') }}</p>
                         <div class="row g-4 mt-3">
                             <div class="col-md-4">
                                 <div class="card border-0 bg-light p-3 h-100">
                                     <div class="text-center">
                                         <i class="bi bi-award text-primary mb-3 fs-1" style="color: #6c25be !important;"></i>
-                                        <h5 class="mb-0">Calidad</h5>
+                                        <h5 class="mb-0">{{ __('arquitectura.quality_label') }}</h5>
                                     </div>
                                 </div>
                             </div>
@@ -268,7 +268,7 @@
                                 <div class="card border-0 bg-light p-3 h-100">
                                     <div class="text-center">
                                         <i class="bi bi-lightbulb text-primary mb-3 fs-1" style="color: #6c25be !important;"></i>
-                                        <h5 class="mb-0">Innovación</h5>
+                                        <h5 class="mb-0">{{ __('arquitectura.innovation_label') }}</h5>
                                     </div>
                                 </div>
                             </div>
@@ -276,7 +276,7 @@
                                 <div class="card border-0 bg-light p-3 h-100">
                                     <div class="text-center">
                                         <i class="bi bi-tree-fill text-primary mb-3 fs-1" style="color: #6c25be !important;"></i>
-                                        <h5 class="mb-0">Sostenibilidad</h5>
+                                        <h5 class="mb-0">{{ __('arquitectura.sustainability_label') }}</h5>
                                     </div>
                                 </div>
                             </div>
@@ -297,10 +297,10 @@
                     <div class="position-absolute" style="opacity: 0.05; right: -100px; top: -100px; width: 500px; height: 500px; border-radius: 50%; background-color: #6c25be;"></div>
                     <div class="position-relative">
                         <i class="bi bi-envelope-paper-fill text-primary display-1 mb-3" style="color: #6c25be !important;"></i>
-                        <h3 class="fw-bold mb-3">Consulta con nuestros expertos</h3>
-                        <p class="mb-4 fs-5">Transforma tus ideas en proyectos arquitectónicos y de ingeniería exitosos con el respaldo de nuestro equipo profesional.</p>
+                        <h3 class="fw-bold mb-3">{{ __('arquitectura.contact_title') }}</h3>
+                        <p class="mb-4 fs-5">{{ __('arquitectura.contact_desc') }}</p>
                         <a href="{{ route('inicio') }}#contact" class="btn btn-lg px-4 py-2 rounded-pill" style="background-color: #6c25be; color: white;">
-                            <i class="bi bi-send me-2"></i>Contáctanos ahora
+                            <i class="bi bi-send me-2"></i>{{ __('arquitectura.contact_button') }}
                         </a>
                     </div>
                 </div>
