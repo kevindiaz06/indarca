@@ -198,8 +198,9 @@ class Densimetro extends Model
                        "Calibración actualizada de " . ($estadoAnterior ? 'Calibrado' : 'No Calibrado') .
                        " a No Calibrado. Fecha expirada: " . $fecha_calibracion->format('Y-m-d'));
 
-            // Limpiar caché relacionada con este densímetro
+            // Limpiar cualquier caché relacionada con este densímetro
             CacheService::forget('densimetro_' . $this->numero_serie);
+            CacheService::forget('densimetro_existe_' . $this->numero_serie);
 
             return false;
         }

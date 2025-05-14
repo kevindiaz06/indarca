@@ -41,12 +41,17 @@
         #sidebar {
             min-width: 250px;
             max-width: 250px;
-            min-height: 100vh;
+            height: 100vh;
             background: var(--primary-color);
             color: #fff;
             transition: all 0.3s;
             box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
             z-index: 999;
+            display: flex;
+            flex-direction: column;
+            position: sticky;
+            top: 0;
+            overflow-y: auto;
         }
 
         #sidebar.active {
@@ -60,6 +65,9 @@
 
         #sidebar ul.components {
             padding: 20px 0;
+            flex-grow: 1;
+            max-height: calc(100vh - 320px);
+            overflow-y: auto;
         }
 
         #sidebar ul p {
@@ -100,6 +108,18 @@
 
         #sidebar ul ul li.active > a {
             background: rgba(0, 0, 0, 0.25);
+        }
+
+        /* Footer sidebar */
+        #sidebar .mt-auto {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            position: sticky;
+            bottom: 0;
+            background-color: var(--primary-color);
+        }
+
+        #sidebar .mt-auto .bg-dark {
+            background-color: rgba(0, 0, 0, 0.2) !important;
         }
 
         /* Navbar */
@@ -241,43 +261,43 @@
                     </ul>
                 </li>
                 @endif
-                <li>
-                    <a href="#">
-                        <i class="bi bi-gear me-2"></i> Configuración
-                    </a>
-                </li>
             </ul>
 
-            <div class="px-4 py-3 mt-auto">
-                <a href="{{ route('inicio') }}" class="btn btn-outline-light w-100 mb-3">
-                    <i class="bi bi-house-door me-2"></i> Volver al Sitio Web
-                </a>
-                <hr class="mb-3 bg-light">
-                <div class="d-flex align-items-center">
-                    <div class="me-3">
-                        <div class="avatar bg-light rounded-circle d-flex align-items-center justify-content-center" style="width: 42px; height: 42px;">
-                            <span class="text-primary fw-bold">{{ substr(Auth::user()->name, 0, 1) }}</span>
+            <!-- Sección inferior siempre visible -->
+            <div class="mt-auto">
+                <div class="px-4 mb-2">
+                    <a href="{{ route('inicio') }}" class="btn btn-outline-light w-100">
+                        <i class="bi bi-house-door me-2"></i> Volver al Sitio Web
+                    </a>
+                </div>
+
+                <div class="px-4 py-3 bg-dark">
+                    <div class="d-flex align-items-center">
+                        <div class="me-2">
+                            <div class="avatar bg-light rounded-circle d-flex align-items-center justify-content-center" style="width: 38px; height: 38px;">
+                                <span class="text-primary fw-bold">{{ substr(Auth::user()->name, 0, 1) }}</span>
+                            </div>
                         </div>
-                    </div>
-                    <div class="flex-grow-1">
-                        <p class="mb-0 fw-medium">{{ Auth::user()->name }}</p>
-                        <small class="text-muted">
-                            @if(Auth::user()->role === 'admin')
-                                Administrador
-                            @elseif(Auth::user()->role === 'trabajador')
-                                Trabajador
-                            @else
-                                Usuario
-                            @endif
-                        </small>
-                    </div>
-                    <div>
-                        <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="text-light">
-                            <i class="bi bi-box-arrow-right"></i>
-                        </a>
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                            @csrf
-                        </form>
+                        <div class="flex-grow-1">
+                            <p class="mb-0 fs-6 fw-medium">{{ Auth::user()->name }}</p>
+                            <small class="text-light opacity-75 small">
+                                @if(Auth::user()->role === 'admin')
+                                    Administrador
+                                @elseif(Auth::user()->role === 'trabajador')
+                                    Trabajador
+                                @else
+                                    Usuario
+                                @endif
+                            </small>
+                        </div>
+                        <div>
+                            <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="text-light">
+                                <i class="bi bi-box-arrow-right"></i>
+                            </a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                @csrf
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -293,19 +313,7 @@
                     </button>
 
                     <div class="d-flex align-items-center ms-auto">
-                        <div class="dropdown me-3">
-                            <a class="nav-link position-relative" href="#" role="button" id="notificationsDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="bi bi-bell fs-5"></i>
-                                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                                    3
-                                </span>
-                            </a>
-                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="notificationsDropdown">
-                                <li><a class="dropdown-item" href="#">Notificación 1</a></li>
-                                <li><a class="dropdown-item" href="#">Notificación 2</a></li>
-                                <li><a class="dropdown-item" href="#">Notificación 3</a></li>
-                            </ul>
-                        </div>
+
 
                         <div class="dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
@@ -316,7 +324,7 @@
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
                                 <li><a class="dropdown-item" href="#"><i class="bi bi-person me-2"></i>Mi Perfil</a></li>
-                                <li><a class="dropdown-item" href="#"><i class="bi bi-gear me-2"></i>Configuración</a></li>
+
                                 <li><hr class="dropdown-divider"></li>
                                 <li>
                                     <a class="dropdown-item" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">

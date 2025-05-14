@@ -5,6 +5,8 @@ namespace App\Repositories;
 use App\Models\Densimetro;
 use Carbon\Carbon;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Database\Eloquent\Collection;
+use App\Services\CacheService;
 
 class DensimetroRepository
 {
@@ -127,5 +129,50 @@ class DensimetroRepository
     public function generarReferencia(): string
     {
         return Densimetro::generarReferencia();
+    }
+
+    /**
+     * Busca los densimetros finalizados o entregados que coincidan con numero_serie, marca y modelo
+     * en orden de más reciente a más antiguo
+     *
+     * @param string $numeroSerie Número de serie del densímetro
+     * @param string $marca Marca del densímetro
+     * @param string $modelo Modelo del densímetro
+     * @return Collection
+     */
+    public function findByNumeroSerieMarcaModelo(string $numeroSerie, string $marca, string $modelo)
+    {
+        // Limpiamos la caché para asegurar datos actualizados
+        CacheService::forget('densimetro_' . $numeroSerie);
+
+        return Densimetro::where('numero_serie', $numeroSerie)
+                     ->where('marca', $marca)
+                     ->where('modelo', $modelo)
+                     ->whereIn('estado', ['finalizado', 'entregado'])
+                     ->orderBy('fecha_finalizacion', 'desc')
+                     ->orderBy('updated_at', 'desc')
+                     ->get();
+    }
+
+    /**
+     * Busca el densimetro más reciente finalizado o entregado que coincida con numero_serie, marca y modelo
+     *
+     * @param string $numeroSerie Número de serie del densímetro
+     * @param string $marca Marca del densímetro
+     * @param string $modelo Modelo del densímetro
+     * @return Densimetro|null
+     */
+    public function findMostRecentByNumeroSerieMarcaModelo(string $numeroSerie, string $marca, string $modelo)
+    {
+        // Limpiamos la caché para asegurar datos actualizados
+        CacheService::forget('densimetro_' . $numeroSerie);
+
+        return Densimetro::where('numero_serie', $numeroSerie)
+                     ->where('marca', $marca)
+                     ->where('modelo', $modelo)
+                     ->whereIn('estado', ['finalizado', 'entregado'])
+                     ->orderBy('fecha_finalizacion', 'desc')
+                     ->orderBy('updated_at', 'desc')
+                     ->first();
     }
 }

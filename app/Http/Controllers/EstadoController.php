@@ -6,6 +6,7 @@ use App\Models\Densimetro;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf as PDF;
 use Carbon\Carbon;
+use App\Repositories\DensimetroRepository;
 
 class EstadoController extends Controller
 {
@@ -97,19 +98,17 @@ class EstadoController extends Controller
         $marca = trim($request->marca);
         $modelo = trim($request->modelo);
 
-        // Buscar el densímetro más reciente que coincida con los criterios y esté finalizado o entregado
-        // Ordenamos por fecha_finalizacion DESC para obtener el registro más reciente
-        $densimetro = Densimetro::where('numero_serie', $numeroSerie)
-                              ->where('marca', $marca)
-                              ->where('modelo', $modelo)
-                              ->whereIn('estado', ['finalizado', 'entregado'])
-                              ->orderBy('fecha_finalizacion', 'desc')
-                              ->first();
+        // Usar el repositorio para buscar el densímetro más reciente
+        $densimetroRepository = new DensimetroRepository();
+        $densimetro = $densimetroRepository->findMostRecentByNumeroSerieMarcaModelo($numeroSerie, $marca, $modelo);
 
         // Si no se encuentra coincidencia exacta, redirigir con error
         if (!$densimetro) {
             return redirect()->route('estado')->with('error', 'No se encontró ningún densímetro con el número de serie, marca y modelo especificados. Verifique que los datos ingresados sean correctos.');
         }
+
+        // Limpiar caché relacionada con este densímetro para asegurar datos actualizados
+        \App\Services\CacheService::forget('densimetro_' . $numeroSerie);
 
         // Verificar estado de calibración actual - primero actualizar en la BD si es necesario
         $densimetro->verificarYActualizarCalibrado();
@@ -138,7 +137,7 @@ class EstadoController extends Controller
                         $densimetro->save();
 
                         \Log::info("Actualizado automáticamente estado de calibración para densímetro #{$densimetro->id}, " .
-                                  "serie: {$densimetro->numero_serie} - Cambio a No calibrado por fecha vencida");
+                                  "serie: {$densimetro->numero_serie} - Cambio a No calibrado por fecha vencida (Calibracion)");
                     }
                 }
             }

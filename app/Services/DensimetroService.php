@@ -143,6 +143,7 @@ class DensimetroService
     {
         $densimetro = $this->repository->findById($id);
         $estadoAnterior = $densimetro->estado;
+        $numeroSerieAnterior = $densimetro->numero_serie;
 
         // Verificar si el densímetro está en estado "entregado" y bloquear modificaciones
         if ($densimetro->estado === 'entregado') {
@@ -239,6 +240,14 @@ class DensimetroService
 
         // Actualizar el densímetro
         $densimetro = $this->repository->update($densimetro, $data);
+
+        // Limpiar explícitamente la caché para este densímetro y cualquier búsqueda relacionada
+        \App\Services\CacheService::forget('densimetro_' . $numeroSerieAnterior);
+        \App\Services\CacheService::forget('densimetro_' . $densimetro->numero_serie);
+        \App\Services\CacheService::forget('densimetro_existe_' . $numeroSerieAnterior);
+        \App\Services\CacheService::forget('densimetro_existe_' . $densimetro->numero_serie);
+        \App\Services\CacheService::forget('densimetro_disponible_' . $numeroSerieAnterior);
+        \App\Services\CacheService::forget('densimetro_disponible_' . $densimetro->numero_serie);
 
         // Notificar cambio de estado si es necesario
         if ($estadoAnterior != $data['estado']) {

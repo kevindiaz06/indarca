@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Densimetro;
 use Illuminate\Support\Facades\Mail;
+use App\Mail\PasswordChangedMail;
 
 class UserController extends Controller
 {
@@ -194,11 +195,31 @@ class UserController extends Controller
             $user->is_admin = $request->role === 'admin' ? true : false;
         }
 
+        // Variable para controlar si se cambió la contraseña
+        $passwordChanged = false;
+        $newPassword = null;
+
         if ($request->filled('password')) {
+            $passwordChanged = true;
+            $newPassword = $request->password;
             $user->password = Hash::make($request->password);
         }
 
         $user->save();
+
+        // Enviar correo si se cambió la contraseña de un cliente
+        if ($passwordChanged && $user->role === 'cliente' && $newPassword) {
+            try {
+                Mail::to($user->email)->send(new PasswordChangedMail(
+                    $user->name,
+                    $user->email,
+                    $newPassword
+                ));
+            } catch (\Exception $e) {
+                // Registrar el error pero continuar con la actualización
+                \Log::error('Error al enviar correo de cambio de contraseña: ' . $e->getMessage());
+            }
+        }
 
         // Verificar si la solicitud viene del panel de administración
         if (request()->is('admin*')) {
