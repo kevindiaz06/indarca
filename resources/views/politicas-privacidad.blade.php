@@ -7,11 +7,11 @@
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-8 text-center">
-                    <h1 class="text-white mb-3 fw-bold">Políticas de Privacidad</h1>
+                    <h1 class="text-white mb-3 fw-bold">{{ __('politicas.title') }}</h1>
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb justify-content-center">
-                            <li class="breadcrumb-item"><a href="{{ route('inicio') }}" class="text-white-50">Inicio</a></li>
-                            <li class="breadcrumb-item active text-white" aria-current="page">Políticas de Privacidad</li>
+                            <li class="breadcrumb-item"><a href="{{ route('inicio') }}" class="text-white-50">{{ __('politicas.home') }}</a></li>
+                            <li class="breadcrumb-item active text-white" aria-current="page">{{ __('politicas.privacy_policies') }}</li>
                 </ol>
                     </nav>
                 </div>
@@ -29,10 +29,10 @@
                         <div class="card-body p-4 p-lg-5">
                             <div class="text-center mb-5">
                                 <i class="fa fa-shield-alt text-primary" style="font-size: 3rem;"></i>
-                                <h2 class="mt-3 mb-2 fw-bold">Protegemos tu Privacidad</h2>
-                                <p class="text-muted mb-0">Última actualización: {{ date('d/m/Y') }}</p>
+                                <h2 class="mt-3 mb-2 fw-bold">{{ __('politicas.protect_privacy') }}</h2>
+                                <p class="text-muted mb-0">{{ __('politicas.last_update') }}: {{ date('d/m/Y') }}</p>
                                 <hr class="my-4 w-25 mx-auto">
-                                <p class="lead">En INDARCA nos comprometemos a proteger tus datos personales con los más altos estándares de seguridad y transparencia.</p>
+                                <p class="lead">{{ __('politicas.intro_text') }}</p>
                             </div>
                         </div>
                             </div>
@@ -40,44 +40,44 @@
                     <!-- Navegación Rápida -->
                     <div class="card border-0 shadow-sm rounded-lg mb-5">
                         <div class="card-body p-4">
-                            <h4 class="fw-bold mb-3"><i class="fa fa-list me-2 text-primary"></i>Navegación Rápida</h4>
+                            <h4 class="fw-bold mb-3"><i class="fa fa-list me-2 text-primary"></i>{{ __('politicas.quick_nav') }}</h4>
                             <div class="row">
                                 <div class="col-md-6">
                                     <ul class="nav flex-column policy-nav">
                                         <li class="nav-item">
                                             <a class="nav-link d-flex align-items-center" href="#introduccion">
                                                 <i class="fa fa-info-circle me-2 text-primary"></i>
-                                                <span>Introducción</span>
+                                                <span>{{ __('politicas.introduction') }}</span>
                                             </a>
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link d-flex align-items-center" href="#responsable">
                                                 <i class="fa fa-user-tie me-2 text-primary"></i>
-                                                <span>Responsable del Tratamiento</span>
+                                                <span>{{ __('politicas.data_controller') }}</span>
                                             </a>
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link d-flex align-items-center" href="#datos">
                                                 <i class="fa fa-database me-2 text-primary"></i>
-                                                <span>Datos que Recopilamos</span>
+                                                <span>{{ __('politicas.collected_data') }}</span>
                                             </a>
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link d-flex align-items-center" href="#como-recopilamos">
                                                 <i class="fa fa-clipboard-list me-2 text-primary"></i>
-                                                <span>Cómo Recopilamos sus Datos</span>
+                                                <span>{{ __('politicas.how_collect') }}</span>
                                             </a>
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link d-flex align-items-center" href="#finalidad">
                                                 <i class="fa fa-bullseye me-2 text-primary"></i>
-                                                <span>Finalidad y Base Legal</span>
+                                                <span>{{ __('politicas.purpose_legal') }}</span>
                                             </a>
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link d-flex align-items-center" href="#destinatarios">
                                                 <i class="fa fa-share-alt me-2 text-primary"></i>
-                                                <span>Destinatarios de los Datos</span>
+                                                <span>{{ __('politicas.data_recipients') }}</span>
                                             </a>
                                         </li>
                                 </ul>
@@ -87,37 +87,37 @@
                                         <li class="nav-item">
                                             <a class="nav-link d-flex align-items-center" href="#transferencias">
                                                 <i class="fa fa-globe me-2 text-primary"></i>
-                                                <span>Transferencias Internacionales</span>
+                                                <span>{{ __('politicas.international_transfers') }}</span>
                                             </a>
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link d-flex align-items-center" href="#conservacion">
                                                 <i class="fa fa-clock me-2 text-primary"></i>
-                                                <span>Conservación de Datos</span>
+                                                <span>{{ __('politicas.data_retention') }}</span>
                                             </a>
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link d-flex align-items-center" href="#derechos">
                                                 <i class="fa fa-check-circle me-2 text-primary"></i>
-                                                <span>Sus Derechos</span>
+                                                <span>{{ __('politicas.your_rights') }}</span>
                                             </a>
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link d-flex align-items-center" href="#cookies">
                                                 <i class="fa fa-cookie me-2 text-primary"></i>
-                                                <span>Cookies</span>
+                                                <span>{{ __('politicas.cookies') }}</span>
                                             </a>
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link d-flex align-items-center" href="#cambios">
                                                 <i class="fa fa-sync-alt me-2 text-primary"></i>
-                                                <span>Cambios en esta Política</span>
+                                                <span>{{ __('politicas.policy_changes') }}</span>
                                             </a>
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link d-flex align-items-center" href="#contacto">
                                                 <i class="fa fa-envelope me-2 text-primary"></i>
-                                                <span>Contacto</span>
+                                                <span>{{ __('politicas.contact') }}</span>
                                             </a>
                                         </li>
                                 </ul>
@@ -132,15 +132,15 @@
                         <div class="accordion-item border-0" id="introduccion">
                             <h2 class="accordion-header" id="headingOne">
                                 <button class="accordion-button fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                    <i class="fa fa-info-circle me-2 text-primary"></i> 1. Introducción
+                                    <i class="fa fa-info-circle me-2 text-primary"></i> {{ __('politicas.section_1_title') }}
                                 </button>
                             </h2>
                             <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#politicasAccordion">
                                 <div class="accordion-body bg-light">
                                     <div class="card border-0 shadow-sm mb-0">
                                         <div class="card-body p-4">
-                                            <p>En INDARCA valoramos su privacidad y nos comprometemos a proteger sus datos personales. Esta política de privacidad le informará sobre cómo cuidamos sus datos personales cuando visita nuestro sitio web y le informará sobre sus derechos de privacidad y cómo la ley lo protege.</p>
-                                            <p class="mb-0">Le invitamos a leer detenidamente esta política de privacidad junto con nuestros términos y condiciones para entender completamente cómo recopilamos, utilizamos y protegemos su información personal.</p>
+                                            <p>{{ __('politicas.section_1_text_1') }}</p>
+                                            <p class="mb-0">{{ __('politicas.section_1_text_2') }}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -151,23 +151,23 @@
                         <div class="accordion-item border-0" id="responsable">
                             <h2 class="accordion-header" id="headingTwo">
                                 <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                    <i class="fa fa-user-tie me-2 text-primary"></i> 2. Responsable del Tratamiento
+                                    <i class="fa fa-user-tie me-2 text-primary"></i> {{ __('politicas.section_2_title') }}
                                 </button>
                             </h2>
                             <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#politicasAccordion">
                                 <div class="accordion-body bg-light">
                                     <div class="card border-0 shadow-sm mb-0">
                                         <div class="card-body p-4">
-                                            <p>INDARCA es el responsable del tratamiento de los datos personales que nos proporcione a través de este sitio web.</p>
+                                            <p>{{ __('politicas.section_2_text') }}</p>
                                             <div class="bg-white p-4 rounded-3 mt-3">
-                                                <h5 class="fw-bold">Datos de contacto:</h5>
+                                                <h5 class="fw-bold">{{ __('politicas.contact_details') }}</h5>
                                                 <div class="row mt-3">
                                                     <div class="col-md-4 mb-3 mb-md-0">
                                                         <div class="d-flex align-items-center">
                                                             <i class="fa fa-map-marker-alt text-primary me-3" style="font-size: 1.5rem;"></i>
                                                             <div>
-                                                                <h6 class="mb-1 fw-bold">Dirección</h6>
-                                                                <p class="mb-0">C. C 16, Santo Domingo Este 11506, República Dominicana</p>
+                                                                <h6 class="mb-1 fw-bold">{{ __('politicas.address') }}</h6>
+                                                                <p class="mb-0">{{ __('politicas.address_value') }}</p>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -175,8 +175,8 @@
                                                         <div class="d-flex align-items-center">
                                                             <i class="fa fa-phone text-primary me-3" style="font-size: 1.5rem;"></i>
                                                             <div>
-                                                                <h6 class="mb-1 fw-bold">Teléfono</h6>
-                                                                <p class="mb-0">+1809 596 0333</p>
+                                                                <h6 class="mb-1 fw-bold">{{ __('politicas.phone') }}</h6>
+                                                                <p class="mb-0">{{ __('politicas.phone_value') }}</p>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -184,8 +184,8 @@
                                                         <div class="d-flex align-items-center">
                                                             <i class="fa fa-envelope text-primary me-3" style="font-size: 1.5rem;"></i>
                                                             <div>
-                                                                <h6 class="mb-1 fw-bold">Email</h6>
-                                                                <p class="mb-0">contacto@indarca.com</p>
+                                                                <h6 class="mb-1 fw-bold">{{ __('politicas.email') }}</h6>
+                                                                <p class="mb-0">{{ __('politicas.email_value') }}</p>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -201,14 +201,14 @@
                         <div class="accordion-item border-0" id="datos">
                             <h2 class="accordion-header" id="headingThree">
                                 <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                    <i class="fa fa-database me-2 text-primary"></i> 3. Datos que Recopilamos
+                                    <i class="fa fa-database me-2 text-primary"></i> {{ __('politicas.section_3_title') }}
                                 </button>
                             </h2>
                             <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#politicasAccordion">
                                 <div class="accordion-body bg-light">
                                     <div class="card border-0 shadow-sm mb-0">
                                         <div class="card-body p-4">
-                                            <p>Podemos recopilar, utilizar, almacenar y transferir diferentes tipos de datos personales sobre usted, que hemos agrupado de la siguiente manera:</p>
+                                            <p>{{ __('politicas.section_3_text') }}</p>
                                             <div class="row g-4 mt-2">
                                                 <div class="col-md-6">
                                                     <div class="card h-100 border-0 shadow-sm">
@@ -217,9 +217,9 @@
                                                                 <div class="icon-box bg-primary bg-opacity-10 rounded-circle p-2 me-3">
                                                                     <i class="fa fa-user text-primary"></i>
                                                                 </div>
-                                                                <h5 class="mb-0 fw-bold">Datos de identidad</h5>
+                                                                <h5 class="mb-0 fw-bold">{{ __('politicas.identity_data') }}</h5>
                                                             </div>
-                                                            <p class="card-text mb-0">Nombre, apellidos, nombre de usuario o identificador similar.</p>
+                                                            <p class="card-text mb-0">{{ __('politicas.identity_data_desc') }}</p>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -230,9 +230,9 @@
                                                                 <div class="icon-box bg-primary bg-opacity-10 rounded-circle p-2 me-3">
                                                                     <i class="fa fa-envelope text-primary"></i>
                                                                 </div>
-                                                                <h5 class="mb-0 fw-bold">Datos de contacto</h5>
+                                                                <h5 class="mb-0 fw-bold">{{ __('politicas.contact_data') }}</h5>
                                                             </div>
-                                                            <p class="card-text mb-0">Dirección de correo electrónico, número de teléfono y dirección postal.</p>
+                                                            <p class="card-text mb-0">{{ __('politicas.contact_data_desc') }}</p>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -243,9 +243,9 @@
                                                                 <div class="icon-box bg-primary bg-opacity-10 rounded-circle p-2 me-3">
                                                                     <i class="fa fa-laptop text-primary"></i>
                                                                 </div>
-                                                                <h5 class="mb-0 fw-bold">Datos técnicos</h5>
+                                                                <h5 class="mb-0 fw-bold">{{ __('politicas.technical_data') }}</h5>
                                                             </div>
-                                                            <p class="card-text mb-0">Dirección IP, datos de inicio de sesión, tipo de navegador, información sobre su dispositivo.</p>
+                                                            <p class="card-text mb-0">{{ __('politicas.technical_data_desc') }}</p>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -256,9 +256,9 @@
                                                                 <div class="icon-box bg-primary bg-opacity-10 rounded-circle p-2 me-3">
                                                                     <i class="fa fa-chart-bar text-primary"></i>
                                                                 </div>
-                                                                <h5 class="mb-0 fw-bold">Datos de uso</h5>
+                                                                <h5 class="mb-0 fw-bold">{{ __('politicas.usage_data') }}</h5>
                                                             </div>
-                                                            <p class="card-text mb-0">Información sobre cómo utiliza nuestro sitio web y servicios.</p>
+                                                            <p class="card-text mb-0">{{ __('politicas.usage_data_desc') }}</p>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -269,9 +269,9 @@
                                                                 <div class="icon-box bg-primary bg-opacity-10 rounded-circle p-2 me-3">
                                                                     <i class="fa fa-user-circle text-primary"></i>
                                                                 </div>
-                                                                <h5 class="mb-0 fw-bold">Datos de perfil</h5>
+                                                                <h5 class="mb-0 fw-bold">{{ __('politicas.profile_data') }}</h5>
                                                             </div>
-                                                            <p class="card-text mb-0">Su nombre de usuario y contraseña, sus interacciones con nuestro sitio.</p>
+                                                            <p class="card-text mb-0">{{ __('politicas.profile_data_desc') }}</p>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -286,14 +286,14 @@
                         <div class="accordion-item border-0" id="como-recopilamos">
                             <h2 class="accordion-header" id="headingFour">
                                 <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                                    <i class="fa fa-clipboard-list me-2 text-primary"></i> 4. Cómo Recopilamos sus Datos
+                                    <i class="fa fa-clipboard-list me-2 text-primary"></i> {{ __('politicas.section_4_title') }}
                                 </button>
                             </h2>
                             <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#politicasAccordion">
                                 <div class="accordion-body bg-light">
                                     <div class="card border-0 shadow-sm mb-0">
                                         <div class="card-body p-4">
-                                            <p>Utilizamos diferentes métodos para recopilar datos de y sobre usted, incluidos:</p>
+                                            <p>{{ __('politicas.section_4_text') }}</p>
                                             <div class="row g-4 mt-2">
                                                 <div class="col-md-4">
                                                     <div class="card h-100 border-0 shadow-sm text-center">
@@ -301,8 +301,8 @@
                                                             <div class="icon-circle bg-primary bg-opacity-10 rounded-circle d-inline-flex p-3 mb-3">
                                                                 <i class="fa fa-comments text-primary fs-4"></i>
                                                             </div>
-                                                            <h5 class="card-title fw-bold">Interacciones directas</h5>
-                                                            <p class="card-text">Datos que proporciona al completar formularios en nuestro sitio web, crear una cuenta o solicitar información.</p>
+                                                            <h5 class="card-title fw-bold">{{ __('politicas.direct_interactions') }}</h5>
+                                                            <p class="card-text">{{ __('politicas.direct_interactions_desc') }}</p>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -312,8 +312,8 @@
                                                             <div class="icon-circle bg-primary bg-opacity-10 rounded-circle d-inline-flex p-3 mb-3">
                                                                 <i class="fa fa-cogs text-primary fs-4"></i>
                                                             </div>
-                                                            <h5 class="card-title fw-bold">Tecnologías automatizadas</h5>
-                                                            <p class="card-text">Datos técnicos recopilados automáticamente cuando interactúa con nuestro sitio web mediante cookies.</p>
+                                                            <h5 class="card-title fw-bold">{{ __('politicas.automated_tech') }}</h5>
+                                                            <p class="card-text">{{ __('politicas.automated_tech_desc') }}</p>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -323,8 +323,8 @@
                                                             <div class="icon-circle bg-primary bg-opacity-10 rounded-circle d-inline-flex p-3 mb-3">
                                                                 <i class="fa fa-users text-primary fs-4"></i>
                                                             </div>
-                                                            <h5 class="card-title fw-bold">Terceros</h5>
-                                                            <p class="card-text">Datos personales recibidos de diversos terceros como proveedores de análisis o redes publicitarias.</p>
+                                                            <h5 class="card-title fw-bold">{{ __('politicas.third_parties') }}</h5>
+                                                            <p class="card-text">{{ __('politicas.third_parties_desc') }}</p>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -339,14 +339,14 @@
                         <div class="accordion-item border-0" id="finalidad">
                             <h2 class="accordion-header" id="headingFive">
                                 <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-                                    <i class="fa fa-bullseye me-2 text-primary"></i> 5. Finalidad y Base Legal
+                                    <i class="fa fa-bullseye me-2 text-primary"></i> {{ __('politicas.section_5_title') }}
                                 </button>
                             </h2>
                             <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#politicasAccordion">
                                 <div class="accordion-body bg-light">
                                     <div class="card border-0 shadow-sm mb-0">
                                         <div class="card-body p-4">
-                                            <p>Solo utilizaremos sus datos personales cuando la ley nos lo permita. Las bases legales en las que nos apoyamos para procesar su información personal incluyen:</p>
+                                            <p>{{ __('politicas.section_5_text') }}</p>
                                             <div class="row g-4 mt-2">
                                                 <div class="col-md-6">
                                                     <div class="card h-100 border-0 shadow-sm">
@@ -355,9 +355,9 @@
                                                                 <div class="icon-box bg-primary bg-opacity-10 rounded-circle p-2 me-3">
                                                                     <i class="fa fa-check-square text-primary"></i>
                                                                 </div>
-                                                                <h5 class="mb-0 fw-bold">Consentimiento</h5>
+                                                                <h5 class="mb-0 fw-bold">{{ __('politicas.consent') }}</h5>
                                                             </div>
-                                                            <p class="card-text mb-0">Cuando ha dado su consentimiento para el procesamiento de sus datos personales.</p>
+                                                            <p class="card-text mb-0">{{ __('politicas.consent_desc') }}</p>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -368,9 +368,9 @@
                                                                 <div class="icon-box bg-primary bg-opacity-10 rounded-circle p-2 me-3">
                                                                     <i class="fa fa-file-contract text-primary"></i>
                                                                 </div>
-                                                                <h5 class="mb-0 fw-bold">Ejecución de un contrato</h5>
+                                                                <h5 class="mb-0 fw-bold">{{ __('politicas.contract') }}</h5>
                                                             </div>
-                                                            <p class="card-text mb-0">Cuando el procesamiento es necesario para cumplir con un contrato que tenemos con usted.</p>
+                                                            <p class="card-text mb-0">{{ __('politicas.contract_desc') }}</p>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -381,9 +381,9 @@
                                                                 <div class="icon-box bg-primary bg-opacity-10 rounded-circle p-2 me-3">
                                                                     <i class="fa fa-balance-scale text-primary"></i>
                                                                 </div>
-                                                                <h5 class="mb-0 fw-bold">Obligación legal</h5>
+                                                                <h5 class="mb-0 fw-bold">{{ __('politicas.legal_obligation') }}</h5>
                                                             </div>
-                                                            <p class="card-text mb-0">Cuando el procesamiento es necesario para cumplir con una obligación legal.</p>
+                                                            <p class="card-text mb-0">{{ __('politicas.legal_obligation_desc') }}</p>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -394,9 +394,9 @@
                                                                 <div class="icon-box bg-primary bg-opacity-10 rounded-circle p-2 me-3">
                                                                     <i class="fa fa-lightbulb text-primary"></i>
                                                                 </div>
-                                                                <h5 class="mb-0 fw-bold">Interés legítimo</h5>
+                                                                <h5 class="mb-0 fw-bold">{{ __('politicas.legitimate_interest') }}</h5>
                                                             </div>
-                                                            <p class="card-text mb-0">Cuando el procesamiento es necesario para nuestros intereses legítimos y sus derechos fundamentales no prevalecen.</p>
+                                                            <p class="card-text mb-0">{{ __('politicas.legitimate_interest_desc') }}</p>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -416,11 +416,11 @@
                         <div class="card-body p-4 p-lg-5">
                             <div class="row align-items-center">
                                 <div class="col-lg-8">
-                                    <h3 class="fw-bold mb-3">¿Tienes preguntas sobre tu privacidad?</h3>
-                                    <p class="mb-0">Estamos aquí para ayudarte. Contáctanos si necesitas más información sobre cómo protegemos tus datos personales.</p>
+                                    <h3 class="fw-bold mb-3">{{ __('politicas.questions_privacy') }}</h3>
+                                    <p class="mb-0">{{ __('politicas.help_text') }}</p>
                                 </div>
                                 <div class="col-lg-4 text-lg-end mt-4 mt-lg-0">
-                                    <a href="mailto:contacto@indarca.com" class="btn btn-primary btn-lg rounded-pill"><i class="fa fa-envelope me-2"></i>Contáctanos</a>
+                                    <a href="mailto:contacto@indarca.com" class="btn btn-primary btn-lg rounded-pill"><i class="fa fa-envelope me-2"></i>{{ __('politicas.contact_us') }}</a>
                                 </div>
                             </div>
                         </div>

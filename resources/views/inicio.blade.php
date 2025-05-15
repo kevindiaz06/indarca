@@ -827,17 +827,15 @@
         <section id="contact" class="contact section py-5">
             <!-- Section Title -->
             <div class="container section-title" data-aos="fade-up">
-                <h2>Contacto</h2>
-                <p><span>Comuníquese con</span> <span class="description-title">Nuestro Equipo</span></p>
+                <h2>{{ __('inicio.contact_title') }}</h2>
+                <p>{!! __('inicio.contact_subtitle') !!}</p>
             </div>
 
             <div class="container" data-aos="fade-up" data-aos-delay="100">
                 <!-- Presentación corporativa -->
                 <div class="row mb-5">
                     <div class="col-lg-8 mx-auto text-center">
-                        <p class="lead text-muted mb-0">Valoramos su interés en INDARCA. Nuestro equipo de especialistas
-                            está preparado para atender sus consultas y brindarle soluciones personalizadas para sus
-                            proyectos.</p>
+                        <p class="lead text-muted mb-0">{{ __('inicio.contact_intro') }}</p>
                     </div>
                 </div>
 
@@ -855,8 +853,7 @@
                                         <img src="{{ asset('assets/img/OTROS/logo_indarca.png') }}" alt="INDARCA"
                                             class="img-fluid" style="max-height: 60px;">
                                     </div>
-                                    <h3 class="fw-light mb-2 text-white">Centro de <span class="fw-bold">Atención</span>
-                                    </h3>
+                                    <h3 class="fw-light mb-2 text-white">{!! __('inicio.service_center') !!}</h3>
                                     <div class="mx-auto"
                                         style="width: 50px; height: 3px; background-color: rgba(255, 255, 255, 0.5); margin-top: 10px;">
                                     </div>
@@ -870,9 +867,8 @@
                                             <i class="bi bi-geo-alt text-white"></i>
                                         </div>
                                         <div>
-                                            <h6 class="text-white-50 mb-1 small">Dirección Principal</h6>
-                                            <p class="mb-0">C. C 16, Santo Domingo Este 11506 <br> República Dominicana
-                                            </p>
+                                            <h6 class="text-white-50 mb-1 small">{{ __('inicio.main_address') }}</h6>
+                                            <p class="mb-0">{!! __('inicio.address_value') !!}</p>
                                         </div>
                                     </div>
 
@@ -882,7 +878,7 @@
                                             <i class="bi bi-telephone text-white"></i>
                                         </div>
                                         <div>
-                                            <h6 class="text-white-50 mb-1 small">Teléfono</h6>
+                                            <h6 class="text-white-50 mb-1 small">{{ __('inicio.phone') }}</h6>
                                             <p class="mb-0">+1809 596 0333</p>
 
                                         </div>
@@ -894,7 +890,7 @@
                                             <i class="bi bi-envelope text-white"></i>
                                         </div>
                                         <div>
-                                            <h6 class="text-white-50 mb-1 small">Correo Electrónico</h6>
+                                            <h6 class="text-white-50 mb-1 small">{{ __('inicio.email') }}</h6>
                                             <p class="mb-0">contacto@indarca.com</p>
                                         </div>
                                     </div>
@@ -905,15 +901,15 @@
                                             <i class="bi bi-clock text-white"></i>
                                         </div>
                                         <div>
-                                            <h6 class="text-white-50 mb-1 small">Horario de Atención</h6>
-                                            <p class="mb-0">Lunes - Viernes: 9:00 AM - 5:00 PM</p>
+                                            <h6 class="text-white-50 mb-1 small">{{ __('inicio.business_hours') }}</h6>
+                                            <p class="mb-0">{{ __('inicio.business_hours_value') }}</p>
                                         </div>
                                     </div>
                                 </div>
 
                                 <!-- Redes sociales -->
                                 <div class="mt-5 pt-2">
-                                    <h6 class="text-white-50 mb-3 small">Conéctese con nosotros</h6>
+                                    <h6 class="text-white-50 mb-3 small">{{ __('inicio.connect_with_us') }}</h6>
                                     <div class="d-flex gap-2">
                                         <a href="https://www.facebook.com/share/1EJq41gUNs/?mibextid=wwXIfr"
                                             class="rounded-circle d-flex align-items-center justify-content-center"
@@ -945,9 +941,8 @@
                             <div class="p-4 p-lg-5">
                                 <!-- Título del formulario -->
                                 <div class="mb-5">
-                                    <h4 class="fw-bold text-dark mb-2">Envíe su mensaje</h4>
-                                    <p class="text-muted mb-0">Complete el formulario y nos pondremos en contacto a la
-                                        brevedad</p>
+                                    <h4 class="fw-bold text-dark mb-2">{{ __('inicio.send_message') }}</h4>
+                                    <p class="text-muted mb-0">{{ __('inicio.form_intro') }}</p>
                                 </div>
 
                                 @if (session('success'))
@@ -956,7 +951,7 @@
                                         document.addEventListener('DOMContentLoaded', function() {
                                             Swal.fire({
                                                 icon: 'success',
-                                                title: '¡Mensaje enviado correctamente!',
+                                                title: '{{ __('inicio.message_sent') }}',
                                                 text: '{{ session('success') }}',
                                                 showConfirmButton: false,
                                                 timer: 10000,
@@ -975,10 +970,10 @@
                                         document.addEventListener('DOMContentLoaded', function() {
                                             Swal.fire({
                                                 icon: 'error',
-                                                title: 'Ha ocurrido un error',
+                                                title: '{{ __('inicio.error_occurred') }}',
                                                 text: '{{ session('error') }}',
                                                 showConfirmButton: true,
-                                                confirmButtonText: 'Aceptar'
+                                                confirmButtonText: '{{ __('inicio.accept') }}'
                                             });
                                         });
                                     </script>
@@ -991,15 +986,14 @@
                                     <!-- Nombre -->
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="name-field" class="form-label text-muted fw-medium mb-2">Nombre
-                                                completo</label>
+                                            <label for="name-field" class="form-label text-muted fw-medium mb-2">{{ __('inicio.full_name') }}</label>
                                             <div class="input-group shadow-sm rounded-3 overflow-hidden">
                                                 <span class="input-group-text bg-white border-end-0 text-muted">
                                                     <i class="bi bi-person"></i>
                                                 </span>
                                                 <input type="text" name="name" id="name-field"
                                                     class="form-control border-start-0 @error('name') is-invalid @enderror"
-                                                    placeholder="Ingrese su nombre"
+                                                    placeholder="{{ __('inicio.enter_name') }}"
                                                     value="{{ auth()->check() ? auth()->user()->name : old('name') }}"
                                                     {{ auth()->check() ? 'readonly' : '' }} required>
                                             </div>
@@ -1012,15 +1006,14 @@
                                     <!-- Correo electrónico -->
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="email-field" class="form-label text-muted fw-medium mb-2">Correo
-                                                electrónico</label>
+                                            <label for="email-field" class="form-label text-muted fw-medium mb-2">{{ __('inicio.email') }}</label>
                                             <div class="input-group shadow-sm rounded-3 overflow-hidden">
                                                 <span class="input-group-text bg-white border-end-0 text-muted">
                                                     <i class="bi bi-envelope"></i>
                                                 </span>
                                                 <input type="email" name="email" id="email-field"
                                                     class="form-control border-start-0 @error('email') is-invalid @enderror"
-                                                    placeholder="Ingrese su correo"
+                                                    placeholder="{{ __('inicio.enter_email') }}"
                                                     value="{{ auth()->check() ? auth()->user()->email : old('email') }}"
                                                     {{ auth()->check() ? 'readonly' : '' }} required>
                                             </div>
@@ -1034,7 +1027,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label for="subject-field"
-                                                class="form-label text-muted fw-medium mb-2">Departamento</label>
+                                                class="form-label text-muted fw-medium mb-2">{{ __('inicio.department') }}</label>
                                             <div class="input-group shadow-sm rounded-3 overflow-hidden">
                                                 <span class="input-group-text bg-white border-end-0 text-muted">
                                                     <i class="bi bi-building"></i>
@@ -1042,23 +1035,19 @@
                                                 <select name="subject" id="subject-field"
                                                     class="form-select border-start-0 @error('subject') is-invalid @enderror"
                                                     required>
-                                                    <option value="" disabled selected>Seleccione el departamento
-                                                        correspondiente</option>
+                                                    <option value="" disabled selected>{{ __('inicio.select_department') }}</option>
                                                     <option value="Ventas"
-                                                        {{ old('subject') == 'Ventas' ? 'selected' : '' }}>Departamento de
-                                                        Ventas</option>
+                                                        {{ old('subject') == 'Ventas' ? 'selected' : '' }}>{{ __('inicio.sales_department') }}</option>
                                                     <option value="Taller"
-                                                        {{ old('subject') == 'Taller' ? 'selected' : '' }}>Taller y
-                                                        Mantenimiento</option>
+                                                        {{ old('subject') == 'Taller' ? 'selected' : '' }}>{{ __('inicio.workshop') }}</option>
                                                     <option value="Secretaría"
-                                                        {{ old('subject') == 'Secretaría' ? 'selected' : '' }}>Secretaría
-                                                        General</option>
+                                                        {{ old('subject') == 'Secretaría' ? 'selected' : '' }}>{{ __('inicio.general_secretary') }}</option>
                                                     <option value="Oficinas Centrales"
                                                         {{ old('subject') == 'Oficinas Centrales' ? 'selected' : '' }}>
-                                                        Oficinas Centrales</option>
+                                                        {{ __('inicio.central_offices') }}</option>
                                                     <option value="Arquitectura"
                                                         {{ old('subject') == 'Arquitectura' ? 'selected' : '' }}>
-                                                        Departamento de Arquitectura</option>
+                                                        {{ __('inicio.architecture_department') }}</option>
                                                 </select>
                                             </div>
                                             @error('subject')
@@ -1070,11 +1059,10 @@
                                     <!-- Mensaje -->
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label for="message-field" class="form-label text-muted fw-medium mb-2">Su
-                                                mensaje</label>
+                                            <label for="message-field" class="form-label text-muted fw-medium mb-2">{{ __('inicio.your_message') }}</label>
                                             <textarea name="message" id="message-field" rows="5"
                                                 class="form-control shadow-sm rounded-3 @error('message') is-invalid @enderror"
-                                                placeholder="Describa detalladamente el motivo de su consulta" required>{{ old('message') }}</textarea>
+                                                placeholder="{{ __('inicio.message_placeholder') }}" required>{{ old('message') }}</textarea>
                                             @error('message')
                                                 <div class="invalid-feedback d-block mt-1">{{ $message }}</div>
                                             @enderror
@@ -1085,12 +1073,11 @@
                                     <div class="col-md-12 mt-3">
                                         <div class="d-md-flex justify-content-between align-items-center">
                                             <div class="form-text small text-muted mb-3 mb-md-0">
-                                                <i class="bi bi-shield-lock me-1"></i> Su información está protegida por
-                                                nuestra política de privacidad
+                                                <i class="bi bi-shield-lock me-1"></i> {{ __('inicio.privacy_note') }}
                                             </div>
                                             <button type="submit" class="btn btn-danger px-4 py-2 shadow"
                                                 id="submitBtn">
-                                                <i class="bi bi-send me-2"></i>Enviar mensaje
+                                                <i class="bi bi-send me-2"></i>{{ __('inicio.send_message_button') }}
                                             </button>
                                         </div>
                                     </div>
@@ -1105,7 +1092,7 @@
                     <div class="col-12">
                         <div class="card rounded-4 shadow-sm overflow-hidden border-0">
                             <div class="card-header bg-light p-3 border-0 d-flex justify-content-between align-items-center">
-                                <h5 class="card-title mb-0"><i class="bi bi-geo-alt me-2 text-danger"></i>Nuestra ubicación</h5>
+                                <h5 class="card-title mb-0"><i class="bi bi-geo-alt me-2 text-danger"></i>{{ __('inicio.our_location') }}</h5>
 
                             </div>
                             <div class="card-body p-0">
@@ -1154,7 +1141,7 @@
                                 const hasErrors = document.querySelector('.is-invalid');
                                 if (hasErrors) {
                                     submitBtn.disabled = false;
-                                    submitBtn.innerHTML = '<i class="bi bi-send me-2"></i>Enviar mensaje';
+                                    submitBtn.innerHTML = '<i class="bi bi-send me-2"></i>' + '{{ __('inicio.send_message_button') }}';
                                 }
                             }, 2000);
                         });

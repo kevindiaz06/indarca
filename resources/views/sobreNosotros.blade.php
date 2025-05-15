@@ -193,9 +193,8 @@
             <!-- Título de la sección -->
             <div class="row mb-5">
                 <div class="col-12 text-center">
-                    <h2 class="display-5 fw-bold mb-3">Reconocimientos y Certificaciones</h2>
-                    <p class="lead text-muted col-lg-8 mx-auto">Nuestro compromiso con la excelencia avalado por entidades
-                        de prestigio</p>
+                    <h2 class="display-5 fw-bold mb-3">{{ __('sobre_nosotros.recognition_title') }}</h2>
+                    <p class="lead text-muted col-lg-8 mx-auto">{{ __('sobre_nosotros.recognition_subtitle') }}</p>
                     <div class="divider-custom my-4">
                         <div class="divider-line bg-danger"></div>
                         <div class="divider-icon"><i class="bi bi-award-fill text-danger"></i></div>
@@ -214,21 +213,18 @@
                                     <i class="bi bi-patch-check-fill fs-2"></i>
                                 </div>
                                 <div class="flex-grow-1 ms-3">
-                                    <h3 class="h3 mb-0 fw-bold">Garantía de Calidad</h3>
-                                    <p class="text-muted mb-0">Estándares que nos respaldan</p>
+                                    <h3 class="h3 mb-0 fw-bold">{{ __('sobre_nosotros.quality_guarantee') }}</h3>
+                                    <p class="text-muted mb-0">{{ __('sobre_nosotros.quality_guarantee_subtitle') }}</p>
                                 </div>
                             </div>
-                            <p class="card-text">INDARCA ha sido reconocida por su compromiso con la calidad y la seguridad
-                                en el sector de la ingeniería y arquitectura. Contamos con certificaciones que garantizan el
-                                cumplimiento de los estándares internacionales en la calibración, mantenimiento y uso de
-                                densímetros nucleares.</p>
+                            <p class="card-text">{{ __('sobre_nosotros.quality_guarantee_desc') }}</p>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-6 order-lg-1">
                     <div class="position-relative p-3">
                         <img src="{{ asset('assets\img\DENSIMETROS\ENTRENAMIENTOS\DENSIMETROS_ENTRENAMIENTOS_30.jpeg') }}"
-                            class="img-fluid rounded-3 img-shadow" alt="Certificaciones de Calidad">
+                            class="img-fluid rounded-3 img-shadow" alt="{{ __('sobre_nosotros.quality_guarantee') }}">
                     </div>
                 </div>
             </div>
@@ -237,7 +233,7 @@
             <div class="row mb-5">
                 <div class="col-12">
                     <h3 class="text-center fw-bold mb-4 section-title"><span
-                            class="border-bottom border-danger pb-2">Certificaciones Clave</span></h3>
+                            class="border-bottom border-danger pb-2">{{ __('sobre_nosotros.key_certifications') }}</span></h3>
                 </div>
 
                 <div class="col-lg-4 mb-4">
@@ -250,13 +246,12 @@
                             </div>
                         </div>
                         <div class="card-body p-4 pt-5 mt-3 text-center">
-                            <h4 class="card-title fw-bold">Certificación en Seguridad Radiológica</h4>
-                            <p class="card-text">Avalada por organismos especializados en la regulación del uso de equipos
-                                nucleares.</p>
+                            <h4 class="card-title fw-bold">{{ __('sobre_nosotros.radiological_safety') }}</h4>
+                            <p class="card-text">{{ __('sobre_nosotros.radiological_safety_desc') }}</p>
                         </div>
                         <div class="card-footer bg-transparent border-0 text-center pb-4">
                             <span class="badge bg-danger px-3 py-2"><i
-                                    class="bi bi-check-circle me-2"></i>Verificado</span>
+                                    class="bi bi-check-circle me-2"></i>{{ __('sobre_nosotros.verified') }}</span>
                         </div>
                     </div>
                 </div>
@@ -271,13 +266,12 @@
                             </div>
                         </div>
                         <div class="card-body p-4 pt-5 mt-3 text-center">
-                            <h4 class="card-title fw-bold">Certificación en Calibración</h4>
-                            <p class="card-text">Emitida bajo normativas ASTM y AASHTO, asegurando la precisión de los
-                                equipos de densímetros nucleares.</p>
+                            <h4 class="card-title fw-bold">{{ __('sobre_nosotros.calibration_cert') }}</h4>
+                            <p class="card-text">{{ __('sobre_nosotros.calibration_cert_desc') }}</p>
                         </div>
                         <div class="card-footer bg-transparent border-0 text-center pb-4">
                             <span class="badge bg-danger px-3 py-2"><i
-                                    class="bi bi-check-circle me-2"></i>Verificado</span>
+                                    class="bi bi-check-circle me-2"></i>{{ __('sobre_nosotros.verified') }}</span>
                         </div>
                     </div>
                 </div>
@@ -292,13 +286,12 @@
                             </div>
                         </div>
                         <div class="card-body p-4 pt-5 mt-3 text-center">
-                            <h4 class="card-title fw-bold">Registro en Organismos Oficiales</h4>
-                            <p class="card-text">Cumplimiento de todas las regulaciones nacionales e internacionales para
-                                la operación y ejecución de proyectos.</p>
+                            <h4 class="card-title fw-bold">{{ __('sobre_nosotros.official_registry') }}</h4>
+                            <p class="card-text">{{ __('sobre_nosotros.official_registry_desc') }}</p>
                         </div>
                         <div class="card-footer bg-transparent border-0 text-center pb-4">
                             <span class="badge bg-danger px-3 py-2"><i
-                                    class="bi bi-check-circle me-2"></i>Verificado</span>
+                                    class="bi bi-check-circle me-2"></i>{{ __('sobre_nosotros.verified') }}</span>
                         </div>
                     </div>
                 </div>
@@ -307,34 +300,32 @@
             <!-- Cursos y Capacitaciones -->
             <div class="row mb-5">
                 <div class="col-12 text-center mb-5">
-                    <h3 class="fw-bold mb-3 section-title"><span class="border-bottom border-danger pb-2">Cursos y
-                            Capacitaciones</span></h3>
-                    <p class="text-muted">INDARCA ofrece formación especializada para profesionales del sector,
-                        garantizando el conocimiento y manejo adecuado de densímetros nucleares.</p>
+                    <h3 class="fw-bold mb-3 section-title"><span class="border-bottom border-danger pb-2">{{ __('sobre_nosotros.courses_title') }}</span></h3>
+                    <p class="text-muted">{{ __('sobre_nosotros.courses_desc') }}</p>
                 </div>
 
                 <!-- Programas de capacitación -->
                 <div class="col-md-4 mb-4 mb-md-0">
                     <div class="curso-card card border-0 shadow-sm h-100 position-relative">
                         <img src="{{ asset('assets\img\DENSIMETROS\ENTRENAMIENTOS\DENSIMETROS_ENTRENAMIENTOS_45.jpeg') }}"
-                            class="card-img-top" alt="Curso de Manejo y Seguridad">
+                            class="card-img-top" alt="{{ __('sobre_nosotros.densimeter_handling') }}">
                         <div class="card-body p-4">
                             <div class="curso-badge position-absolute top-0 end-0 mt-3 me-3">
-                                <span class="badge bg-danger">Certificado</span>
+                                <span class="badge bg-danger">{{ __('sobre_nosotros.verified') }}</span>
                             </div>
-                            <h4 class="card-title fw-bold mb-3">Manejo y Seguridad de Densímetros Nucleares</h4>
+                            <h4 class="card-title fw-bold mb-3">{{ __('sobre_nosotros.densimeter_handling') }}</h4>
                             <ul class="list-unstyled mb-0">
                                 <li class="mb-2 d-flex align-items-center">
                                     <i class="bi bi-check-circle-fill text-danger me-2"></i>
-                                    <span>Uso correcto del equipo</span>
+                                    <span>{{ __('sobre_nosotros.equipment_use') }}</span>
                                 </li>
                                 <li class="mb-2 d-flex align-items-center">
                                     <i class="bi bi-check-circle-fill text-danger me-2"></i>
-                                    <span>Protocolos de seguridad radiológica</span>
+                                    <span>{{ __('sobre_nosotros.safety_protocols') }}</span>
                                 </li>
                                 <li class="d-flex align-items-center">
                                     <i class="bi bi-check-circle-fill text-danger me-2"></i>
-                                    <span>Mantenimiento y calibración</span>
+                                    <span>{{ __('sobre_nosotros.maintenance_calibration') }}</span>
                                 </li>
                             </ul>
                         </div>
@@ -344,24 +335,24 @@
                 <div class="col-md-4 mb-4 mb-md-0">
                     <div class="curso-card card border-0 shadow-sm h-100 position-relative">
                         <img src="{{ asset('assets\img\DENSIMETROS\ENTRENAMIENTOS\DENSIMETROS_ENTRENAMIENTOS_9.jpeg') }}"
-                            class="card-img-top" alt="Certificación en Técnicas de Medición">
+                            class="card-img-top" alt="{{ __('sobre_nosotros.measurement_techniques') }}">
                         <div class="card-body p-4">
                             <div class="curso-badge position-absolute top-0 end-0 mt-3 me-3">
-                                <span class="badge bg-danger">Certificado</span>
+                                <span class="badge bg-danger">{{ __('sobre_nosotros.verified') }}</span>
                             </div>
-                            <h4 class="card-title fw-bold mb-3">Técnicas de Medición con Densímetros</h4>
+                            <h4 class="card-title fw-bold mb-3">{{ __('sobre_nosotros.measurement_techniques') }}</h4>
                             <ul class="list-unstyled mb-0">
                                 <li class="mb-2 d-flex align-items-center">
                                     <i class="bi bi-check-circle-fill text-danger me-2"></i>
-                                    <span>Aplicación en suelos y asfaltos</span>
+                                    <span>{{ __('sobre_nosotros.soil_asphalt') }}</span>
                                 </li>
                                 <li class="mb-2 d-flex align-items-center">
                                     <i class="bi bi-check-circle-fill text-danger me-2"></i>
-                                    <span>Interpretación de resultados</span>
+                                    <span>{{ __('sobre_nosotros.results_interpretation') }}</span>
                                 </li>
                                 <li class="d-flex align-items-center">
                                     <i class="bi bi-check-circle-fill text-danger me-2"></i>
-                                    <span>Buenas prácticas en medición</span>
+                                    <span>{{ __('sobre_nosotros.best_practices') }}</span>
                                 </li>
                             </ul>
                         </div>
@@ -371,24 +362,24 @@
                 <div class="col-md-4">
                     <div class="curso-card card border-0 shadow-sm h-100 position-relative">
                         <img src="https://images.unsplash.com/photo-1556155092-490a1ba16284?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
-                            class="card-img-top" alt="Capacitación en Normativas">
+                            class="card-img-top" alt="{{ __('sobre_nosotros.regulations_title') }}">
                         <div class="card-body p-4">
                             <div class="curso-badge position-absolute top-0 end-0 mt-3 me-3">
-                                <span class="badge bg-danger">Certificado</span>
+                                <span class="badge bg-danger">{{ __('sobre_nosotros.verified') }}</span>
                             </div>
-                            <h4 class="card-title fw-bold mb-3">Normativas y Regulaciones</h4>
+                            <h4 class="card-title fw-bold mb-3">{{ __('sobre_nosotros.regulations_title') }}</h4>
                             <ul class="list-unstyled mb-0">
                                 <li class="mb-2 d-flex align-items-center">
                                     <i class="bi bi-check-circle-fill text-danger me-2"></i>
-                                    <span>Legislación sobre equipos nucleares</span>
+                                    <span>{{ __('sobre_nosotros.nuclear_legislation') }}</span>
                                 </li>
                                 <li class="mb-2 d-flex align-items-center">
                                     <i class="bi bi-check-circle-fill text-danger me-2"></i>
-                                    <span>Normativas ASTM y AASHTO</span>
+                                    <span>{{ __('sobre_nosotros.astm_standards') }}</span>
                                 </li>
                                 <li class="d-flex align-items-center">
                                     <i class="bi bi-check-circle-fill text-danger me-2"></i>
-                                    <span>Cumplimiento de estándares</span>
+                                    <span>{{ __('sobre_nosotros.compliance') }}</span>
                                 </li>
                             </ul>
                         </div>
@@ -406,11 +397,10 @@
                         </div>
                         <div class="position-relative">
                             <i class="bi bi-envelope-paper-fill text-danger display-1 mb-3"></i>
-                            <h3 class="fw-bold mb-3">¿Interesado en nuestros programas de capacitación?</h3>
-                            <p class="mb-4">Para más información sobre inscripciones y fechas, contáctanos a través de
-                                nuestros canales oficiales.</p>
+                            <h3 class="fw-bold mb-3">{{ __('sobre_nosotros.training_interest') }}</h3>
+                            <p class="mb-4">{{ __('sobre_nosotros.training_info') }}</p>
                             <a href="{{ route('inicio') }}#contact" class="btn btn-danger btn-lg px-4 py-2 rounded-pill">
-                                <i class="bi bi-send me-2"></i>Contáctanos
+                                <i class="bi bi-send me-2"></i>{{ __('sobre_nosotros.contact_us') }}
                             </a>
                         </div>
                     </div>
@@ -428,8 +418,8 @@
             <!-- Título de la sección -->
             <div class="row mb-5">
                 <div class="col-12 text-center">
-                    <h2 class="display-5 fw-bold mb-3">Nuestro Equipo</h2>
-                    <p class="lead text-muted col-lg-8 mx-auto">El talento detrás de cada proyecto exitoso</p>
+                    <h2 class="display-5 fw-bold mb-3">{{ __('sobre_nosotros.team_title') }}</h2>
+                    <p class="lead text-muted col-lg-8 mx-auto">{{ __('sobre_nosotros.team_subtitle') }}</p>
                     <div class="divider-custom my-4">
                         <div class="divider-line bg-danger"></div>
                         <div class="divider-icon">★</div>
@@ -544,12 +534,12 @@
                         <button class="carousel-control-prev" type="button" data-bs-target="#teamCarousel"
                             data-bs-slide="prev">
                             <span class="carousel-control-prev-icon bg-danger rounded p-3" aria-hidden="true"></span>
-                            <span class="visually-hidden">Anterior</span>
+                            <span class="visually-hidden">{{ __('general.previous') }}</span>
                         </button>
                         <button class="carousel-control-next" type="button" data-bs-target="#teamCarousel"
                             data-bs-slide="next">
                             <span class="carousel-control-next-icon bg-danger rounded p-3" aria-hidden="true"></span>
-                            <span class="visually-hidden">Siguiente</span>
+                            <span class="visually-hidden">{{ __('general.next') }}</span>
                         </button>
 
                         <!-- Indicadores del carrusel -->
@@ -569,9 +559,8 @@
                     <div class="col-12 text-center py-5">
                         <div class="empty-team-container">
                             <i class="bi bi-people display-1 text-muted mb-3"></i>
-                            <h4 class="text-muted">Próximamente conocerás a nuestro equipo</h4>
-                            <p class="text-muted mb-4">Estamos trabajando en presentar a los talentosos profesionales
-                                detrás de INDARCA</p>
+                            <h4 class="text-muted">{{ __('sobre_nosotros.coming_soon') }}</h4>
+                            <p class="text-muted mb-4">{{ __('sobre_nosotros.coming_soon_desc') }}</p>
                         </div>
                     </div>
                 </div>
@@ -582,7 +571,7 @@
                 <div class="col-12 text-center">
                     <a href="{{ route('inicio') }}#contact"
                         class="btn btn-outline-danger btn-lg px-5 py-3 rounded-pill fw-bold">
-                        <i class="bi bi-person-plus-fill me-2"></i>Únete a Nuestro Equipo
+                        <i class="bi bi-person-plus-fill me-2"></i>{{ __('sobre_nosotros.join_team') }}
                     </a>
                 </div>
             </div>
