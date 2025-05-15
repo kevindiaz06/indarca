@@ -25,10 +25,19 @@ return [
     'login_here' => 'Inicia sesión aquí',
 
     // Reset Password
-    'reset_password' => 'Restablecer contraseña',
-    'send_reset_link' => 'Enviar enlace para restablecer',
+    'reset_password' => 'Restablecer Contraseña',
+    'recover_password' => 'Recuperar Contraseña',
+    'new_password' => 'Nueva Contraseña',
+    'send_reset_link' => 'Enviar Enlace de Recuperación',
     'reset_sent' => 'Te hemos enviado por correo el enlace para restablecer tu contraseña.',
     'reset_intro' => 'Ingresa tu correo electrónico y te enviaremos un enlace para restablecer tu contraseña.',
+    'back_to_login' => 'Volver a iniciar sesión',
+    'note' => 'Nota:',
+    'check_spam' => 'Si no encuentras el correo, revisa también tu carpeta de spam o correos no deseados.',
+    'enter_email' => 'Introduce tu correo',
+    'email_placeholder' => 'Introduce tu correo',
+    'password_placeholder' => 'Introduce tu nueva contraseña',
+    'confirm_password_placeholder' => 'Confirma tu nueva contraseña',
 
     // Email Verification
     'verify_email' => 'Verificar dirección de correo',
@@ -41,4 +50,11 @@ return [
     'failed' => 'Estas credenciales no coinciden con nuestros registros.',
     'password_mismatch' => 'La contraseña proporcionada es incorrecta.',
     'throttle' => 'Demasiados intentos de acceso. Por favor intente nuevamente en :seconds segundos.',
+
+    // Password Reset Messages
+    'password_reset_success' => '¡Tu contraseña ha sido restablecida!',
+    'password_reset_sent' => '¡Hemos enviado por correo electrónico el enlace para restablecer tu contraseña!',
+    'password_reset_throttled' => 'Por favor espere antes de volver a intentarlo.',
+    'password_reset_token_invalid' => 'Este token de restablecimiento de contraseña es inválido.',
+    'password_reset_user_not_found' => 'No podemos encontrar un usuario con esa dirección de correo electrónico.',
 ];

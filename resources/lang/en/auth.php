@@ -25,10 +25,19 @@ return [
     'login_here' => 'Login here',
 
     // Reset Password
-    'reset_password' => 'Reset password',
-    'send_reset_link' => 'Send reset link',
+    'reset_password' => 'Reset Password',
+    'recover_password' => 'Recover Password',
+    'new_password' => 'New Password',
+    'send_reset_link' => 'Send Reset Link',
     'reset_sent' => 'We have emailed you the password reset link.',
     'reset_intro' => 'Enter your email and we will send you a link to reset your password.',
+    'back_to_login' => 'Back to login',
+    'note' => 'Note:',
+    'check_spam' => 'If you don\'t find the email, please check your spam or junk folder.',
+    'enter_email' => 'Enter your email',
+    'email_placeholder' => 'Enter your email',
+    'password_placeholder' => 'Enter your new password',
+    'confirm_password_placeholder' => 'Confirm your new password',
 
     // Email Verification
     'verify_email' => 'Verify email address',
@@ -41,4 +50,11 @@ return [
     'failed' => 'These credentials do not match our records.',
     'password_mismatch' => 'The provided password is incorrect.',
     'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
+
+    // Password Reset Messages
+    'password_reset_success' => 'Your password has been reset!',
+    'password_reset_sent' => 'We have emailed the password reset link!',
+    'password_reset_throttled' => 'Please wait before retrying.',
+    'password_reset_token_invalid' => 'This password reset token is invalid.',
+    'password_reset_user_not_found' => 'We can\'t find a user with that email address.',
 ];

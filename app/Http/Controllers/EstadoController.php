@@ -42,7 +42,7 @@ class EstadoController extends Controller
         if (!$densimetro) {
             // Usar session flash en lugar de withErrors para el mensaje general
             return redirect()->route('estado')
-                             ->with('error', 'No se encontró ningún densímetro con esa referencia.')
+                             ->with('error', __('estado.reference_not_found'))
                              ->withInput();
         }
 
@@ -104,7 +104,7 @@ class EstadoController extends Controller
 
         // Si no se encuentra coincidencia exacta, redirigir con error
         if (!$densimetro) {
-            return redirect()->route('estado')->with('error', 'No se encontró ningún densímetro con el número de serie, marca y modelo especificados. Verifique que los datos ingresados sean correctos.');
+            return redirect()->route('estado')->with('error', __('estado.densimeter_not_found'));
         }
 
         // Limpiar caché relacionada con este densímetro para asegurar datos actualizados
@@ -136,17 +136,22 @@ class EstadoController extends Controller
                         $densimetro->calibrado = false;
                         $densimetro->save();
 
-                        \Log::info("Actualizado automáticamente estado de calibración para densímetro #{$densimetro->id}, " .
-                                  "serie: {$densimetro->numero_serie} - Cambio a No calibrado por fecha vencida (Calibracion)");
+                        \Log::info(__('estado.calibration_auto_update_log', [
+                            'id' => $densimetro->id,
+                            'serial' => $densimetro->numero_serie
+                        ]));
                     }
                 }
             }
         }
 
         // Registrar en log la información de calibración para auditoría
-        \Log::info("Consultando calibración para densímetro #{$densimetro->id}, serie: {$densimetro->numero_serie}, " .
-                 "Calibrado: " . ($calibradoActual ? 'Sí' : 'No') . ", " .
-                 "Próxima fecha: " . ($fechaProxima ? $fechaProxima->format('Y-m-d') : 'No establecida'));
+        \Log::info(__('estado.calibration_query_log', [
+            'id' => $densimetro->id,
+            'serial' => $densimetro->numero_serie,
+            'calibrated' => $calibradoActual ? __('estado.yes') : __('estado.no'),
+            'next_date' => $fechaProxima ? $fechaProxima->format('Y-m-d') : __('estado.not_set')
+        ]));
 
         // Preparar los datos para la vista
         $calibracion = [
@@ -171,10 +176,10 @@ class EstadoController extends Controller
     private function formatearEstado($estado)
     {
         $formatos = [
-            'recibido' => 'Recibido',
-            'en_reparacion' => 'En reparación',
-            'finalizado' => 'Reparación finalizada',
-            'entregado' => 'Entregado al cliente'
+            'recibido' => __('estado.status_received'),
+            'en_reparacion' => __('estado.status_in_repair'),
+            'finalizado' => __('estado.status_completed'),
+            'entregado' => __('estado.status_delivered')
         ];
 
         return $formatos[$estado] ?? $estado;
@@ -203,7 +208,7 @@ class EstadoController extends Controller
             'modelo' => $densimetro->modelo,
             'fecha_entrada' => $densimetro->fecha_entrada->format('d/m/Y'),
             'estado' => $this->formatearEstado($densimetro->estado),
-            'cliente' => $densimetro->cliente ? $densimetro->cliente->name : 'Cliente no disponible',
+            'cliente' => $densimetro->cliente ? $densimetro->cliente->name : __('estado.client_not_available'),
         ];
 
         // Verificar calibración si está en estado finalizado o entregado
@@ -227,7 +232,7 @@ class EstadoController extends Controller
 
         $data = [
             'estado' => $estado,
-            'title' => 'Estado de Densímetro',
+            'title' => __('estado.densimeter_status'),
             'date' => Carbon::now()->format('d/m/Y H:i:s')
         ];
 
@@ -280,8 +285,10 @@ class EstadoController extends Controller
                         $densimetro->calibrado = false;
                         $densimetro->save();
 
-                        \Log::info("Actualizado automáticamente estado de calibración para densímetro #{$densimetro->id}, " .
-                                  "serie: {$densimetro->numero_serie} - Cambio a No calibrado por fecha vencida (PDF)");
+                        \Log::info(__('estado.calibration_auto_update_log', [
+                            'id' => $densimetro->id,
+                            'serial' => $densimetro->numero_serie
+                        ]));
                     }
                 }
             }
@@ -302,7 +309,7 @@ class EstadoController extends Controller
 
         $data = [
             'calibracion' => $calibracion,
-            'title' => 'Estado de Calibración',
+            'title' => __('estado.calibration_status'),
             'date' => Carbon::now()->format('d/m/Y H:i:s')
         ];
 

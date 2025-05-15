@@ -15,7 +15,7 @@
                     <i class="bi bi-exclamation-triangle-fill me-2"></i>
                     {{ $errors->first() }}
                 </div>
-                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="{{ __('estado.close') }}"></button>
             </div>
         </div>
         @endif
@@ -27,7 +27,7 @@
                     <i class="bi bi-exclamation-triangle-fill me-2"></i>
                     {{ session('error') }}
                 </div>
-                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="{{ __('estado.close') }}"></button>
             </div>
         </div>
         @endif
@@ -35,17 +35,17 @@
             <!-- Primera tarjeta: Consulta por referencia -->
             <div class="card border-0 shadow-sm rounded-3 mb-4">
                 <div class="card-header bg-primary py-3">
-                    <h4 class="mb-0 text-white"><i class="bi bi-clipboard-data me-2"></i>Consulta de Estado de Densímetros</h4>
+                    <h4 class="mb-0 text-white"><i class="bi bi-clipboard-data me-2"></i>{{ __('estado.device_status_title') }}</h4>
                 </div>
                 <div class="card-body p-4">
-                    <p class="text-muted mb-4">Introduzca la referencia de reparación que recibió por correo electrónico para consultar el estado actual de su densímetro.</p>
+                    <p class="text-muted mb-4">{{ __('estado.reference_description') }}</p>
 
                     <form action="{{ route('estado.consultar') }}" method="POST">
                         @csrf
                         <div class="input-group mb-3">
                             <span class="input-group-text bg-light"><i class="bi bi-search"></i></span>
-                            <input type="text" class="form-control @error('referencia') is-invalid @enderror" name="referencia" placeholder="Ej. REF-ABCD1234" value="{{ old('referencia') }}" required>
-                            <button type="submit" class="btn btn-primary">Consultar</button>
+                            <input type="text" class="form-control @error('referencia') is-invalid @enderror" name="referencia" placeholder="{{ __('estado.reference_placeholder') }}" value="{{ old('referencia') }}" required>
+                            <button type="submit" class="btn btn-primary">{{ __('estado.submit_query') }}</button>
 
                             @error('referencia')
                                 <div class="invalid-feedback">{{ $message }}</div>
@@ -58,18 +58,18 @@
             <!-- Segunda tarjeta: Consulta por Estado de Calibración -->
             <div class="card border-0 shadow-sm rounded-3 mb-4">
                 <div class="card-header bg-danger py-3">
-                    <h4 class="mb-0 text-white"><i class="bi bi-calendar-check me-2"></i>Consulta por Estado de Calibración</h4>
+                    <h4 class="mb-0 text-white"><i class="bi bi-calendar-check me-2"></i>{{ __('estado.calibration_status_title') }}</h4>
                 </div>
                 <div class="card-body p-4">
-                    <p class="text-muted mb-4">Introduzca el número de serie, marca y modelo <strong>exactos</strong> del densímetro para verificar su estado de calibración. Todos los datos deben coincidir con los registrados en nuestro sistema.</p>
+                    <p class="text-muted mb-4">{!! __('estado.calibration_description') !!}</p>
 
                     <form action="{{ route('calibracion.consultar') }}" method="POST">
                         @csrf
                         <div class="mb-3">
-                            <label for="numero_serie" class="form-label">Número de Serie</label>
+                            <label for="numero_serie" class="form-label">{{ __('estado.serial_number') }}</label>
                             <div class="input-group">
                                 <span class="input-group-text bg-light"><i class="bi bi-upc-scan"></i></span>
-                                <input type="text" class="form-control @error('numero_serie') is-invalid @enderror" id="numero_serie" name="numero_serie" placeholder="Número de serie del densímetro" value="{{ old('numero_serie') }}" required>
+                                <input type="text" class="form-control @error('numero_serie') is-invalid @enderror" id="numero_serie" name="numero_serie" placeholder="{{ __('estado.serial_number_placeholder') }}" value="{{ old('numero_serie') }}" required>
                                 @error('numero_serie')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
@@ -77,20 +77,20 @@
                         </div>
                         <div class="row">
                             <div class="col-md-6 mb-3">
-                                <label for="marca" class="form-label">Marca</label>
+                                <label for="marca" class="form-label">{{ __('estado.brand') }}</label>
                                 <div class="input-group">
                                     <span class="input-group-text bg-light"><i class="bi bi-tag"></i></span>
-                                    <input type="text" class="form-control @error('marca') is-invalid @enderror" id="marca" name="marca" placeholder="Marca del densímetro" value="{{ old('marca') }}" required>
+                                    <input type="text" class="form-control @error('marca') is-invalid @enderror" id="marca" name="marca" placeholder="{{ __('estado.brand_placeholder') }}" value="{{ old('marca') }}" required>
                                     @error('marca')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>
                             </div>
                             <div class="col-md-6 mb-3">
-                                <label for="modelo" class="form-label">Modelo</label>
+                                <label for="modelo" class="form-label">{{ __('estado.model') }}</label>
                                 <div class="input-group">
                                     <span class="input-group-text bg-light"><i class="bi bi-cpu"></i></span>
-                                    <input type="text" class="form-control @error('modelo') is-invalid @enderror" id="modelo" name="modelo" placeholder="Modelo del densímetro" value="{{ old('modelo') }}" required>
+                                    <input type="text" class="form-control @error('modelo') is-invalid @enderror" id="modelo" name="modelo" placeholder="{{ __('estado.model_placeholder') }}" value="{{ old('modelo') }}" required>
                                     @error('modelo')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
@@ -98,14 +98,14 @@
                             </div>
                         </div>
                         <div class="d-grid mt-3">
-                            <button type="submit" class="btn btn-danger text-white">Verificar Estado de Calibración</button>
+                            <button type="submit" class="btn btn-danger text-white">{{ __('estado.verify_calibration') }}</button>
                         </div>
                     </form>
                 </div>
             </div>
 
             <div class="mt-4 text-center">
-                <p class="text-muted">¿Tiene alguna pregunta? <a href="{{ route('inicio') }}#contact">Contáctenos</a></p>
+                <p class="text-muted">{{ __('estado.questions') }} <a href="{{ route('inicio') }}#contact">{{ __('estado.contact_us') }}</a></p>
             </div>
         </div>
     </div>
