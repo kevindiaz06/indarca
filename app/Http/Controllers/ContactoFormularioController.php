@@ -63,7 +63,7 @@ class ContactoFormularioController extends Controller
                 if ($isAjax) {
                     return response('Error al enviar el mensaje: ' . $e->getMessage(), 400);
                 } else {
-                    return redirect()->back()->with('error', 'Error al enviar el mensaje: ' . $e->getMessage());
+                    return redirect()->back()->with('error', __('inicio.error_occurred'));
                 }
             }
 
@@ -71,13 +71,13 @@ class ContactoFormularioController extends Controller
             if ($isAjax) {
                 return response('OK', 200);
             } else {
-                return redirect()->back()->with('success', 'Mensaje enviado correctamente. Gracias por contactarnos.');
+                return redirect()->back()->with('success', __('inicio.message_sent'));
             }
         } catch (\Exception $e) {
             if ($isAjax) {
                 return response('Error al enviar el mensaje: ' . $e->getMessage(), 400);
             } else {
-                return redirect()->back()->with('error', 'Hubo un error al enviar el mensaje. Por favor, inténtelo más tarde.');
+                return redirect()->back()->with('error', __('inicio.error_occurred'));
             }
         }
     }

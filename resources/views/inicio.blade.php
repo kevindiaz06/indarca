@@ -8,7 +8,12 @@
         </div>
     @endif
 
-
+    @if (session('success'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>{{ __('general.success') }}:</strong> {{ session('success') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
 
     <body class="main">
 
@@ -953,7 +958,8 @@
                                                 icon: 'success',
                                                 title: '{{ __('inicio.message_sent') }}',
                                                 text: '{{ session('success') }}',
-                                                showConfirmButton: false,
+                                                showConfirmButton: true,
+                                                confirmButtonText: '{{ __('inicio.accept') }}',
                                                 timer: 10000,
                                                 timerProgressBar: true,
                                                 position: 'top-end',
