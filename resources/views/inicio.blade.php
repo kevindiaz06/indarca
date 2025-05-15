@@ -94,8 +94,8 @@
 
             <!-- Section Title -->
             <div class="container section-title" data-aos="fade-up">
-                <h2>Sobre Nosotros</h2>
-                <p><span>Conoce más</span> <span class="description-title">sobre INDARCA</span></p>
+                <h2>{{ __('inicio.about_title') }}</h2>
+                <p><span>{{ __('inicio.about_subtitle_1') }}</span> <span class="description-title">{{ __('inicio.about_subtitle_2') }}</span></p>
             </div><!-- End Section Title -->
 
             <div class="container">
@@ -103,14 +103,11 @@
                     <!-- Imagen principal con overlay de información -->
                     <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
                         <div class="position-relative rounded-4 overflow-hidden shadow-lg h-100">
-                            <img src="{{ asset('assets\img\INDARCA_OFICINA\INDARCA_OFICINA_1.jpg') }}" alt="Equipo INDARCA"
+                            <img src="{{ asset('assets\img\INDARCA_OFICINA\INDARCA_OFICINA_1.jpg') }}" alt="{{ __('inicio.team_indarca_alt') }}"
                                 class="img-fluid w-100 h-100 object-fit-cover">
                             <div class="position-absolute bottom-0 start-0 w-100 p-4 bg-dark bg-opacity-75 text-white">
-                                <h3 class="fw-bold border-start border-danger border-4 ps-3 mb-2 text-white">Nuestra
-                                    Historia</h3>
-                                <p>Fundada en 2005, INDARCA ha evolucionado hasta convertirse en un referente en la
-                                    industria de la construcción, arquitectura y calibración de densímetros nucleares en
-                                    República Dominicana.</p>
+                                <h3 class="fw-bold border-start border-danger border-4 ps-3 mb-2 text-white">{{ __('inicio.our_history') }}</h3>
+                                <p>{{ __('inicio.history_description') }}</p>
                             </div>
                         </div>
                     </div>
@@ -125,13 +122,11 @@
                                         class="icon-box bg-dark rounded-circle p-3 d-flex justify-content-center align-items-center me-3">
                                         <i class="bi bi-award text-danger fs-1"></i>
                                     </div>
-                                    <h3 class="fw-bold mb-0">Certificaciones y Reconocimientos</h3>
+                                    <h3 class="fw-bold mb-0">{{ __('inicio.certifications_title') }}</h3>
                                 </div>
                                 <p class="fst-italic mb-4">
                                     <span class="fw-bold text-danger">INDARCA</span>
-                                    ha sido reconocida por su compromiso con
-                                    la calidad y la seguridad en el sector,
-                                    contando con certificaciones de alto estándar en ingeniería y arquitectura.
+                                    {{ __('inicio.certifications_description') }}
                                 </p>
 
                                 <div class="row g-3">
@@ -142,8 +137,8 @@
                                                 <i class="bi bi-patch-check text-danger fs-3"></i>
                                             </div>
                                             <div>
-                                                <h6 class="fw-bold mb-1">ISO 9001:2015</h6>
-                                                <p class="small mb-0">Gestión de Calidad</p>
+                                                <h6 class="fw-bold mb-1">{{ __('inicio.iso_9001') }}</h6>
+                                                <p class="small mb-0">{{ __('inicio.quality_management') }}</p>
                                             </div>
                                         </div>
                                     </div>
@@ -154,8 +149,8 @@
                                                 <i class="bi bi-shield-check text-danger fs-3"></i>
                                             </div>
                                             <div>
-                                                <h6 class="fw-bold mb-1">ISO 14001</h6>
-                                                <p class="small mb-0">Gestión Ambiental</p>
+                                                <h6 class="fw-bold mb-1">{{ __('inicio.iso_14001') }}</h6>
+                                                <p class="small mb-0">{{ __('inicio.environmental_management') }}</p>
                                             </div>
                                         </div>
                                     </div>
@@ -173,11 +168,9 @@
                                                 class="icon-box bg-dark rounded-circle p-3 d-flex justify-content-center align-items-center me-3">
                                                 <i class="bi bi-diagram-3 text-danger fs-1"></i>
                                             </div>
-                                            <h4 class="card-title fw-bold mb-0">Ingeniería Innovadora</h4>
+                                            <h4 class="card-title fw-bold mb-0">{{ __('inicio.innovative_engineering_title') }}</h4>
                                         </div>
-                                        <p class="card-text">Con soluciones creativas y un enfoque vanguardista,
-                                            redefinimos los proyectos de ingeniería, superando expectativas en cada etapa.
-                                        </p>
+                                        <p class="card-text">{{ __('inicio.innovative_engineering_desc') }}</p>
                                     </div>
                                 </div>
                             </div>
@@ -190,10 +183,9 @@
                                                 class="icon-box bg-dark rounded-circle p-3 d-flex justify-content-center align-items-center me-3">
                                                 <i class="bi bi-fullscreen-exit text-danger fs-1"></i>
                                             </div>
-                                            <h4 class="card-title fw-bold mb-0">Diseño Creativo</h4>
+                                            <h4 class="card-title fw-bold mb-0">{{ __('inicio.creative_design_title') }}</h4>
                                         </div>
-                                        <p class="card-text">Transformamos proyectos en obras de alto impacto, destacando
-                                            por nuestra calidad y eficiencia en cada detalle constructivo.</p>
+                                        <p class="card-text">{{ __('inicio.creative_design_desc') }}</p>
                                     </div>
                                 </div>
                             </div>
@@ -204,7 +196,7 @@
                 <!-- Sección valores con iconos -->
                 <div class="row mt-5 pt-4 g-4" data-aos="fade-up" data-aos-delay="500">
                     <div class="col-12 text-center mb-4">
-                        <h3 class="fw-bold">Nuestros Valores</h3>
+                        <h3 class="fw-bold">{{ __('inicio.our_values_title') }}</h3>
                         <div class="d-inline-block mx-auto border-bottom border-danger border-2 pb-2 px-5"></div>
                     </div>
 
@@ -214,8 +206,8 @@
                                 class="icon-box bg-dark rounded-circle p-3 d-inline-flex justify-content-center align-items-center mb-3 icon-animate">
                                 <i class="bi bi-stars text-danger fs-2"></i>
                             </div>
-                            <h5 class="fw-bold mb-3">Excelencia</h5>
-                            <p>Buscamos la perfección en cada detalle de nuestros proyectos y servicios.</p>
+                            <h5 class="fw-bold mb-3">{{ __('inicio.value_excellence_title') }}</h5>
+                            <p>{{ __('inicio.value_excellence_desc') }}</p>
                         </div>
                     </div>
 
@@ -225,8 +217,8 @@
                                 class="icon-box bg-dark rounded-circle p-3 d-inline-flex justify-content-center align-items-center mb-3 icon-animate">
                                 <i class="bi bi-people-fill text-danger fs-2"></i>
                             </div>
-                            <h5 class="fw-bold mb-3">Trabajo en Equipo</h5>
-                            <p>Colaboramos efectivamente para lograr resultados excepcionales en cada proyecto.</p>
+                            <h5 class="fw-bold mb-3">{{ __('inicio.value_teamwork_title') }}</h5>
+                            <p>{{ __('inicio.value_teamwork_desc') }}</p>
                         </div>
                     </div>
 
@@ -236,8 +228,8 @@
                                 class="icon-box bg-dark rounded-circle p-3 d-inline-flex justify-content-center align-items-center mb-3 icon-animate">
                                 <i class="bi bi-lightbulb-fill text-danger fs-2"></i>
                             </div>
-                            <h5 class="fw-bold mb-3">Innovación</h5>
-                            <p>Implementamos soluciones creativas a los desafíos más complejos de ingeniería.</p>
+                            <h5 class="fw-bold mb-3">{{ __('inicio.value_innovation_title') }}</h5>
+                            <p>{{ __('inicio.value_innovation_desc') }}</p>
                         </div>
                     </div>
 
@@ -247,9 +239,8 @@
                                 class="icon-box bg-dark rounded-circle p-3 d-inline-flex justify-content-center align-items-center mb-3 icon-animate">
                                 <i class="bi bi-trophy-fill text-danger fs-2"></i>
                             </div>
-                            <h5 class="fw-bold mb-3">Integridad</h5>
-                            <p>Operamos con los más altos estándares éticos y profesionales en todas nuestras actividades.
-                            </p>
+                            <h5 class="fw-bold mb-3">{{ __('inicio.value_integrity_title') }}</h5>
+                            <p>{{ __('inicio.value_integrity_desc') }}</p>
                         </div>
                     </div>
                 </div>
@@ -272,7 +263,7 @@
                         <div class="stats-item">
                             <span data-purecounter-start="0" data-purecounter-end="{{ $totalClientes ?? 0 }}"
                                 data-purecounter-duration="5" class="purecounter"></span>
-                            <p>+ Clientes</p>
+                            <p>+ {{ __('inicio.clients') }}</p>
                         </div>
                     </div><!-- End Stats Item -->
 
@@ -284,7 +275,7 @@
                         <div class="stats-item">
                             <span data-purecounter-start="0" data-purecounter-end="125" data-purecounter-duration="5"
                                 class="purecounter"></span>
-                            <p>proyectos</p>
+                            <p>{{ __('inicio.projects') }}</p>
                         </div>
                     </div><!-- End Stats Item -->
 
@@ -296,7 +287,7 @@
                         <div class="stats-item">
                             <span data-purecounter-start="0" data-purecounter-end="1463" data-purecounter-duration="5"
                                 class="purecounter"></span>
-                            <p>mantenimientos</p>
+                            <p>{{ __('inicio.maintenance') }}</p>
                         </div>
                     </div><!-- End Stats Item -->
 
@@ -308,7 +299,7 @@
                         <div class="stats-item">
                             <span data-purecounter-start="0" data-purecounter-end="{{ $totalTrabajadores ?? 0 }}"
                                 data-purecounter-duration="5" class="purecounter"></span>
-                            <p>Empleados</p>
+                            <p>{{ __('inicio.employees') }}</p>
                         </div>
                     </div><!-- End Stats Item -->
 
@@ -322,8 +313,8 @@
         <section id="clients" class="clients section py-5">
             <!-- Section Title -->
             <div class="container section-title" data-aos="fade-up">
-                <h2>Nuestros Clientes</h2>
-                <p><span>Empresas que</span> <span class="description-title">Confían en Nosotros</span></p>
+                <h2>{{ __('inicio.clients_title') }}</h2>
+                <p>{!! __('inicio.clients_subtitle') !!}</p>
             </div>
 
             <div class="container">
@@ -340,7 +331,7 @@
                     <!-- Texto introductorio -->
                     <div class="row mb-5">
                         <div class="col-lg-8 mx-auto text-center">
-                            <h3 class="fw-bold mb-4">Alianzas Estratégicas</h3>
+                            <h3 class="fw-bold mb-4">{{ __('inicio.strategic_alliances') }}</h3>
                         </div>
                     </div>
 
@@ -386,7 +377,7 @@
                                                                     <div class="mt-2">
                                                                         <span
                                                                             class="badge bg-warning text-dark rounded-pill px-3 py-2">
-                                                                            <i class="bi bi-star-fill me-1"></i> Destacado
+                                                                            <i class="bi bi-star-fill me-1"></i> {{ __('inicio.featured') }}
                                                                         </span>
                                                                     </div>
                                                                 @endif
@@ -407,13 +398,13 @@
                                         data-bs-target="#empresasCarrusel" data-bs-slide="prev">
                                         <span class="carousel-control-prev-icon bg-danger rounded-circle p-3"
                                             aria-hidden="true"></span>
-                                        <span class="visually-hidden">Anterior</span>
+                                        <span class="visually-hidden">{{ __('general.previous') }}</span>
                                     </button>
                                     <button class="carousel-control-next" type="button"
                                         data-bs-target="#empresasCarrusel" data-bs-slide="next">
                                         <span class="carousel-control-next-icon bg-danger rounded-circle p-3"
                                             aria-hidden="true"></span>
-                                        <span class="visually-hidden">Siguiente</span>
+                                        <span class="visually-hidden">{{ __('general.next') }}</span>
                                     </button>
                                 </div>
 
@@ -454,9 +445,9 @@
                                     <div class="icon-box bg-white shadow-sm rounded-circle d-inline-flex mx-auto mb-3 icon-animate" style="width: 95px; height: 95px;">
                                         <i class="bi bi-buildings text-danger" style="font-size: 3rem;"></i>
                                     </div>
-                                    <h3 class="fw-bold mb-2">Alianzas en desarrollo</h3>
+                                    <h3 class="fw-bold mb-2">{{ __('inicio.alliances_developing') }}</h3>
                                     <div class="border-bottom border-danger w-25 mx-auto my-3 opacity-50"></div>
-                                    <p class="text-muted mb-4">Actualmente estamos estableciendo relaciones estratégicas con empresas líderes del sector.<br>¡Pronto mostraremos nuestros aliados corporativos!</p>
+                                    <p class="text-muted mb-4">{!! __('inicio.alliances_desc') !!}</p>
                                 </div>
                                 <div class="d-flex justify-content-center gap-3">
                                     <div class="shadow-sm p-3 rounded-4 border border-light bg-white">
@@ -477,7 +468,7 @@
                     <!-- Call to action -->
                     <div class="text-center mt-5 pt-3">
                         <a href="#contact" class="btn btn-danger btn-lg rounded-pill px-4 py-2">
-                            <i class="bi bi-building me-2"></i>Conviértete en cliente
+                            <i class="bi bi-building me-2"></i>{{ __('inicio.become_client') }}
                         </a>
                     </div>
                 </div>
