@@ -56,16 +56,113 @@
         .language-selector .dropdown-toggle::after {
             margin-left: 0.5em;
         }
+        @media (max-width: 1199px) {
+            .mobile-menu-divider {
+                border-top: 1px solid rgba(0, 0, 0, 0.1);
+                margin: 15px 0;
+                padding: 0 15px;
+            }
+
+            .mobile-auth-item {
+                padding: 10px 20px;
+            }
+
+            .mobile-auth-item .btn {
+                width: 100%;
+                margin-bottom: 8px;
+                text-align: left;
+            }
+
+            /* Estilos mejorados para los elementos de autenticación e idioma en móvil */
+            .language-switcher {
+                display: flex;
+                align-items: center;
+                margin-bottom: 15px;
+                padding: 10px 20px;
+            }
+
+            .language-switcher .lang-label {
+                margin-right: 15px;
+                font-size: 14px;
+                color: #666;
+            }
+
+            .language-switcher .lang-options {
+                display: flex;
+                align-items: center;
+                background-color: #f8f9fa;
+                border-radius: 4px;
+                padding: 5px 10px;
+                border: 1px solid #dee2e6;
+            }
+
+            .language-switcher .lang-option {
+                padding: 3px 8px;
+                text-decoration: none;
+                font-weight: 500;
+                color: #495057;
+                font-size: 14px;
+            }
+
+            .language-switcher .lang-option.active {
+                color: var(--color-primary);
+                font-weight: 700;
+            }
+
+            .language-switcher .separator {
+                color: #adb5bd;
+                margin: 0 5px;
+            }
+
+            /* Estilos para los elementos de autenticación e idioma en móvil */
+            .mobile-menu-footer {
+                margin-top: 20px;
+                border-top: 1px solid rgba(0, 0, 0, 0.1);
+                padding: 15px;
+            }
+
+            .mobile-auth-item {
+                margin-bottom: 15px;
+            }
+
+            .mobile-auth-item .btn {
+                width: 100%;
+                margin-bottom: 8px;
+                text-align: left;
+            }
+
+            .mobile-auth-actions {
+                margin-top: 15px;
+            }
+
+            .mobile-auth-link {
+                display: flex;
+                align-items: center;
+                padding: 8px 0;
+                color: #212529;
+                text-decoration: none;
+                border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            }
+
+            .mobile-auth-link:last-child {
+                border-bottom: none;
+            }
+
+            .mobile-auth-link i {
+                margin-right: 10px;
+                font-size: 16px;
+            }
+
+            .mobile-auth-link.logout {
+                color: var(--color-primary);
+            }
+        }
     </style>
 </head>
 <header id="header" class="header sticky-top">
-
     <div class="branding d-flex align-items-cente">
-
         <div class="container position-relative d-flex align-items-center justify-content-between">
             <a href="{{ route('inicio') }}" class="logo d-flex align-items-center">
-                <!-- Uncomment the line below if you also wish to use an image logo -->
-                <!--   <img src="assets/img/logo_indarca.png" alt=""> -->
                 <a class="navbar-brand" href="/">
                     <img src="{{ asset('assets/img/OTROS/logo_indarca.png') }}" alt="INDARCA" height="50">
                 </a>
@@ -108,16 +205,75 @@
                             <li><a href="{{ route('arquitectura') }}#contacto">{{ __('general.contact_section') }}</a></li>
                         </ul>
                     </li>
-
                     <li><a href="{{ route('inicio') }}#contact"
                             class="{{ request()->is('contacto') ? 'active' : '' }}">{{ __('general.contact') }}</a></li>
-                    <li></li>
+
+                    <!-- Elementos móviles - Solo visibles en pantallas pequeñas -->
+                    <li class="d-xl-none">
+                        <div class="mobile-menu-footer">
+                            <!-- Selector de idiomas tipo ES|EN -->
+                            <div class="language-switcher">
+                                <div class="lang-label">
+                                    <i class="bi bi-globe me-1"></i> {{ __('general.language') }}:
+                                </div>
+                                <div class="lang-options">
+                                    <a href="{{ route('change.language', 'es') }}" class="lang-option {{ app()->getLocale() == 'es' ? 'active' : '' }}">ES</a>
+                                    <span class="separator">|</span>
+                                    <a href="{{ route('change.language', 'en') }}" class="lang-option {{ app()->getLocale() == 'en' ? 'active' : '' }}">EN</a>
+                                </div>
+                            </div>
+
+                            <!-- Opciones de autenticación -->
+                            <div class="mobile-auth-item">
+                                @guest
+                                    <!-- Usuario no logueado - mostrar botones de login y estado -->
+                                    <a href="{{ route('login') }}" class="btn btn-sm btn-outline-primary">
+                                        <i class="bi bi-box-arrow-in-right me-1"></i>{{ __('general.login') }}
+                                    </a>
+                                    <a href="{{ route('estado') }}" class="btn btn-sm btn-primary">
+                                        <i class="bi bi-clipboard-data me-1"></i>{{ __('general.status') }}
+                                    </a>
+                                @else
+                                    <!-- Usuario logueado - mostrar nombre, panel y opción de cerrar sesión -->
+                                    <div class="user-info mb-3">
+                                        <span class="d-block fw-bold mb-2">
+                                            <i class="bi bi-person-circle me-1"></i> {{ Auth::user()->name }}
+                                        </span>
+                                    </div>
+
+                                    <div class="mobile-auth-actions">
+                                        @if (Auth::user()->isStaff())
+                                            <!-- Para staff/admin -->
+                                            <a href="{{ route('admin.dashboard') }}" class="mobile-auth-link">
+                                                <i class="bi bi-speedometer2"></i> {{ __('general.dashboard') }}
+                                            </a>
+                                        @elseif (Auth::user()->role === 'cliente')
+                                            <!-- Para clientes -->
+                                            <a href="{{ route('cliente.historial') }}" class="mobile-auth-link">
+                                                <i class="bi bi-person-lines-fill"></i> {{ __('general.client_panel') }}
+                                            </a>
+                                        @endif
+
+                                        <a href="{{ route('logout') }}"
+                                           onclick="event.preventDefault(); document.getElementById('logout-form-mobile').submit();"
+                                           class="mobile-auth-link logout">
+                                            <i class="bi bi-box-arrow-right"></i> {{ __('general.logout') }}
+                                        </a>
+                                        <form id="logout-form-mobile" action="{{ route('logout') }}" method="POST" class="d-none">
+                                            @csrf
+                                        </form>
+                                    </div>
+                                @endguest
+                            </div>
+                        </div>
+                    </li>
                 </ul>
 
                 <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
             </nav>
 
-            <div class="auth-buttons d-flex align-items-center">
+            <!-- Autenticación y selector de idioma para escritorio -->
+            <div class="auth-buttons d-none d-xl-flex align-items-center">
                 <!-- Selector de idioma -->
                 <div class="language-selector dropdown">
                     <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" id="languageDropdown"
@@ -181,11 +337,8 @@
                     </div>
                 @endguest
             </div>
-
         </div>
-
     </div>
-
 </header>
 
 @if (session('login_success'))
@@ -585,13 +738,7 @@
 <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i
         class="bi bi-arrow-up-short"></i></a>
 
-<!-- Preloader -->
-<div id="preloader">
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-</div>
+
 
 <!-- Vendor JS Files -->
 <script src="{{ asset('assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
@@ -615,6 +762,115 @@
         'wrapAround': true,
         'albumLabel': "Imagen %1 de %2"
     });
+</script>
+
+<!-- Script adicional para asegurar funcionamiento de los dropdown en móvil -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Ajustar comportamiento de los dropdown en móvil
+    const mobileLanguageToggle = document.querySelector('.mobile-language-selector .dropdown-toggle');
+
+    if (mobileLanguageToggle) {
+        mobileLanguageToggle.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            const dropdownMenu = this.nextElementSibling;
+
+            // Cerrar otros menús desplegables abiertos
+            document.querySelectorAll('.dropdown-menu.show').forEach(function(menu) {
+                if (menu !== dropdownMenu) {
+                    menu.classList.remove('show');
+                }
+            });
+
+            // Alternar el estado del menú actual
+            dropdownMenu.classList.toggle('show');
+        });
+
+        // Cerrar el menú al hacer clic fuera
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.mobile-language-selector')) {
+                const mobileLanguageMenu = document.querySelector('.mobile-language-selector .dropdown-menu');
+                if (mobileLanguageMenu && mobileLanguageMenu.classList.contains('show')) {
+                    mobileLanguageMenu.classList.remove('show');
+                }
+            }
+        });
+    }
+});
+</script>
+
+<!-- Script para manejar el scroll suave con retardo hacia las secciones -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Función para realizar scroll suave a un elemento
+    function smoothScrollTo(target, duration = 800) {
+        if (!target) return;
+
+        const targetPosition = target.getBoundingClientRect().top + window.pageYOffset;
+        const startPosition = window.pageYOffset;
+        const distance = targetPosition - startPosition;
+        let startTime = null;
+
+        function animation(currentTime) {
+            if (startTime === null) startTime = currentTime;
+            const timeElapsed = currentTime - startTime;
+            const run = ease(timeElapsed, startPosition, distance, duration);
+            window.scrollTo(0, run);
+            if (timeElapsed < duration) requestAnimationFrame(animation);
+        }
+
+        // Función de easing para hacer el scroll más natural
+        function ease(t, b, c, d) {
+            t /= d / 2;
+            if (t < 1) return c / 2 * t * t + b;
+            t--;
+            return -c / 2 * (t * (t - 2) - 1) + b;
+        }
+
+        requestAnimationFrame(animation);
+    }
+
+    // Verificar si hay un hash en la URL al cargar la página
+    if (window.location.hash) {
+        // Prevenir el scroll automático del navegador
+        setTimeout(function() {
+            window.scrollTo(0, 0);
+
+            // Esperar un poco para que las animaciones se carguen
+            setTimeout(function() {
+                const targetElement = document.querySelector(window.location.hash);
+                if (targetElement) {
+                    smoothScrollTo(targetElement);
+                }
+            }, 500); // 500ms de retardo antes de hacer scroll
+        }, 1);
+    }
+
+    // Manejar clics en enlaces con hash para hacer scroll suave
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            // Solo para enlaces que apuntan a elementos en la misma página
+            if (this.getAttribute('href').length > 1) {
+                e.preventDefault();
+
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+
+                if (targetElement) {
+                    // Pequeño retardo antes del scroll
+                    setTimeout(function() {
+                        smoothScrollTo(targetElement);
+
+                        // Actualizar la URL sin recargar la página
+                        history.pushState(null, null, targetId);
+                    }, 100);
+                }
+            }
+        });
+    });
+});
 </script>
 
 </html>
