@@ -25,9 +25,7 @@ Este documento presenta una evaluación completa de la experiencia de usuario de
    - La página de inicio (1452 líneas) es muy extensa, lo que afecta el tiempo de carga.
    - **Recomendación**: Dividir el contenido en secciones más pequeñas y optimizar imágenes.
 
-2. **📱 Navegación móvil**:
-   - El menú desplegable con submenús puede resultar difícil de usar en dispositivos móviles.
-   - **Recomendación**: Simplificar la estructura en versión móvil.
+
 
 3. **♿ Accesibilidad**:
    - Faltan indicaciones claras de accesibilidad para personas con discapacidad visual.
