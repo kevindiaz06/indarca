@@ -16,8 +16,8 @@
     <!-- Bootstrap icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
 
-    <!-- Lightbox CSS -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" rel="stylesheet">
+    <!-- GLightbox CSS -->
+    <link href="{{ asset('assets/vendor/glightbox/css/glightbox.min.css') }}" rel="stylesheet">
 
     <style>
         :root {
@@ -347,11 +347,22 @@
     <!-- Bootstrap 5 JS Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 
+    <!-- GLightbox JS -->
+    <script src="{{ asset('assets/vendor/glightbox/js/glightbox.min.js') }}"></script>
+
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Toggle sidebar
             document.getElementById('sidebarCollapse').addEventListener('click', function() {
                 document.getElementById('sidebar').classList.toggle('active');
+            });
+
+            // Inicializar GLightbox
+            const lightbox = GLightbox({
+                selector: '.glightbox',
+                touchNavigation: true,
+                loop: true,
+                autoplayVideos: true
             });
         });
     </script>

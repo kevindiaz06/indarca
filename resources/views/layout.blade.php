@@ -34,8 +34,7 @@
     <!-- SweetAlert2 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet">
 
-    <!-- Lightbox CSS para visualización de imágenes -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" rel="stylesheet">
+    <!-- Utilizamos GLightbox para visualización de imágenes -->
 
     <!-- Estilos personalizados para el tema monocromático -->
     <style>
@@ -754,13 +753,14 @@
 <!-- Main JS File -->
 <script src="{{ asset('assets/js/main.js') }}"></script>
 
-<!-- Lightbox JS para visualización de imágenes -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
+<!-- Configuración de GLightbox que ya está cargado arriba -->
 <script>
-    lightbox.option({
-        'resizeDuration': 200,
-        'wrapAround': true,
-        'albumLabel': "Imagen %1 de %2"
+    // Configuración GLightbox
+    const lightbox = GLightbox({
+        selector: '.glightbox',
+        touchNavigation: true,
+        loop: true,
+        autoplayVideos: true
     });
 </script>
 
