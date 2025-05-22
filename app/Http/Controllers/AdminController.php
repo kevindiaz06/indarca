@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Centro;
 use App\Models\Empresa;
+use App\Models\Densimetro;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -204,5 +205,41 @@ class AdminController extends Controller
             'distribucionRoles' => $distribucionRoles,
             'usuariosPorMes' => $usuariosPorMes
         ]);
+    }
+
+    /**
+     * Mostrar el panel de administración de cuenta
+     */
+    public function cuenta()
+    {
+        $user = auth()->user();
+
+        // Obtener estadísticas según el rol del usuario
+        $stats = [];
+
+        if ($user->role === 'admin') {
+            // Estadísticas para administradores
+            $stats = [
+                'densimetros_totales' => Densimetro::count(),
+                'usuarios_administrados' => User::count(),
+                'empresas_registradas' => Empresa::count(),
+                'densimetros_activos' => Densimetro::whereIn('estado', ['recibido', 'en_reparacion'])->count()
+            ];
+        } else {
+            // Estadísticas para trabajadores - Sin usar trabajador_id
+            // Mostrar estadísticas generales en lugar de específicas por trabajador
+            $stats = [
+                'densimetros_asignados' => Densimetro::count(),
+                'densimetros_completados' => Densimetro::whereIn('estado', ['finalizado', 'entregado'])->count(),
+                'densimetros_pendientes' => Densimetro::whereIn('estado', ['recibido', 'en_reparacion'])->count()
+            ];
+        }
+
+        // Obtener los últimos 5 densímetros actualizados
+        $densimetrosRecientes = Densimetro::orderBy('updated_at', 'desc')
+            ->take(5)
+            ->get();
+
+        return view('admin.cuenta.index', compact('stats', 'densimetrosRecientes'));
     }
 }

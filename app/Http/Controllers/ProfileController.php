@@ -12,11 +12,18 @@ class ProfileController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('role:cliente');
     }
 
     public function edit()
     {
+        $user = Auth::user();
+
+        // Si es administrador o trabajador, mostrar la vista de admin
+        if ($user->role === 'admin' || $user->role === 'trabajador') {
+            return view('admin.profile.edit');
+        }
+
+        // Para clientes, mostrar la vista normal
         return view('profile.edit');
     }
 
@@ -36,6 +43,11 @@ class ProfileController extends Controller
         }
 
         $user->save();
+
+        if ($user->role === 'admin' || $user->role === 'trabajador') {
+            return redirect()->route('profile.edit')
+                ->with('success', 'Perfil actualizado exitosamente.');
+        }
 
         return redirect()->route('profile.edit')
             ->with('success', 'Perfil actualizado exitosamente.');

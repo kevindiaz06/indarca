@@ -323,7 +323,8 @@
                                 </div>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-                                <li><a class="dropdown-item" href="#"><i class="bi bi-person me-2"></i>Mi Perfil</a></li>
+                                <li><a class="dropdown-item" href="{{ route('admin.cuenta') }}"><i class="bi bi-speedometer2 me-2"></i>Mi Panel</a></li>
+                                <li><a class="dropdown-item" href="{{ route('profile.edit') }}"><i class="bi bi-person me-2"></i>Editar Perfil</a></li>
 
                                 <li><hr class="dropdown-divider"></li>
                                 <li>

@@ -109,6 +109,9 @@ Route::prefix('admin')->middleware(['auth', 'role:admin,trabajador'])->group(fun
     Route::get('/', [AdminController::class, 'index'])->name('admin.dashboard');
     Route::get('/dashboard/refresh', [AdminController::class, 'refreshDashboardData'])->name('admin.dashboard.refresh');
 
+    // Administración de cuenta
+    Route::get('/cuenta', [AdminController::class, 'cuenta'])->name('admin.cuenta');
+
     // Reportes
     Route::get('/reportes/dashboard-pdf', [ReportController::class, 'generateDashboardPDF'])->name('admin.reportes.dashboard.pdf');
     Route::get('/reportes/usuarios-pdf', [ReportController::class, 'generateUsersPDF'])->name('admin.reportes.usuarios.pdf');
