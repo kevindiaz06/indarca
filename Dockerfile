@@ -1,9 +1,5 @@
-# Imagen base para PHP 8.2
-FROM php:8.2-fpm
-
-# Argumentos para usuario no-root
-ARG user=laravel
-ARG uid=1000
+# Imagen base de PHP 8.2 con Apache
+FROM php:8.2-apache
 
 # Instalar dependencias del sistema
 RUN apt-get update && apt-get install -y \
@@ -12,47 +8,69 @@ RUN apt-get update && apt-get install -y \
     libpng-dev \
     libonig-dev \
     libxml2-dev \
-    libzip-dev \
     zip \
     unzip \
-    nodejs \
-    npm
+    libzip-dev \
+    libpq-dev
 
-# Limpiar cache
+# Limpiar caché de apt
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# Instalar extensiones PHP
-RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd zip
+# Instalar extensiones de PHP
+RUN docker-php-ext-install pdo_pgsql pgsql mbstring exif pcntl bcmath gd zip
 
-# Obtener Composer
+# Habilitar mod_rewrite para Apache
+RUN a2enmod rewrite
+
+# Instalar Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-# Crear usuario del sistema
-RUN useradd -G www-data,root -u $uid -d /home/$user $user
-RUN mkdir -p /home/$user/.composer && \
-    chown -R $user:$user /home/$user
+# Establecer el directorio de trabajo
+WORKDIR /var/www/html
 
-# Establecer directorio de trabajo
-WORKDIR /var/www
+# Copiar los archivos del proyecto
+COPY . /var/www/html
 
-# Copiar archivos de la aplicación
-COPY . /var/www
-
-# Establecer permisos
-RUN chown -R $user:$user /var/www
-RUN chmod -R 755 /var/www/storage
-
-# Cambiar al usuario no-root
-USER $user
+# Crear una copia de seguridad del directorio storage
+RUN cp -r /var/www/html/storage /var/www/html/storage_backup
 
 # Instalar dependencias de Composer
-RUN composer install --no-interaction --optimize-autoloader
+RUN composer install --no-interaction --no-dev --optimize-autoloader
 
 # Instalar dependencias de Node.js y compilar assets
-RUN npm install && npm run build
+RUN curl -sL https://deb.nodesource.com/setup_18.x | bash - \
+&& apt-get install -y nodejs \
+&& npm install \
+&& npm run build
 
-# Exponer puerto 9000
-EXPOSE 9000
+# Configurar permisos
+RUN chown -R www-data:www-data /var/www/html \
+&& chmod -R 775 /var/www/html/storage \
+&& chmod -R 775 /var/www/html/bootstrap/cache \
+&& chmod -R 775 /var/www/html/storage_backup
 
-# Comando para iniciar PHP-FPM
-CMD ["php-fpm"]
+# Configurar Apache
+COPY docker/apache/000-default.conf /etc/apache2/sites-available/000-default.conf
+
+# Crear enlace simbólico del storage
+RUN php artisan storage:link
+
+# Crear script de inicialización
+RUN echo '#!/bin/bash\n\
+if [ -z "$(ls -A /var/www/html/storage)" ]; then\n\
+    echo "Storage directory is empty, restoring from backup..."\n\
+    cp -r /var/www/html/storage_backup/* /var/www/html/storage/\n\
+    chown -R www-data:www-data /var/www/html/storage\n\
+    chmod -R 775 /var/www/html/storage\n\
+    echo "Storage restored successfully"\n\
+fi\n\
+echo "Removing storage backup..."\n\
+rm -rf /var/www/html/storage_backup\n\
+apache2-foreground' > /usr/local/bin/init-storage.sh \
+&& chmod +x /usr/local/bin/init-storage.sh
+
+# Exponer el puerto 80
+EXPOSE 80
+
+# Usar el script de inicialización como comando de inicio
+CMD ["/usr/local/bin/init-storage.sh"]
