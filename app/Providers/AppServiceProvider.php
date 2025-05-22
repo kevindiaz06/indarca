@@ -15,12 +15,13 @@ class AppServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function register()
+    public function register(): void
     {
-        if (config('app.env') === 'production') {
-            $this->app['request']->server->set('HTTPS', true);
+        if ($this->app->environment('production')) {
+            \URL::forceScheme('https');
         }
     }
+
 
     /**
      * Bootstrap any application services.
