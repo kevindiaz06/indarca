@@ -156,10 +156,10 @@ class TeamController extends Controller
 
         // Manejo de la imagen
         if ($request->hasFile('image')) {
-            // Eliminar imagen anterior si existe
-            if ($teamMember->image) {
-                Storage::disk('public')->delete($teamMember->image);
-            }
+            // COMENTADO: No eliminar imagen anterior para mantener historial
+            // if ($teamMember->image) {
+            //     Storage::disk('public')->delete($teamMember->image);
+            // }
 
             $imagePath = $request->file('image')->store('team', 'public');
             $data['image'] = $imagePath;
@@ -197,10 +197,10 @@ class TeamController extends Controller
      */
     public function destroy(TeamMember $teamMember)
     {
-        // Eliminar imagen si existe
-        if ($teamMember->image) {
-            Storage::disk('public')->delete($teamMember->image);
-        }
+        // COMENTADO: No eliminar imagen para mantener historial en storage
+        // if ($teamMember->image) {
+        //     Storage::disk('public')->delete($teamMember->image);
+        // }
 
         $teamMember->delete();
 

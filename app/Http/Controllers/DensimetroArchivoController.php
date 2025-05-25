@@ -107,10 +107,10 @@ class DensimetroArchivoController extends Controller
     {
         $archivo = DensimetroArchivo::findOrFail($id);
 
-        // Eliminar el archivo físico
-        if (Storage::disk('public')->exists($archivo->ruta_archivo)) {
-            Storage::disk('public')->delete($archivo->ruta_archivo);
-        }
+        // COMENTADO: No eliminar archivo físico para mantener historial en storage
+        // if (Storage::disk('public')->exists($archivo->ruta_archivo)) {
+        //     Storage::disk('public')->delete($archivo->ruta_archivo);
+        // }
 
         // Eliminar el registro
         $archivo->delete();

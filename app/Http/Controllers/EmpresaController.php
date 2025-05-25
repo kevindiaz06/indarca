@@ -187,10 +187,10 @@ class EmpresaController extends Controller
 
         // Manejo de la imagen
         if ($request->hasFile('logo')) {
-            // Eliminar imagen anterior si existe
-            if ($empresa->logo && \Storage::disk('public')->exists($empresa->logo)) {
-                \Storage::disk('public')->delete($empresa->logo);
-            }
+            // COMENTADO: No eliminar imagen anterior para mantener historial
+            // if ($empresa->logo && \Storage::disk('public')->exists($empresa->logo)) {
+            //     \Storage::disk('public')->delete($empresa->logo);
+            // }
 
             $archivo = $request->file('logo');
             $nombreArchivo = time() . '_' . $archivo->getClientOriginalName();
