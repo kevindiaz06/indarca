@@ -1,17 +1,24 @@
 # 📹 Guía de Despliegue de Assets de Media - INDARCA
 
-## Problema Identificado
-El video del hero principal no se mostraba en producción debido a:
+## Problemas Identificados
+Los assets de media no se mostraban en producción debido a:
 1. **Error de ruta**: Diferencia entre mayúsculas/minúsculas en la ruta del archivo
-2. **Assets no versionados**: Videos grandes no incluidos en el sistema de control de versiones
+2. **Assets no versionados**: Videos e imágenes grandes no incluidos en el sistema de control de versiones
 3. **Falta de proceso de despliegue**: No hay procedimiento claro para manejar assets de media
+4. **Extensiones incorrectas**: Referencias a .PNG en lugar de .png en el código
 
 ## Solución Implementada
 
-### 1. Corrección de Rutas
-- **Antes**: `assets/img/otros/` (minúsculas)  
-- **Después**: `assets/img/OTROS/` (mayúsculas)
-- **Archivo corregido**: `resources/views/inicio.blade.php`
+### 1. Corrección de Rutas y Extensiones
+- **Video Hero**:
+  - **Antes**: `assets/img/otros/` (minúsculas)  
+  - **Después**: `assets/img/OTROS/` (mayúsculas)
+  - **Archivo corregido**: `resources/views/inicio.blade.php`
+  
+- **Imagen Densímetro Nuclear**:
+  - **Antes**: `DENSIMETROS_TROXLERR_10.PNG` (mayúsculas)
+  - **Después**: `DENSIMETROS_TROXLERR_10.png` (minúsculas)
+  - **Archivo corregido**: `resources/views/densimetros.blade.php`
 
 ### 2. Formatos de Video
 - **Principal**: `videoHeroindarca.mov` (formato QuickTime)
@@ -22,9 +29,12 @@ El video del hero principal no se mostraba en producción debido a:
 public/
 └── assets/
     └── img/
-        └── OTROS/
-            ├── videoHeroindarca.mov (7.1MB)
-            └── videoHeroindarca.mp4 (7.1MB)
+        ├── OTROS/
+        │   ├── videoHeroindarca.mov (7.1MB)
+        │   └── videoHeroindarca.mp4 (7.1MB)
+        └── DENSIMETROS/
+            └── TROXLER/
+                └── DENSIMETROS_TROXLERR_10.png (734KB)
 ```
 
 ## 🚀 Proceso de Despliegue
@@ -34,8 +44,15 @@ public/
 2. Ejecutar el script de despliegue (opcional)
 
 ### Para Producción
-1. **Subir manualmente** el video a la carpeta `public/assets/img/OTROS/`
-2. **Ejecutar script de despliegue**:
+1. **Subir manualmente** los assets a las carpetas correspondientes:
+   - Video: `public/assets/img/OTROS/videoHeroindarca.mov`
+   - Imagen densímetro: `public/assets/img/DENSIMETROS/TROXLER/DENSIMETROS_TROXLERR_10.png`
+2. **Verificar assets críticos**:
+   ```bash
+   chmod +x check-assets.sh
+   ./check-assets.sh
+   ```
+3. **Ejecutar script de despliegue**:
    ```bash
    chmod +x deploy-assets.sh
    ./deploy-assets.sh
@@ -50,6 +67,7 @@ public/
 
 - [ ] Video existe en `public/assets/img/OTROS/videoHeroindarca.mov`
 - [ ] Versión MP4 disponible para compatibilidad
+- [ ] Imagen densímetro nuclear existe en `public/assets/img/DENSIMETROS/TROXLER/DENSIMETROS_TROXLERR_10.png`
 - [ ] Permisos correctos (755 para directorios)
 - [ ] Cache limpiado después de cambios
 - [ ] Prueba en navegador local
@@ -61,8 +79,12 @@ public/
 # Verificar existencia del video
 ls -la public/assets/img/OTROS/videoHero*
 
+# Verificar existencia de imágenes de densímetros
+ls -la public/assets/img/DENSIMETROS/TROXLER/DENSIMETROS_TROXLERR_10.*
+
 # Verificar tamaño de archivos
 du -h public/assets/img/OTROS/videoHero*
+du -h public/assets/img/DENSIMETROS/TROXLER/DENSIMETROS_TROXLERR_10.*
 
 # Crear versión MP4 manualmente
 cp public/assets/img/OTROS/videoHeroindarca.mov public/assets/img/OTROS/videoHeroindarca.mp4

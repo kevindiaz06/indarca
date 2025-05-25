@@ -15,6 +15,13 @@ if [ ! -f "public/assets/img/OTROS/videoHeroindarca.mov" ]; then
     echo "   Asegúrate de subir el archivo videoHeroindarca.mov a esta ubicación"
 fi
 
+# Verificar que las imágenes de densímetros existan
+echo "🔍 Verificando imágenes de densímetros..."
+if [ ! -f "public/assets/img/DENSIMETROS/TROXLER/DENSIMETROS_TROXLERR_10.png" ]; then
+    echo "⚠️  ADVERTENCIA: No se encuentra la imagen del densímetro nuclear en public/assets/img/DENSIMETROS/TROXLER/"
+    echo "   Asegúrate de subir el archivo DENSIMETROS_TROXLERR_10.png a esta ubicación"
+fi
+
 # Crear versión MP4 si no existe
 if [ -f "public/assets/img/OTROS/videoHeroindarca.mov" ] && [ ! -f "public/assets/img/OTROS/videoHeroindarca.mp4" ]; then
     echo "📹 Creando versión MP4 del video del hero..."
@@ -43,6 +50,7 @@ echo ""
 echo "📋 Verificaciones post-despliegue:"
 echo "   - Video del hero: public/assets/img/OTROS/videoHeroindarca.mov"
 echo "   - Versión MP4: public/assets/img/OTROS/videoHeroindarca.mp4"
+echo "   - Imagen densímetro nuclear: public/assets/img/DENSIMETROS/TROXLER/DENSIMETROS_TROXLERR_10.png"
 echo "   - Storage link: public/storage"
 echo ""
 echo "🌐 Tu aplicación debería mostrar correctamente el video del hero ahora."

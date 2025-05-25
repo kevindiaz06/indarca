@@ -42,7 +42,7 @@
                 </div>
                 <div class="col-lg-6">
                     <div class="position-relative p-3">
-                        <img src="{{ asset('assets/img/DENSIMETROS/TROXLER/DENSIMETROS_TROXLERR_10.PNG') }}"
+                        <img src="{{ asset('assets/img/DENSIMETROS/TROXLER/DENSIMETROS_TROXLERR_10.png') }}"
                             alt="Densímetro nuclear en uso" class="img-fluid rounded-3 img-shadow">
                     </div>
                 </div>
