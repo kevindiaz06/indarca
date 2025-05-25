@@ -20,9 +20,9 @@
         <!-- Hero Section -->
         <section id="hero" class="hero section light-background">
             <video class="hero-video" autoplay loop muted playsinline>
-                <source src="{{ asset('assets/img/otros/videoHeroindarca.mov') }}" type="video/quicktime">
+                <source src="{{ asset('assets/img/OTROS/videoHeroindarca.mov') }}" type="video/quicktime">
                 <!-- Formato alternativo para mayor compatibilidad con navegadores -->
-                <source src="{{ asset('assets/img/otros/videoHeroindarca.mov') }}" type="video/mp4">
+                <source src="{{ asset('assets/img/OTROS/videoHeroindarca.mp4') }}" type="video/mp4">
             </video>
             <div class="container">
                 <div class="row justify-content-center align-items-center h-100">
