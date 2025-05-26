@@ -4,13 +4,6 @@
 <div class="container py-5">
     <div class="row justify-content-center">
         <div class="col-lg-10">
-            @if(session('login_success'))
-                <div class="alert alert-success alert-dismissible fade show mb-4" role="alert">
-                    <strong><i class="bi bi-check-circle me-2"></i>{{ __('general.welcome') }}!</strong> {{ __('general.login_success_message') }}
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
-            @endif
-
             <div class="card border-0 shadow-sm rounded-3">
                 <div class="card-header bg-primary text-white py-3">
                     <h4 class="mb-0"><i class="bi bi-person-check me-2"></i>{{ __('general.client_panel') }}</h4>
