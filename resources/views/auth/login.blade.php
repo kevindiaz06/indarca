@@ -233,23 +233,6 @@
         });
     </script>
 
-    @if (session('login_success'))
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            Swal.fire({
-                icon: 'success',
-                title: '{{ __('auth.welcome') }}!',
-                text: '{{ __('auth.login_success') }}',
-                showConfirmButton: false,
-                timer: 10000,
-                timerProgressBar: true,
-                position: 'top-end',
-                toast: true,
-                showCloseButton: true
-            });
-        });
-    </script>
-    @endif
+
 </body>
 </html>
