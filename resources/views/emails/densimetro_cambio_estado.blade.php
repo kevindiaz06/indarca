@@ -24,7 +24,7 @@
             margin: 20px auto;
         }
         .header {
-            background: linear-gradient(135deg, #dc3545 0%, #a91c2c 100%);
+            background: linear-gradient(135deg, #F40006 0%, #d10005 100%);
             color: white;
             padding: 32px 25px;
             text-align: center;
@@ -47,7 +47,7 @@
         .button {
             display: inline-block;
             padding: 14px 30px;
-            background: linear-gradient(to right, #dc3545, #a91c2c);
+            background: linear-gradient(to right, #F40006, #d10005);
             color: white;
             text-decoration: none;
             border-radius: 6px;
@@ -55,16 +55,16 @@
             margin-top: 25px;
             transition: all 0.3s ease;
             text-align: center;
-            box-shadow: 0 4px 10px rgba(220, 53, 69, 0.2);
+            box-shadow: 0 4px 10px rgba(244, 0, 6, 0.2);
         }
         .button:hover {
-            background: linear-gradient(to right, #c82333, #971924);
-            box-shadow: 0 6px 12px rgba(220, 53, 69, 0.3);
+            background: linear-gradient(to right, #d10005, #b80005);
+            box-shadow: 0 6px 12px rgba(244, 0, 6, 0.3);
             transform: translateY(-2px);
         }
         .info {
             background-color: #fff8f8;
-            border-left: 4px solid #dc3545;
+            border-left: 4px solid #F40006;
             border-radius: 0 6px 6px 0;
             padding: 20px;
             margin: 28px 0;
@@ -118,7 +118,7 @@
         }
         .label {
             font-weight: 600;
-            color: #dc3545;
+            color: #F40006;
         }
         .estado {
             font-size: 1.3em;
@@ -152,7 +152,7 @@
         }
         .referencia {
             font-weight: 600;
-            color: #dc3545;
+            color: #F40006;
             background-color: #fff8f8;
             padding: 3px 8px;
             border-radius: 4px;

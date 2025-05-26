@@ -5,120 +5,141 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Recordatorio de Calibración de Densímetro - INDARCA</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+
         body {
-            font-family: 'Arial', sans-serif;
-            line-height: 1.6;
-            color: #333;
+            font-family: 'Montserrat', 'Arial', sans-serif;
+            line-height: 1.7;
+            color: #2d3748;
             max-width: 650px;
             margin: 0 auto;
             padding: 0;
-            background-color: #f5f5f5;
+            background-color: #f7f7f7;
         }
         .container {
             background-color: #ffffff;
-            border-radius: 5px;
+            border-radius: 8px;
             overflow: hidden;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            margin: 20px auto;
         }
         .header {
-            background-color: #dc3545;
+            background: linear-gradient(135deg, #F40006 0%, #d10005 100%);
             color: white;
-            padding: 25px 20px;
+            padding: 32px 25px;
             text-align: center;
-            border-bottom: 5px solid #b82634;
         }
         .header h1 {
             margin: 0;
-            font-size: 22px;
+            font-size: 24px;
             font-weight: 600;
+            letter-spacing: 0.5px;
         }
         .logo {
             max-width: 180px;
-            margin-bottom: 12px;
+            margin-bottom: 18px;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.15));
         }
         .content {
-            padding: 35px 30px;
+            padding: 40px 35px;
+            color: #4a5568;
         }
         .button {
             display: inline-block;
-            padding: 12px 28px;
-            background-color: #dc3545;
+            padding: 14px 30px;
+            background: linear-gradient(to right, #F40006, #d10005);
             color: white;
             text-decoration: none;
-            border-radius: 4px;
+            border-radius: 6px;
             font-weight: 600;
-            margin-top: 20px;
+            margin-top: 25px;
             transition: all 0.3s ease;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(244, 0, 6, 0.2);
         }
         .button:hover {
-            background-color: #b82634;
+            background: linear-gradient(to right, #d10005, #b80005);
+            box-shadow: 0 6px 12px rgba(244, 0, 6, 0.3);
+            transform: translateY(-2px);
         }
         .info {
             background-color: #fff8f8;
-            border-left: 4px solid #dc3545;
-            padding: 15px;
-            margin: 25px 0;
-            font-size: 14px;
+            border-left: 4px solid #F40006;
+            border-radius: 0 6px 6px 0;
+            padding: 20px;
+            margin: 28px 0;
+            font-size: 15px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
         }
         .footer {
-            background-color: #292929;
-            padding: 30px 20px;
+            background: linear-gradient(to bottom, #292929, #1a1a1a);
+            padding: 35px 25px;
             text-align: center;
-            font-size: 13px;
-            color: #ffffff;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 14px;
+            color: #e0e0e0;
         }
         .contact-info {
-            margin: 15px 0;
-            line-height: 1.8;
+            margin: 18px 0;
+            line-height: 1.9;
         }
         .contact-info strong {
-            color: #dc3545;
+            color: #f8b0b7;
+            font-weight: 600;
         }
         .social-links {
-            margin: 20px 0 15px;
+            margin: 25px 0 20px;
         }
         .social-links a {
             display: inline-block;
-            margin: 0 8px;
+            margin: 0 10px;
             color: #ffffff;
             text-decoration: none;
-            transition: color 0.3s ease;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid transparent;
+            padding-bottom: 2px;
         }
         .social-links a:hover {
-            color: #dc3545;
+            color: #f8b0b7;
+            border-bottom: 1px solid #f8b0b7;
         }
         .disclaimer {
             border-top: 1px solid rgba(255,255,255,0.1);
-            padding-top: 15px;
-            margin-top: 15px;
+            padding-top: 18px;
+            margin-top: 18px;
             font-size: 12px;
-            color: rgba(255,255,255,0.7);
+            color: rgba(255,255,255,0.6);
         }
         .info-item {
-            margin-bottom: 10px;
+            margin-bottom: 14px;
+            background-color: #fafafa;
+            border-radius: 6px;
+            padding: 10px 15px;
+            border: 1px solid #eee;
         }
         .label {
-            font-weight: bold;
-            color: #dc3545;
+            font-weight: 600;
+            color: #F40006;
         }
         .fecha-destacada {
-            font-size: 1.2em;
+            font-size: 1.3em;
             font-weight: bold;
             text-align: center;
-            padding: 15px;
-            margin: 25px 0;
-            color: #721c24;
-            background-color: #f8d7da;
-            border: 1px solid #dc3545;
-            border-radius: 5px;
+            padding: 20px;
+            margin: 28px 0;
+            color: #F40006;
+            background: linear-gradient(to right, #fff8f8, #ffeef0);
+            border: 1px solid rgba(244, 0, 6, 0.2);
+            border-radius: 8px;
+            box-shadow: 0 3px 12px rgba(244, 0, 6, 0.1);
+            letter-spacing: 0.5px;
         }
         .alerta {
-            margin-top: 25px;
-            padding: 15px;
-            border-radius: 5px;
-            font-weight: bold;
+            margin-top: 28px;
+            padding: 20px;
+            border-radius: 6px;
+            font-weight: 600;
             text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
         }
         .alerta-amarilla {
             background-color: #fff3cd;
@@ -134,6 +155,24 @@
             background-color: #d4edda;
             color: #155724;
             border: 1px solid #c3e6cb;
+        }
+        .cert-badges {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 15px 0;
+        }
+        .cert-badge {
+            background-color: #333;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+        strong {
+            color: #F40006;
+            font-weight: 600;
         }
     </style>
 </head>
@@ -199,7 +238,11 @@
                 <strong>Recuerde:</strong> Mantener su densímetro correctamente calibrado es esencial para garantizar la precisión de las mediciones y cumplir con los estándares de calidad y normativas vigentes.
             </div>
 
-            <p>Si desea programar una cita para la calibración de su densímetro o tiene alguna pregunta, no dude en contactarnos.</p>
+            <p>Para programar la calibración de su densímetro, puede contactarnos directamente o utilizar nuestra plataforma en línea.</p>
+
+            <div style="text-align: center; margin: 30px 0 20px;">
+                <a href="https://indarca.com/login" class="button">Programar Calibración</a>
+            </div>
         </div>
 
         <div class="footer">
@@ -217,14 +260,14 @@
                 <a href="https://www.facebook.com/profile.php?id=100069160367684">Facebook</a>
             </div>
 
-            <div style="margin: 15px 0;">
+            <div style="margin: 18px 0;">
                 <strong>Horario de Atención:</strong><br>
                 Lunes - Viernes: 9:00 AM - 5:00 PM
             </div>
 
-            <div style="margin: 15px 0;">
-                <strong>Empresa Certificada:</strong><br>
-                ISO 9001:2015 | ISO 14001
+            <div class="cert-badges">
+                <span class="cert-badge">ISO 9001:2015</span>
+                <span class="cert-badge">ISO 14001</span>
             </div>
 
             <div class="disclaimer">

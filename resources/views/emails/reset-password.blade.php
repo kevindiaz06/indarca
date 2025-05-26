@@ -5,101 +5,140 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Restablecer Contraseña - INDARCA</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+
         body {
-            font-family: 'Arial', sans-serif;
-            line-height: 1.6;
-            color: #333;
+            font-family: 'Montserrat', 'Arial', sans-serif;
+            line-height: 1.7;
+            color: #2d3748;
             max-width: 650px;
             margin: 0 auto;
             padding: 0;
-            background-color: #f5f5f5;
+            background-color: #f7f7f7;
         }
         .container {
             background-color: #ffffff;
-            border-radius: 5px;
+            border-radius: 8px;
             overflow: hidden;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            margin: 20px auto;
         }
         .header {
-            background-color: #dc3545;
+            background: linear-gradient(135deg, #F40006 0%, #d10005 100%);
             color: white;
-            padding: 25px 20px;
+            padding: 32px 25px;
             text-align: center;
-            border-bottom: 5px solid #b82634;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 24px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
         }
         .logo {
             max-width: 180px;
-            margin-bottom: 12px;
+            margin-bottom: 18px;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.15));
         }
         .content {
-            padding: 35px 30px;
+            padding: 40px 35px;
+            color: #4a5568;
         }
         .reset-code {
-            display: block;
-            background-color: #fff8f8;
-            border-left: 4px solid #dc3545;
-            padding: 15px;
-            margin: 20px 0;
-            font-size: 24px;
-            text-align: center;
+            font-size: 36px;
             font-weight: bold;
-            letter-spacing: 2px;
+            letter-spacing: 8px;
+            text-align: center;
+            padding: 25px 20px;
+            margin: 25px 0;
+            background: linear-gradient(to right, #fff8f8, #ffeef0);
+            border-radius: 8px;
+            color: #F40006;
+            box-shadow: 0 3px 10px rgba(244, 0, 6, 0.1);
+            border: 1px solid rgba(244, 0, 6, 0.1);
         }
         .button {
             display: inline-block;
-            padding: 12px 28px;
-            background-color: #dc3545;
+            padding: 14px 30px;
+            background: linear-gradient(to right, #F40006, #d10005);
             color: white;
             text-decoration: none;
-            border-radius: 4px;
+            border-radius: 6px;
             font-weight: 600;
-            margin-top: 20px;
+            margin-top: 25px;
             transition: all 0.3s ease;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(244, 0, 6, 0.2);
         }
         .button:hover {
-            background-color: #b82634;
+            background: linear-gradient(to right, #d10005, #b80005);
+            box-shadow: 0 6px 12px rgba(244, 0, 6, 0.3);
+            transform: translateY(-2px);
         }
         .footer {
-            background-color: #292929;
-            padding: 30px 20px;
+            background: linear-gradient(to bottom, #292929, #1a1a1a);
+            padding: 35px 25px;
             text-align: center;
-            font-size: 13px;
-            color: #ffffff;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 14px;
+            color: #e0e0e0;
         }
         .contact-info {
-            margin: 15px 0;
-            line-height: 1.8;
+            margin: 18px 0;
+            line-height: 1.9;
         }
         .contact-info strong {
-            color: #dc3545;
+            color: #f8b0b7;
+            font-weight: 600;
         }
         .warning {
             background-color: #fff8f8;
-            border-left: 4px solid #dc3545;
-            padding: 15px;
-            margin: 25px 0;
-            font-size: 14px;
+            border-left: 4px solid #F40006;
+            border-radius: 0 6px 6px 0;
+            padding: 20px;
+            margin: 28px 0;
+            font-size: 15px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
         }
         .social-links {
-            margin: 20px 0 15px;
+            margin: 25px 0 20px;
         }
         .social-links a {
             display: inline-block;
-            margin: 0 8px;
+            margin: 0 10px;
             color: #ffffff;
             text-decoration: none;
-            transition: color 0.3s ease;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid transparent;
+            padding-bottom: 2px;
         }
         .social-links a:hover {
-            color: #dc3545;
+            color: #f8b0b7;
+            border-bottom: 1px solid #f8b0b7;
         }
         .disclaimer {
             border-top: 1px solid rgba(255,255,255,0.1);
-            padding-top: 15px;
-            margin-top: 15px;
+            padding-top: 18px;
+            margin-top: 18px;
             font-size: 12px;
-            color: rgba(255,255,255,0.7);
+            color: rgba(255,255,255,0.6);
+        }
+        .cert-badges {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 15px 0;
+        }
+        .cert-badge {
+            background-color: #333;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+        strong {
+            color: #F40006;
+            font-weight: 600;
         }
     </style>
 </head>
@@ -120,11 +159,13 @@
                 {{ $codigo }}
             </div>
 
-            <p>Este código es válido por 30 minutos. Si no ha solicitado este cambio, puede ignorar este correo y su contraseña seguirá siendo la misma.</p>
+            <p>Este código es válido por <strong>30 minutos</strong>. Si no ha solicitado este cambio, puede ignorar este correo y su contraseña seguirá siendo la misma.</p>
 
             <div class="warning">
                 <strong>Nota de seguridad:</strong> Nunca compartiremos sus datos de acceso ni le solicitaremos su contraseña por correo electrónico. Siempre acceda a nuestro sitio web directamente escribiendo la URL en su navegador.
             </div>
+
+            <p>Si tiene alguna pregunta o encuentra algún problema durante el proceso de restablecimiento, nuestro equipo de soporte está disponible para asistirle.</p>
         </div>
 
         <div class="footer">
@@ -142,14 +183,14 @@
                 <a href="https://www.facebook.com/profile.php?id=100069160367684">Facebook</a>
             </div>
 
-            <div style="margin: 15px 0;">
+            <div style="margin: 18px 0;">
                 <strong>Horario de Atención:</strong><br>
                 Lunes - Viernes: 9:00 AM - 5:00 PM
             </div>
 
-            <div style="margin: 15px 0;">
-                <strong>Empresa Certificada:</strong><br>
-                ISO 9001:2015 | ISO 14001
+            <div class="cert-badges">
+                <span class="cert-badge">ISO 9001:2015</span>
+                <span class="cert-badge">ISO 14001</span>
             </div>
 
             <div class="disclaimer">
