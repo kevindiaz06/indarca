@@ -2121,3 +2121,29 @@ section,
 .border-danger {
   border-color: #F40006 !important;
 }
+
+/* Override Bootstrap's outline-primary button styles to remove specific variables */
+.btn-outline-primary {
+  /* Remove/reset only the variables that contain #0d6efd */
+  --bs-btn-color: transparent !important;
+  --bs-btn-border-color: transparent !important;
+  --bs-btn-hover-bg: transparent !important;
+  --bs-btn-hover-border-color: transparent !important;
+  --bs-btn-active-bg: transparent !important;
+  --bs-btn-active-border-color: transparent !important;
+  --bs-btn-disabled-color: transparent !important;
+  --bs-btn-disabled-border-color: transparent !important;
+}
+
+/* Override Bootstrap's primary button styles to remove specific variables */
+.btn-primary {
+  /* Remove/reset only the variables that contain Bootstrap blue colors */
+  --bs-btn-bg: transparent !important;
+  --bs-btn-border-color: transparent !important;
+  --bs-btn-hover-bg: transparent !important;
+  --bs-btn-hover-border-color: transparent !important;
+  --bs-btn-active-bg: transparent !important;
+  --bs-btn-active-border-color: transparent !important;
+  --bs-btn-disabled-bg: transparent !important;
+  --bs-btn-disabled-border-color: transparent !important;
+}

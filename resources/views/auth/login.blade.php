@@ -44,8 +44,18 @@
         }
 
         .btn-primary {
-            background-color: var(--color-primary);
-            border-color: var(--color-primary);
+            --bs-btn-bg: transparent !important;
+            --bs-btn-border-color: transparent !important;
+            --bs-btn-hover-bg: transparent !important;
+            --bs-btn-hover-border-color: transparent !important;
+            --bs-btn-active-bg: transparent !important;
+            --bs-btn-active-border-color: transparent !important;
+            --bs-btn-disabled-bg: transparent !important;
+            --bs-btn-disabled-border-color: transparent !important;
+
+            /* Aplicar estilos personalizados */
+            background-color: var(--color-primary) !important;
+            border-color: var(--color-primary) !important;
         }
 
         .btn-primary:hover,
@@ -91,6 +101,18 @@
 
         .bg-dark {
             background-color: var(--color-dark) !important;
+        }
+
+        /* Override Bootstrap's outline-primary button variables that contain blue colors */
+        .btn-outline-primary {
+            --bs-btn-color: transparent !important;
+            --bs-btn-border-color: transparent !important;
+            --bs-btn-hover-bg: transparent !important;
+            --bs-btn-hover-border-color: transparent !important;
+            --bs-btn-active-bg: transparent !important;
+            --bs-btn-active-border-color: transparent !important;
+            --bs-btn-disabled-color: transparent !important;
+            --bs-btn-disabled-border-color: transparent !important;
         }
     </style>
 </head>
