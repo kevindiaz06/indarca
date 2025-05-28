@@ -114,7 +114,7 @@ El proyecto incluye documentación completa:
 
 ### Frontend
 - **Motor de plantillas**: Blade
-- **CSS Framework**: Bootstrap 5.2.3 + Tailwind CSS 3.4.0
+- **CSS Framework**: Bootstrap 5.2.3
 - **JavaScript**: Vanilla JS + jQuery
 - **Build tool**: Vite 4.0
 - **Preprocesador CSS**: Sass

@@ -6,7 +6,7 @@
 El sistema de gestión de densímetros INDARCA está desarrollado con el framework Laravel 12.x (PHP 8.2+), siguiendo una arquitectura MVC (Modelo-Vista-Controlador) con patrones adicionales como Repository y Service. La aplicación permite gestionar todo el ciclo de reparación de densímetros nucleares, desde su recepción hasta su entrega, incluyendo un sistema avanzado de calibración.
 
 ### 1.2 Componentes Principales
-- **Frontend**: Blade (motor de plantillas de Laravel) + Bootstrap 5.2.3 + Tailwind CSS 3.4.0 + JavaScript/jQuery
+- **Frontend**: Blade (motor de plantillas de Laravel) + Bootstrap 5.2.3 + JavaScript/jQuery
 - **Backend**: PHP 8.2+ / Laravel 12.x
 - **Base de Datos**: MySQL 8.0 / MariaDB 10.3+
 - **Autenticación**: Laravel Sanctum + Sistema personalizado de verificación por código
@@ -301,70 +301,3 @@ Los archivos de densímetros se almacenan en:
   "darkaonline/l5-swagger": "^8.5"
 }
 ```
-
-### 11.2 Frontend Dependencies
-```json
-{
-  "bootstrap": "^5.2.3",
-  "tailwindcss": "^3.4.0",
-  "vite": "^4.0.0",
-  "sass": "^1.56.1",
-  "react": "^18.2.0"
-}
-```
-
-### 11.3 Herramientas de Desarrollo
-- **Vite**: Build tool moderno y rápido
-- **Laravel Pint**: Code styling
-- **PHPUnit**: Testing framework
-- **Sail**: Entorno de desarrollo Docker
-
-## 12. Optimización y Rendimiento
-
-### 12.1 Optimizaciones de Base de Datos
-- Índices optimizados en campos frecuentemente consultados
-- Consultas optimizadas con Eloquent
-- Eager loading para evitar N+1 queries
-- Sistema de caché para consultas pesadas
-
-### 12.2 Optimizaciones de Frontend
-- Compilación optimizada con Vite
-- Lazy loading de imágenes
-- Minificación de CSS y JavaScript
-- Optimización de assets
-
-### 12.3 Caché y Rendimiento
-- Caché de configuración, rutas y vistas
-- Caché de consultas frecuentes
-- Optimización de autoloader
-- Compresión de respuestas
-
-## 13. Testing y Calidad
-
-### 13.1 Testing Framework
-- PHPUnit para tests unitarios
-- Tests de integración
-- Tests de API
-- Factories para datos de prueba
-
-### 13.2 Calidad de Código
-- Laravel Pint para estilo de código
-- Análisis estático de código
-- Documentación de API con Swagger
-- Validación de tipos con PHP 8.2+
-
-## 14. Despliegue y DevOps
-
-### 14.1 Contenedorización
-- Docker para desarrollo y producción
-- Docker Compose para orquestación
-- Scripts automatizados de despliegue
-- Configuración de entornos múltiples
-
-### 14.2 Scripts de Automatización
-- `deploy-assets.sh`: Despliegue automatizado
-- `check-assets.sh`: Verificación de assets
-- Scripts de backup automático
-- Comandos Artisan personalizados
-
-Esta documentación técnica refleja el estado actual del sistema INDARCA con todas sus funcionalidades avanzadas y mejoras implementadas. 

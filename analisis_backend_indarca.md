@@ -85,7 +85,7 @@ FROM php:8.2-apache
 
 ### 2. **Build System Moderno**
 - **Vite 4.0**: Build tool rápido y moderno
-- **Tailwind CSS + Bootstrap**: Framework CSS híbrido
+- **Bootstrap**: Framework CSS principal
 - **Sass**: Preprocesador CSS
 - **React**: Componentes interactivos
 
