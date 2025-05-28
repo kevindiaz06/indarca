@@ -9,7 +9,7 @@
     <meta name="keywords" content="">
 
     <!-- Favicons -->
-    <link href="https://indarca.net/wp-content/uploads/2019/03/Favicon-3.ico" rel="icon">
+    <link href="{{ asset('assets/img/OTROS/indarcaicon.ico') }}" rel="icon">
 
     <link href="{{ asset('assets/img/apple-touch-icon.png') }}" rel="apple-touch-icon">
 
