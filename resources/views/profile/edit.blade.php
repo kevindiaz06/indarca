@@ -7,7 +7,12 @@
             <div class="col-md-8">
                 <div class="card shadow">
                     <div class="card-header bg-primary text-white">
-                        <h4 class="mb-0">{{ __('general.edit_my_profile') }}</h4>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h4 class="mb-0">{{ __('general.edit_my_profile') }}</h4>
+                            <button type="button" class="btn btn-outline-light btn-sm" onclick="window.history.back()">
+                                <i class="bi bi-arrow-left me-1"></i>{{ __('general.back') }}
+                            </button>
+                        </div>
                     </div>
 
                     <div class="card-body">

@@ -6,7 +6,12 @@
         <div class="col-12">
             <div class="card shadow-sm mb-4">
                 <div class="card-header bg-primary text-white py-3">
-                    <h5 class="mb-0"><i class="bi bi-person-fill me-2"></i>{{ __('general.edit_my_profile') }}</h5>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0"><i class="bi bi-person-fill me-2"></i>{{ __('general.edit_my_profile') }}</h5>
+                        <button type="button" class="btn btn-outline-light btn-sm" onclick="window.history.back()">
+                            <i class="bi bi-arrow-left me-1"></i>{{ __('general.back') }}
+                        </button>
+                    </div>
                 </div>
                 <div class="card-body p-4">
                     @if(session('success'))

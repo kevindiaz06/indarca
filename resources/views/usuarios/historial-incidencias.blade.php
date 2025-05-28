@@ -6,7 +6,12 @@
         <div class="col-lg-10">
             <div class="card border-0 shadow-sm rounded-3">
                 <div class="card-header bg-primary text-white py-3">
-                    <h4 class="mb-0"><i class="bi bi-journal-text me-2"></i>{{ __('general.incidents_history') }}</h4>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h4 class="mb-0"><i class="bi bi-journal-text me-2"></i>{{ __('general.incidents_history') }}</h4>
+                        <button type="button" class="btn btn-outline-light btn-sm" onclick="window.history.back()">
+                            <i class="bi bi-arrow-left me-1"></i>{{ __('general.back') }}
+                        </button>
+                    </div>
                 </div>
                 <div class="card-body p-4">
                     <p class="text-muted mb-4">{{ __('general.incidents_intro') }}</p>
