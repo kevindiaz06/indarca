@@ -23,6 +23,7 @@ use App\Http\Controllers\ReportController;
 use App\Http\Controllers\DensimetroArchivoController;
 use App\Http\Controllers\PoliticasPrivacidadController;
 use App\Http\Controllers\LanguageController;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------

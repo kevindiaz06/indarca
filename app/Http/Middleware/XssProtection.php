@@ -18,10 +18,23 @@ class XssProtection
     public function handle(Request $request, Closure $next): Response
     {
         $input = $request->all();
-        array_walk_recursive($input, function(&$input) {
+
+        // Filtrar archivos del procesamiento XSS
+        $filteredInput = [];
+        foreach ($input as $key => $value) {
+            // No procesar archivos subidos
+            if ($request->hasFile($key)) {
+                continue;
+            }
+            $filteredInput[$key] = $value;
+        }
+
+        array_walk_recursive($filteredInput, function(&$input) {
             $input = $this->clean($input);
         });
-        $request->merge($input);
+
+        // Merge solo los datos filtrados, manteniendo los archivos intactos
+        $request->merge($filteredInput);
 
         $response = $next($request);
 

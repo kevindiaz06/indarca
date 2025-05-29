@@ -7,6 +7,7 @@ use App\Models\Densimetro;
 use App\Models\DensimetroArchivo;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Log;
 
 class DensimetroArchivoController extends Controller
 {
@@ -19,63 +20,134 @@ class DensimetroArchivoController extends Controller
      */
     public function store(Request $request, $densimetroId)
     {
-        // Validar el densímetro
-        $densimetro = Densimetro::findOrFail($densimetroId);
+        try {
+            // Log inicial
+            Log::info('=== INICIO SUBIDA ARCHIVOS ===');
+            Log::info('Densímetro ID: ' . $densimetroId);
+            Log::info('Request method: ' . $request->method());
+            Log::info('Request URL: ' . $request->url());
+            Log::info('Request all data: ', $request->all());
+            Log::info('Request files: ', $request->allFiles());
 
-        // Validar los archivos
-        $validator = Validator::make($request->all(), [
-            'archivos' => 'required',
-            'archivos.*' => 'file|max:10240', // 10MB máximo por archivo
-        ]);
+            // Verificar que el densímetro existe
+            Log::info('Verificando densímetro...');
+            $densimetro = Densimetro::findOrFail($densimetroId);
+            Log::info('Densímetro encontrado: ' . $densimetro->numero_serie);
 
-        if ($validator->fails()) {
-            return redirect()->back()
-                ->withErrors($validator)
-                ->withInput();
-        }
+            // Verificar archivos básico
+            Log::info('Verificando archivos...');
+            if (!$request->hasFile('archivos')) {
+                Log::warning('No se encontraron archivos en la request');
+                return redirect()->route('admin.densimetros.show', $densimetroId)
+                    ->withErrors(['archivos' => 'No se seleccionaron archivos']);
+            }
 
-        $archivosSubidos = 0;
+            $archivos = $request->file('archivos');
+            Log::info('Número de archivos detectados: ' . count($archivos));
 
-        if ($request->hasFile('archivos')) {
-            foreach ($request->file('archivos') as $archivo) {
-                $extension = $archivo->getClientOriginalExtension();
-                $nombre = pathinfo($archivo->getClientOriginalName(), PATHINFO_FILENAME);
-                $mimeType = $archivo->getMimeType();
-                $tamano = $archivo->getSize();
+            // Validación simple
+            Log::info('Iniciando validación...');
+            $validator = Validator::make($request->all(), [
+                'archivos' => 'required|array',
+                'archivos.*' => 'file|max:10240', // Simplificamos la validación
+            ]);
 
-                // Determinar el tipo de archivo
-                $tipoArchivo = 'documento';
-                if (in_array($mimeType, ['image/jpeg', 'image/png', 'image/gif', 'image/webp'])) {
-                    $tipoArchivo = 'imagen';
-                } elseif (in_array($mimeType, ['application/pdf'])) {
-                    $tipoArchivo = 'pdf';
+            if ($validator->fails()) {
+                Log::warning('Validación falló: ', $validator->errors()->toArray());
+                return redirect()->route('admin.densimetros.show', $densimetroId)
+                    ->withErrors($validator);
+            }
+
+            Log::info('Validación exitosa');
+
+            // Procesar archivos uno por uno
+            $archivosSubidos = 0;
+            foreach ($archivos as $index => $archivo) {
+                Log::info("Procesando archivo {$index}: " . $archivo->getClientOriginalName());
+
+                if (!$archivo->isValid()) {
+                    Log::error("Archivo {$index} no es válido");
+                    continue;
                 }
 
-                // Generar un nombre único y guardar el archivo
-                $nombreUnico = time() . '_' . uniqid() . '.' . $extension;
-                $rutaArchivo = $archivo->storeAs('archivos/densimetros/' . $densimetroId, $nombreUnico, 'public');
+                try {
+                    $extension = $archivo->getClientOriginalExtension();
+                    $nombre = pathinfo($archivo->getClientOriginalName(), PATHINFO_FILENAME);
+                    $mimeType = $archivo->getMimeType();
+                    $tamano = $archivo->getSize();
 
-                // Guardar registro en la base de datos
-                $densimetroArchivo = new DensimetroArchivo([
-                    'densimetro_id' => $densimetroId,
-                    'nombre_archivo' => $nombre,
-                    'ruta_archivo' => $rutaArchivo,
-                    'tipo_archivo' => $tipoArchivo,
-                    'extension' => $extension,
-                    'mime_type' => $mimeType,
-                    'tamano' => $tamano,
-                ]);
+                    Log::info("Archivo {$index} - Nombre: {$nombre}, Extensión: {$extension}, MIME: {$mimeType}, Tamaño: {$tamano}");
 
-                $densimetroArchivo->save();
-                $archivosSubidos++;
+                    // Determinar tipo
+                    $tipoArchivo = 'documento';
+                    if (in_array($mimeType, ['image/jpeg', 'image/png', 'image/gif', 'image/webp'])) {
+                        $tipoArchivo = 'imagen';
+                    } elseif (in_array($mimeType, ['application/pdf'])) {
+                        $tipoArchivo = 'pdf';
+                    }
+
+                    // Generar nombre único
+                    $nombreUnico = time() . '_' . uniqid() . '.' . $extension;
+                    $directorio = 'archivos/densimetros/' . $densimetroId;
+
+                    Log::info("Guardando archivo en: {$directorio}/{$nombreUnico}");
+
+                    // Crear directorio si no existe
+                    if (!Storage::disk('public')->exists($directorio)) {
+                        Storage::disk('public')->makeDirectory($directorio);
+                        Log::info("Directorio creado: {$directorio}");
+                    }
+
+                    // Guardar archivo
+                    $rutaArchivo = $archivo->storeAs($directorio, $nombreUnico, 'public');
+
+                    if (!$rutaArchivo) {
+                        Log::error("Error al guardar archivo {$index}");
+                        continue;
+                    }
+
+                    Log::info("Archivo guardado en: {$rutaArchivo}");
+
+                    // Guardar en base de datos
+                    $densimetroArchivo = new DensimetroArchivo([
+                        'densimetro_id' => $densimetroId,
+                        'nombre_archivo' => $nombre,
+                        'ruta_archivo' => $rutaArchivo,
+                        'tipo_archivo' => $tipoArchivo,
+                        'extension' => $extension,
+                        'mime_type' => $mimeType,
+                        'tamano' => $tamano,
+                    ]);
+
+                    $densimetroArchivo->save();
+                    $archivosSubidos++;
+
+                    Log::info("Archivo {$index} guardado exitosamente en BD con ID: " . $densimetroArchivo->id);
+
+                } catch (\Exception $e) {
+                    Log::error("Error procesando archivo {$index}: " . $e->getMessage());
+                    Log::error("Stack trace: " . $e->getTraceAsString());
+                }
             }
+
+            $mensaje = $archivosSubidos > 0
+                ? ($archivosSubidos > 1 ? "{$archivosSubidos} archivos subidos correctamente." : "Archivo subido correctamente.")
+                : "No se pudo subir ningún archivo.";
+
+            Log::info("Proceso completado. Archivos subidos: {$archivosSubidos}");
+            Log::info('=== FIN SUBIDA ARCHIVOS ===');
+
+            return redirect()->route('admin.densimetros.show', $densimetroId)->with('success', $mensaje);
+
+        } catch (\Exception $e) {
+            Log::error('ERROR CRÍTICO en subida de archivos: ' . $e->getMessage());
+            Log::error('Stack trace: ' . $e->getTraceAsString());
+            Log::error('Línea: ' . $e->getLine());
+            Log::error('Archivo: ' . $e->getFile());
+
+            return redirect()->route('admin.densimetros.show', $densimetroId)
+                ->withErrors(['error' => 'Error interno del servidor: ' . $e->getMessage()]);
         }
-
-        $mensaje = $archivosSubidos > 1
-            ? $archivosSubidos . ' archivos subidos correctamente.'
-            : 'Archivo subido correctamente.';
-
-        return redirect()->back()->with('success', $mensaje);
     }
 
     /**

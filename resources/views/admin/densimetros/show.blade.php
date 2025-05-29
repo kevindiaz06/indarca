@@ -114,20 +114,36 @@
                 </div>
                 <div class="card-body">
                     <!-- Formulario para subir archivos -->
-                    <form action="{{ route('admin.densimetros.archivos.store', $densimetro->id) }}" method="POST" enctype="multipart/form-data" class="mb-4 border-bottom pb-4">
+                    @if($errors->any())
+                        <div class="alert alert-danger">
+                            <ul class="mb-0">
+                                @foreach($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+
+                    @if(session('success'))
+                        <div class="alert alert-success">
+                            {{ session('success') }}
+                        </div>
+                    @endif
+
+                    <form action="{{ route('admin.densimetros.archivos.store', $densimetro->id) }}" method="POST" enctype="multipart/form-data" class="mb-4 border-bottom pb-4" id="uploadForm">
                         @csrf
                         <div class="mb-3">
                             <label for="archivos" class="form-label">Subir archivos</label>
-                            <input type="file" class="form-control @error('archivos') is-invalid @enderror @error('archivos.*') is-invalid @enderror" id="archivos" name="archivos[]" multiple required>
+                            <input type="file" class="form-control @error('archivos') is-invalid @enderror @error('archivos.*') is-invalid @enderror" id="archivos" name="archivos[]" multiple required accept=".jpg,.jpeg,.png,.gif,.webp,.pdf,.doc,.docx,.xls,.xlsx,.txt">
                             @error('archivos')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                             @error('archivos.*')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
-                            <div class="form-text">Puedes seleccionar múltiples archivos. Formatos permitidos: imágenes (JPG, PNG, GIF), documentos (PDF, DOC, XLS). Máximo 10MB por archivo.</div>
+                            <div class="form-text">Puedes seleccionar múltiples archivos. Formatos permitidos: imágenes (JPG, PNG, GIF, WEBP), documentos (PDF, DOC, DOCX, XLS, XLSX, TXT). Máximo 10MB por archivo.</div>
                         </div>
-                        <button type="submit" class="btn btn-primary">
+                        <button type="submit" class="btn btn-primary" id="uploadBtn">
                             <i class="bi bi-upload me-1"></i> Subir archivos
                         </button>
                     </form>
@@ -283,13 +299,82 @@ function sendEmailToClient(button) {
 document.addEventListener('DOMContentLoaded', function() {
     const deleteForm = document.getElementById('deleteForm');
     const deleteBtn = document.getElementById('deleteBtn');
+    const uploadForm = document.getElementById('uploadForm');
+    const uploadBtn = document.getElementById('uploadBtn');
+    const archivosInput = document.getElementById('archivos');
 
+    // Manejo del formulario de eliminación
     if (deleteForm && deleteBtn) {
         deleteForm.addEventListener('submit', function() {
             // Deshabilitar el botón de envío
             deleteBtn.disabled = true;
             // Cambiar el texto del botón para indicar proceso
             deleteBtn.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Eliminando...';
+        });
+    }
+
+    // Manejo del formulario de subida de archivos
+    if (uploadForm && uploadBtn && archivosInput) {
+        // Validación de archivos antes del envío
+        archivosInput.addEventListener('change', function() {
+            const files = this.files;
+            const maxSize = 10 * 1024 * 1024; // 10MB en bytes
+            const allowedTypes = [
+                'image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'image/webp',
+                'application/pdf',
+                'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+                'application/vnd.ms-excel', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+                'text/plain'
+            ];
+
+            let hasError = false;
+            let errorMessage = '';
+
+            for (let i = 0; i < files.length; i++) {
+                const file = files[i];
+
+                // Verificar tamaño
+                if (file.size > maxSize) {
+                    hasError = true;
+                    errorMessage += `El archivo "${file.name}" excede el tamaño máximo de 10MB.\n`;
+                }
+
+                // Verificar tipo
+                if (!allowedTypes.includes(file.type)) {
+                    hasError = true;
+                    errorMessage += `El archivo "${file.name}" no es de un tipo permitido.\n`;
+                }
+            }
+
+            if (hasError) {
+                alert('Errores encontrados:\n' + errorMessage);
+                this.value = ''; // Limpiar la selección
+                return false;
+            }
+        });
+
+        // Manejo del envío del formulario
+        uploadForm.addEventListener('submit', function(e) {
+            console.log('Formulario de subida enviado');
+            console.log('Action URL:', this.action);
+            console.log('Method:', this.method);
+
+            // Verificar que hay archivos seleccionados
+            if (archivosInput.files.length === 0) {
+                e.preventDefault();
+                alert('Por favor, selecciona al menos un archivo.');
+                return false;
+            }
+
+            // Deshabilitar el botón y mostrar estado de carga
+            uploadBtn.disabled = true;
+            uploadBtn.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Subiendo archivos...';
+
+            // Log para debugging
+            console.log('Archivos seleccionados:', archivosInput.files.length);
+            for (let i = 0; i < archivosInput.files.length; i++) {
+                console.log(`Archivo ${i + 1}:`, archivosInput.files[i].name, archivosInput.files[i].size, archivosInput.files[i].type);
+            }
         });
     }
 });

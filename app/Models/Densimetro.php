@@ -190,9 +190,9 @@ class Densimetro extends Model
             // Guardar el valor anterior para registro
             $estadoAnterior = $this->calibrado;
 
-            // Actualizar a no calibrado
+            // Actualizar a no calibrado SIN disparar eventos para evitar bucle infinito
             $this->calibrado = false;
-            $this->save();
+            $this->saveQuietly(); // Usar saveQuietly() para evitar eventos
 
             \Log::info("Densímetro ID: {$this->id}, Número de Serie: {$this->numero_serie} - " .
                        "Calibración actualizada de " . ($estadoAnterior ? 'Calibrado' : 'No Calibrado') .
@@ -209,39 +209,13 @@ class Densimetro extends Model
     }
 
     /**
-     * Sobrescribe el método de recuperación para verificar automáticamente el estado de calibración
-     */
-    public static function find($id)
-    {
-        $densimetro = parent::find($id);
-
-        if ($densimetro) {
-            $densimetro->verificarYActualizarCalibrado();
-        }
-
-        return $densimetro;
-    }
-
-    /**
-     * Sobrescribe el método findOrFail para verificar automáticamente el estado de calibración
-     */
-    public static function findOrFail($id)
-    {
-        $densimetro = parent::findOrFail($id);
-        $densimetro->verificarYActualizarCalibrado();
-        return $densimetro;
-    }
-
-    /**
-     * Boot method para agregar un global scope que verifique la calibración en todas las consultas
+     * Boot method simplificado para evitar bucles infinitos
      */
     protected static function boot()
     {
         parent::boot();
 
-        // Registrar evento retrieved para verificar calibración cuando se obtiene un modelo
-        static::retrieved(function ($densimetro) {
-            $densimetro->verificarYActualizarCalibrado();
-        });
+        // Solo registrar eventos de limpieza de caché, sin verificación automática
+        // La verificación se debe hacer manualmente cuando sea necesario
     }
 }
