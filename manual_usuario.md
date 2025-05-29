@@ -111,18 +111,13 @@ Para mayor seguridad, el sistema utiliza verificación por código:
 ### 4.3 Historial de Incidencias
 1. Desde el menú, seleccione "Historial de Incidencias"
 2. Visualizará todos sus equipos registrados en el sistema
-3. Puede filtrar por:
-   - Estado de reparación
-   - Rango de fechas
-   - Número de serie
-   - Referencia de reparación
 
 ### 4.4 Ver Detalles de un Densímetro
 1. Haga clic en la referencia del densímetro que desea consultar
 2. Se mostrará la información detallada, incluyendo:
    - Datos técnicos del equipo
    - Estado actual y progreso
-   - Fechas relevantes (entrada, estimada de finalización)
+   - Fechas relevantes (entrada y fecha de finalización)
    - Observaciones del técnico
    - Estado de calibración
    - Archivos adjuntos disponibles
@@ -133,7 +128,6 @@ Para mayor seguridad, el sistema utiliza verificación por código:
 3. Podrá actualizar:
    - Información personal
    - Contraseña
-   - Preferencias de notificación
    - Datos de contacto
 
 ## 5. Panel de Administración
