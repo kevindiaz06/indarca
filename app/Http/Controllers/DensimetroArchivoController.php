@@ -158,15 +158,64 @@ class DensimetroArchivoController extends Controller
      */
     public function show($id)
     {
-        $archivo = DensimetroArchivo::findOrFail($id);
+        try {
+            $archivo = DensimetroArchivo::with('densimetro.cliente')->findOrFail($id);
 
-        // Verificar que el archivo exista
-        if (!Storage::disk('public')->exists($archivo->ruta_archivo)) {
-            abort(404, 'Archivo no encontrado');
+            // Verificar permisos de acceso - SOLO admin y trabajadores pueden ver archivos
+            $user = auth()->user();
+            if (!in_array($user->role, ['admin', 'trabajador'])) {
+                abort(403, 'Los archivos de observación son solo para uso interno del equipo de trabajo');
+            }
+
+            Log::info("Intentando mostrar archivo ID: {$id}");
+            Log::info("Ruta del archivo: {$archivo->ruta_archivo}");
+            Log::info("Ruta completa: " . Storage::disk('public')->path($archivo->ruta_archivo));
+
+            // Verificar que el archivo exista físicamente
+            if (!Storage::disk('public')->exists($archivo->ruta_archivo)) {
+                Log::error("Archivo no encontrado en storage: {$archivo->ruta_archivo}");
+
+                // Intentar buscar el archivo en ubicaciones alternativas
+                $alternativePaths = [
+                    'archivos/densimetros/' . $archivo->densimetro_id . '/' . basename($archivo->ruta_archivo),
+                    'archivos/' . basename($archivo->ruta_archivo),
+                    basename($archivo->ruta_archivo)
+                ];
+
+                foreach ($alternativePaths as $altPath) {
+                    if (Storage::disk('public')->exists($altPath)) {
+                        Log::info("Archivo encontrado en ruta alternativa: {$altPath}");
+                        // Actualizar la ruta en la base de datos
+                        $archivo->ruta_archivo = $altPath;
+                        $archivo->save();
+
+                        return response()->file(Storage::disk('public')->path($altPath));
+                    }
+                }
+
+                abort(404, 'Archivo no encontrado en el sistema de archivos');
+            }
+
+            // Verificar que el archivo sea legible
+            $fullPath = Storage::disk('public')->path($archivo->ruta_archivo);
+            if (!is_readable($fullPath)) {
+                Log::error("Archivo no es legible: {$fullPath}");
+                abort(403, 'Archivo no accesible');
+            }
+
+            Log::info("Archivo servido exitosamente: {$archivo->ruta_archivo}");
+
+            // Devolver el archivo con headers apropiados
+            return response()->file($fullPath, [
+                'Content-Type' => $archivo->mime_type,
+                'Content-Disposition' => 'inline; filename="' . $archivo->nombre_archivo . '.' . $archivo->extension . '"'
+            ]);
+
+        } catch (\Exception $e) {
+            Log::error("Error al mostrar archivo ID {$id}: " . $e->getMessage());
+            Log::error("Stack trace: " . $e->getTraceAsString());
+            abort(500, 'Error interno al acceder al archivo');
         }
-
-        // Devolver el archivo
-        return response()->file(Storage::disk('public')->path($archivo->ruta_archivo));
     }
 
     /**

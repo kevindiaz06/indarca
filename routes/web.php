@@ -148,7 +148,7 @@ Route::prefix('admin')->middleware(['auth', 'role:admin,trabajador'])->group(fun
     Route::delete('/densimetros/{densimetro}', [DensimetroController::class, 'destroy'])->name('admin.densimetros.destroy');
     Route::get('densimetros/{id}/pdf', [DensimetroController::class, 'generatePDF'])->name('admin.densimetros.pdf');
 
-    // Gestión de archivos de densímetros
+    // Gestión de archivos de densímetros (solo admin y trabajadores)
     Route::post('/densimetros/{densimetro}/archivos', [DensimetroArchivoController::class, 'store'])->name('admin.densimetros.archivos.store');
     Route::get('/archivos/{archivo}', [DensimetroArchivoController::class, 'show'])->name('admin.densimetros.archivos.show');
     Route::delete('/archivos/{archivo}', [DensimetroArchivoController::class, 'destroy'])->name('admin.densimetros.archivos.destroy');

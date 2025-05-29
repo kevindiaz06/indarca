@@ -28,10 +28,13 @@ class ClienteController extends Controller
         $user = auth()->user();
         $email = $user->email;
 
-        // Buscar densímetros asociados al correo del usuario
-        $densimetros = Densimetro::whereHas('cliente', function($query) use ($email) {
-            $query->where('email', $email);
-        })->orderBy('updated_at', 'desc')->get();
+        // Buscar densímetros asociados al correo del usuario (sin archivos)
+        $densimetros = Densimetro::with('cliente')
+            ->whereHas('cliente', function($query) use ($email) {
+                $query->where('email', $email);
+            })
+            ->orderBy('updated_at', 'desc')
+            ->get();
 
         return view('usuarios.historial-incidencias', compact('densimetros'));
     }
@@ -46,10 +49,13 @@ class ClienteController extends Controller
         $user = auth()->user();
         $email = $user->email;
 
-        // Buscar densímetros asociados al correo del usuario
-        $densimetros = Densimetro::whereHas('cliente', function($query) use ($email) {
-            $query->where('email', $email);
-        })->orderBy('updated_at', 'desc')->get();
+        // Buscar densímetros asociados al correo del usuario (sin archivos)
+        $densimetros = Densimetro::with('cliente')
+            ->whereHas('cliente', function($query) use ($email) {
+                $query->where('email', $email);
+            })
+            ->orderBy('updated_at', 'desc')
+            ->get();
 
         return view('usuarios.historial', compact('densimetros'));
     }
