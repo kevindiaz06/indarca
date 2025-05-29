@@ -12,11 +12,13 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 use App\Mail\DensimetroCambioEstadoMail;
 use App\Mail\DensimetroRecepcionMail;
+use App\Mail\DensimetroCorreoPersonalizadoMail;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Barryvdh\DomPDF\Facade\Pdf as PDF;
 use Carbon\Carbon;
+use Illuminate\Http\Request;
 
 class DensimetroController extends Controller
 {
@@ -243,5 +245,65 @@ class DensimetroController extends Controller
         // Envío del correo electrónico al cliente usando la clase Mailable
         Mail::to($cliente->email)
             ->send(new DensimetroCambioEstadoMail($cliente, $densimetro, now()->format('d/m/Y')));
+    }
+
+    /**
+     * Envía correo personalizado al cliente.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function enviarCorreoPersonalizado(Request $request, int $id)
+    {
+        $densimetro = $this->repository->findById($id);
+        $this->authorize('view', $densimetro);
+
+        // Validar los datos del formulario
+        $validator = Validator::make($request->all(), [
+            'asunto' => 'required|string|max:255',
+            'mensaje' => 'required|string|max:2000',
+        ], [
+            'asunto.required' => 'El asunto es obligatorio.',
+            'asunto.max' => 'El asunto no puede exceder los 255 caracteres.',
+            'mensaje.required' => 'El mensaje es obligatorio.',
+            'mensaje.max' => 'El mensaje no puede exceder los 2000 caracteres.',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        $cliente = $densimetro->cliente;
+
+        // Verificar si el cliente existe
+        if (!$cliente) {
+            return redirect()->back()
+                ->withErrors(['error' => 'No se puede enviar el correo porque el densímetro no tiene un cliente asociado.']);
+        }
+
+        try {
+            $asunto = $request->input('asunto');
+            $mensaje = $request->input('mensaje');
+            $remitente = Auth::user()->name;
+
+            // Enviar el correo personalizado
+            Mail::to($cliente->email)
+                ->send(new DensimetroCorreoPersonalizadoMail($cliente, $densimetro, $asunto, $mensaje, $remitente));
+
+            // Registrar en el log
+            \Log::info('Correo personalizado enviado a ' . $cliente->email . ' por ' . $remitente . ' - Asunto: ' . $asunto);
+
+            return redirect()->back()
+                ->with('success', 'Correo enviado correctamente a ' . $cliente->email);
+
+        } catch (\Exception $e) {
+            \Log::error('Error al enviar correo personalizado: ' . $e->getMessage());
+
+            return redirect()->back()
+                ->withErrors(['error' => 'Error al enviar el correo: ' . $e->getMessage()]);
+        }
     }
 }

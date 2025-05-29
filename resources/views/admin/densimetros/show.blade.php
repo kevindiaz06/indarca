@@ -250,7 +250,7 @@
                             <i class="bi bi-pencil me-1"></i> Editar densímetro
                         </a>
 
-                        <button type="button" class="btn btn-success" id="sendEmailBtn" onclick="sendEmailToClient(this)">
+                        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#emailModal">
                             <i class="bi bi-envelope me-1"></i> Enviar correo al cliente
                         </button>
 
@@ -292,29 +292,141 @@
     </div>
 </div>
 
+<!-- Modal de Envío de Correo Personalizado -->
+<div class="modal fade" id="emailModal" tabindex="-1" aria-labelledby="emailModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="emailModalLabel">
+                    <i class="bi bi-envelope me-2"></i>Enviar Correo al Cliente
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="{{ route('admin.densimetros.enviar-correo', $densimetro->id) }}" method="POST" id="emailForm">
+                @csrf
+                <div class="modal-body">
+                    <!-- Información del destinatario -->
+                    <div class="alert alert-info">
+                        <i class="bi bi-info-circle me-2"></i>
+                        <strong>Destinatario:</strong> {{ $densimetro->cliente ? $densimetro->cliente->name : 'Cliente no disponible' }}
+                        ({{ $densimetro->cliente ? $densimetro->cliente->email : 'Email no disponible' }})
+                    </div>
+
+                    <!-- Información del densímetro -->
+                    <div class="card mb-3">
+                        <div class="card-header">
+                            <h6 class="mb-0"><i class="bi bi-gear me-2"></i>Información del Densímetro</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p class="mb-1"><strong>Referencia:</strong> {{ $densimetro->referencia_reparacion }}</p>
+                                    <p class="mb-1"><strong>Número de Serie:</strong> {{ $densimetro->numero_serie }}</p>
+                                </div>
+                                <div class="col-md-6">
+                                    <p class="mb-1"><strong>Marca:</strong> {{ $densimetro->marca ?: 'No especificada' }}</p>
+                                    <p class="mb-1"><strong>Estado:</strong>
+                                        @if($densimetro->estado == 'recibido')
+                                            <span class="badge bg-secondary">Recibido</span>
+                                        @elseif($densimetro->estado == 'en_reparacion')
+                                            <span class="badge bg-primary">En reparación</span>
+                                        @elseif($densimetro->estado == 'finalizado')
+                                            <span class="badge bg-success">Finalizado</span>
+                                        @elseif($densimetro->estado == 'entregado')
+                                            <span class="badge bg-info">Entregado</span>
+                                        @endif
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Formulario de correo -->
+                    <div class="mb-3">
+                        <label for="asunto" class="form-label">
+                            <i class="bi bi-tag me-1"></i>Asunto del correo <span class="text-danger">*</span>
+                        </label>
+                        <input type="text" class="form-control @error('asunto') is-invalid @enderror"
+                               id="asunto" name="asunto" value="{{ old('asunto') }}"
+                               placeholder="Ej: Actualización sobre su densímetro" maxlength="255" required>
+                        @error('asunto')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                        <div class="form-text">Máximo 255 caracteres</div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="mensaje" class="form-label">
+                            <i class="bi bi-chat-text me-1"></i>Mensaje <span class="text-danger">*</span>
+                        </label>
+                        <textarea class="form-control @error('mensaje') is-invalid @enderror"
+                                  id="mensaje" name="mensaje" rows="8"
+                                  placeholder="Escriba aquí el mensaje que desea enviar al cliente..."
+                                  maxlength="2000" required>{{ old('mensaje') }}</textarea>
+                        @error('mensaje')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                        <div class="form-text">
+                            <span id="charCount">0</span>/2000 caracteres
+                        </div>
+                    </div>
+
+                    <div class="alert alert-warning">
+                        <i class="bi bi-exclamation-triangle me-2"></i>
+                        <strong>Nota:</strong> Este correo se enviará desde la cuenta oficial de INDARCA y incluirá automáticamente la información del densímetro.
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                        <i class="bi bi-x-circle me-1"></i>Cancelar
+                    </button>
+                    <button type="submit" class="btn btn-success" id="sendEmailBtn">
+                        <i class="bi bi-send me-1"></i>Enviar Correo
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 <script>
-// Función para manejar el envío de correo al cliente
-function sendEmailToClient(button) {
-    // Deshabilitar el botón para prevenir múltiples clics
-    button.disabled = true;
-    // Cambiar el texto del botón
-    button.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Enviando correo...';
-
-    // Simulamos una operación de envío (por ahora solo muestra un alert)
-    setTimeout(function() {
-        alert('Esta funcionalidad enviaría un correo al cliente.');
-        // Restaurar el botón después de completar la acción
-        button.disabled = false;
-        button.innerHTML = '<i class="bi bi-envelope me-1"></i> Enviar correo al cliente';
-    }, 1000);
-}
-
 document.addEventListener('DOMContentLoaded', function() {
     const deleteForm = document.getElementById('deleteForm');
     const deleteBtn = document.getElementById('deleteBtn');
     const uploadForm = document.getElementById('uploadForm');
     const uploadBtn = document.getElementById('uploadBtn');
     const archivosInput = document.getElementById('archivos');
+    const emailForm = document.getElementById('emailForm');
+    const sendEmailBtn = document.getElementById('sendEmailBtn');
+    const mensajeTextarea = document.getElementById('mensaje');
+    const charCount = document.getElementById('charCount');
+
+    // Contador de caracteres para el mensaje
+    if (mensajeTextarea && charCount) {
+        mensajeTextarea.addEventListener('input', function() {
+            const currentLength = this.value.length;
+            charCount.textContent = currentLength;
+
+            if (currentLength > 1800) {
+                charCount.style.color = '#dc3545'; // Rojo cuando se acerca al límite
+            } else {
+                charCount.style.color = '#6c757d'; // Gris normal
+            }
+        });
+
+        // Inicializar contador
+        charCount.textContent = mensajeTextarea.value.length;
+    }
+
+    // Manejo del formulario de envío de correo
+    if (emailForm && sendEmailBtn) {
+        emailForm.addEventListener('submit', function() {
+            // Deshabilitar el botón de envío
+            sendEmailBtn.disabled = true;
+            // Cambiar el texto del botón para indicar proceso
+            sendEmailBtn.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Enviando correo...';
+        });
+    }
 
     // Manejo del formulario de eliminación
     if (deleteForm && deleteBtn) {
