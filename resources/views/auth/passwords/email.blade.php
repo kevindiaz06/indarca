@@ -12,17 +12,28 @@
                 <div class="card-body p-4">
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
+                            <i class="bi bi-check-circle-fill me-2"></i>
                             {{ session('status') }}
                             <p class="mb-0 mt-2"><strong>{{ __('auth.note') }}</strong> {{ __('auth.check_spam') }}</p>
                         </div>
                     @else
                         <div class="alert alert-info mb-4" role="alert">
+                            <i class="bi bi-info-circle-fill me-2"></i>
                             <p class="mb-0">{{ __('auth.reset_intro') }}</p>
                             <p class="mb-0 mt-2"><strong>{{ __('auth.note') }}</strong> {{ __('auth.check_spam') }}</p>
                         </div>
                     @endif
 
-                    <form method="POST" action="{{ route('password.email') }}">
+                    @if ($errors->any())
+                        <div class="alert alert-danger" role="alert">
+                            <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                            @foreach ($errors->all() as $error)
+                                <div>{{ $error }}</div>
+                            @endforeach
+                        </div>
+                    @endif
+
+                    <form method="POST" action="{{ route('password.email') }}" id="resetForm">
                         @csrf
 
                         <div class="mb-4">
@@ -39,8 +50,14 @@
                         </div>
 
                         <div class="mb-4">
-                            <button type="submit" class="btn btn-primary w-100 py-2 fw-medium">
-                                <i class="bi bi-envelope-paper me-2"></i>{{ __('auth.send_reset_link') }}
+                            <button type="submit" class="btn btn-primary w-100 py-2 fw-medium" id="submitBtn">
+                                <span class="btn-text">
+                                    <i class="bi bi-envelope-paper me-2"></i>{{ __('auth.send_reset_link') }}
+                                </span>
+                                <span class="btn-loading d-none">
+                                    <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                                    Enviando...
+                                </span>
                             </button>
                         </div>
 
@@ -55,4 +72,38 @@
         </div>
     </div>
 </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('resetForm');
+    const submitBtn = document.getElementById('submitBtn');
+    const btnText = submitBtn.querySelector('.btn-text');
+    const btnLoading = submitBtn.querySelector('.btn-loading');
+
+    form.addEventListener('submit', function(e) {
+        // Mostrar estado de carga
+        submitBtn.disabled = true;
+        btnText.classList.add('d-none');
+        btnLoading.classList.remove('d-none');
+
+        // Permitir que el formulario se envíe normalmente
+        // El estado de carga se mantendrá hasta que la página se recargue
+    });
+
+    // Regenerar token CSRF si la página ha estado abierta por mucho tiempo
+    setInterval(function() {
+        fetch('{{ route("password.request") }}')
+            .then(response => response.text())
+            .then(html => {
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(html, 'text/html');
+                const newToken = doc.querySelector('input[name="_token"]').value;
+                document.querySelector('input[name="_token"]').value = newToken;
+            })
+            .catch(error => {
+                console.log('Error al actualizar token CSRF:', error);
+            });
+    }, 300000); // Actualizar cada 5 minutos
+});
+</script>
 @endsection

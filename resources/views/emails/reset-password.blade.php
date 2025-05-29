@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Restablecer Contraseña - INDARCA</title>
+    <title>Nueva Contraseña - INDARCA</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
 
@@ -44,10 +44,10 @@
             padding: 40px 35px;
             color: #4a5568;
         }
-        .reset-code {
-            font-size: 36px;
+        .new-password {
+            font-size: 24px;
             font-weight: bold;
-            letter-spacing: 8px;
+            letter-spacing: 2px;
             text-align: center;
             padding: 25px 20px;
             margin: 25px 0;
@@ -56,6 +56,14 @@
             color: #F40006;
             box-shadow: 0 3px 10px rgba(244, 0, 6, 0.1);
             border: 1px solid rgba(244, 0, 6, 0.1);
+            word-break: break-all;
+        }
+        .credentials {
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 25px 0;
+            border-left: 4px solid #F40006;
         }
         .button {
             display: inline-block;
@@ -146,26 +154,42 @@
     <div class="container">
         <div class="header">
             <!-- Logo de la empresa -->
-            <img src="{{ $message->embed($logoPath) }}" alt="INDARCA Logo" class="logo">
-            <h1>Restablecer Contraseña</h1>
+            @if(isset($logoPath) && $logoPath)
+                <img src="{{ $message->embed($logoPath) }}" alt="INDARCA Logo" class="logo">
+            @else
+                <h2 style="margin-bottom: 12px;">INDARCA</h2>
+            @endif
+            <h1>Nueva Contraseña</h1>
         </div>
 
         <div class="content">
-            <p>Estimado/a <strong>{{ $usuario->nombre }}</strong>,</p>
+            <p>Estimado/a <strong>{{ $nombre }}</strong>,</p>
 
-            <p>Hemos recibido una solicitud para restablecer la contraseña de su cuenta en INDARCA. Para continuar con el proceso, por favor utilice el siguiente código:</p>
+            <p>Hemos recibido una solicitud para restablecer la contraseña de su cuenta en INDARCA. Se ha generado una nueva contraseña temporal para su cuenta:</p>
 
-            <div class="reset-code">
-                {{ $codigo }}
+            <div class="credentials">
+                <strong>Usuario:</strong> {{ request()->email ?? 'Su correo electrónico' }}<br>
+                <strong>Nueva contraseña:</strong>
+                <div class="new-password">{{ $password }}</div>
             </div>
 
-            <p>Este código es válido por <strong>30 minutos</strong>. Si no ha solicitado este cambio, puede ignorar este correo y su contraseña seguirá siendo la misma.</p>
+            <p><strong>Por su seguridad, le recomendamos encarecidamente que cambie esta contraseña temporal por una de su preferencia una vez que inicie sesión.</strong></p>
+
+            <div style="text-align: center; margin: 35px 0 25px;">
+                <a href="{{ config('app.url') }}/login" class="button">Iniciar sesión ahora</a>
+            </div>
 
             <div class="warning">
-                <strong>Nota de seguridad:</strong> Nunca compartiremos sus datos de acceso ni le solicitaremos su contraseña por correo electrónico. Siempre acceda a nuestro sitio web directamente escribiendo la URL en su navegador.
+                <strong>Nota de seguridad:</strong>
+                <ul style="margin: 10px 0; padding-left: 20px;">
+                    <li>Esta es una contraseña temporal generada automáticamente</li>
+                    <li>Cámbiela inmediatamente después de iniciar sesión</li>
+                    <li>Nunca compartiremos sus datos de acceso con terceros</li>
+                    <li>Siempre acceda a nuestro sitio web directamente escribiendo la URL en su navegador</li>
+                </ul>
             </div>
 
-            <p>Si tiene alguna pregunta o encuentra algún problema durante el proceso de restablecimiento, nuestro equipo de soporte está disponible para asistirle.</p>
+            <p>Si no ha solicitado este cambio o tiene alguna pregunta, por favor póngase en contacto con nuestro equipo de soporte inmediatamente.</p>
         </div>
 
         <div class="footer">

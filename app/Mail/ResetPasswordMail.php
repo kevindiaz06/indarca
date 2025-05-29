@@ -10,7 +10,7 @@ use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Mail\Mailables\Address;
 
-class ResetPasswordMail extends Mailable
+class ResetPasswordMail extends BaseMail
 {
     use Queueable, SerializesModels;
 
@@ -22,6 +22,7 @@ class ResetPasswordMail extends Mailable
      */
     public function __construct($nombre, $password)
     {
+        parent::__construct(); // Llama al constructor de BaseMail para inicializar la ruta del logo
         $this->nombre = $nombre;
         $this->password = $password;
     }
@@ -44,6 +45,10 @@ class ResetPasswordMail extends Mailable
     {
         return new Content(
             view: 'emails.reset-password',
+            with: [
+                'nombre' => $this->nombre,
+                'password' => $this->password
+            ]
         );
     }
 
