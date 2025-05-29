@@ -144,6 +144,110 @@
         </div>
     </div>
 
+    <!-- Densímetros Activos Stats -->
+    <div class="row mb-4">
+        <div class="col-12 mb-4">
+            <div class="card stats-card h-100 border-start border-4 shadow-sm" style="border-color: #9B59B6 !important;">
+                <div class="card-header py-3 d-flex align-items-center justify-content-between bg-transparent border-0">
+                    <h6 class="m-0 font-weight-bold">Estadísticas de Densímetros</h6>
+                    <button class="btn btn-sm btn-light" id="refreshDensimetrosBtn">
+                        <i class="bi bi-arrow-repeat"></i>
+                    </button>
+                </div>
+                <div class="card-body">
+                    <div class="d-flex align-items-center">
+                        <div class="flex-grow-1">
+                            <h5 class="text-muted mb-1">Densímetros Activos</h5>
+                            <h2 class="mb-0 fw-bold" id="densimetrosActivosCount">{{ $densimetrosActivos }}</h2>
+                            <small class="text-muted">Todos excepto entregados al cliente</small>
+                        </div>
+                        <div class="icon rounded-circle p-3" style="background-color: #9B59B6;">
+                            <i class="bi bi-tools text-white"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer bg-light py-2">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <small class="text-muted">
+                            <i class="bi bi-info-circle me-1"></i>
+                            Estados: Recibido, En reparación, Finalizado
+                        </small>
+                        <a href="{{ route('admin.densimetros.index') }}" class="btn btn-sm btn-outline-primary">
+                            <i class="bi bi-eye me-1"></i> Ver Todos
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Desglose de Densímetros por Estado -->
+    <div class="row mb-4">
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card stats-card h-100 border-start border-4 shadow-sm" style="border-color: #3498DB !important;">
+                <div class="card-body">
+                    <div class="d-flex align-items-center">
+                        <div class="flex-grow-1">
+                            <h6 class="text-muted mb-1">Recibidos</h6>
+                            <h4 class="mb-0 fw-bold" id="densimetrosRecibidosCount">{{ $densimetrosRecibidos }}</h4>
+                        </div>
+                        <div class="icon rounded-circle p-2" style="background-color: #3498DB; width: 40px; height: 40px;">
+                            <i class="bi bi-inbox text-white" style="font-size: 1.2rem;"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card stats-card h-100 border-start border-4 shadow-sm" style="border-color: #F39C12 !important;">
+                <div class="card-body">
+                    <div class="d-flex align-items-center">
+                        <div class="flex-grow-1">
+                            <h6 class="text-muted mb-1">En Reparación</h6>
+                            <h4 class="mb-0 fw-bold" id="densimetrosEnReparacionCount">{{ $densimetrosEnReparacion }}</h4>
+                        </div>
+                        <div class="icon rounded-circle p-2" style="background-color: #F39C12; width: 40px; height: 40px;">
+                            <i class="bi bi-gear text-white" style="font-size: 1.2rem;"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card stats-card h-100 border-start border-4 shadow-sm" style="border-color: #27AE60 !important;">
+                <div class="card-body">
+                    <div class="d-flex align-items-center">
+                        <div class="flex-grow-1">
+                            <h6 class="text-muted mb-1">Finalizados</h6>
+                            <h4 class="mb-0 fw-bold" id="densimetrosFinalizadosCount">{{ $densimetrosFinalizados }}</h4>
+                        </div>
+                        <div class="icon rounded-circle p-2" style="background-color: #27AE60; width: 40px; height: 40px;">
+                            <i class="bi bi-check-circle text-white" style="font-size: 1.2rem;"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card stats-card h-100 border-start border-4 shadow-sm" style="border-color: #E74C3C !important;">
+                <div class="card-body">
+                    <div class="d-flex align-items-center">
+                        <div class="flex-grow-1">
+                            <h6 class="text-muted mb-1">Entregados</h6>
+                            <h4 class="mb-0 fw-bold" id="densimetrosEntregadosCount">{{ $densimetrosEntregados }}</h4>
+                        </div>
+                        <div class="icon rounded-circle p-2" style="background-color: #E74C3C; width: 40px; height: 40px;">
+                            <i class="bi bi-truck text-white" style="font-size: 1.2rem;"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Charts Row -->
     @if(Auth::user()->role !== 'trabajador')
     <div class="row mb-4">
@@ -610,6 +714,46 @@
                     showToast('Error al actualizar el gráfico de evolución', 'danger');
                 });
         });
+    });
+
+    // Funcionalidad para actualizar datos de densímetros
+    document.addEventListener('DOMContentLoaded', function() {
+        const refreshDensimetrosBtn = document.getElementById('refreshDensimetrosBtn');
+
+        if (refreshDensimetrosBtn) {
+            refreshDensimetrosBtn.addEventListener('click', function() {
+                // Agregar efecto de rotación al botón
+                this.querySelector('i').classList.add('fa-spin');
+
+                // Hacer una petición AJAX para obtener datos actualizados
+                fetch('{{ route("admin.dashboard.refresh") }}')
+                    .then(response => response.json())
+                    .then(data => {
+                        // Actualizar los contadores de densímetros
+                        if (data.densimetros) {
+                            document.getElementById('densimetrosActivosCount').textContent = data.densimetros.activos;
+                            document.getElementById('densimetrosRecibidosCount').textContent = data.densimetros.recibidos;
+                            document.getElementById('densimetrosEnReparacionCount').textContent = data.densimetros.en_reparacion;
+                            document.getElementById('densimetrosFinalizadosCount').textContent = data.densimetros.finalizados;
+                            document.getElementById('densimetrosEntregadosCount').textContent = data.densimetros.entregados;
+                        }
+
+                        // Remover efecto de rotación
+                        refreshDensimetrosBtn.querySelector('i').classList.remove('fa-spin');
+
+                        // Mostrar notificación
+                        showToast('Estadísticas de densímetros actualizadas correctamente');
+                    })
+                    .catch(error => {
+                        console.error('Error al actualizar densímetros:', error);
+
+                        // Remover efecto de rotación
+                        refreshDensimetrosBtn.querySelector('i').classList.remove('fa-spin');
+
+                        showToast('Error al actualizar las estadísticas de densímetros', 'danger');
+                    });
+            });
+        }
     });
     @endif
 

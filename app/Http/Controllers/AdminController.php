@@ -32,6 +32,15 @@ class AdminController extends Controller
         $totalClientes = User::where('role', 'cliente')->count();
         $totalEmpresas = Empresa::count();
 
+        // Conteo de densímetros activos (todos excepto los entregados al cliente)
+        $densimetrosActivos = Densimetro::where('estado', '!=', 'entregado')->count();
+
+        // Desglose detallado de densímetros por estado
+        $densimetrosRecibidos = Densimetro::where('estado', 'recibido')->count();
+        $densimetrosEnReparacion = Densimetro::where('estado', 'en_reparacion')->count();
+        $densimetrosFinalizados = Densimetro::where('estado', 'finalizado')->count();
+        $densimetrosEntregados = Densimetro::where('estado', 'entregado')->count();
+
         // Para la vista de inicio.blade.php - Total de trabajadores (admin + trabajador)
         $totalTrabajadoresPublic = $totalAdmins + $totalTrabajadores;
 
@@ -70,6 +79,11 @@ class AdminController extends Controller
             'totalTrabajadores',
             'totalClientes',
             'totalEmpresas',
+            'densimetrosActivos',
+            'densimetrosRecibidos',
+            'densimetrosEnReparacion',
+            'densimetrosFinalizados',
+            'densimetrosEntregados',
             'totalTrabajadoresPublic',
             'ultimosUsuarios',
             'ultimasEmpresas',
@@ -201,9 +215,23 @@ class AdminController extends Controller
                 ->count();
         }
 
+        // Datos de densímetros
+        $densimetrosActivos = Densimetro::where('estado', '!=', 'entregado')->count();
+        $densimetrosRecibidos = Densimetro::where('estado', 'recibido')->count();
+        $densimetrosEnReparacion = Densimetro::where('estado', 'en_reparacion')->count();
+        $densimetrosFinalizados = Densimetro::where('estado', 'finalizado')->count();
+        $densimetrosEntregados = Densimetro::where('estado', 'entregado')->count();
+
         return response()->json([
             'distribucionRoles' => $distribucionRoles,
-            'usuariosPorMes' => $usuariosPorMes
+            'usuariosPorMes' => $usuariosPorMes,
+            'densimetros' => [
+                'activos' => $densimetrosActivos,
+                'recibidos' => $densimetrosRecibidos,
+                'en_reparacion' => $densimetrosEnReparacion,
+                'finalizados' => $densimetrosFinalizados,
+                'entregados' => $densimetrosEntregados
+            ]
         ]);
     }
 

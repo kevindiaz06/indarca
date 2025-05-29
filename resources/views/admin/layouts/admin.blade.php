@@ -207,6 +207,44 @@
                 display: none;
             }
         }
+
+        /* Estilos adicionales para las secciones de densímetros */
+        .stats-card .card-header {
+            background-color: transparent !important;
+            border-bottom: 1px solid rgba(0,0,0,.125);
+        }
+
+        .stats-card .card-header h6 {
+            color: #5a5c69;
+            font-weight: 700;
+        }
+
+        /* Animación para el botón de actualizar */
+        .fa-spin {
+            animation: fa-spin 1s infinite linear;
+        }
+
+        @keyframes fa-spin {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Efectos hover para las tarjetas de densímetros */
+        .stats-card:hover {
+            transform: translateY(-2px);
+            transition: all 0.3s ease;
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+        }
+
+        /* Estilos para los contadores de densímetros */
+        .stats-card h4, .stats-card h2 {
+            font-family: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            font-weight: 800;
+        }
     </style>
 </head>
 <body>
