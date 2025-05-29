@@ -45,11 +45,45 @@ class DensimetroArchivoController extends Controller
             $archivos = $request->file('archivos');
             Log::info('Número de archivos detectados: ' . count($archivos));
 
+            // Verificar límite de cantidad de archivos
+            $maxFiles = 10;
+            $serverMaxFiles = (int) ini_get('max_file_uploads');
+            $effectiveMaxFiles = min($maxFiles, $serverMaxFiles);
+
+            if (count($archivos) > $effectiveMaxFiles) {
+                Log::warning("Límite de archivos excedido: {$effectiveMaxFiles} máximo, " . count($archivos) . " enviados");
+
+                $errorMessage = "Has excedido el límite máximo de {$effectiveMaxFiles} archivos.";
+                if ($serverMaxFiles < $maxFiles) {
+                    $errorMessage .= " (Limitado por configuración del servidor: max_file_uploads = {$serverMaxFiles})";
+                }
+                $errorMessage .= " Has enviado " . count($archivos) . " archivos. Por favor, selecciona menos archivos e inténtalo de nuevo.";
+
+                return redirect()->route('admin.densimetros.show', $densimetroId)
+                    ->withErrors(['archivos' => $errorMessage]);
+            }
+
+            // Verificar límite de tamaño total de POST
+            $postMaxSize = $this->convertToBytes(ini_get('post_max_size'));
+            $estimatedTotalSize = 0;
+            foreach ($archivos as $archivo) {
+                $estimatedTotalSize += $archivo->getSize();
+            }
+
+            if ($estimatedTotalSize > $postMaxSize * 0.9) { // Usar 90% del límite como margen
+                Log::warning("Tamaño total estimado excede límites del servidor: " . number_format($estimatedTotalSize / (1024*1024), 2) . "MB de " . number_format($postMaxSize / (1024*1024), 2) . "MB");
+
+                return redirect()->route('admin.densimetros.show', $densimetroId)
+                    ->withErrors(['archivos' => 'El tamaño total de los archivos excede los límites del servidor. Por favor, selecciona archivos más pequeños o menos archivos.']);
+            }
+
             // Validación simple
             Log::info('Iniciando validación...');
             $validator = Validator::make($request->all(), [
-                'archivos' => 'required|array',
+                'archivos' => 'required|array|max:10', // Agregar límite en la validación
                 'archivos.*' => 'file|max:10240', // Simplificamos la validación
+            ], [
+                'archivos.max' => 'No puedes subir más de 10 archivos a la vez.',
             ]);
 
             if ($validator->fails()) {
@@ -237,5 +271,24 @@ class DensimetroArchivoController extends Controller
         $archivo->delete();
 
         return redirect()->back()->with('success', 'Archivo eliminado correctamente.');
+    }
+
+    /**
+     * Convierte valores como "40M", "150M" a bytes
+     *
+     * @param string $value
+     * @return int
+     */
+    private function convertToBytes($value)
+    {
+        $unit = strtolower(substr($value, -1));
+        $number = (float) substr($value, 0, -1);
+
+        switch ($unit) {
+            case 'g': return $number * 1024 * 1024 * 1024;
+            case 'm': return $number * 1024 * 1024;
+            case 'k': return $number * 1024;
+            default: return $number;
+        }
     }
 }

@@ -130,6 +130,15 @@
                         </div>
                     @endif
 
+                    <!-- Información importante sobre límites -->
+                    <div class="alert alert-info border-left-info mb-4">
+                        <div class="text-info">
+                            <i class="bi bi-info-circle me-2"></i>
+                            <strong>Información importante:</strong> Puedes subir un máximo de <strong>10 archivos</strong> por vez.
+                            Si necesitas subir más archivos, hazlo en varias cargas separadas.
+                        </div>
+                    </div>
+
                     <form action="{{ route('admin.densimetros.archivos.store', $densimetro->id) }}" method="POST" enctype="multipart/form-data" class="mb-4 border-bottom pb-4" id="uploadForm">
                         @csrf
                         <div class="mb-3">
@@ -141,7 +150,11 @@
                             @error('archivos.*')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
-                            <div class="form-text">Puedes seleccionar múltiples archivos. Formatos permitidos: imágenes (JPG, PNG, GIF, WEBP), documentos (PDF, DOC, DOCX, XLS, XLSX, TXT). Máximo 10MB por archivo.</div>
+                            <div class="form-text">
+                                <strong>Límite:</strong> Máximo 10 archivos por carga.
+                                <br><strong>Formatos permitidos:</strong> imágenes (JPG, PNG, GIF, WEBP), documentos (PDF, DOC, DOCX, XLS, XLSX, TXT).
+                                <br><strong>Tamaño:</strong> Máximo 10MB por archivo.
+                            </div>
                         </div>
                         <button type="submit" class="btn btn-primary" id="uploadBtn">
                             <i class="bi bi-upload me-1"></i> Subir archivos
@@ -318,6 +331,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Validación de archivos antes del envío
         archivosInput.addEventListener('change', function() {
             const files = this.files;
+            const maxFiles = 10; // Límite máximo de archivos
             const maxSize = 10 * 1024 * 1024; // 10MB en bytes
             const allowedTypes = [
                 'image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'image/webp',
@@ -330,24 +344,33 @@ document.addEventListener('DOMContentLoaded', function() {
             let hasError = false;
             let errorMessage = '';
 
-            for (let i = 0; i < files.length; i++) {
-                const file = files[i];
+            // Verificar límite de cantidad de archivos
+            if (files.length > maxFiles) {
+                hasError = true;
+                errorMessage += `Has excedido el límite máximo de ${maxFiles} archivos. Has seleccionado ${files.length} archivos.\nPor favor, selecciona menos archivos e inténtalo de nuevo.\n\n`;
+            }
 
-                // Verificar tamaño
-                if (file.size > maxSize) {
-                    hasError = true;
-                    errorMessage += `El archivo "${file.name}" excede el tamaño máximo de 10MB.\n`;
-                }
+            // Solo continuar con otras validaciones si no se excedió el límite
+            if (!hasError) {
+                for (let i = 0; i < files.length; i++) {
+                    const file = files[i];
 
-                // Verificar tipo
-                if (!allowedTypes.includes(file.type)) {
-                    hasError = true;
-                    errorMessage += `El archivo "${file.name}" no es de un tipo permitido.\n`;
+                    // Verificar tamaño
+                    if (file.size > maxSize) {
+                        hasError = true;
+                        errorMessage += `El archivo "${file.name}" excede el tamaño máximo de 10MB.\n`;
+                    }
+
+                    // Verificar tipo
+                    if (!allowedTypes.includes(file.type)) {
+                        hasError = true;
+                        errorMessage += `El archivo "${file.name}" no es de un tipo permitido.\n`;
+                    }
                 }
             }
 
             if (hasError) {
-                alert('Errores encontrados:\n' + errorMessage);
+                alert('❌ Errores encontrados:\n\n' + errorMessage);
                 this.value = ''; // Limpiar la selección
                 return false;
             }
@@ -363,6 +386,14 @@ document.addEventListener('DOMContentLoaded', function() {
             if (archivosInput.files.length === 0) {
                 e.preventDefault();
                 alert('Por favor, selecciona al menos un archivo.');
+                return false;
+            }
+
+            // Verificar límite de archivos nuevamente antes del envío
+            const maxFiles = 10;
+            if (archivosInput.files.length > maxFiles) {
+                e.preventDefault();
+                alert(`❌ Error: Has excedido el límite máximo de ${maxFiles} archivos.\n\nHas seleccionado ${archivosInput.files.length} archivos. Por favor, selecciona menos archivos e inténtalo de nuevo.`);
                 return false;
             }
 
