@@ -2,207 +2,329 @@
 
 @section('content')
 <main id="main">
-    <!-- Hero Section Corporativo -->
-    <section class="privacy-hero position-relative overflow-hidden">
-        <div class="hero-background"></div>
+    <!-- Hero Section Renovado -->
+    <section class="privacy-hero-new position-relative overflow-hidden">
+        <!-- Elementos decorativos de fondo -->
+        <div class="hero-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
+        </div>
+
+        <!-- Partículas animadas -->
+        <div class="particles">
+            <div class="particle particle-1"></div>
+            <div class="particle particle-2"></div>
+            <div class="particle particle-3"></div>
+            <div class="particle particle-4"></div>
+            <div class="particle particle-5"></div>
+        </div>
+
         <div class="container position-relative">
-            <div class="row justify-content-center text-center">
-                <div class="col-lg-8">
-                    <div class="hero-content">
-                        <div class="hero-icon mb-4">
-                            <i class="fas fa-shield-alt"></i>
-                        </div>
-                        <h1 class="hero-title mb-3">{{ __('politicas.title') }}</h1>
-                        <p class="hero-subtitle mb-4">{{ __('politicas.intro_text') }}</p>
-                        <div class="hero-meta">
-                            <span class="badge bg-primary-soft text-primary px-3 py-2">
-                                <i class="fas fa-calendar-alt me-2"></i>
-                                {{ __('politicas.last_update') }}: {{ date('d/m/Y') }}
+            <div class="row align-items-center min-vh-50">
+                <div class="col-lg-8 mx-auto text-center">
+                    <div class="hero-content-new" data-aos="fade-up" data-aos-duration="800">
+                        <!-- Badge superior -->
+                        <div class="hero-badge mb-4">
+                            <span class="badge-pill">
+                                <i class="fas fa-shield-check me-2"></i>
+                                Protección de Datos Garantizada
                             </span>
+                        </div>
+
+                        <!-- Título principal -->
+                        <h1 class="hero-title-new mb-4">
+                            <span class="title-highlight">Políticas de</span>
+                            <span class="title-main">Privacidad</span>
+                        </h1>
+
+                        <!-- Subtítulo -->
+                        <p class="hero-subtitle-new mb-5">
+                            Tu privacidad es nuestra prioridad. Conoce cómo protegemos y manejamos tu información personal con total transparencia y cumplimiento legal.
+                        </p>
+
+                        <!-- Estadísticas rápidas -->
+                        <div class="hero-stats">
+                            <div class="stat-item" data-aos="fade-up" data-aos-delay="200">
+                                <div class="stat-icon">
+                                    <i class="fas fa-lock"></i>
+                                </div>
+                                <div class="stat-number">100%</div>
+                                <div class="stat-label">Seguro</div>
+                            </div>
+                            <div class="stat-item" data-aos="fade-up" data-aos-delay="300">
+                                <div class="stat-icon">
+                                    <i class="fas fa-gavel"></i>
+                                </div>
+                                <div class="stat-number">GDPR</div>
+                                <div class="stat-label">Cumplimiento</div>
+                            </div>
+                            <div class="stat-item" data-aos="fade-up" data-aos-delay="400">
+                                <div class="stat-icon">
+                                    <i class="fas fa-eye"></i>
+                                </div>
+                                <div class="stat-number">100%</div>
+                                <div class="stat-label">Transparente</div>
+                            </div>
+                        </div>
+
+                        <!-- Meta información -->
+                        <div class="hero-meta" data-aos="fade-up" data-aos-delay="500">
+                            <div class="meta-item">
+                                <i class="fas fa-calendar-alt me-2"></i>
+                                <span>Última actualización: {{ date('d/m/Y') }}</span>
+                            </div>
+                            <div class="meta-item">
+                                <i class="fas fa-clock me-2"></i>
+                                <span>Tiempo de lectura: 8 min</span>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+
+            <!-- Scroll indicator -->
+            <div class="scroll-indicator" data-aos="bounce" data-aos-delay="1000">
+                <div class="scroll-arrow">
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <span>Desliza para continuar</span>
+            </div>
         </div>
     </section>
 
-    <!-- Navegación Inteligente -->
-    <section class="privacy-navigation bg-white shadow-sm sticky-top">
+    <!-- Navegación Moderna -->
+    <section class="privacy-nav-modern sticky-top">
         <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <nav class="navbar navbar-expand-lg navbar-light p-0">
-                        <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#privacyNav">
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
-                        <div class="collapse navbar-collapse" id="privacyNav">
-                            <ul class="navbar-nav mx-auto">
-                                <li class="nav-item">
-                                    <a class="nav-link privacy-nav-link" href="#introduccion">
-                                        <i class="fas fa-info-circle me-2"></i>{{ __('politicas.introduction') }}
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link privacy-nav-link" href="#responsable">
-                                        <i class="fas fa-building me-2"></i>{{ __('politicas.data_controller') }}
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link privacy-nav-link" href="#datos">
-                                        <i class="fas fa-database me-2"></i>{{ __('politicas.collected_data') }}
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link privacy-nav-link" href="#finalidad">
-                                        <i class="fas fa-bullseye me-2"></i>{{ __('politicas.purpose_legal') }}
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link privacy-nav-link" href="#derechos">
-                                        <i class="fas fa-user-shield me-2"></i>{{ __('politicas.your_rights') }}
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link privacy-nav-link" href="#contacto">
-                                        <i class="fas fa-envelope me-2"></i>{{ __('politicas.contact') }}
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </nav>
+            <div class="nav-container">
+                <!-- Navegación horizontal -->
+                <nav class="nav-horizontal" id="privacyNav">
+                    <div class="nav-track">
+                        <a href="#introduccion" class="nav-item-modern active" data-section="introduccion">
+                            <div class="nav-icon">
+                                <i class="fas fa-info-circle"></i>
+                            </div>
+                            <span class="nav-text">Introducción</span>
+                        </a>
+                        <a href="#responsable" class="nav-item-modern" data-section="responsable">
+                            <div class="nav-icon">
+                                <i class="fas fa-building"></i>
+                            </div>
+                            <span class="nav-text">Responsable</span>
+                        </a>
+                        <a href="#datos" class="nav-item-modern" data-section="datos">
+                            <div class="nav-icon">
+                                <i class="fas fa-database"></i>
+                            </div>
+                            <span class="nav-text">Datos</span>
+                        </a>
+                        <a href="#finalidad" class="nav-item-modern" data-section="finalidad">
+                            <div class="nav-icon">
+                                <i class="fas fa-bullseye"></i>
+                            </div>
+                            <span class="nav-text">Finalidad</span>
+                        </a>
+                        <a href="#derechos" class="nav-item-modern" data-section="derechos">
+                            <div class="nav-icon">
+                                <i class="fas fa-user-shield"></i>
+                            </div>
+                            <span class="nav-text">Derechos</span>
+                        </a>
+                        <a href="#cookies" class="nav-item-modern" data-section="cookies">
+                            <div class="nav-icon">
+                                <i class="fas fa-cookie-bite"></i>
+                            </div>
+                            <span class="nav-text">Cookies</span>
+                        </a>
+                        <a href="#contacto" class="nav-item-modern" data-section="contacto">
+                            <div class="nav-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <span class="nav-text">Contacto</span>
+                        </a>
+                    </div>
+                </nav>
+
+                <!-- Progress bar -->
+                <div class="reading-progress">
+                    <div class="progress-bar" id="progressBar"></div>
+                </div>
+
+                <!-- Botón móvil -->
+                <button class="nav-mobile-toggle d-lg-none" data-bs-toggle="collapse" data-bs-target="#mobileNav">
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                </button>
+            </div>
+
+            <!-- Navegación móvil -->
+            <div class="collapse nav-mobile-menu" id="mobileNav">
+                <div class="mobile-nav-grid">
+                    <a href="#introduccion" class="mobile-nav-item">
+                        <i class="fas fa-info-circle"></i>
+                        <span>Introducción</span>
+                    </a>
+                    <a href="#responsable" class="mobile-nav-item">
+                        <i class="fas fa-building"></i>
+                        <span>Responsable</span>
+                    </a>
+                    <a href="#datos" class="mobile-nav-item">
+                        <i class="fas fa-database"></i>
+                        <span>Datos</span>
+                    </a>
+                    <a href="#finalidad" class="mobile-nav-item">
+                        <i class="fas fa-bullseye"></i>
+                        <span>Finalidad</span>
+                    </a>
+                    <a href="#derechos" class="mobile-nav-item">
+                        <i class="fas fa-user-shield"></i>
+                        <span>Derechos</span>
+                    </a>
+                    <a href="#cookies" class="mobile-nav-item">
+                        <i class="fas fa-cookie-bite"></i>
+                        <span>Cookies</span>
+                    </a>
+                    <a href="#contacto" class="mobile-nav-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>Contacto</span>
+                    </a>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Contenido Principal -->
-    <section class="privacy-content py-5">
+    <section class="privacy-content-new py-5">
         <div class="container">
             <div class="row">
-                <!-- Sidebar de Navegación -->
-                <div class="col-lg-3 d-none d-lg-block">
-                    <div class="privacy-sidebar">
-                        <div class="sidebar-card">
-                            <h5 class="sidebar-title">{{ __('politicas.quick_nav') }}</h5>
-                            <nav class="sidebar-nav">
-                                <a href="#introduccion" class="sidebar-link active">
-                                    <span class="sidebar-icon"><i class="fas fa-info-circle"></i></span>
-                                    <span class="sidebar-text">{{ __('politicas.introduction') }}</span>
-                                </a>
-                                <a href="#responsable" class="sidebar-link">
-                                    <span class="sidebar-icon"><i class="fas fa-building"></i></span>
-                                    <span class="sidebar-text">{{ __('politicas.data_controller') }}</span>
-                                </a>
-                                <a href="#datos" class="sidebar-link">
-                                    <span class="sidebar-icon"><i class="fas fa-database"></i></span>
-                                    <span class="sidebar-text">{{ __('politicas.collected_data') }}</span>
-                                </a>
-                                <a href="#como-recopilamos" class="sidebar-link">
-                                    <span class="sidebar-icon"><i class="fas fa-clipboard-list"></i></span>
-                                    <span class="sidebar-text">{{ __('politicas.how_collect') }}</span>
-                                </a>
-                                <a href="#finalidad" class="sidebar-link">
-                                    <span class="sidebar-icon"><i class="fas fa-bullseye"></i></span>
-                                    <span class="sidebar-text">{{ __('politicas.purpose_legal') }}</span>
-                                </a>
-                                <a href="#destinatarios" class="sidebar-link">
-                                    <span class="sidebar-icon"><i class="fas fa-share-alt"></i></span>
-                                    <span class="sidebar-text">{{ __('politicas.data_recipients') }}</span>
-                                </a>
-                                <a href="#transferencias" class="sidebar-link">
-                                    <span class="sidebar-icon"><i class="fas fa-globe"></i></span>
-                                    <span class="sidebar-text">{{ __('politicas.international_transfers') }}</span>
-                                </a>
-                                <a href="#conservacion" class="sidebar-link">
-                                    <span class="sidebar-icon"><i class="fas fa-clock"></i></span>
-                                    <span class="sidebar-text">{{ __('politicas.data_retention') }}</span>
-                                </a>
-                                <a href="#derechos" class="sidebar-link">
-                                    <span class="sidebar-icon"><i class="fas fa-user-shield"></i></span>
-                                    <span class="sidebar-text">{{ __('politicas.your_rights') }}</span>
-                                </a>
-                                <a href="#cookies" class="sidebar-link">
-                                    <span class="sidebar-icon"><i class="fas fa-cookie-bite"></i></span>
-                                    <span class="sidebar-text">{{ __('politicas.cookies') }}</span>
-                                </a>
-                                <a href="#cambios" class="sidebar-link">
-                                    <span class="sidebar-icon"><i class="fas fa-sync-alt"></i></span>
-                                    <span class="sidebar-text">{{ __('politicas.policy_changes') }}</span>
-                                </a>
-                                <a href="#contacto" class="sidebar-link">
-                                    <span class="sidebar-icon"><i class="fas fa-envelope"></i></span>
-                                    <span class="sidebar-text">{{ __('politicas.contact') }}</span>
-                                </a>
-                            </nav>
-                        </div>
-                    </div>
-                </div>
-
                 <!-- Contenido Principal -->
-                <div class="col-lg-9">
+                <div class="col-12">
                     <!-- Sección 1: Introducción -->
-                    <div class="privacy-section" id="introduccion">
-                        <div class="section-header">
-                            <div class="section-icon">
-                                <i class="fas fa-info-circle"></i>
+                    <div class="privacy-section-new" id="introduccion" data-aos="fade-up">
+                        <div class="section-container">
+                            <div class="section-header-new">
+                                <div class="section-number">01</div>
+                                <div class="section-icon-new">
+                                    <div class="icon-circle">
+                                        <i class="fas fa-info-circle"></i>
+                                    </div>
+                                </div>
+                                <div class="section-title-wrapper-new">
+                                    <h2 class="section-title-new">Introducción</h2>
+                                    <p class="section-subtitle-new">Nuestro compromiso con tu privacidad</p>
+                                </div>
                             </div>
-                            <div class="section-title-wrapper">
-                                <h2 class="section-title">{{ __('politicas.section_1_title') }}</h2>
-                                <p class="section-subtitle">Información general sobre nuestro compromiso con la privacidad</p>
-                            </div>
-                        </div>
-                        <div class="section-content">
-                            <div class="content-card">
-                                <p class="lead">{{ __('politicas.section_1_text_1') }}</p>
-                                <p>{{ __('politicas.section_1_text_2') }}</p>
-                                <div class="highlight-box">
-                                    <i class="fas fa-lightbulb text-warning me-2"></i>
-                                    <strong>Importante:</strong> Esta política se aplica a todos los servicios y productos de INDARCA.
+
+                            <div class="section-content-new">
+                                <div class="content-grid">
+                                    <div class="content-main">
+                                        <div class="text-block">
+                                            <p class="lead-text">En INDARCA, tu privacidad es fundamental para nosotros. Nos comprometemos a proteger y respetar tu información personal.</p>
+                                            <p class="body-text">Esta política explica cómo recopilamos, utilizamos, almacenamos y protegemos tu información cuando visitas nuestro sitio web o utilizas nuestros servicios. Cumplimos con todas las normativas aplicables de protección de datos.</p>
+                                        </div>
+
+                                        <div class="highlight-card">
+                                            <div class="highlight-icon">
+                                                <i class="fas fa-lightbulb"></i>
+                                            </div>
+                                            <div class="highlight-content">
+                                                <h5>Importante</h5>
+                                                <p>Esta política se aplica a todos los servicios y productos de INDARCA, incluyendo nuestros servicios de densimetría y arquitectura.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="content-sidebar">
+                                        <div class="info-card">
+                                            <div class="info-icon">
+                                                <i class="fas fa-shield-check"></i>
+                                            </div>
+                                            <h6>Protección Garantizada</h6>
+                                            <p>Cumplimos con GDPR, LGPD y normativas locales</p>
+                                        </div>
+
+                                        <div class="info-card">
+                                            <div class="info-icon">
+                                                <i class="fas fa-eye"></i>
+                                            </div>
+                                            <h6>Transparencia Total</h6>
+                                            <p>Información clara sobre el uso de tus datos</p>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
 
                     <!-- Sección 2: Responsable del Tratamiento -->
-                    <div class="privacy-section" id="responsable">
-                        <div class="section-header">
-                            <div class="section-icon">
-                                <i class="fas fa-building"></i>
+                    <div class="privacy-section-new" id="responsable" data-aos="fade-up">
+                        <div class="section-container">
+                            <div class="section-header-new">
+                                <div class="section-number">02</div>
+                                <div class="section-icon-new">
+                                    <div class="icon-circle">
+                                        <i class="fas fa-building"></i>
+                                    </div>
+                                </div>
+                                <div class="section-title-wrapper-new">
+                                    <h2 class="section-title-new">Responsable del Tratamiento</h2>
+                                    <p class="section-subtitle-new">Información de contacto y datos corporativos</p>
+                                </div>
                             </div>
-                            <div class="section-title-wrapper">
-                                <h2 class="section-title">{{ __('politicas.section_2_title') }}</h2>
-                                <p class="section-subtitle">Información de contacto y datos corporativos</p>
-                            </div>
-                        </div>
-                        <div class="section-content">
-                            <div class="content-card">
-                                <p>{{ __('politicas.section_2_text') }}</p>
-                                <div class="contact-grid">
-                                    <div class="contact-item">
-                                        <div class="contact-icon">
-                                            <i class="fas fa-map-marker-alt"></i>
+
+                            <div class="section-content-new">
+                                <div class="company-info-grid">
+                                    <div class="company-card main-card">
+                                        <div class="company-logo">
+                                            <h3 class="company-name">INDARCA</h3>
+                                            <p class="company-tagline">Innovación, Desarrollo y Arquitectura del Caribe</p>
                                         </div>
-                                        <div class="contact-info">
-                                            <h6>{{ __('politicas.address') }}</h6>
-                                            <p>{{ __('politicas.address_value') }}</p>
+
+                                        <div class="company-description">
+                                            <p>Somos el responsable del tratamiento de sus datos personales. Nos comprometemos a procesar su información de manera segura, transparente y conforme a la ley.</p>
                                         </div>
                                     </div>
-                                    <div class="contact-item">
-                                        <div class="contact-icon">
-                                            <i class="fas fa-phone"></i>
+
+                                    <div class="contact-cards-grid">
+                                        <div class="contact-card-new">
+                                            <div class="contact-icon-new">
+                                                <i class="fas fa-map-marker-alt"></i>
+                                            </div>
+                                            <div class="contact-details">
+                                                <h6>Dirección</h6>
+                                                <p>C. C 16, Santo Domingo Este 11506<br>República Dominicana</p>
+                                            </div>
                                         </div>
-                                        <div class="contact-info">
-                                            <h6>{{ __('politicas.phone') }}</h6>
-                                            <p>{{ __('politicas.phone_value') }}</p>
+
+                                        <div class="contact-card-new">
+                                            <div class="contact-icon-new">
+                                                <i class="fas fa-phone"></i>
+                                            </div>
+                                            <div class="contact-details">
+                                                <h6>Teléfono</h6>
+                                                <p>+1809 596 0333</p>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="contact-item">
-                                        <div class="contact-icon">
-                                            <i class="fas fa-envelope"></i>
+
+                                        <div class="contact-card-new">
+                                            <div class="contact-icon-new">
+                                                <i class="fas fa-envelope"></i>
+                                            </div>
+                                            <div class="contact-details">
+                                                <h6>Email</h6>
+                                                <p>contacto@indarca.com</p>
+                                            </div>
                                         </div>
-                                        <div class="contact-info">
-                                            <h6>{{ __('politicas.email') }}</h6>
-                                            <p>{{ __('politicas.email_value') }}</p>
+
+                                        <div class="contact-card-new">
+                                            <div class="contact-icon-new">
+                                                <i class="fas fa-globe"></i>
+                                            </div>
+                                            <div class="contact-details">
+                                                <h6>Sitio Web</h6>
+                                                <p>www.indarca.com</p>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -211,208 +333,532 @@
                     </div>
 
                     <!-- Sección 3: Datos que Recopilamos -->
-                    <div class="privacy-section" id="datos">
-                        <div class="section-header">
-                            <div class="section-icon">
-                                <i class="fas fa-database"></i>
-                            </div>
-                            <div class="section-title-wrapper">
-                                <h2 class="section-title">{{ __('politicas.section_3_title') }}</h2>
-                                <p class="section-subtitle">Tipos de información que recopilamos y procesamos</p>
-                            </div>
-                        </div>
-                        <div class="section-content">
-                            <div class="content-card">
-                                <p>{{ __('politicas.section_3_text') }}</p>
-                                <div class="data-types-grid">
-                                    <div class="data-type-card">
-                                        <div class="data-type-icon">
-                                            <i class="fas fa-user"></i>
-                                        </div>
-                                        <h5>{{ __('politicas.identity_data') }}</h5>
-                                        <p>{{ __('politicas.identity_data_desc') }}</p>
-                                    </div>
-                                    <div class="data-type-card">
-                                        <div class="data-type-icon">
-                                            <i class="fas fa-envelope"></i>
-                                        </div>
-                                        <h5>{{ __('politicas.contact_data') }}</h5>
-                                        <p>{{ __('politicas.contact_data_desc') }}</p>
-                                    </div>
-                                    <div class="data-type-card">
-                                        <div class="data-type-icon">
-                                            <i class="fas fa-laptop"></i>
-                                        </div>
-                                        <h5>{{ __('politicas.technical_data') }}</h5>
-                                        <p>{{ __('politicas.technical_data_desc') }}</p>
-                                    </div>
-                                    <div class="data-type-card">
-                                        <div class="data-type-icon">
-                                            <i class="fas fa-chart-bar"></i>
-                                        </div>
-                                        <h5>{{ __('politicas.usage_data') }}</h5>
-                                        <p>{{ __('politicas.usage_data_desc') }}</p>
-                                    </div>
-                                    <div class="data-type-card">
-                                        <div class="data-type-icon">
-                                            <i class="fas fa-user-circle"></i>
-                                        </div>
-                                        <h5>{{ __('politicas.profile_data') }}</h5>
-                                        <p>{{ __('politicas.profile_data_desc') }}</p>
+                    <div class="privacy-section-new" id="datos" data-aos="fade-up">
+                        <div class="section-container">
+                            <div class="section-header-new">
+                                <div class="section-number">03</div>
+                                <div class="section-icon-new">
+                                    <div class="icon-circle">
+                                        <i class="fas fa-database"></i>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Sección 4: Cómo Recopilamos los Datos -->
-                    <div class="privacy-section" id="como-recopilamos">
-                        <div class="section-header">
-                            <div class="section-icon">
-                                <i class="fas fa-clipboard-list"></i>
-                            </div>
-                            <div class="section-title-wrapper">
-                                <h2 class="section-title">{{ __('politicas.section_4_title') }}</h2>
-                                <p class="section-subtitle">Métodos y fuentes de recopilación de datos</p>
-                            </div>
-                        </div>
-                        <div class="section-content">
-                            <div class="content-card">
-                                <p>{{ __('politicas.section_4_text') }}</p>
-                                <div class="collection-methods">
-                                    <div class="method-card">
-                                        <div class="method-header">
-                                            <i class="fas fa-comments"></i>
-                                            <h5>{{ __('politicas.direct_interactions') }}</h5>
-                                        </div>
-                                        <p>{{ __('politicas.direct_interactions_desc') }}</p>
-                                    </div>
-                                    <div class="method-card">
-                                        <div class="method-header">
-                                            <i class="fas fa-cogs"></i>
-                                            <h5>{{ __('politicas.automated_tech') }}</h5>
-                                        </div>
-                                        <p>{{ __('politicas.automated_tech_desc') }}</p>
-                                    </div>
-                                    <div class="method-card">
-                                        <div class="method-header">
-                                            <i class="fas fa-users"></i>
-                                            <h5>{{ __('politicas.third_parties') }}</h5>
-                                        </div>
-                                        <p>{{ __('politicas.third_parties_desc') }}</p>
-                                    </div>
+                                <div class="section-title-wrapper-new">
+                                    <h2 class="section-title-new">Datos que Recopilamos</h2>
+                                    <p class="section-subtitle-new">Tipos de información que procesamos</p>
                                 </div>
                             </div>
-                        </div>
-                    </div>
 
-                    <!-- Sección 5: Finalidad y Base Legal -->
-                    <div class="privacy-section" id="finalidad">
-                        <div class="section-header">
-                            <div class="section-icon">
-                                <i class="fas fa-bullseye"></i>
-                            </div>
-                            <div class="section-title-wrapper">
-                                <h2 class="section-title">{{ __('politicas.section_5_title') }}</h2>
-                                <p class="section-subtitle">Propósitos del tratamiento y bases legales</p>
-                            </div>
-                        </div>
-                        <div class="section-content">
-                            <div class="content-card">
-                                <p>{{ __('politicas.section_5_text') }}</p>
-                                <div class="legal-basis-grid">
-                                    <div class="legal-basis-card">
-                                        <div class="legal-basis-icon">
-                                            <i class="fas fa-check-square"></i>
-                                        </div>
-                                        <h5>{{ __('politicas.consent') }}</h5>
-                                        <p>{{ __('politicas.consent_desc') }}</p>
-                                    </div>
-                                    <div class="legal-basis-card">
-                                        <div class="legal-basis-icon">
-                                            <i class="fas fa-file-contract"></i>
-                                        </div>
-                                        <h5>{{ __('politicas.contract') }}</h5>
-                                        <p>{{ __('politicas.contract_desc') }}</p>
-                                    </div>
-                                    <div class="legal-basis-card">
-                                        <div class="legal-basis-icon">
-                                            <i class="fas fa-balance-scale"></i>
-                                        </div>
-                                        <h5>{{ __('politicas.legal_obligation') }}</h5>
-                                        <p>{{ __('politicas.legal_obligation_desc') }}</p>
-                                    </div>
-                                    <div class="legal-basis-card">
-                                        <div class="legal-basis-icon">
-                                            <i class="fas fa-lightbulb"></i>
-                                        </div>
-                                        <h5>{{ __('politicas.legitimate_interest') }}</h5>
-                                        <p>{{ __('politicas.legitimate_interest_desc') }}</p>
-                                    </div>
+                            <div class="section-content-new">
+                                <div class="data-intro">
+                                    <p class="lead-text">Recopilamos diferentes tipos de información para proporcionarte nuestros servicios de manera eficiente y personalizada.</p>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
 
-                    <!-- Sección de Derechos del Usuario -->
-                    <div class="privacy-section" id="derechos">
-                        <div class="section-header">
-                            <div class="section-icon">
-                                <i class="fas fa-user-shield"></i>
-                            </div>
-                            <div class="section-title-wrapper">
-                                <h2 class="section-title">{{ __('politicas.your_rights') }}</h2>
-                                <p class="section-subtitle">Sus derechos como titular de los datos</p>
-                            </div>
-                        </div>
-                        <div class="section-content">
-                            <div class="content-card">
-                                <div class="rights-showcase">
-                                    <div class="rights-intro">
-                                        <p class="lead">Como titular de datos personales, usted tiene los siguientes derechos fundamentales:</p>
-                                    </div>
-                                    <div class="rights-grid">
-                                        <div class="right-item">
-                                            <div class="right-icon">
-                                                <i class="fas fa-eye"></i>
+                                <div class="data-types-modern">
+                                    <div class="data-type-modern" data-aos="zoom-in" data-aos-delay="100">
+                                        <div class="data-icon-wrapper">
+                                            <div class="data-icon">
+                                                <i class="fas fa-user"></i>
                                             </div>
+                                            <div class="data-badge">Esencial</div>
+                                        </div>
+                                        <div class="data-content">
+                                            <h5>Datos de Identificación</h5>
+                                            <p class="data-description">Información básica necesaria para identificarte</p>
+                                            <ul class="data-list">
+                                                <li>Nombre completo</li>
+                                                <li>Documento de identidad</li>
+                                                <li>Fecha de nacimiento</li>
+                                                <li>Fotografía (si aplica)</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                    <div class="data-type-modern" data-aos="zoom-in" data-aos-delay="200">
+                                        <div class="data-icon-wrapper">
+                                            <div class="data-icon">
+                                                <i class="fas fa-envelope"></i>
+                                            </div>
+                                            <div class="data-badge">Comunicación</div>
+                                        </div>
+                                        <div class="data-content">
+                                            <h5>Datos de Contacto</h5>
+                                            <p class="data-description">Información para mantenernos en contacto</p>
+                                            <ul class="data-list">
+                                                <li>Dirección de correo electrónico</li>
+                                                <li>Número de teléfono</li>
+                                                <li>Dirección postal</li>
+                                                <li>Preferencias de contacto</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                    <div class="data-type-modern" data-aos="zoom-in" data-aos-delay="300">
+                                        <div class="data-icon-wrapper">
+                                            <div class="data-icon">
+                                                <i class="fas fa-laptop"></i>
+                                            </div>
+                                            <div class="data-badge">Técnico</div>
+                                        </div>
+                                        <div class="data-content">
+                                            <h5>Datos Técnicos</h5>
+                                            <p class="data-description">Información sobre tu dispositivo y navegación</p>
+                                            <ul class="data-list">
+                                                <li>Dirección IP</li>
+                                                <li>Tipo de navegador</li>
+                                                <li>Sistema operativo</li>
+                                                <li>Cookies y tecnologías similares</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                    <div class="data-type-modern" data-aos="zoom-in" data-aos-delay="400">
+                                        <div class="data-icon-wrapper">
+                                            <div class="data-icon">
+                                                <i class="fas fa-chart-bar"></i>
+                                            </div>
+                                            <div class="data-badge">Analítico</div>
+                                        </div>
+                                        <div class="data-content">
+                                            <h5>Datos de Uso</h5>
+                                            <p class="data-description">Información sobre cómo utilizas nuestros servicios</p>
+                                            <ul class="data-list">
+                                                <li>Páginas visitadas</li>
+                                                <li>Tiempo de permanencia</li>
+                                                <li>Patrones de navegación</li>
+                                                <li>Interacciones con contenido</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Sección 4: Finalidad y Base Legal -->
+                    <div class="privacy-section-new" id="finalidad" data-aos="fade-up">
+                        <div class="section-container">
+                            <div class="section-header-new">
+                                <div class="section-number">04</div>
+                                <div class="section-icon-new">
+                                    <div class="icon-circle">
+                                        <i class="fas fa-bullseye"></i>
+                                    </div>
+                                </div>
+                                <div class="section-title-wrapper-new">
+                                    <h2 class="section-title-new">Finalidad y Base Legal</h2>
+                                    <p class="section-subtitle-new">Propósitos del tratamiento y bases legales</p>
+                                </div>
+                            </div>
+
+                            <div class="section-content-new">
+                                <div class="purpose-intro">
+                                    <p class="lead-text">Procesamos tu información personal únicamente para fines específicos y con bases legales sólidas.</p>
+                                </div>
+
+                                <div class="legal-basis-modern">
+                                    <div class="basis-card" data-aos="slide-right" data-aos-delay="100">
+                                        <div class="basis-icon-wrapper">
+                                            <div class="basis-icon success">
+                                                <i class="fas fa-check-circle"></i>
+                                            </div>
+                                        </div>
+                                        <div class="basis-content">
+                                            <h5>Consentimiento</h5>
+                                            <p class="basis-description">Cuando nos das tu autorización explícita</p>
+                                            <div class="basis-examples">
+                                                <span class="example-tag">Newsletter</span>
+                                                <span class="example-tag">Marketing</span>
+                                                <span class="example-tag">Cookies analíticas</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="basis-card" data-aos="slide-right" data-aos-delay="200">
+                                        <div class="basis-icon-wrapper">
+                                            <div class="basis-icon info">
+                                                <i class="fas fa-file-contract"></i>
+                                            </div>
+                                        </div>
+                                        <div class="basis-content">
+                                            <h5>Ejecución de Contrato</h5>
+                                            <p class="basis-description">Para cumplir con nuestros servicios contratados</p>
+                                            <div class="basis-examples">
+                                                <span class="example-tag">Servicios de densimetría</span>
+                                                <span class="example-tag">Proyectos arquitectura</span>
+                                                <span class="example-tag">Facturación</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="basis-card" data-aos="slide-right" data-aos-delay="300">
+                                        <div class="basis-icon-wrapper">
+                                            <div class="basis-icon warning">
+                                                <i class="fas fa-balance-scale"></i>
+                                            </div>
+                                        </div>
+                                        <div class="basis-content">
+                                            <h5>Obligación Legal</h5>
+                                            <p class="basis-description">Cuando debemos cumplir con la ley</p>
+                                            <div class="basis-examples">
+                                                <span class="example-tag">Retención fiscal</span>
+                                                <span class="example-tag">Auditorías</span>
+                                                <span class="example-tag">Regulaciones</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="basis-card" data-aos="slide-right" data-aos-delay="400">
+                                        <div class="basis-icon-wrapper">
+                                            <div class="basis-icon primary">
+                                                <i class="fas fa-lightbulb"></i>
+                                            </div>
+                                        </div>
+                                        <div class="basis-content">
+                                            <h5>Interés Legítimo</h5>
+                                            <p class="basis-description">Para nuestros intereses comerciales legítimos</p>
+                                            <div class="basis-examples">
+                                                <span class="example-tag">Mejora de servicios</span>
+                                                <span class="example-tag">Seguridad</span>
+                                                <span class="example-tag">Análisis web</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Sección 5: Derechos del Usuario -->
+                    <div class="privacy-section-new" id="derechos" data-aos="fade-up">
+                        <div class="section-container">
+                            <div class="section-header-new">
+                                <div class="section-number">05</div>
+                                <div class="section-icon-new">
+                                    <div class="icon-circle">
+                                        <i class="fas fa-user-shield"></i>
+                                    </div>
+                                </div>
+                                <div class="section-title-wrapper-new">
+                                    <h2 class="section-title-new">Tus Derechos</h2>
+                                    <p class="section-subtitle-new">Conoce y ejerce tus derechos como titular de datos</p>
+                                </div>
+                            </div>
+
+                            <div class="section-content-new">
+                                <div class="rights-intro">
+                                    <p class="lead-text">Como titular de datos personales, tienes derechos fundamentales que puedes ejercer en cualquier momento.</p>
+                                </div>
+
+                                <div class="rights-modern-grid">
+                                    <div class="right-card-modern" data-aos="flip-left" data-aos-delay="100">
+                                        <div class="right-icon-modern">
+                                            <i class="fas fa-eye"></i>
+                                        </div>
+                                        <div class="right-content-modern">
                                             <h6>Derecho de Acceso</h6>
-                                            <p>Conocer qué datos tenemos sobre usted</p>
+                                            <p>Conocer qué datos tenemos sobre ti y cómo los procesamos</p>
+                                            <a href="#contacto" class="right-action">Solicitar acceso</a>
                                         </div>
-                                        <div class="right-item">
-                                            <div class="right-icon">
-                                                <i class="fas fa-edit"></i>
-                                            </div>
+                                    </div>
+
+                                    <div class="right-card-modern" data-aos="flip-left" data-aos-delay="200">
+                                        <div class="right-icon-modern">
+                                            <i class="fas fa-edit"></i>
+                                        </div>
+                                        <div class="right-content-modern">
                                             <h6>Derecho de Rectificación</h6>
-                                            <p>Corregir datos inexactos o incompletos</p>
+                                            <p>Corregir datos inexactos o incompletos que tengamos</p>
+                                            <a href="#contacto" class="right-action">Solicitar corrección</a>
                                         </div>
-                                        <div class="right-item">
-                                            <div class="right-icon">
-                                                <i class="fas fa-trash"></i>
-                                            </div>
+                                    </div>
+
+                                    <div class="right-card-modern" data-aos="flip-left" data-aos-delay="300">
+                                        <div class="right-icon-modern">
+                                            <i class="fas fa-trash-alt"></i>
+                                        </div>
+                                        <div class="right-content-modern">
                                             <h6>Derecho de Supresión</h6>
-                                            <p>Solicitar la eliminación de sus datos</p>
+                                            <p>Solicitar la eliminación de tus datos personales</p>
+                                            <a href="#contacto" class="right-action">Solicitar eliminación</a>
                                         </div>
-                                        <div class="right-item">
-                                            <div class="right-icon">
-                                                <i class="fas fa-ban"></i>
-                                            </div>
+                                    </div>
+
+                                    <div class="right-card-modern" data-aos="flip-left" data-aos-delay="400">
+                                        <div class="right-icon-modern">
+                                            <i class="fas fa-ban"></i>
+                                        </div>
+                                        <div class="right-content-modern">
                                             <h6>Derecho de Oposición</h6>
-                                            <p>Oponerse al tratamiento de sus datos</p>
+                                            <p>Oponerte al tratamiento de tus datos personales</p>
+                                            <a href="#contacto" class="right-action">Ejercer oposición</a>
                                         </div>
-                                        <div class="right-item">
-                                            <div class="right-icon">
-                                                <i class="fas fa-download"></i>
-                                            </div>
-                                            <h6>Portabilidad</h6>
-                                            <p>Recibir sus datos en formato estructurado</p>
+                                    </div>
+
+                                    <div class="right-card-modern" data-aos="flip-left" data-aos-delay="500">
+                                        <div class="right-icon-modern">
+                                            <i class="fas fa-download"></i>
                                         </div>
-                                        <div class="right-item">
-                                            <div class="right-icon">
-                                                <i class="fas fa-pause"></i>
+                                        <div class="right-content-modern">
+                                            <h6>Portabilidad de Datos</h6>
+                                            <p>Recibir tus datos en formato estructurado y portátil</p>
+                                            <a href="#contacto" class="right-action">Solicitar portabilidad</a>
+                                        </div>
+                                    </div>
+
+                                    <div class="right-card-modern" data-aos="flip-left" data-aos-delay="600">
+                                        <div class="right-icon-modern">
+                                            <i class="fas fa-pause"></i>
+                                        </div>
+                                        <div class="right-content-modern">
+                                            <h6>Limitación del Tratamiento</h6>
+                                            <p>Restringir el procesamiento de tus datos</p>
+                                            <a href="#contacto" class="right-action">Solicitar limitación</a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="rights-footer">
+                                    <div class="rights-note">
+                                        <div class="note-icon">
+                                            <i class="fas fa-info-circle"></i>
+                                        </div>
+                                        <div class="note-content">
+                                            <h6>¿Cómo ejercer tus derechos?</h6>
+                                            <p>Contacta con nosotros a través de cualquiera de nuestros canales de comunicación. Procesaremos tu solicitud en un máximo de 30 días.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Sección de Cookies -->
+                    <div class="privacy-section" id="cookies">
+                        <div class="section-header">
+                            <div class="section-icon">
+                                <i class="fas fa-cookie-bite"></i>
+                            </div>
+                            <div class="section-title-wrapper">
+                                <h2 class="section-title">{{ __('politicas.cookies') }}</h2>
+                                <p class="section-subtitle">Información sobre el uso de cookies en nuestro sitio web</p>
+                            </div>
+                        </div>
+                        <div class="section-content">
+                            <div class="content-card">
+                                <div class="cookies-intro mb-4">
+                                    <p class="lead">Las cookies son pequeños archivos de texto que se almacenan en su dispositivo cuando visita nuestro sitio web. Utilizamos cookies para mejorar su experiencia de navegación y para analizar el uso de nuestro sitio.</p>
+                                </div>
+
+                                <!-- Tipos de Cookies -->
+                                <div class="cookies-types mb-5">
+                                    <h4 class="mb-4">Tipos de Cookies que Utilizamos</h4>
+                                    <div class="cookie-types-grid">
+                                        <div class="cookie-type-card">
+                                            <div class="cookie-type-icon">
+                                                <i class="fas fa-cog"></i>
                                             </div>
-                                            <h6>Limitación</h6>
-                                            <p>Restringir el procesamiento de datos</p>
+                                            <h5>Cookies Técnicas</h5>
+                                            <p><strong>Necesarias:</strong> Estas cookies son esenciales para el funcionamiento del sitio web.</p>
+                                            <ul class="small">
+                                                <li>Mantener la sesión de usuario</li>
+                                                <li>Recordar preferencias de idioma</li>
+                                                <li>Garantizar la seguridad del sitio</li>
+                                                <li>Funcionamiento del banner de cookies</li>
+                                            </ul>
+                                            <span class="badge bg-success">Siempre Activas</span>
+                                        </div>
+
+                                        <div class="cookie-type-card">
+                                            <div class="cookie-type-icon">
+                                                <i class="fas fa-chart-line"></i>
+                                            </div>
+                                            <h5>Cookies Analíticas</h5>
+                                            <p><strong>Opcionales:</strong> Nos ayudan a entender cómo los visitantes interactúan con el sitio.</p>
+                                            <ul class="small">
+                                                <li>Análisis de tráfico web</li>
+                                                <li>Páginas más visitadas</li>
+                                                <li>Tiempo de permanencia</li>
+                                                <li>Origen de las visitas</li>
+                                            </ul>
+                                            <span class="badge bg-info">Requiere Consentimiento</span>
+                                        </div>
+
+                                        <div class="cookie-type-card">
+                                            <div class="cookie-type-icon">
+                                                <i class="fas fa-user-cog"></i>
+                                            </div>
+                                            <h5>Cookies de Personalización</h5>
+                                            <p><strong>Funcionales:</strong> Mejoran la funcionalidad y personalización del sitio.</p>
+                                            <ul class="small">
+                                                <li>Recordar configuraciones</li>
+                                                <li>Preferencias de visualización</li>
+                                                <li>Información de formularios</li>
+                                                <li>Región y ubicación</li>
+                                            </ul>
+                                            <span class="badge bg-warning text-dark">Requiere Consentimiento</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Banner de Cookies -->
+                                <div class="cookies-banner-info mb-5">
+                                    <h4 class="mb-4">Banner de Consentimiento de Cookies</h4>
+                                    <div class="row align-items-center">
+                                        <div class="col-lg-8">
+                                            <div class="banner-description">
+                                                <p class="mb-3">Cuando visita nuestro sitio web por primera vez, aparece un banner en la parte inferior de la pantalla solicitando su consentimiento para el uso de cookies.</p>
+                                                <div class="banner-features">
+                                                    <div class="feature-item d-flex align-items-center mb-2">
+                                                        <i class="fas fa-check-circle text-success me-2"></i>
+                                                        <span>Información clara sobre el uso de cookies</span>
+                                                    </div>
+                                                    <div class="feature-item d-flex align-items-center mb-2">
+                                                        <i class="fas fa-check-circle text-success me-2"></i>
+                                                        <span>Bloqueo temporal de navegación hasta decidir</span>
+                                                    </div>
+                                                    <div class="feature-item d-flex align-items-center mb-2">
+                                                        <i class="fas fa-check-circle text-success me-2"></i>
+                                                        <span>Su decisión se guarda para futuras visitas</span>
+                                                    </div>
+                                                    <div class="feature-item d-flex align-items-center mb-2">
+                                                        <i class="fas fa-check-circle text-success me-2"></i>
+                                                        <span>Puede cambiar sus preferencias en cualquier momento</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <div class="banner-preview bg-light p-3 rounded text-center">
+                                                <div class="mock-banner bg-white shadow rounded p-3">
+                                                    <div class="d-flex align-items-center mb-2">
+                                                        <div class="bg-danger text-white rounded-circle me-2 d-flex align-items-center justify-content-center" style="width: 30px; height: 30px;">
+                                                            <i class="fas fa-shield-alt"></i>
+                                                        </div>
+                                                        <div class="text-start">
+                                                            <h6 class="mb-0 fw-bold">Uso de Cookies</h6>
+                                                            <small class="text-muted">Este sitio web utiliza cookies...</small>
+                                                        </div>
+                                                    </div>
+                                                    <button class="btn btn-danger btn-sm">
+                                                        <i class="fas fa-check me-1"></i>Aceptar
+                                                    </button>
+                                                </div>
+                                                <small class="text-muted d-block mt-2">Vista previa del banner</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Gestión de Cookies -->
+                                <div class="cookies-management mb-5">
+                                    <h4 class="mb-4">Cómo Gestionar sus Cookies</h4>
+                                    <div class="management-options">
+                                        <div class="management-card">
+                                            <div class="management-header">
+                                                <i class="fas fa-browser"></i>
+                                                <h5>A través del Navegador</h5>
+                                            </div>
+                                            <p class="mb-3">Puede configurar su navegador para rechazar cookies o para que le notifique cuando se envían cookies:</p>
+                                            <div class="browser-links">
+                                                <a href="https://support.google.com/chrome/answer/95647" target="_blank" class="btn btn-outline-primary btn-sm me-2 mb-2">
+                                                    <i class="fab fa-chrome me-1"></i>Chrome
+                                                </a>
+                                                <a href="https://support.mozilla.org/en-US/kb/enable-and-disable-cookies-website-preferences" target="_blank" class="btn btn-outline-primary btn-sm me-2 mb-2">
+                                                    <i class="fab fa-firefox-browser me-1"></i>Firefox
+                                                </a>
+                                                <a href="https://support.apple.com/guide/safari/manage-cookies-and-website-data-sfri11471/mac" target="_blank" class="btn btn-outline-primary btn-sm me-2 mb-2">
+                                                    <i class="fab fa-safari me-1"></i>Safari
+                                                </a>
+                                                <a href="https://support.microsoft.com/en-us/help/17442/windows-internet-explorer-delete-manage-cookies" target="_blank" class="btn btn-outline-primary btn-sm mb-2">
+                                                    <i class="fab fa-edge me-1"></i>Edge
+                                                </a>
+                                            </div>
+                                        </div>
+
+                                        <div class="management-card">
+                                            <div class="management-header">
+                                                <i class="fas fa-cogs"></i>
+                                                <h5>Herramientas de Control</h5>
+                                            </div>
+                                            <p class="mb-3">También puede usar herramientas externas para gestionar cookies:</p>
+                                            <ul class="list-unstyled">
+                                                <li class="mb-2">
+                                                    <i class="fas fa-external-link-alt text-primary me-2"></i>
+                                                    <a href="https://www.aboutads.info/choices/" target="_blank">Digital Advertising Alliance</a>
+                                                </li>
+                                                <li class="mb-2">
+                                                    <i class="fas fa-external-link-alt text-primary me-2"></i>
+                                                    <a href="https://www.youronlinechoices.com/" target="_blank">Your Online Choices</a>
+                                                </li>
+                                                <li class="mb-2">
+                                                    <i class="fas fa-external-link-alt text-primary me-2"></i>
+                                                    <a href="https://tools.google.com/dlpage/gaoptout" target="_blank">Google Analytics Opt-out</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Consecuencias de Rechazar Cookies -->
+                                <div class="cookies-consequences">
+                                    <div class="alert alert-info d-flex align-items-start">
+                                        <div class="alert-icon me-3">
+                                            <i class="fas fa-info-circle fs-4"></i>
+                                        </div>
+                                        <div>
+                                            <h5 class="alert-heading mb-2">Importante: Consecuencias de Deshabilitar Cookies</h5>
+                                            <p class="mb-2">Si decide deshabilitar las cookies, algunos aspectos de nuestro sitio web pueden no funcionar correctamente:</p>
+                                            <ul class="mb-0">
+                                                <li>Pérdida de configuraciones personalizadas</li>
+                                                <li>Necesidad de volver a iniciar sesión frecuentemente</li>
+                                                <li>Funciones de recordar información deshabilitadas</li>
+                                                <li>Experiencia de usuario menos personalizada</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Actualización de Políticas -->
+                                <div class="cookies-updates mt-4">
+                                    <div class="highlight-box">
+                                        <i class="fas fa-sync-alt text-warning me-2"></i>
+                                        <strong>Actualizaciones:</strong> Esta política de cookies puede ser actualizada periódicamente. Le recomendamos revisar esta página regularmente para mantenerse informado sobre nuestro uso de cookies.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Sección de Cambios en la Política -->
+                    <div class="privacy-section" id="cambios">
+                        <div class="section-header">
+                            <div class="section-icon">
+                                <i class="fas fa-sync-alt"></i>
+                            </div>
+                            <div class="section-title-wrapper">
+                                <h2 class="section-title">{{ __('politicas.policy_changes') }}</h2>
+                                <p class="section-subtitle">Cómo manejamos las actualizaciones de nuestra política</p>
+                            </div>
+                        </div>
+                        <div class="section-content">
+                            <div class="content-card">
+                                <p class="lead">Nos reservamos el derecho de actualizar esta Política de Privacidad en cualquier momento.</p>
+                                <p>{{ __('politicas.changes_text') }}</p>
+
+                                <div class="changes-timeline mt-4">
+                                    <h5 class="mb-3">Historial de Cambios</h5>
+                                    <div class="timeline-item">
+                                        <div class="timeline-date">
+                                            <span class="badge bg-primary">{{ date('d/m/Y') }}</span>
+                                        </div>
+                                        <div class="timeline-content">
+                                            <h6>Versión Actual</h6>
+                                            <ul class="small mb-0">
+                                                <li>Agregada sección detallada sobre cookies</li>
+                                                <li>Información sobre banner de consentimiento</li>
+                                                <li>Guías para gestión de cookies en navegadores</li>
+                                                <li>Clarificación de tipos de cookies utilizadas</li>
+                                            </ul>
                                         </div>
                                     </div>
                                 </div>
@@ -452,568 +898,572 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 <style>
     :root {
-        --primary-color: #2c5aa0;
-        --primary-light: #4a7bc8;
-        --primary-dark: #1e3f73;
+        --primary-color: #F40006;
+        --primary-light: #ff4d4f;
+        --primary-dark: #d30005;
         --secondary-color: #f8f9fa;
         --accent-color: #17a2b8;
         --text-primary: #2d3748;
         --text-secondary: #718096;
+        --text-light: #a0aec0;
         --border-color: #e2e8f0;
-        --shadow-sm: 0 1px 3px rgba(0,0,0,0.1);
-        --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
-        --shadow-lg: 0 10px 25px rgba(0,0,0,0.1);
+        --shadow-sm: 0 2px 8px rgba(0,0,0,0.05);
+        --shadow-md: 0 8px 25px rgba(0,0,0,0.1);
+        --shadow-lg: 0 20px 40px rgba(0,0,0,0.1);
+        --shadow-xl: 0 25px 50px rgba(0,0,0,0.15);
         --gradient-primary: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-light) 100%);
+        --gradient-secondary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        --gradient-accent: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        --border-radius: 16px;
+        --border-radius-lg: 24px;
+        --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
-    /* Hero Section */
-    .privacy-hero {
+    /* Reset y base */
+    * {
+        box-sizing: border-box;
+    }
+
+    /* Hero Section Nuevo */
+    .privacy-hero-new {
         background: var(--gradient-primary);
-        padding: 120px 0 80px;
-        color: white;
+        min-height: 80vh;
+        display: flex;
+        align-items: center;
         position: relative;
+        overflow: hidden;
     }
 
-    .hero-background {
+    .hero-shapes {
         position: absolute;
         top: 0;
         left: 0;
         right: 0;
         bottom: 0;
-        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse"><path d="M 50 0 L 0 0 0 50" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grid)"/></svg>');
-        opacity: 0.3;
+        pointer-events: none;
+        z-index: 1;
     }
 
-    .hero-icon i {
+    .shape {
+        position: absolute;
+        border-radius: 50%;
+        opacity: 0.1;
+        animation: float 6s ease-in-out infinite;
+    }
+
+    .shape-1 {
+        width: 300px;
+        height: 300px;
+        background: white;
+        top: 10%;
+        left: 10%;
+        animation-delay: 0s;
+    }
+
+    .shape-2 {
+        width: 200px;
+        height: 200px;
+        background: white;
+        top: 50%;
+        right: 20%;
+        animation-delay: 2s;
+    }
+
+    .shape-3 {
+        width: 150px;
+        height: 150px;
+        background: white;
+        bottom: 20%;
+        left: 20%;
+        animation-delay: 4s;
+    }
+
+    @keyframes float {
+        0%, 100% { transform: translateY(0px) rotate(0deg); }
+        50% { transform: translateY(-20px) rotate(10deg); }
+    }
+
+    .particles {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 1;
+    }
+
+    .particle {
+        position: absolute;
+        width: 6px;
+        height: 6px;
+        background: rgba(255, 255, 255, 0.3);
+        border-radius: 50%;
+        animation: particle-float 8s linear infinite;
+    }
+
+    .particle-1 { top: 20%; left: 20%; animation-delay: 0s; }
+    .particle-2 { top: 40%; left: 80%; animation-delay: 2s; }
+    .particle-3 { top: 60%; left: 40%; animation-delay: 4s; }
+    .particle-4 { top: 80%; left: 60%; animation-delay: 6s; }
+    .particle-5 { top: 30%; left: 70%; animation-delay: 8s; }
+
+    @keyframes particle-float {
+        0%, 100% { transform: translateY(0px) scale(1); opacity: 0.3; }
+        50% { transform: translateY(-30px) scale(1.2); opacity: 0.8; }
+    }
+
+    .hero-content-new {
+        position: relative;
+        z-index: 10;
+        color: white;
+        text-align: center;
+    }
+
+    .hero-badge .badge-pill {
+        background: rgba(255, 255, 255, 0.2);
+        color: white;
+        padding: 12px 24px;
+        border-radius: 50px;
+        font-weight: 600;
+        font-size: 0.9rem;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        backdrop-filter: blur(10px);
+        display: inline-flex;
+        align-items: center;
+    }
+
+    .hero-title-new {
         font-size: 4rem;
-        color: rgba(255,255,255,0.9);
-        margin-bottom: 1rem;
+        font-weight: 800;
+        line-height: 1.1;
+        margin: 0;
     }
 
-    .hero-title {
-        font-size: 3.5rem;
-        font-weight: 700;
-        margin-bottom: 1.5rem;
-        line-height: 1.2;
-    }
-
-    .hero-subtitle {
-        font-size: 1.25rem;
+    .title-highlight {
+        display: block;
+        font-weight: 300;
         opacity: 0.9;
-        max-width: 600px;
+        font-size: 0.7em;
+    }
+
+    .title-main {
+        display: block;
+        background: linear-gradient(45deg, #fff, #ffcccc);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .hero-subtitle-new {
+        font-size: 1.4rem;
+        line-height: 1.6;
+        opacity: 0.9;
+        max-width: 700px;
         margin: 0 auto;
     }
 
-    .bg-primary-soft {
-        background-color: rgba(255,255,255,0.2) !important;
-    }
-
-    /* Navegación Sticky */
-    .privacy-navigation {
-        z-index: 1000;
-        transition: all 0.3s ease;
-    }
-
-    .privacy-nav-link {
-        color: var(--text-primary);
-        font-weight: 500;
-        padding: 1rem 1.5rem;
-        border-radius: 8px;
-        transition: all 0.3s ease;
-        position: relative;
-    }
-
-    .privacy-nav-link:hover {
-        color: var(--primary-color);
-        background-color: rgba(44, 90, 160, 0.1);
-    }
-
-    .privacy-nav-link.active {
-        color: var(--primary-color);
-        background-color: rgba(44, 90, 160, 0.1);
-    }
-
-    /* Sidebar */
-    .privacy-sidebar {
-        position: sticky;
-        top: 120px;
-    }
-
-    .sidebar-card {
-        background: white;
-        border-radius: 16px;
-        padding: 2rem;
-        box-shadow: var(--shadow-lg);
-        border: 1px solid var(--border-color);
-    }
-
-    .sidebar-title {
-        font-weight: 700;
-        color: var(--text-primary);
-        margin-bottom: 1.5rem;
-        font-size: 1.1rem;
-    }
-
-    .sidebar-nav {
+    .hero-stats {
         display: flex;
-        flex-direction: column;
+        justify-content: center;
+        gap: 3rem;
+        margin: 3rem 0;
+    }
+
+    .stat-item {
+        text-align: center;
+    }
+
+    .stat-icon {
+        width: 60px;
+        height: 60px;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        margin: 0 auto 1rem;
+        backdrop-filter: blur(10px);
+    }
+
+    .stat-number {
+        font-size: 2rem;
+        font-weight: 700;
+        line-height: 1;
+    }
+
+    .stat-label {
+        font-size: 1rem;
+        opacity: 0.8;
+        margin-top: 0.5rem;
+    }
+
+    .hero-meta {
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+        margin-top: 2rem;
+        opacity: 0.8;
+    }
+
+    .meta-item {
+        display: flex;
+        align-items: center;
+        font-size: 0.95rem;
+    }
+
+    .scroll-indicator {
+        position: absolute;
+        bottom: 30px;
+        left: 50%;
+        transform: translateX(-50%);
+        text-align: center;
+        color: rgba(255, 255, 255, 0.8);
+        z-index: 10;
+    }
+
+    .scroll-arrow {
+        animation: bounce 2s infinite;
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+    @keyframes bounce {
+        0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+        40% { transform: translateY(-10px); }
+        60% { transform: translateY(-5px); }
+    }
+
+    /* Navegación Moderna */
+    .privacy-nav-modern {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(20px);
+        border-bottom: 1px solid var(--border-color);
+        z-index: 1000;
+        transition: var(--transition);
+    }
+
+    .nav-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1rem;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .nav-horizontal {
+        display: flex;
         gap: 0.5rem;
     }
 
-    .sidebar-link {
+    .nav-track {
+        display: flex;
+        gap: 0.5rem;
+    }
+
+    .nav-item-modern {
         display: flex;
         align-items: center;
         padding: 0.75rem 1rem;
-        color: var(--text-secondary);
         text-decoration: none;
-        border-radius: 8px;
-        transition: all 0.3s ease;
+        color: var(--text-secondary);
+        border-radius: 12px;
+        transition: var(--transition);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .nav-item-modern::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: var(--gradient-primary);
+        opacity: 0;
+        transition: var(--transition);
+        z-index: -1;
+    }
+
+    .nav-item-modern:hover::before,
+    .nav-item-modern.active::before {
+        opacity: 1;
+    }
+
+    .nav-item-modern:hover,
+    .nav-item-modern.active {
+        color: white;
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-md);
+    }
+
+    .nav-icon {
+        margin-right: 0.5rem;
+        font-size: 1.1rem;
+    }
+
+    .nav-text {
+        font-weight: 600;
         font-size: 0.9rem;
     }
 
-    .sidebar-link:hover {
-        color: var(--primary-color);
-        background-color: rgba(44, 90, 160, 0.05);
-        text-decoration: none;
+    .reading-progress {
+        flex: 1;
+        max-width: 200px;
+        height: 4px;
+        background: var(--border-color);
+        border-radius: 2px;
+        margin-left: 2rem;
+        overflow: hidden;
     }
 
-    .sidebar-link.active {
-        color: var(--primary-color);
-        background-color: rgba(44, 90, 160, 0.1);
-        font-weight: 600;
+    .progress-bar {
+        height: 100%;
+        background: var(--gradient-primary);
+        width: 0%;
+        transition: width 0.3s ease;
+        border-radius: 2px;
     }
 
-    .sidebar-icon {
-        width: 20px;
-        margin-right: 0.75rem;
-        text-align: center;
+    /* Secciones Nuevas */
+    .privacy-content-new {
+        background: linear-gradient(180deg, #fafafa 0%, #ffffff 100%);
     }
 
-    /* Secciones de Contenido */
-    .privacy-section {
-        margin-bottom: 4rem;
+    .privacy-section-new {
+        margin-bottom: 6rem;
         scroll-margin-top: 120px;
     }
 
-    .section-header {
+    .section-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1rem;
+    }
+
+    .section-header-new {
+        display: flex;
+        align-items: center;
+        margin-bottom: 3rem;
+        gap: 2rem;
+    }
+
+    .section-number {
+        font-size: 4rem;
+        font-weight: 900;
+        color: var(--primary-color);
+        opacity: 0.3;
+        line-height: 1;
+        min-width: 80px;
+    }
+
+    .section-icon-new {
+        position: relative;
+    }
+
+    .icon-circle {
+        width: 80px;
+        height: 80px;
+        background: var(--gradient-primary);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 2rem;
+        box-shadow: var(--shadow-lg);
+        position: relative;
+    }
+
+    .icon-circle::before {
+        content: '';
+        position: absolute;
+        top: -10px;
+        left: -10px;
+        right: -10px;
+        bottom: -10px;
+        background: var(--gradient-primary);
+        border-radius: 50%;
+        opacity: 0.2;
+        animation: pulse-ring 2s infinite;
+    }
+
+    @keyframes pulse-ring {
+        0% { transform: scale(0.8); opacity: 0.8; }
+        100% { transform: scale(1.2); opacity: 0; }
+    }
+
+    .section-title-wrapper-new {
+        flex: 1;
+    }
+
+    .section-title-new {
+        font-size: 3rem;
+        font-weight: 800;
+        color: var(--text-primary);
+        margin: 0 0 0.5rem 0;
+        line-height: 1.2;
+    }
+
+    .section-subtitle-new {
+        color: var(--text-secondary);
+        font-size: 1.2rem;
+        margin: 0;
+        font-weight: 400;
+    }
+
+    .section-content-new {
+        position: relative;
+    }
+
+    /* Contenido de Introducción */
+    .content-grid {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 3rem;
+        align-items: start;
+    }
+
+    .content-main {
+        space-y: 2rem;
+    }
+
+    .text-block {
+        margin-bottom: 2rem;
+    }
+
+    .lead-text {
+        font-size: 1.3rem;
+        line-height: 1.6;
+        color: var(--text-primary);
+        font-weight: 600;
+        margin-bottom: 1.5rem;
+    }
+
+    .body-text {
+        font-size: 1.1rem;
+        line-height: 1.7;
+        color: var(--text-secondary);
+    }
+
+    .highlight-card {
+        background: linear-gradient(135deg, #fff7e6 0%, #fff2d9 100%);
+        border: 1px solid #ffd700;
+        border-radius: var(--border-radius);
+        padding: 2rem;
         display: flex;
         align-items: flex-start;
-        margin-bottom: 2rem;
-        gap: 1.5rem;
+        gap: 1rem;
     }
 
-    .section-icon {
-        background: var(--gradient-primary);
-        color: white;
-        width: 60px;
-        height: 60px;
-        border-radius: 16px;
+    .highlight-icon {
+        width: 50px;
+        height: 50px;
+        background: #ffd700;
+        border-radius: 50%;
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 1.5rem;
+        color: #b8860b;
         flex-shrink: 0;
-        box-shadow: var(--shadow-md);
     }
 
-    .section-title {
-        font-size: 2rem;
+    .highlight-content h5 {
+        color: #b8860b;
         font-weight: 700;
-        color: var(--text-primary);
         margin-bottom: 0.5rem;
-        line-height: 1.3;
     }
 
-    .section-subtitle {
-        color: var(--text-secondary);
-        font-size: 1rem;
+    .highlight-content p {
+        color: #8b7355;
         margin: 0;
     }
 
-    .content-card {
-        background: white;
-        border-radius: 16px;
-        padding: 2.5rem;
-        box-shadow: var(--shadow-lg);
-        border: 1px solid var(--border-color);
-    }
-
-    .content-card .lead {
-        font-size: 1.1rem;
-        color: var(--text-primary);
-        margin-bottom: 1.5rem;
-    }
-
-    .highlight-box {
-        background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%);
-        border: 1px solid #ffeaa7;
-        border-radius: 12px;
-        padding: 1rem 1.5rem;
-        margin-top: 1.5rem;
-        color: #856404;
-    }
-
-    /* Contact Grid */
-    .contact-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 2rem;
-        margin-top: 2rem;
-    }
-
-    .contact-item {
+    .content-sidebar {
         display: flex;
-        align-items: center;
-        gap: 1rem;
-        padding: 1.5rem;
-        background: var(--secondary-color);
-        border-radius: 12px;
-        border: 1px solid var(--border-color);
-    }
-
-    .contact-icon {
-        background: var(--gradient-primary);
-        color: white;
-        width: 50px;
-        height: 50px;
-        border-radius: 12px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 1.2rem;
-    }
-
-    .contact-info h6 {
-        font-weight: 600;
-        color: var(--text-primary);
-        margin-bottom: 0.25rem;
-    }
-
-    .contact-info p {
-        color: var(--text-secondary);
-        margin: 0;
-        font-size: 0.9rem;
-    }
-
-    /* Data Types Grid */
-    .data-types-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        flex-direction: column;
         gap: 1.5rem;
-        margin-top: 2rem;
     }
 
-    .data-type-card {
-        background: var(--secondary-color);
+    .info-card {
+        background: white;
         border: 1px solid var(--border-color);
-        border-radius: 12px;
+        border-radius: var(--border-radius);
         padding: 2rem;
         text-align: center;
-        transition: all 0.3s ease;
+        box-shadow: var(--shadow-sm);
+        transition: var(--transition);
     }
 
-    .data-type-card:hover {
+    .info-card:hover {
         transform: translateY(-5px);
-        box-shadow: var(--shadow-md);
+        box-shadow: var(--shadow-lg);
     }
 
-    .data-type-icon {
-        background: var(--gradient-primary);
-        color: white;
+    .info-icon {
         width: 60px;
         height: 60px;
+        background: var(--gradient-primary);
         border-radius: 50%;
         display: flex;
         align-items: center;
         justify-content: center;
+        color: white;
         font-size: 1.5rem;
         margin: 0 auto 1rem;
     }
 
-    .data-type-card h5 {
-        font-weight: 600;
-        color: var(--text-primary);
-        margin-bottom: 1rem;
-    }
-
-    .data-type-card p {
-        color: var(--text-secondary);
-        font-size: 0.9rem;
-        margin: 0;
-    }
-
-    /* Collection Methods */
-    .collection-methods {
-        display: grid;
-        gap: 1.5rem;
-        margin-top: 2rem;
-    }
-
-    .method-card {
-        background: var(--secondary-color);
-        border: 1px solid var(--border-color);
-        border-radius: 12px;
-        padding: 2rem;
-    }
-
-    .method-header {
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-        margin-bottom: 1rem;
-    }
-
-    .method-header i {
-        background: var(--gradient-primary);
-        color: white;
-        width: 40px;
-        height: 40px;
-        border-radius: 8px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .method-header h5 {
-        font-weight: 600;
-        color: var(--text-primary);
-        margin: 0;
-    }
-
-    /* Legal Basis Grid */
-    .legal-basis-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 1.5rem;
-        margin-top: 2rem;
-    }
-
-    .legal-basis-card {
-        background: var(--secondary-color);
-        border: 1px solid var(--border-color);
-        border-radius: 12px;
-        padding: 1.5rem;
-        text-align: center;
-    }
-
-    .legal-basis-icon {
-        background: var(--gradient-primary);
-        color: white;
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 1.2rem;
-        margin: 0 auto 1rem;
-    }
-
-    .legal-basis-card h5 {
-        font-weight: 600;
-        color: var(--text-primary);
-        margin-bottom: 1rem;
-    }
-
-    .legal-basis-card p {
-        color: var(--text-secondary);
-        font-size: 0.9rem;
-        margin: 0;
-    }
-
-    /* Rights Section */
-    .rights-showcase {
-        text-align: center;
-    }
-
-    .rights-intro {
-        margin-bottom: 3rem;
-    }
-
-    .rights-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 2rem;
-    }
-
-    .right-item {
-        background: var(--secondary-color);
-        border: 1px solid var(--border-color);
-        border-radius: 12px;
-        padding: 2rem 1.5rem;
-        transition: all 0.3s ease;
-    }
-
-    .right-item:hover {
-        transform: translateY(-5px);
-        box-shadow: var(--shadow-md);
-    }
-
-    .right-icon {
-        background: var(--gradient-primary);
-        color: white;
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 1.2rem;
-        margin: 0 auto 1rem;
-    }
-
-    .right-item h6 {
-        font-weight: 600;
+    .info-card h6 {
+        font-weight: 700;
         color: var(--text-primary);
         margin-bottom: 0.5rem;
     }
 
-    .right-item p {
+    .info-card p {
         color: var(--text-secondary);
-        font-size: 0.85rem;
+        font-size: 0.95rem;
         margin: 0;
     }
 
-    /* Contact CTA */
-    .contact-cta {
-        background: var(--gradient-primary);
-        border-radius: 20px;
-        padding: 3rem;
-        color: white;
-        text-align: center;
-        box-shadow: var(--shadow-lg);
-    }
-
-    .cta-content {
-        max-width: 600px;
-        margin: 0 auto;
-    }
-
-    .cta-icon i {
-        font-size: 3rem;
-        margin-bottom: 1.5rem;
-        opacity: 0.9;
-    }
-
-    .cta-text h3 {
-        font-size: 2rem;
-        font-weight: 700;
-        margin-bottom: 1rem;
-    }
-
-    .cta-text p {
-        font-size: 1.1rem;
-        opacity: 0.9;
-        margin-bottom: 2rem;
-    }
-
-    .cta-actions {
-        display: flex;
-        gap: 1rem;
-        justify-content: center;
-        flex-wrap: wrap;
-    }
-
-    .cta-actions .btn {
-        border-radius: 50px;
-        padding: 0.75rem 2rem;
-        font-weight: 600;
-        text-decoration: none;
-        transition: all 0.3s ease;
-    }
-
-    .cta-actions .btn-primary {
-        background: white;
-        color: var(--primary-color);
-        border: 2px solid white;
-    }
-
-    .cta-actions .btn-primary:hover {
-        background: transparent;
-        color: white;
-        border-color: white;
-    }
-
-    .cta-actions .btn-outline-primary {
-        background: transparent;
-        color: white;
-        border: 2px solid rgba(255,255,255,0.5);
-    }
-
-    .cta-actions .btn-outline-primary:hover {
-        background: rgba(255,255,255,0.1);
-        border-color: white;
-    }
-
-    /* Responsive Design */
+    /* Responsive para Hero y navegación */
     @media (max-width: 768px) {
-        .hero-title {
+        .hero-title-new {
             font-size: 2.5rem;
         }
 
-        .section-header {
+        .hero-stats {
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .hero-meta {
             flex-direction: column;
             gap: 1rem;
         }
 
-        .section-title {
-            font-size: 1.5rem;
+        .nav-horizontal {
+            display: none;
         }
 
-        .content-card {
-            padding: 1.5rem;
-        }
-
-        .contact-grid {
-            grid-template-columns: 1fr;
-        }
-
-        .data-types-grid {
-            grid-template-columns: 1fr;
-        }
-
-        .legal-basis-grid {
-            grid-template-columns: 1fr;
-        }
-
-        .rights-grid {
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-        }
-
-        .cta-actions {
+        .section-header-new {
             flex-direction: column;
-            align-items: center;
+            text-align: center;
+            gap: 1rem;
         }
 
-        .cta-actions .btn {
-            width: 100%;
-            max-width: 300px;
+        .section-number {
+            font-size: 2rem;
         }
-    }
 
-    /* Smooth Scrolling */
-    html {
-        scroll-behavior: smooth;
-    }
+        .section-title-new {
+            font-size: 2rem;
+        }
 
-    /* Loading Animation */
-    .privacy-section {
-        opacity: 0;
-        transform: translateY(20px);
-        animation: fadeInUp 0.6s ease forwards;
-    }
-
-    .privacy-section:nth-child(1) { animation-delay: 0.1s; }
-    .privacy-section:nth-child(2) { animation-delay: 0.2s; }
-    .privacy-section:nth-child(3) { animation-delay: 0.3s; }
-    .privacy-section:nth-child(4) { animation-delay: 0.4s; }
-    .privacy-section:nth-child(5) { animation-delay: 0.5s; }
-    .privacy-section:nth-child(6) { animation-delay: 0.6s; }
-
-    @keyframes fadeInUp {
-        to {
-            opacity: 1;
-            transform: translateY(0);
+        .content-grid {
+            grid-template-columns: 1fr;
+            gap: 2rem;
         }
     }
 </style>
@@ -1082,7 +1532,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Efecto parallax sutil en hero
     window.addEventListener('scroll', () => {
         const scrolled = window.pageYOffset;
-        const hero = document.querySelector('.privacy-hero');
+        const hero = document.querySelector('.privacy-hero-new');
         if (hero) {
             hero.style.transform = `translateY(${scrolled * 0.5}px)`;
         }
