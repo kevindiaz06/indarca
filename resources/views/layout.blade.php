@@ -554,8 +554,7 @@
                         {{ __('general.all_rights_reserved') }}</p>
                 </div>
                 <div class="col-md-6 text-center text-md-end">
-                    <p class="mb-0 text-light">{{ __('general.designed_by') }} <a href="#"
-                            class="text-danger text-decoration-none">{{ __('general.web_team') }}</a></p>
+                    <!-- Línea removida: Diseñado por Indarca Web Team -->
                 </div>
             </div>
         </div>
