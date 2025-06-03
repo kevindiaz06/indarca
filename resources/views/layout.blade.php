@@ -554,7 +554,8 @@
                         {{ __('general.all_rights_reserved') }}</p>
                 </div>
                 <div class="col-md-6 text-center text-md-end">
-                    <!-- Línea removida: Diseñado por Indarca Web Team -->
+                    <p class="mb-0 text-light">{{ __('general.designed_by') }} <a href="https://www.instagram.com/kevindiaz_06/"
+                            class="text-danger text-decoration-none" target="_blank">{{ __('general.web_team') }}</a></p>
                 </div>
             </div>
         </div>
