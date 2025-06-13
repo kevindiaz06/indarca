@@ -1,23 +1,22 @@
+# Imagen base de PHP 8.2 con Apache
 FROM php:8.2-apache
 
-# Evitar errores por regiones no configuradas
+# Evitar errores de localización durante instalaciones
 ENV DEBIAN_FRONTEND=noninteractive
 
 # Instalar dependencias del sistema
 RUN apt-get update && apt-get install -y \
-    apt-transport-https \
-    ca-certificates \
     git \
     curl \
-    libpng-dev \
-    libonig-dev \
-    libxml2-dev \
-    zip \
     unzip \
+    zip \
+    zlib1g-dev \
+    libpng-dev \
+    libxml2-dev \
     libzip-dev \
-    mysql-client \
-    libfreetype6-dev \
     libjpeg62-turbo-dev \
+    libfreetype6-dev \
+    mariadb-client \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/*
 
@@ -77,6 +76,8 @@ rm -rf /var/www/html/storage_backup\n\
 apache2-foreground' > /usr/local/bin/init-storage.sh \
  && chmod +x /usr/local/bin/init-storage.sh
 
+# Exponer el puerto 80
 EXPOSE 80
 
+# Usar el script de inicialización como comando de inicio
 CMD ["/usr/local/bin/init-storage.sh"]
