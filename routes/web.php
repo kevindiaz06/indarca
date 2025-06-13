@@ -168,9 +168,12 @@ Route::prefix('admin')->middleware(['auth', 'role:admin,trabajador'])->group(fun
         Route::post('/team/update-order', [App\Http\Controllers\Admin\TeamController::class, 'updateOrder'])->name('admin.team.update-order');
     });
 
-    // Monitor de Servidor
-    Route::get('/server-monitor', [App\Http\Controllers\ServerMonitorController::class, 'index'])->name('admin.server-monitor.index');
-    Route::get('/server-monitor/data', [App\Http\Controllers\ServerMonitorController::class, 'getSystemData'])->name('admin.server-monitor.data');
+    // Monitor de Servidor (Solo para Administradores)
+    Route::group(['middleware' => ['role:admin']], function () {
+        Route::get('/server-monitor', [App\Http\Controllers\ServerMonitorController::class, 'index'])->name('admin.server-monitor.index');
+        Route::get('/server-monitor/data', [App\Http\Controllers\ServerMonitorController::class, 'getSystemData'])->name('admin.server-monitor.data');
+        Route::get('/server-monitor/download-report', [App\Http\Controllers\ServerMonitorController::class, 'downloadServerReport'])->name('admin.server-monitor.download-report');
+    });
 });
 
 // Ruta para cambiar el idioma

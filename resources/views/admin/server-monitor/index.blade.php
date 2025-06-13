@@ -7,6 +7,10 @@
         <p class="mb-0 text-muted">Información en tiempo real del estado del servidor</p>
     </div>
     <div>
+        <a href="{{ route('admin.server-monitor.download-report') }}" class="btn btn-success me-2">
+            <i class="bi bi-file-earmark-pdf me-2"></i>
+            Descargar Informe PDF
+        </a>
         <button class="btn btn-primary" onclick="refreshData()">
             <i class="bi bi-arrow-clockwise me-2" id="refreshIcon"></i>
             Actualizar

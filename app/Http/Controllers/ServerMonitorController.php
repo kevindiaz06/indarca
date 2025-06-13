@@ -5,12 +5,13 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class ServerMonitorController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['auth', 'role:admin,trabajador']);
+        $this->middleware(['auth', 'role:admin']);
     }
 
     public function index()
@@ -37,6 +38,34 @@ class ServerMonitorController extends Controller
             'storage' => $this->getStorageInfo(),
             'timestamp' => now()->format('H:i:s')
         ]);
+    }
+
+    public function downloadServerReport()
+    {
+        $serverInfo = $this->getServerInfo();
+        $systemInfo = $this->getSystemInfo();
+        $databaseInfo = $this->getDatabaseInfo();
+        $storageInfo = $this->getStorageInfo();
+        
+        // Generar alertas para el PDF
+        $alerts = $this->generateSystemAlerts($systemInfo, $storageInfo, $databaseInfo);
+        
+        $data = [
+            'serverInfo' => $serverInfo,
+            'systemInfo' => $systemInfo,
+            'databaseInfo' => $databaseInfo,
+            'storageInfo' => $storageInfo,
+            'alerts' => $alerts,
+            'generatedAt' => now()->format('d/m/Y H:i:s'),
+            'generatedBy' => auth()->user()->name,
+        ];
+
+        $pdf = Pdf::loadView('admin.server-monitor.pdf-report', $data);
+        $pdf->setPaper('A4', 'portrait');
+        
+        $filename = 'informe-servidor-' . now()->format('Y-m-d-H-i-s') . '.pdf';
+        
+        return $pdf->download($filename);
     }
 
     private function getServerInfo()
@@ -234,5 +263,52 @@ class ServerMonitorController extends Controller
         $minutes = floor(($seconds % 3600) / 60);
         
         return sprintf('%d días, %d horas, %d minutos', $days, $hours, $minutes);
+    }
+
+    private function generateSystemAlerts($systemInfo, $storageInfo, $databaseInfo)
+    {
+        $alerts = [];
+        
+        // Verificar uso de memoria del sistema
+        if ($systemInfo['memory_usage']['usage_percentage'] !== 'N/A' && 
+            $systemInfo['memory_usage']['usage_percentage'] > 85) {
+            $alerts[] = [
+                'type' => 'danger',
+                'title' => 'Memoria del Sistema Alta',
+                'message' => "El uso de memoria del sistema está al {$systemInfo['memory_usage']['usage_percentage']}%"
+            ];
+        }
+        
+        // Verificar uso de disco
+        if ($storageInfo['storage_usage_percentage'] !== 'N/A' && 
+            $storageInfo['storage_usage_percentage'] > 90) {
+            $alerts[] = [
+                'type' => 'danger',
+                'title' => 'Espacio en Disco Bajo',
+                'message' => "El disco está al {$storageInfo['storage_usage_percentage']}% de su capacidad"
+            ];
+        }
+        
+        // Verificar conexión a base de datos
+        if (!$databaseInfo['connected']) {
+            $alerts[] = [
+                'type' => 'danger',
+                'title' => 'Error de Base de Datos',
+                'message' => 'No se puede conectar a la base de datos'
+            ];
+        }
+        
+        // Verificar carga del sistema
+        if ($systemInfo['load_average']['1min'] !== 'N/A' && 
+            is_numeric($systemInfo['load_average']['1min']) && 
+            $systemInfo['load_average']['1min'] > 2.0) {
+            $alerts[] = [
+                'type' => 'warning',
+                'title' => 'Carga del Sistema Alta',
+                'message' => "La carga promedio es {$systemInfo['load_average']['1min']}"
+            ];
+        }
+        
+        return $alerts;
     }
 } 
