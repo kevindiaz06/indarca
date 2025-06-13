@@ -1,8 +1,12 @@
-# Imagen base de PHP 8.2 con Apache
 FROM php:8.2-apache
+        
+# Evitar errores por regiones no configuradas
+ENV DEBIAN_FRONTEND=noninteractive
 
 # Instalar dependencias del sistema
 RUN apt-get update && apt-get install -y \
+    apt-transport-https \
+    ca-certificates \
     git \
     curl \
     libpng-dev \
@@ -13,10 +17,9 @@ RUN apt-get update && apt-get install -y \
     libzip-dev \
     default-mysql-client \
     libfreetype6-dev \
-    libjpeg62-turbo-dev
-
-# Limpiar caché de apt
-RUN apt-get clean && rm -rf /var/lib/apt/lists/*
+    libjpeg62-turbo-dev \
+ && apt-get clean \
+ && rm -rf /var/lib/apt/lists/*
 
 # Instalar extensiones de PHP
 RUN docker-php-ext-install pdo_mysql mysqli mbstring exif pcntl bcmath gd zip
@@ -33,23 +36,26 @@ WORKDIR /var/www/html
 # Copiar los archivos del proyecto
 COPY . /var/www/html
 
-# Crear una copia de seguridad del directorio storage
+# Crear copia de seguridad del directorio storage
 RUN cp -r /var/www/html/storage /var/www/html/storage_backup
 
 # Instalar dependencias de Composer
 RUN composer install --no-interaction --no-dev --optimize-autoloader
 
-# Instalar dependencias de Node.js y compilar assets
+# Instalar Node.js y compilar assets
 RUN curl -sL https://deb.nodesource.com/setup_18.x | bash - \
-&& apt-get install -y nodejs \
-&& npm install \
-&& npm run build
+ && apt-get update \
+ && apt-get install -y nodejs \
+ && npm install \
+ && npm run build \
+ && apt-get clean \
+ && rm -rf /var/lib/apt/lists/*
 
 # Configurar permisos
 RUN chown -R www-data:www-data /var/www/html \
-&& chmod -R 775 /var/www/html/storage \
-&& chmod -R 775 /var/www/html/bootstrap/cache \
-&& chmod -R 775 /var/www/html/storage_backup
+ && chmod -R 775 /var/www/html/storage \
+ && chmod -R 775 /var/www/html/bootstrap/cache \
+ && chmod -R 775 /var/www/html/storage_backup
 
 # Configurar Apache
 COPY docker/apache/000-default.conf /etc/apache2/sites-available/000-default.conf
@@ -69,10 +75,8 @@ fi\n\
 echo "Removing storage backup..."\n\
 rm -rf /var/www/html/storage_backup\n\
 apache2-foreground' > /usr/local/bin/init-storage.sh \
-&& chmod +x /usr/local/bin/init-storage.sh
+ && chmod +x /usr/local/bin/init-storage.sh
 
-# Exponer el puerto 80
 EXPOSE 80
 
-# Usar el script de inicialización como comando de inicio
 CMD ["/usr/local/bin/init-storage.sh"]
