@@ -17,9 +17,6 @@ class DatabaseSeeder extends Seeder
         $this->call([
             EstadoDensimetroSeeder::class,
             RolesSeeder::class,
-            EmpresaSeeder::class,
-            UserSeeder::class,
-            DensimetroSeeder::class,
             AdminUserSeeder::class,
         ]);
     }
