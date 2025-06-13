@@ -1,5 +1,5 @@
 FROM php:8.2-apache
-        
+
 # Evitar errores por regiones no configuradas
 ENV DEBIAN_FRONTEND=noninteractive
 
@@ -15,7 +15,7 @@ RUN apt-get update && apt-get install -y \
     zip \
     unzip \
     libzip-dev \
-    default-mysql-client \
+    mysql-client \
     libfreetype6-dev \
     libjpeg62-turbo-dev \
  && apt-get clean \
