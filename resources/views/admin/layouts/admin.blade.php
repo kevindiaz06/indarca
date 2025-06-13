@@ -286,6 +286,11 @@
                         <i class="bi bi-tools me-2"></i> Densímetros
                     </a>
                 </li>
+                <li class="{{ request()->routeIs('admin.server-monitor*') ? 'active' : '' }}">
+                    <a href="{{ route('admin.server-monitor.index') }}">
+                        <i class="bi bi-server me-2"></i> Monitor de Servidor
+                    </a>
+                </li>
                 @if(Auth::user()->role === 'admin')
                 <li class="{{ request()->routeIs('admin.views*') ? 'active' : '' }}">
                     <a href="#viewsSubmenu" data-bs-toggle="collapse" aria-expanded="{{ request()->routeIs('admin.views*') ? 'true' : 'false' }}" class="dropdown-toggle">

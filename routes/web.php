@@ -23,6 +23,7 @@ use App\Http\Controllers\ReportController;
 use App\Http\Controllers\DensimetroArchivoController;
 use App\Http\Controllers\PoliticasPrivacidadController;
 use App\Http\Controllers\LanguageController;
+use App\Http\Controllers\ServerMonitorController;
 use Illuminate\Http\Request;
 
 /*
@@ -166,6 +167,10 @@ Route::prefix('admin')->middleware(['auth', 'role:admin,trabajador'])->group(fun
         Route::delete('/team/{teamMember}', [App\Http\Controllers\Admin\TeamController::class, 'destroy'])->name('admin.team.destroy');
         Route::post('/team/update-order', [App\Http\Controllers\Admin\TeamController::class, 'updateOrder'])->name('admin.team.update-order');
     });
+
+    // Monitor de Servidor
+    Route::get('/server-monitor', [App\Http\Controllers\ServerMonitorController::class, 'index'])->name('admin.server-monitor.index');
+    Route::get('/server-monitor/data', [App\Http\Controllers\ServerMonitorController::class, 'getSystemData'])->name('admin.server-monitor.data');
 });
 
 // Ruta para cambiar el idioma
