@@ -663,7 +663,7 @@
                                                 <li>Mantener la sesión de usuario</li>
                                                 <li>Recordar preferencias de idioma</li>
                                                 <li>Garantizar la seguridad del sitio</li>
-                                                <li>Funcionamiento del banner de cookies</li>
+                                                <li>Funcionalidades básicas del sitio web</li>
                                             </ul>
                                             <span class="badge bg-success">Siempre Activas</span>
                                         </div>
@@ -700,54 +700,7 @@
                                     </div>
                                 </div>
 
-                                <!-- Banner de Cookies -->
-                                <div class="cookies-banner-info mb-5">
-                                    <h4 class="mb-4">Banner de Consentimiento de Cookies</h4>
-                                    <div class="row align-items-center">
-                                        <div class="col-lg-8">
-                                            <div class="banner-description">
-                                                <p class="mb-3">Cuando visita nuestro sitio web por primera vez, aparece un banner en la parte inferior de la pantalla solicitando su consentimiento para el uso de cookies.</p>
-                                                <div class="banner-features">
-                                                    <div class="feature-item d-flex align-items-center mb-2">
-                                                        <i class="fas fa-check-circle text-success me-2"></i>
-                                                        <span>Información clara sobre el uso de cookies</span>
-                                                    </div>
-                                                    <div class="feature-item d-flex align-items-center mb-2">
-                                                        <i class="fas fa-check-circle text-success me-2"></i>
-                                                        <span>Bloqueo temporal de navegación hasta decidir</span>
-                                                    </div>
-                                                    <div class="feature-item d-flex align-items-center mb-2">
-                                                        <i class="fas fa-check-circle text-success me-2"></i>
-                                                        <span>Su decisión se guarda para futuras visitas</span>
-                                                    </div>
-                                                    <div class="feature-item d-flex align-items-center mb-2">
-                                                        <i class="fas fa-check-circle text-success me-2"></i>
-                                                        <span>Puede cambiar sus preferencias en cualquier momento</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4">
-                                            <div class="banner-preview bg-light p-3 rounded text-center">
-                                                <div class="mock-banner bg-white shadow rounded p-3">
-                                                    <div class="d-flex align-items-center mb-2">
-                                                        <div class="bg-danger text-white rounded-circle me-2 d-flex align-items-center justify-content-center" style="width: 30px; height: 30px;">
-                                                            <i class="fas fa-shield-alt"></i>
-                                                        </div>
-                                                        <div class="text-start">
-                                                            <h6 class="mb-0 fw-bold">Uso de Cookies</h6>
-                                                            <small class="text-muted">Este sitio web utiliza cookies...</small>
-                                                        </div>
-                                                    </div>
-                                                    <button class="btn btn-danger btn-sm">
-                                                        <i class="fas fa-check me-1"></i>Aceptar
-                                                    </button>
-                                                </div>
-                                                <small class="text-muted d-block mt-2">Vista previa del banner</small>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+
 
                                 <!-- Gestión de Cookies -->
                                 <div class="cookies-management mb-5">
@@ -855,7 +808,6 @@
                                             <h6>Versión Actual</h6>
                                             <ul class="small mb-0">
                                                 <li>Agregada sección detallada sobre cookies</li>
-                                                <li>Información sobre banner de consentimiento</li>
                                                 <li>Guías para gestión de cookies en navegadores</li>
                                                 <li>Clarificación de tipos de cookies utilizadas</li>
                                             </ul>

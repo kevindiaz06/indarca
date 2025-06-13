@@ -40,10 +40,13 @@ class Densimetro extends Model
     protected $casts = [
         'fecha_entrada' => 'date',
         'fecha_finalizacion' => 'date',
+        'fecha_proxima_calibracion' => 'date',
+        'calibrado' => 'boolean',
     ];
 
     /**
      * Los atributos que deben convertirse a fechas.
+     * DEPRECATED: Se mantiene para compatibilidad, usar $casts preferiblemente
      *
      * @var array<string>
      */
@@ -217,5 +220,62 @@ class Densimetro extends Model
 
         // Solo registrar eventos de limpieza de caché, sin verificación automática
         // La verificación se debe hacer manualmente cuando sea necesario
+    }
+
+    /**
+     * Helper para formatear fecha de entrada de forma segura
+     *
+     * @param string $format
+     * @return string
+     */
+    public function formatFechaEntrada($format = 'd/m/Y')
+    {
+        if (!$this->fecha_entrada) {
+            return '-';
+        }
+
+        if ($this->fecha_entrada instanceof \Carbon\Carbon) {
+            return $this->fecha_entrada->format($format);
+        }
+
+        return \Carbon\Carbon::parse($this->fecha_entrada)->format($format);
+    }
+
+    /**
+     * Helper para formatear fecha de finalización de forma segura
+     *
+     * @param string $format
+     * @return string
+     */
+    public function formatFechaFinalizacion($format = 'd/m/Y')
+    {
+        if (!$this->fecha_finalizacion) {
+            return 'Pendiente';
+        }
+
+        if ($this->fecha_finalizacion instanceof \Carbon\Carbon) {
+            return $this->fecha_finalizacion->format($format);
+        }
+
+        return \Carbon\Carbon::parse($this->fecha_finalizacion)->format($format);
+    }
+
+    /**
+     * Helper para formatear fecha próxima calibración de forma segura
+     *
+     * @param string $format
+     * @return string|null
+     */
+    public function formatFechaProximaCalibr($format = 'd/m/Y')
+    {
+        if (!$this->fecha_proxima_calibracion) {
+            return null;
+        }
+
+        if ($this->fecha_proxima_calibracion instanceof \Carbon\Carbon) {
+            return $this->fecha_proxima_calibracion->format($format);
+        }
+
+        return \Carbon\Carbon::parse($this->fecha_proxima_calibracion)->format($format);
     }
 }

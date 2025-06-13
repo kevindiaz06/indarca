@@ -63,10 +63,7 @@ Route::get('/densimetros', [DensimetrosController::class, 'index'])->name('densi
 Route::get('/sobre-nosotros', [SobreNosotrosController::class, 'index'])->name('sobreNosotros');
 Route::get('/politicas-privacidad', [PoliticasPrivacidadController::class, 'index'])->name('politicas.privacidad');
 
-// Ruta de demostración para el banner de cookies
-Route::get('/demo-cookies', function () {
-    return view('demo-cookies');
-})->name('demo.cookies');
+
 
 // Rutas para consulta de estado de densímetros - Vistas deben extender de 'layout.blade.php'
 Route::get('/estado', [EstadoController::class, 'index'])->name('estado');

@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
             EstadoDensimetroSeeder::class,
             RolesSeeder::class,
             EmpresaSeeder::class,
+            UserSeeder::class,
             DensimetroSeeder::class,
             AdminUserSeeder::class,
         ]);

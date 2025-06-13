@@ -44,12 +44,36 @@ class DensimetroController extends Controller
      *
      * @return View
      */
-    public function index(): View
+    public function index(Request $request): View
     {
         $this->authorize('viewAny', Densimetro::class);
 
-        $densimetros = $this->repository->getAll(10);
-        return view('admin.densimetros.index', compact('densimetros'));
+        // Obtener parámetros de paginación
+        $perPage = $request->get('per_page', 15); // Por defecto 15 elementos por página
+        $perPage = in_array($perPage, [10, 15, 25, 50, 100]) ? $perPage : 15; // Validar valores permitidos
+
+        // Consulta optimizada con eager loading y índices
+        $densimetros = Densimetro::with(['cliente:id,name,email'])
+            ->select([
+                'id', 'cliente_id', 'numero_serie', 'marca', 'modelo',
+                'fecha_entrada', 'fecha_finalizacion', 'referencia_reparacion',
+                'estado', 'calibrado', 'fecha_proxima_calibracion', 'created_at'
+            ])
+            ->orderByDesc('created_at') // Usar orderByDesc para mejor performance
+            ->paginate($perPage);
+
+        // Mantener parámetros de consulta en la paginación
+        $densimetros->appends($request->query());
+
+        // Datos adicionales para la vista
+        $totalRegistros = $densimetros->total();
+        $estadisticas = [
+            'total' => $totalRegistros,
+            'paginas' => $densimetros->lastPage(),
+            'actual' => $densimetros->currentPage()
+        ];
+
+        return view('admin.densimetros.index', compact('densimetros', 'perPage', 'estadisticas'));
     }
 
     /**

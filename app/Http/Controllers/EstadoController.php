@@ -51,7 +51,7 @@ class EstadoController extends Controller
             'numero_serie' => $densimetro->numero_serie,
             'marca' => $densimetro->marca,
             'modelo' => $densimetro->modelo,
-            'fecha_entrada' => $densimetro->fecha_entrada->format('d/m/Y'),
+            'fecha_entrada' => $densimetro->formatFechaEntrada(),
             'estado' => $this->formatearEstado($densimetro->estado),
             'cliente' => $densimetro->cliente ? $densimetro->cliente->name : 'Cliente no disponible',
         ];
@@ -206,7 +206,7 @@ class EstadoController extends Controller
             'numero_serie' => $densimetro->numero_serie,
             'marca' => $densimetro->marca,
             'modelo' => $densimetro->modelo,
-            'fecha_entrada' => $densimetro->fecha_entrada->format('d/m/Y'),
+            'fecha_entrada' => $densimetro->formatFechaEntrada(),
             'estado' => $this->formatearEstado($densimetro->estado),
             'cliente' => $densimetro->cliente ? $densimetro->cliente->name : __('estado.client_not_available'),
         ];

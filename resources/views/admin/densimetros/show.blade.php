@@ -40,7 +40,7 @@
                         </div>
                         <div class="col-md-6">
                             <p class="mb-1 text-muted">Fecha de Entrada</p>
-                            <h5>{{ $densimetro->fecha_entrada->format('d/m/Y') }}</h5>
+                            <h5>{{ $densimetro->formatFechaEntrada() }}</h5>
                         </div>
                     </div>
 

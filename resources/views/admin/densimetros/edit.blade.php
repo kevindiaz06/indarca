@@ -106,7 +106,7 @@
 
                     <div class="col-md-6">
                         <label for="fecha_entrada" class="form-label">Fecha de Entrada</label>
-                        <input type="text" class="form-control" id="fecha_entrada" value="{{ $densimetro->fecha_entrada->format('d/m/Y') }}" readonly>
+                        <input type="text" class="form-control" id="fecha_entrada" value="{{ $densimetro->formatFechaEntrada() }}" readonly>
                         <div class="form-text">La fecha de entrada no puede modificarse.</div>
                     </div>
                 </div>

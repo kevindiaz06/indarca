@@ -38,7 +38,7 @@
                                             {{ $densimetro->marca ?: __('general.not_specified_f') }}
                                             <small class="d-block text-muted">{{ $densimetro->modelo ?: __('general.not_specified_m') }}</small>
                                         </td>
-                                        <td>{{ $densimetro->fecha_entrada->format('d/m/Y') }}</td>
+                                        <td>{{ $densimetro->formatFechaEntrada() }}</td>
                                         <td>
                                             @if($densimetro->estado == 'recibido')
                                                 <span class="badge bg-info">{{ __('general.received') }}</span>
@@ -97,7 +97,7 @@
                     </div>
                     <div class="col-md-6">
                         <p class="mb-1 fw-bold">{{ __('general.entry_date') }}</p>
-                        <p>{{ $densimetro->fecha_entrada->format('d/m/Y') }}</p>
+                        <p>{{ $densimetro->formatFechaEntrada() }}</p>
                     </div>
                 </div>
 
